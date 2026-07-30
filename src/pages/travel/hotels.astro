@@ -1,0 +1,78 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [{'@type': 'Article', 'headline': 'Best Hotels in Chengdu', 'description': 'Where to stay in Chengdu, from boutique courtyard hotels to luxury brands.', 'url': 'https://best-of-chengdu.com/travel/hotels', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel'}, {'@type': 'ListItem', 'position': 3, 'name': 'Hotels', 'item': 'https://best-of-chengdu.com/travel/hotels'}]}],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Hotels in Chengdu" description="Where to stay in Chengdu, from boutique courtyard hotels to luxury brands.">
+  <Header />
+
+  <main>
+    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
+        Best Hotels in Chengdu
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">From restored Qing-dynasty courtyards to sleek international towers, Chengdu has accommodation for every style and budget. Here is where to stay and which neighborhood suits you.</p>
+    </section>
+    <section class="max-w-[860px] mx-auto px-6 pb-16">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Best neighborhoods to stay</h2>
+      <div class="space-y-4">
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">1</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Chunxi Road / Taikoo Li</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Central</span></div><p class="text-sm text-gray-500 mt-1">The beating heart of Chengdu. Walking distance to shopping, dining, and the metro hub. The Temple House and Niccolo are here if you want luxury. Mid-range options cluster around Chunxi Road. Best for first-time visitors who want to be in the center of everything.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">2</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Kuanzhai Alley Area</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Cultural</span></div><p class="text-sm text-gray-500 mt-1">Stay in a converted courtyard hotel within the historic alley district. Boutique options like Diaoyutai Boutique Hotel offer rooms in Qing-dynasty buildings. Great for travelers who want atmosphere over convenience.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">3</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Yulin / South of the River</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Local & artsy</span></div><p class="text-sm text-gray-500 mt-1">The city's most liveable neighborhood. Tree-lined streets, independent coffee shops, and the best concentration of local restaurants. Fewer chains, more character. Perfect for return visitors or those who prefer a slower pace.</p></div></div>
+    </section>
+        <section class="max-w-[860px] mx-auto px-6 pb-12">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Neighborhood comparison</h2>
+      <div class="overflow-x-auto rounded-xl border border-border">
+        <table class="w-full text-sm">
+          <thead class="bg-surface">
+            <tr>
+              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Area</th>
+              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Vibe</th>
+              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Budget</th>
+              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Best for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-border">
+              <td class="p-4 font-medium text-[#1a1a1a]">Chunxi / Taikoo Li</td>
+              <td class="p-4 text-gray-500">Central, busy</td>
+              <td class="p-4 text-gray-500">400-1500+ RMB</td>
+              <td class="p-4 text-gray-500">First-time visitors, shopping</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="p-4 font-medium text-[#1a1a1a]">Kuanzhai Alley</td>
+              <td class="p-4 text-gray-500">Cultural, historic</td>
+              <td class="p-4 text-gray-500">400-1200 RMB</td>
+              <td class="p-4 text-gray-500">Culture lovers, couples</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="p-4 font-medium text-[#1a1a1a]">Yulin / South River</td>
+              <td class="p-4 text-gray-500">Artsy, local</td>
+              <td class="p-4 text-gray-500">200-600 RMB</td>
+              <td class="p-4 text-gray-500">Return visitors, slow travel</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Hotel picks by budget</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-5 rounded-xl bg-white border border-border"><span class="text-xs font-medium text-accent mb-2 block">BUDGET</span><h3 class="font-semibold text-[#1a1a1a]">200-400 RMB</h3><p class="text-sm text-gray-500 mt-1">Clean, comfortable options from local chains like Hanting and 7 Days Inn. International hostels with private rooms around 200 RMB. Book through Ctrip for the best rates.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><span class="text-xs font-medium text-accent mb-2 block">MID-RANGE</span><h3 class="font-semibold text-[#1a1a1a]">400-800 RMB</h3><p class="text-sm text-gray-500 mt-1">International brands like Holiday Inn and local boutique hotels. Nicely designed rooms with good locations. The sweet spot for quality without the price tag.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><span class="text-xs font-medium text-accent mb-2 block">LUXURY</span><h3 class="font-semibold text-[#1a1a1a]">800+ RMB</h3><p class="text-sm text-gray-500 mt-1">The Temple House, Niccolo, St. Regis, and Ritz-Carlton. World-class service with Chengdu character. The Temple House's courtyard suites are worth the splurge for a special occasion.</p></div>
+        </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

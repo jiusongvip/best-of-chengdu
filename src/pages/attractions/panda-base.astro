@@ -1,0 +1,121 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const tips = [
+  { title: 'Opening hours', detail: '7:30 am to 6:00 pm daily. Ticket sales stop at 5:00 pm.' },
+  { title: 'Tickets', detail: '55 RMB for adults, free for children under 6. Book online to skip the queue.' },
+  { title: 'Best time to visit', detail: 'Arrive by 8:00 am. Pandas are most active in the morning, especially in cooler months (March-May, September-November).' },
+  { title: 'Suggested duration', detail: '3-4 hours for a good visit. Plan for half a day if you want to see everything.' },
+];
+
+const faqs = [
+  { q: 'Can I hold a baby panda?', a: 'The panda holding program was discontinued. You can still see baby pandas in the nursery during breeding season (July-September).' },
+  { q: 'When is baby panda season?', a: 'Pandas typically give birth in July and August. The best months to see cubs are August through October.' },
+  { q: 'Do I need to book tickets in advance?', a: 'Strongly recommended, especially during holidays and weekends. Use the official WeChat mini-program or travel platforms like Ctrip.' },
+  { q: 'How do I get there?', a: 'Take Metro Line 3 to Panda Avenue Station, then a shuttle bus. Or take a direct tourist bus from Chunxi Road or Kuanzhai Alley.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: 'Chengdu Panda Base Guide 2026',
+      description: 'Everything you need to know before visiting the Chengdu Research Base of Giant Panda Breeding. Tickets, best viewing times, baby panda season, and insider tips.',
+      url: 'https://best-of-chengdu.com/attractions/panda-base',
+      author: { '@type': 'Organization', name: 'Best of Chengdu' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'Can I hold a baby panda?', acceptedAnswer: { '@type': 'Answer', text: 'The panda holding program was discontinued. You can still see baby pandas in the nursery during breeding season (July-September).' } },
+        { '@type': 'Question', name: 'When is baby panda season?', acceptedAnswer: { '@type': 'Answer', text: 'Pandas typically give birth in July and August. The best months to see cubs are August through October.' } },
+        { '@type': 'Question', name: 'Do I need to book tickets in advance?', acceptedAnswer: { '@type': 'Answer', text: 'Strongly recommended, especially during holidays and weekends. Use the official WeChat mini-program or travel platforms like Ctrip.' } },
+        { '@type': 'Question', name: 'How do I get there?', acceptedAnswer: { '@type': 'Answer', text: 'Take Metro Line 3 to Panda Avenue Station, then a shuttle bus. Or take a direct tourist bus from Chunxi Road or Kuanzhai Alley.' } },
+      ],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://best-of-chengdu.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Attractions', item: 'https://best-of-chengdu.com/attractions' },
+        { '@type': 'ListItem', position: 3, name: 'Panda Base', item: 'https://best-of-chengdu.com/attractions/panda-base' },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu Panda Base Guide" description="Everything you need to know before visiting the Chengdu Research Base of Giant Panda Breeding. Tickets, best viewing times, baby panda season, and insider tips.">
+  <Header />
+
+  <main>
+    <article class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
+        Chengdu Panda Base: Complete Visitor&rsquo;s Guide
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">The Chengdu Research Base of Giant Panda Breeding is one of the world's best places to see giant pandas up close. Here is everything you need to plan your visit.</p>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {tips.map(tip => (
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a]">{tip.title}</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">{tip.detail}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Suggested route</h2>
+        <div class="space-y-4">
+          <div class="flex gap-4 p-4 rounded-xl border border-border">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">1</span>
+            <div>
+              <h3 class="font-semibold text-[#1a1a1a]">Nursery</h3>
+              <p class="text-sm text-gray-500 mt-0.5">Start here to see the youngest pandas before the crowds build.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 p-4 rounded-xl border border-border">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">2</span>
+            <div>
+              <h3 class="font-semibold text-[#1a1a1a]">Sub-adult enclosures</h3>
+              <p class="text-sm text-gray-500 mt-0.5">The most active and playful pandas. These are the ones climbing trees and tumbling around.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 p-4 rounded-xl border border-border">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">3</span>
+            <div>
+              <h3 class="font-semibold text-[#1a1a1a]">Adult panda villas</h3>
+              <p class="text-sm text-gray-500 mt-0.5">The full-grown giants. They spend most of their time eating bamboo, which is oddly mesmerizing.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 p-4 rounded-xl border border-border">
+            <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">4</span>
+            <div>
+              <h3 class="font-semibold text-[#1a1a1a]">Red panda area + swan lake</h3>
+              <p class="text-sm text-gray-500 mt-0.5">Don't miss the red pandas. The lake area is a peaceful spot to wrap up your visit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">FAQ</h2>
+        <div class="space-y-6">
+          {faqs.map(faq => (
+            <div>
+              <h3 class="font-semibold text-[#1a1a1a] mb-1">{faq.q}</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

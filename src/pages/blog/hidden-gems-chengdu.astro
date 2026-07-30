@@ -1,0 +1,126 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-22',
+  'dateModified': '2026-07-29',
+  '@graph': [
+    {
+      '@type': 'Article',
+      'headline': '10 Hidden Gems in Chengdu Most Tourists Never Find',
+      'description': 'Beyond Jinli and the Panda Base: secret tea houses, underground art spaces, and the best noodle shop with no English name.',
+      'url': 'https://best-of-chengdu.com/blog/hidden-gems-chengdu',
+      'author': {'@type': 'Organization', 'name': 'Best of Chengdu'},
+    },
+    {
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'},
+        {'@type': 'ListItem', 'position': 2, 'name': 'Blog', 'item': 'https://best-of-chengdu.com/blog'},
+        {'@type': 'ListItem', 'position': 3, 'name': 'Hidden Gems', 'item': 'https://best-of-chengdu.com/blog/hidden-gems-chengdu'},
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="10 Hidden Gems in Chengdu" description="Beyond Jinli and the Panda Base: secret tea houses, underground art spaces, and the best noodle shop with no English name.">
+  <Header />
+
+  <main>
+    <article class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <span class="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">Off the beaten path</span>
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1] mt-4">
+        10 Hidden Gems in Chengdu
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Everyone goes to the Panda Base and Jinli. These are the places that tourists walk past every day without knowing what's inside.</p>
+
+      <div class="mt-12 space-y-10">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-accent text-white text-xs font-semibold flex items-center justify-center shrink-0">1</span>
+            <h2 class="text-xl font-display font-semibold text-[#1a1a1a]">Eastern Suburb Memory</h2>
+          </div>
+          <p class="text-gray-500 leading-relaxed text-sm">A decommissioned Soviet-era electronics factory turned into Chengdu's best art and music district. Massive industrial halls now house galleries, live houses, and design studios. The stark concrete architecture with its red-star motifs is worth the visit alone. Go on a weekend afternoon when the creative crowd is out. Free entry. Metro Line 8 to Dongjiao Memory station.</p>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-accent text-white text-xs font-semibold flex items-center justify-center shrink-0">2</span>
+            <h2 class="text-xl font-display font-semibold text-[#1a1a1a]">The noodle shop at 147 Qingyang Shangjie</h2>
+          </div>
+          <p class="text-gray-500 leading-relaxed text-sm">No sign. No menu. Three tables. One dish: zha jiang mian (fried sauce noodles) that locals quietly agree are the best in Chengdu. The owner, a woman in her sixties known only as Auntie Li, has been making the same noodles for thirty years. Opens at 11am, closes when the sauce runs out (usually by 1:30pm). 12 RMB. Look for the blue door with a faded red character on it.</p>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-accent text-white text-xs font-semibold flex items-center justify-center shrink-0">3</span>
+            <h2 class="text-xl font-display font-semibold text-[#1a1a1a]">Luxelakes A4 Art Museum</h2>
+          </div>
+          <p class="text-gray-500 leading-relaxed text-sm">A world-class contemporary art space hidden inside a residential development south of the city. The rotating exhibitions feature Chinese and international artists working at the cutting edge. The building itself, designed by a Japanese architect, floats on a man-made lake. Far from the city center but worth the trip. 60 RMB entry. Open Tuesday-Sunday.</p>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-accent text-white text-xs font-semibold flex items-center justify-center shrink-0">4</span>
+            <h2 class="text-xl font-display font-semibold text-[#1a1a1a]">Anshun Bridge at midnight</h2>
+          </div>
+          <p class="text-gray-500 leading-relaxed text-sm">The covered bridge over the Jinjiang River is beautiful during the day but transcendent at midnight, when the tourist crowds vanish and the lanterns reflect perfectly in still water. Bring a beer from a nearby convenience store, sit on the riverbank steps, and watch the city sleep. This is what Chengdu feels like when no one is performing for you.</p>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-accent text-white text-xs font-semibold flex items-center justify-center shrink-0">5</span>
+            <h2 class="text-xl font-display font-semibold text-[#1a1a1a]">Tongzilin old neighborhood</h2>
+          </div>
+          <p class="text-gray-500 leading-relaxed text-sm">Before Chengdu became a city of skyscrapers, it was a city of low-rise courtyard neighborhoods. Tongzilin, near the US Consulate, is one of the last intact examples. Narrow lanes, old men playing chess on the sidewalk, and shops that have been there for decades. Walk the area between Renmin South Road and Kehua North Road. The contrast with the surrounding modernity is stark.</p>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-accent text-white text-xs font-semibold flex items-center justify-center shrink-0">6</span>
+            <h2 class="text-xl font-display font-semibold text-[#1a1a1a]">Yongling Museum (Tomb of Wang Jian)</h2>
+          </div>
+          <p class="text-gray-500 leading-relaxed text-sm">A 1,100-year-old imperial tomb hidden in plain sight near the city center. You can walk inside the burial chamber, which is rare for Chinese imperial tombs. The stone carvings of musicians around the coffin platform are a UNESCO-worthy artifact almost nobody visits. 20 RMB. Metro Line 2 to Baiguolin.</p>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-accent text-white text-xs font-semibold flex items-center justify-center shrink-0">7</span>
+            <h2 class="text-xl font-display font-semibold text-[#1a1a1a]">Chengdu Bookworm</h2>
+          </div>
+          <p class="text-gray-500 leading-relaxed text-sm">Not exactly hidden, but overlooked by tourists. This English-language lending library and cafe has been Chengdu's expat living room for two decades. Thousands of books, a quiet courtyard, and surprisingly good Western comfort food. The bulletin board is a fascinating time capsule of Chengdu expat life. Near Renmin South Road.</p>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-accent text-white text-xs font-semibold flex items-center justify-center shrink-0">8</span>
+            <h2 class="text-xl font-display font-semibold text-[#1a1a1a]">Tiexiangsi Water Street</h2>
+          </div>
+          <p class="text-gray-500 leading-relaxed text-sm">A restored water town in the southern suburbs that most foreign tourists never reach. Canals, stone bridges, and traditional architecture without Jinli's crowds. There's a small temple, tea houses along the water, and excellent Sichuan food. Pair with a visit to the nearby New Century Global Center (the world's largest building by floor area) for maximum contrast.</p>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-accent text-white text-xs font-semibold flex items-center justify-center shrink-0">9</span>
+            <h2 class="text-xl font-display font-semibold text-[#1a1a1a]">Sichuan Cuisine Museum</h2>
+          </div>
+          <p class="text-gray-500 leading-relaxed text-sm">An interactive museum in Pixian dedicated to the history and culture of Sichuan food. You can make your own doubanjiang (fermented chili bean paste), grind spices, and cook classic dishes with a chef. The museum restaurant serves a multi-course Sichuan tasting menu that rivals the best restaurants in the city. 60 RMB entry plus cooking class fees. About 40 minutes from the city center by car.</p>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-accent text-white text-xs font-semibold flex items-center justify-center shrink-0">10</span>
+            <h2 class="text-xl font-display font-semibold text-[#1a1a1a]">Qingyang Palace at dawn</h2>
+          </div>
+          <p class="text-gray-500 leading-relaxed text-sm">Chengdu's oldest and largest Taoist temple is well-known. What most visitors don't know is that arriving at 7am, when the monks begin their morning chanting and the incense smoke hangs in the cool air, is a completely different experience than the midday tourist rush. The temple grounds are quiet, the cypress trees are ancient, and you might be the only foreign face there. 10 RMB. Arrive before 8am.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,93 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [{'@type': 'Article', 'headline': 'Best Sichuan Restaurants in Chengdu', 'description': 'Top Sichuan restaurants from fine dining to family-run legends.', 'url': 'https://best-of-chengdu.com/food/sichuan-restaurants', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Food', 'item': 'https://best-of-chengdu.com/food'}, {'@type': 'ListItem', 'position': 3, 'name': 'Sichuan Restaurants', 'item': 'https://best-of-chengdu.com/food/sichuan-restaurants'}]}],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Sichuan Restaurants in Chengdu" description="Top Sichuan restaurants from fine dining to family-run legends.">
+  <Header />
+
+  <main>
+    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
+        Best Sichuan Restaurants in Chengdu
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">From Michelin-starred tasting menus to family-run joints that have served the same three dishes for decades, these are Chengdu's essential Sichuan restaurants.</p>
+    </section>
+    <section class="max-w-[860px] mx-auto px-6 pb-16">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Top Sichuan restaurants</h2>
+      <div class="space-y-4">
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">1</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Yu's Kitchen</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Fine dining</span></div><p class="text-sm text-gray-500 mt-1">Chef Yu Bo's legendary private kitchen, often called the godfather of modern Sichuan cuisine. A multi-course tasting menu that reimagines classic dishes with extraordinary precision. Reservations essential, budget 500+ RMB per person.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">2</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Chen Mapo Tofu</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Classic</span></div><p class="text-sm text-gray-500 mt-1">The restaurant that claims to have invented mapo tofu in 1862. Still family-run, still exceptional. The dish arrives bubbling in a clay pot, the tofu impossibly silky beneath a layer of scarlet chili oil.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">3</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Ming Ting</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Mid-range</span></div><p class="text-sm text-gray-500 mt-1">A beloved Chengdu chain that balances authenticity with approachability. Their twice-cooked pork and kung pao chicken are textbook versions. Multiple locations, 60-100 RMB per person.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">4</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Zi Gong Ren Jia</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Regional</span></div><p class="text-sm text-gray-500 mt-1">Specializes in Zigong-style Sichuan food, which is notably spicier than Chengdu-style. The cold-dressed rabbit and pepper-packed frog legs are legendary. For serious chili lovers only.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">5</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Shi Jia Private Kitchen</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Hidden gem</span></div><p class="text-sm text-gray-500 mt-1">Tucked inside a residential compound, this private kitchen serves a set menu that changes daily based on what is fresh at the morning market. Only four tables. Book a week ahead.</p></div></div>
+    </section>
+        <section class="max-w-[860px] mx-auto px-6 pb-16">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">At a glance</h2>
+      <div class="overflow-x-auto rounded-xl border border-border">
+        <table class="w-full text-sm">
+          <thead class="bg-surface">
+            <tr>
+              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Restaurant</th>
+              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Style</th>
+              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Budget</th>
+              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Best for</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-border">
+              <td class="p-4 font-medium text-[#1a1a1a]">Yu's Kitchen</td>
+              <td class="p-4 text-gray-500">Fine dining</td>
+              <td class="p-4 text-gray-500">500+ RMB</td>
+              <td class="p-4 text-gray-500">Special occasion, tasting menu</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="p-4 font-medium text-[#1a1a1a]">Chen Mapo Tofu</td>
+              <td class="p-4 text-gray-500">Classic</td>
+              <td class="p-4 text-gray-500">50-80 RMB</td>
+              <td class="p-4 text-gray-500">Iconic dish, quick meal</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="p-4 font-medium text-[#1a1a1a]">Ming Ting</td>
+              <td class="p-4 text-gray-500">Mid-range chain</td>
+              <td class="p-4 text-gray-500">60-100 RMB</td>
+              <td class="p-4 text-gray-500">Reliable classics, group dining</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="p-4 font-medium text-[#1a1a1a]">Zi Gong Ren Jia</td>
+              <td class="p-4 text-gray-500">Regional (Zigong)</td>
+              <td class="p-4 text-gray-500">70-120 RMB</td>
+              <td class="p-4 text-gray-500">Extra spicy, adventurous eaters</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="p-4 font-medium text-[#1a1a1a]">Shi Jia Private Kitchen</td>
+              <td class="p-4 text-gray-500">Hidden gem</td>
+              <td class="p-4 text-gray-500">300-800 RMB</td>
+              <td class="p-4 text-gray-500">Intimate experience, daily menu</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Ordering tips</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Order family-style</h3><p class="text-sm text-gray-500 mt-1">Sichuan meals are meant to be shared. Order several dishes for the table and everyone picks from the center. A good rule: one dish per person plus one soup.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Balance the heat</h3><p class="text-sm text-gray-500 mt-1">A well-ordered Sichuan table has a mix: one or two spicy dishes, a vegetable dish, a soup, and something mild like steamed egg or a sweet dish to cool the palate.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Rice is separate</h3><p class="text-sm text-gray-500 mt-1">Unlike many Chinese cuisines, rice is not the center of a Sichuan meal. Order it as a side. Many locals eat the dishes first and have a small bowl of rice at the end.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Budget</h3><p class="text-sm text-gray-500 mt-1">Mid-range restaurants: 50-80 RMB per person. Fine dining: 200-600 RMB. Private kitchens: 300-800 RMB. For a splurge meal, Yu's Kitchen or similar private kitchens are unforgettable.</p></div>
+        </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

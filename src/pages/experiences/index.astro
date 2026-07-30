@@ -1,0 +1,86 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const items = [
+  { label: 'Nightlife', href: '/experiences/nightlife', desc: 'From craft cocktail bars to late-night skewer joints, Chengdu comes alive after dark.' },
+  { label: 'Sichuan Opera', href: '/experiences/sichuan-opera', desc: 'Face-changing, fire-spitting, and centuries of theatrical tradition in one unforgettable show.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [{'@type': 'CollectionPage', 'name': 'Best Experiences in Chengdu', 'description': 'Sichuan opera, tea houses, and nightlife. The moments that make Chengdu unforgettable.', 'url': 'https://best-of-chengdu.com/experiences'}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Experiences', 'item': 'https://best-of-chengdu.com/experiences'}]}],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Experiences in Chengdu" description="Sichuan opera, tea houses, and nightlife. The moments that make Chengdu unforgettable.">
+  <Header />
+
+  <main>
+    <section class="max-w-[1200px] mx-auto px-6 pt-20 pb-10">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1] max-w-[14ch]">
+        Best Experiences in Chengdu
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 max-w-[56ch]">Chengdu is more than sights. It is face-changing opera, lazy afternoons in tea houses, and nights that stretch until sunrise.</p>
+    </section>
+
+    <section class="max-w-[1200px] mx-auto px-6 pb-24">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {items.map(item => (
+          <a href={item.href} class="group flex flex-col p-6 rounded-2xl border border-border hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+            <h3 class="font-display font-semibold text-lg text-[#1a1a1a] group-hover:text-accent transition-colors">{item.label}</h3>
+            <p class="text-sm text-gray-500 mt-2 leading-relaxed">{item.desc}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    
+    <section class="max-w-[1200px] mx-auto px-6 pb-24">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">What to expect</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-semibold text-[#1a1a1a] mb-2">A slower pace</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">Chengdu runs on its own clock. Mornings start late, afternoons stretch into evening at tea houses, and dinner often begins after 7pm. Don't rush &mdash; slowing down is the whole point.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-[#1a1a1a] mb-2">Food first, always</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">Every experience in Chengdu revolves around food. The best conversations happen over bubbling hotpot. The best discoveries happen on street corners at midnight. Come hungry.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-[#1a1a1a] mb-2">Old meets new</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">A 1,000-year-old temple sits in the shadow of a luxury mall. A face-changing opera performer checks their phone between acts. Chengdu's contradictions are its charm.</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-[#1a1a1a] mb-2">Getting started</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">Begin with a morning at a tea house (Heming in People's Park is the classic), walk through Kuanzhai Alley in the afternoon, and end with hotpot or Sichuan opera after dark. One perfect day.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-surface py-24">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <h2 class="text-3xl font-display font-semibold tracking-tight mb-4">The Chengdu way of life</h2>
+        <p class="text-gray-500 text-lg max-w-[48ch] mb-10">Slow mornings, fiery evenings. Here is how to experience the city like a local.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="p-5 rounded-xl bg-white border border-border">
+            <h3 class="font-display font-semibold text-base text-[#1a1a1a]">Tea House Culture</h3>
+            <p class="text-sm text-gray-500 mt-1.5">Sit for hours with a cup of jasmine tea. People's Park Heming Tea House and Shufeng Yayun are classics.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-white border border-border">
+            <h3 class="font-display font-semibold text-base text-[#1a1a1a]">Mahjong</h3>
+            <p class="text-sm text-gray-500 mt-1.5">The sound of mahjong tiles is Chengdu's soundtrack. Find it in parks, tea houses, and back alleys citywide.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-white border border-border">
+            <h3 class="font-display font-semibold text-base text-[#1a1a1a]">Face-Changing Opera</h3>
+            <p class="text-sm text-gray-500 mt-1.5">Bian lian performers switch masks in the blink of an eye. A Sichuan art form you will not see anywhere else.</p>
+          </div>
+        </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

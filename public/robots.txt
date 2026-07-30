@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# AI crawlers - explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Omgili
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Sitemap
+Sitemap: https://best-of-chengdu.com/sitemap-index.xml
+Sitemap: https://best-of-chengdu.com/sitemap.xml

@@ -1,0 +1,112 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const spots = [
+  { name: 'Shu Daxia Hotpot', style: 'Traditional Sichuan', note: 'Beloved local chain with rich, complex broth. Go for the nine-grid pot.' },
+  { name: 'Haidilao', style: 'Service-focused', note: 'The world-famous chain with consistently excellent ingredients and legendary service.' },
+  { name: 'Xiaolongkan', style: 'Old-school Chengdu', note: 'A classic that has been serving fiery hotpot since the 1980s. Intense mala broth.' },
+  { name: 'Long Sen Yuan', style: 'Butter-rich broth', note: 'Known for their extra-buttery spicy broth. Rich, indulgent, and absolutely authentic.' },
+  { name: 'Ba Guo Bu Yi', style: 'Modern Sichuan', note: 'Upscale setting with premium ingredients and a cleaner, more refined take on hotpot.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: 'Best Hotpot in Chengdu',
+      description: 'The definitive guide to Chengdu hotpot. Find the city\'s best bubbling broths, from traditional nine-grid pots to modern Sichuan interpretations.',
+      url: 'https://best-of-chengdu.com/food/hotpot',
+      author: { '@type': 'Organization', name: 'Best of Chengdu' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'Can I get non-spicy hotpot?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Most restaurants offer a split pot with one side mild tomato or mushroom broth. But missing the spicy side is missing the point.' } },
+        { '@type': 'Question', name: 'What is the numbing sensation?', acceptedAnswer: { '@type': 'Answer', text: 'That is Sichuan peppercorn (hua jiao). It creates a tingling, numbing effect called ma that pairs with chili heat (la) for the classic "mala" experience.' } },
+      ],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://best-of-chengdu.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Food', item: 'https://best-of-chengdu.com/food' },
+        { '@type': 'ListItem', position: 3, name: 'Hotpot', item: 'https://best-of-chengdu.com/food/hotpot' },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Hotpot in Chengdu" description="The definitive guide to Chengdu hotpot. Find the city's best bubbling broths, from traditional nine-grid pots to modern Sichuan interpretations.">
+  <Header />
+
+  <main>
+    <article class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
+        Best Hotpot in Chengdu
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">If Chengdu had a soul, it would smell of Sichuan peppercorns and simmer in a bubbling pot of chili oil. Here is where to find the city's finest hotpot.</p>
+
+      <div class="mt-12">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Top hotpot restaurants</h2>
+        <div class="space-y-4">
+          {spots.map((spot, i) => (
+            <div class="p-5 rounded-xl border border-border flex gap-4">
+              <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-sm font-semibold flex items-center justify-center">{i + 1}</span>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="font-display font-semibold text-[#1a1a1a]">{spot.name}</h3>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">{spot.style}</span>
+                </div>
+                <p class="text-sm text-gray-500 mt-1 leading-relaxed">{spot.note}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Hotpot essentials</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a]">What to order</h3>
+            <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">Beef slices, tripe, tofu skin, lotus root, potato slices, and handmade noodles. Don't skip the dipping sauce bar.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a]">How to eat</h3>
+            <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">Swish meat for 10-15 seconds. Vegetables a bit longer. Dip in sesame oil + garlic + scallion to cool the heat.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a]">Best time to go</h3>
+            <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">Evenings are the classic time. Arrive before 6pm or expect a queue. Winters are peak hotpot season.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a]">Budget</h3>
+            <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">80-150 RMB per person. More for premium cuts or imported seafood at high-end spots.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">FAQ</h2>
+        <div class="space-y-6">
+          <div>
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">Can I get non-spicy hotpot?</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Yes. Most restaurants offer a split pot with one side mild tomato or mushroom broth. But missing the spicy side is missing the point.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">What is the numbing sensation?</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">That is Sichuan peppercorn (hua jiao). It creates a tingling, numbing effect called ma that pairs with chili heat (la) for the classic "mala" experience.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

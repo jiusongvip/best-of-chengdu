@@ -1,0 +1,61 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [{'@type': 'AboutPage', 'name': 'About Us', 'description': 'Meet the team behind Best of Chengdu. Locals and long-term residents sharing firsthand, unbiased recommendations for the best food, attractions, and experiences in Chengdu, Sichuan.', 'url': 'https://best-of-chengdu.com/about'}, {'@type': 'Organization', 'name': 'Best of Chengdu', 'url': 'https://best-of-chengdu.com/', 'description': 'A locally curated guide to the very best of Chengdu, Sichuan.'}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'About', 'item': 'https://best-of-chengdu.com/about'}]}],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="About Us" description="Meet the team behind Best of Chengdu. Locals and long-term residents sharing firsthand, unbiased recommendations for the best food, attractions, and experiences in Chengdu, Sichuan.">
+  <Header />
+
+  <main>
+    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
+        About
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed reveal">
+        We are a small team of Chengdu locals and long-term residents who believe this city deserves a guide as rich and layered as the city itself.
+      </p>
+    </section>
+    <section class="max-w-[860px] mx-auto px-6 pb-12">
+      <div class="space-y-10">
+        <div class="reveal">
+          <h2 class="text-2xl font-display font-semibold tracking-tight mb-3">Why we started</h2>
+          <p class="text-gray-500 leading-relaxed">Most travel guides for Chengdu skim the surface: see the pandas, eat hotpot, visit Jinli. But Chengdu is a city of layers. It is a teahouse where someone has been sitting in the same bamboo chair for forty years. It is a noodle shop with no sign that makes one dish and has done so for three generations.</p>
+          <p class="text-gray-500 leading-relaxed mt-3">Best of Chengdu exists to go deeper. We spend our weekends eating at restaurants that are not on any English-language list, walking streets that tourists skip, and talking to the people who make this city what it is.</p>
+        </div>
+        <div class="reveal">
+          <h2 class="text-2xl font-display font-semibold tracking-tight mb-3">How we choose</h2>
+          <p class="text-gray-500 leading-relaxed">Every recommendation on this site is based on firsthand visits. We do not accept paid placements or sponsored listings. If a restaurant, hotel, or experience is on this site, it is because we genuinely believe it is among the best in Chengdu.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+            <div class="p-5 rounded-xl bg-surface"><h3 class="font-semibold text-[#1a1a1a]">Firsthand only</h3><p class="text-sm text-gray-500 mt-1">We visit every place we recommend. No desk research, no aggregated reviews.</p></div>
+            <div class="p-5 rounded-xl bg-surface"><h3 class="font-semibold text-[#1a1a1a]">Updated regularly</h3><p class="text-sm text-gray-500 mt-1">Chengdu changes fast. We revisit listings and refresh content every season.</p></div>
+            <div class="p-5 rounded-xl bg-surface"><h3 class="font-semibold text-[#1a1a1a]">No paid placements</h3><p class="text-sm text-gray-500 mt-1">Our recommendations are independent. We never accept payment for listings.</p></div>
+          </div>
+        </div>
+                <div class="reveal mt-10">
+          <h2 class="text-2xl font-display font-semibold tracking-tight mb-3">The team</h2>
+          <p class="text-gray-500 leading-relaxed">We are three Chengdu residents with a combined 25 years in this city. One of us runs food tours. Another is a photographer who has documented Chengdu's old neighborhoods before they disappear. The third grew up in a courtyard near Wenshu Monastery and knows every noodle shop within walking distance.</p>
+          <p class="text-gray-500 leading-relaxed mt-3">We started Best of Chengdu because the English-language guides we found online were either outdated, surface-level, or clearly written by people who spent three days here and moved on. We wanted something different: a guide that reflects what it actually feels like to live in and love this city.</p>
+        </div>
+        <div class="reveal mt-10">
+          <h2 class="text-2xl font-display font-semibold tracking-tight mb-3">Our promise</h2>
+          <p class="text-gray-500 leading-relaxed">Every recommendation on this site is current as of 2026. We revisit listings each season, recheck prices and opening hours, and remove anything that no longer meets our standards. If a restaurant changes chefs or a hotel declines, you will know before you book.</p>
+          <p class="text-gray-500 leading-relaxed mt-3">We don't earn commissions from bookings. We don't run ads. We don't accept free meals, hotel stays, or sponsored content. Best of Chengdu is funded by our readers through our newsletter, and we answer only to you.</p>
+        </div>
+
+        <div class="reveal">
+          <h2 class="text-2xl font-display font-semibold tracking-tight mb-3">Get in touch</h2>
+          <p class="text-gray-500 leading-relaxed">Have a tip, a correction, or a hidden gem we should know about? We would love to hear from you. Reach us at <span class="text-accent font-medium">hello@best-of-chengdu.com</span>.</p>
+        </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

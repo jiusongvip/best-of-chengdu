@@ -1,0 +1,18 @@
+# Build
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Audit / temp
+bestofchengdu.com-audit/
+建站方案.md

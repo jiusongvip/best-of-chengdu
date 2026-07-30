@@ -1,0 +1,55 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [{'@type': 'CollectionPage', 'name': 'Chengdu Travel Guide', 'description': 'When to visit, where to stay, and how to get around Chengdu.', 'url': 'https://best-of-chengdu.com/travel'}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel'}]}],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu Travel Guide" description="When to visit, where to stay, and how to get around Chengdu.">
+  <Header />
+
+  <main>
+    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
+        Chengdu Travel Guide
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Practical advice for your Chengdu trip. When to go, where to stay, how to get around, and the little things that make a trip smooth.</p>
+    </section>
+        <section class="max-w-[860px] mx-auto px-6 pb-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Before you go</h2>
+      <div class="space-y-4 text-gray-500 leading-relaxed">
+        <p>Chengdu's Shuangliu Airport (CTU) is connected to the city center by Metro Line 10 (30 minutes). The newer Tianfu Airport (TFU) is farther out but served by Line 18 (50 minutes). Most international flights now land at TFU.</p>
+        <p>The best seasons are spring (March-May) and autumn (September-November) when temperatures hover around 15-25&deg;C. Spring brings flowers; autumn brings golden ginkgo trees. Summer is hot and humid but coincides with baby panda season. Winter is gray and damp but blessedly uncrowded.</p>
+        <p>Budget travelers can get by on 200-300 RMB per day (hostel + street food + metro). Mid-range travelers should plan 500-800 RMB (boutique hotel + restaurants + Didi). Luxury travelers will find five-star rooms from 800 RMB and world-class fine dining.</p>
+      </div>
+    </section>
+    <section class="max-w-[860px] mx-auto px-6 pb-24">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <a href="/travel/best-time-to-visit" class="group flex flex-col p-6 rounded-2xl border border-border hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <h3 class="font-display font-semibold text-lg text-[#1a1a1a] group-hover:text-accent transition-colors">Best Time to Visit</h3>
+          <p class="text-sm text-gray-500 mt-2">Seasonal weather, crowds, and what to expect each month in Chengdu.</p>
+        </a>
+        <a href="/travel/hotels" class="group flex flex-col p-6 rounded-2xl border border-border hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <h3 class="font-display font-semibold text-lg text-[#1a1a1a] group-hover:text-accent transition-colors">Where to Stay</h3>
+          <p class="text-sm text-gray-500 mt-2">Best neighborhoods, hotel picks for every budget, and what area suits your style.</p>
+        </a>
+        <a href="/travel/transportation" class="group flex flex-col p-6 rounded-2xl border border-border hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <h3 class="font-display font-semibold text-lg text-[#1a1a1a] group-hover:text-accent transition-colors">Getting Around</h3>
+          <p class="text-sm text-gray-500 mt-2">Metro, buses, taxis, bike sharing, and how to navigate Chengdu like a local.</p>
+        </a>
+        <a href="/attractions/day-trips" class="group flex flex-col p-6 rounded-2xl border border-border hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <h3 class="font-display font-semibold text-lg text-[#1a1a1a] group-hover:text-accent transition-colors">Day Trips</h3>
+          <p class="text-sm text-gray-500 mt-2">Leshan Giant Buddha, Mount Qingcheng, and the best escapes from the city.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

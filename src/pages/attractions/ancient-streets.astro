@@ -1,0 +1,44 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [{'@type': 'Article', 'headline': 'Chengdu Ancient Streets', 'description': 'Jinli and Kuanzhai Alley, Qing-dynasty streets, tea houses, and local crafts.', 'url': 'https://best-of-chengdu.com/attractions/ancient-streets', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Attractions', 'item': 'https://best-of-chengdu.com/attractions'}, {'@type': 'ListItem', 'position': 3, 'name': 'Ancient Streets', 'item': 'https://best-of-chengdu.com/attractions/ancient-streets'}]}],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu Ancient Streets" description="Jinli and Kuanzhai Alley, Qing-dynasty streets, tea houses, and local crafts.">
+  <Header />
+
+  <main>
+    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
+        Chengdu Ancient Streets
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Chengdu's ancient streets are living museums where Qing-dynasty architecture meets modern food culture. Lantern-lit courtyards, artisan shops, and the best people-watching in the city.</p>
+    </section>
+    <section class="max-w-[860px] mx-auto px-6 pb-16">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">The big three</h2>
+      <div class="space-y-4">
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">1</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Jinli Ancient Street</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Best at night</span></div><p class="text-sm text-gray-500 mt-1">The crown jewel of Chengdu's ancient streets. Red lanterns hanging from carved wooden eaves, stone bridges over carp ponds, and alleys lined with street food stalls. Go at dusk when the lanterns light up. The snack street is touristy but the atmosphere is unbeatable.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">2</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Kuanzhai Alley</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Shopping & dining</span></div><p class="text-sm text-gray-500 mt-1">Three parallel Qing-dynasty alleys: Kuan (wide), Zhai (narrow), and Jing (well). Kuan Alley has courtyard restaurants and boutique hotels. Zhai Alley is more laid-back with tea houses and crafts. Perfect for a half-day wander.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">3</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Wenshu Monastery Area</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Peaceful & cultural</span></div><p class="text-sm text-gray-500 mt-1">Not technically an ancient street but the streets around Wenshu Monastery feel like old Chengdu. The monastery itself is a Tang-dynasty temple with a renowned vegetarian restaurant. The surrounding lanes are full of antique shops and tea houses.</p></div></div>
+    </section>
+    <section class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Tips for visiting</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Best time to go</h3><p class="text-sm text-gray-500 mt-1">Jinli is best at dusk when the lanterns come on. Kuanzhai Alley is pleasant any time but mornings are quietest. Weekdays are far less crowded than weekends.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">What to buy</h3><p class="text-sm text-gray-500 mt-1">Sichuan embroidery, panda souvenirs, local tea, and handmade candy. Bargaining is expected at street stalls but not in fixed-price shops.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Getting there</h3><p class="text-sm text-gray-500 mt-1">Jinli is near Wuhou Shrine. Kuanzhai Alley has its own metro station (Line 4). Both are walkable from the city center if you have a full day.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Combine your visit</h3><p class="text-sm text-gray-500 mt-1">Pair Jinli with Wuhou Shrine next door. Pair Kuanzhai Alley with People's Park and the Sichuan Museum. Both areas have excellent food nearby.</p></div>
+        </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

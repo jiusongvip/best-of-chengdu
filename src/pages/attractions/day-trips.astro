@@ -1,0 +1,45 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [{'@type': 'Article', 'headline': 'Best Day Trips from Chengdu', 'description': 'Leshan Giant Buddha, Mount Qingcheng, and the best escapes from the city.', 'url': 'https://best-of-chengdu.com/attractions/day-trips', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Attractions', 'item': 'https://best-of-chengdu.com/attractions'}, {'@type': 'ListItem', 'position': 3, 'name': 'Day Trips', 'item': 'https://best-of-chengdu.com/attractions/day-trips'}]}],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Day Trips from Chengdu" description="Leshan Giant Buddha, Mount Qingcheng, and the best escapes from the city.">
+  <Header />
+
+  <main>
+    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
+        Best Day Trips from Chengdu
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Some of Sichuan's most remarkable sights are a short trip from Chengdu. From ancient Buddha carvings to misty Taoist mountains, here are the best day trips to take.</p>
+    </section>
+    <section class="max-w-[860px] mx-auto px-6 pb-16">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Top day trips</h2>
+      <div class="space-y-4">
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">1</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Leshan Giant Buddha</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">1.5 hrs by train</span></div><p class="text-sm text-gray-500 mt-1">A 71-meter tall Buddha carved into a cliff face in the 8th century. The scale is staggering. Take a boat ride for the best view, then climb the stairs alongside the Buddha to appreciate the craftsmanship. The surrounding park is pleasant but the Buddha is the star.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">2</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Mount Qingcheng</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">1 hr by train</span></div><p class="text-sm text-gray-500 mt-1">One of the birthplaces of Taoism. Dense forest, ancient temples, and stone paths winding up the mountain. The front mountain is developed with cable cars and paved paths. The back mountain is wilder and more challenging. Choose based on your fitness and time.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">3</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Dujiangyan Irrigation System</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">1 hr by train</span></div><p class="text-sm text-gray-500 mt-1">A 2,200-year-old engineering marvel that still works today. Built to control flooding on the Min River, it is a UNESCO site and a testament to ancient Chinese ingenuity. Pair with Mount Qingcheng since they share the same train line.</p></div></div>
+        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">4</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Sanxingdui Museum</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">1 hr by car</span></div><p class="text-sm text-gray-500 mt-1">An archaeological site that rewrote Chinese history. The museum displays enormous bronze masks, gold artifacts, and a massive bronze sacred tree from a mysterious 3,000-year-old civilization. The new museum building opened in 2023 is world-class.</p></div></div>
+    </section>
+    <section class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Planning your day trip</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">By train</h3><p class="text-sm text-gray-500 mt-1">Leshan, Mount Qingcheng, and Dujiangyan are all reachable by high-speed train from Chengdu East or Chengdu South station. Tickets are 30-60 RMB each way. Book on 12306.cn or at the station.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">By car</h3><p class="text-sm text-gray-500 mt-1">Sanxingdui and more remote sites are easier to reach by car. Didi or private driver for a day costs 400-800 RMB. Many hotels can arrange a driver.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Best combos</h3><p class="text-sm text-gray-500 mt-1">Mount Qingcheng + Dujiangyan in one day is popular (they are 30 minutes apart). Leshan can be a half-day trip if you only see the Buddha.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">When to go</h3><p class="text-sm text-gray-500 mt-1">Spring and autumn are ideal for all day trips. Summer is hot but Qingcheng's forest provides shade. Winter is cold but the sites are empty. Avoid Chinese public holidays or arrive at opening time.</p></div>
+        </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

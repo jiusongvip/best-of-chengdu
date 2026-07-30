@@ -1,0 +1,35 @@
+# Best of Chengdu
+> A locally curated guide to Chengdu's finest food, hidden attractions, authentic experiences, and everything you need for an unforgettable trip to Sichuan's capital.
+
+## Essential Pages
+- [Home](https://best-of-chengdu.com/): Discover the best of Chengdu — a complete local travel guide.
+- [Best Food](https://best-of-chengdu.com/food/): Chengdu's iconic dishes, from hotpot to street snacks (UNESCO City of Gastronomy).
+- [Best Attractions](https://best-of-chengdu.com/attractions/): Panda Base, ancient streets, and must-see sights.
+- [Best Experiences](https://best-of-chengdu.com/experiences/): Sichuan opera, tea houses, nightlife, and local culture.
+- [Travel Guide](https://best-of-chengdu.com/travel/): Best time to visit, where to stay, and getting around Chengdu.
+
+## Detailed Guides
+- [Best Hotpot in Chengdu](https://best-of-chengdu.com/food/hotpot/): Top 5 hotpot restaurants, how to eat, what to order.
+- [Chengdu Panda Base Guide](https://best-of-chengdu.com/attractions/panda-base/): Tickets, best times, routes, baby panda season.
+- [Best Sichuan Restaurants](https://best-of-chengdu.com/food/sichuan-restaurants/): From fine dining to family-run legends.
+- [Best Street Food](https://best-of-chengdu.com/food/street-food/): Dan dan noodles, skewers, and snacks.
+- [Best Tea Houses](https://best-of-chengdu.com/food/tea-houses/): Chengdu's traditional tea house culture.
+- [Chengdu Ancient Streets](https://best-of-chengdu.com/attractions/ancient-streets/): Jinli and Kuanzhai Alley guide.
+- [Best Day Trips from Chengdu](https://best-of-chengdu.com/attractions/day-trips/): Leshan Buddha, Mount Qingcheng, and more.
+- [Sichuan Opera Guide](https://best-of-chengdu.com/experiences/sichuan-opera/): Face-changing, fire-spitting, and theatre tradition.
+- [Chengdu Nightlife](https://best-of-chengdu.com/experiences/nightlife/): Bars, clubs, and late-night eats.
+- [Best Hotels in Chengdu](https://best-of-chengdu.com/travel/hotels/): Neighborhood guide and budget picks.
+- [Getting Around Chengdu](https://best-of-chengdu.com/travel/transportation/): Metro, buses, taxis, and bike sharing.
+- [Best Time to Visit Chengdu](https://best-of-chengdu.com/travel/best-time-to-visit/): Seasonal weather and crowd guide.
+- [Blog](https://best-of-chengdu.com/blog/): In-depth guides, itineraries, and local tips.
+
+## Blog Posts
+- [Chengdu 3-Day Itinerary](https://best-of-chengdu.com/blog/chengdu-3-day-itinerary/): The perfect first visit plan.
+- [10 Hidden Gems in Chengdu](https://best-of-chengdu.com/blog/hidden-gems-chengdu/): Secret spots most tourists miss.
+- [Chengdu Food Guide for First-Timers](https://best-of-chengdu.com/blog/chengdu-food-guide-first-timers/): What to eat and how to order.
+
+## Optional
+- [About Best of Chengdu](https://best-of-chengdu.com/about/): Our story, methodology, and contact.
+
+## Optional
+- [Sitemap](https://best-of-chengdu.com/sitemap.xml)

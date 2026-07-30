@@ -1,0 +1,47 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [{'@type': 'Article', 'headline': 'Chengdu Transportation Guide', 'description': 'Getting around Chengdu: metro, buses, taxis, and bike sharing.', 'url': 'https://best-of-chengdu.com/travel/transportation', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel'}, {'@type': 'ListItem', 'position': 3, 'name': 'Transportation', 'item': 'https://best-of-chengdu.com/travel/transportation'}]}],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu Transportation Guide" description="Getting around Chengdu: metro, buses, taxis, and bike sharing.">
+  <Header />
+
+  <main>
+    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
+        Chengdu Transportation Guide
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Chengdu's public transport is excellent, affordable, and easy to navigate even if you do not speak Chinese. Here is how to get around.</p>
+    </section>
+    <section class="max-w-[860px] mx-auto px-6 pb-16">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Getting around Chengdu</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">Metro</h3><p class="text-sm text-gray-500 mt-1">14 lines covering the entire city. Signs and announcements in English. Clean, air-conditioned, and punctual. Single rides cost 2-8 RMB. Get a stored-value Transportation Card or use Alipay's transport QR code. Runs 6am to midnight.</p></div>
+        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">Didi / Ride-hailing</h3><p class="text-sm text-gray-500 mt-1">Uber does not operate in China. Didi is the local equivalent and works well. Download the app, link a credit card, and you can hail a car anywhere. Typical city rides are 15-40 RMB. English interface available in the app settings.</p></div>
+        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">Bike sharing</h3><p class="text-sm text-gray-500 mt-1">Blue (Hello Bike), yellow (Meituan), and green (Qingju) bikes are everywhere. Scan with Alipay or WeChat to unlock. Trips start at 1.5 RMB. Chengdu is flat and bike-friendly with dedicated lanes on most major roads.</p></div>
+        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">Taxis</h3><p class="text-sm text-gray-500 mt-1">Green taxis are widely available. Flag fall is 8 RMB for the first 2 km. Drivers rarely speak English, so show your destination in Chinese characters. Taxis are metered and honest. Tipping is not expected.</p></div>
+        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">Buses</h3><p class="text-sm text-gray-500 mt-1">Extensive network covering every corner of the city. Fares are 2 RMB flat. Routes and stops are announced in Chinese only, so buses are best for adventurous travelers or short, obvious routes.</p></div>
+        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">From the airport</h3><p class="text-sm text-gray-500 mt-1">Shuangliu Airport (CTU) is connected by Metro Line 10 (30 min to city center). Tianfu Airport (TFU) is farther, served by Metro Line 18 (50 min). Both also have airport bus services. Didi from CTU is about 60 RMB, from TFU about 150 RMB.</p></div>
+    </section>
+    <section class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Essential apps</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Alipay</h3><p class="text-sm text-gray-500 mt-1">The single most useful app for China travel. Pay for metro, buses, taxis, and almost every shop. Link a foreign credit card and the app handles currency conversion. Also has an integrated Didi mini-app.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Didi Chuxing</h3><p class="text-sm text-gray-500 mt-1">The ride-hailing app that replaced Uber in China. Reliable, affordable, and available in English. Set your destination by typing or dropping a pin on the map.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">MetroMan / ExploreMetro</h3><p class="text-sm text-gray-500 mt-1">Offline metro maps with route planning in English. Not essential but helpful if you are offline or want to plan multi-line journeys.</p></div>
+          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Baidu Maps / Amap</h3><p class="text-sm text-gray-500 mt-1">Google Maps does not work reliably in China. Baidu Maps and Amap (Gaode) are the local alternatives. Amap has some English support. Both show real-time bus and metro arrival times.</p></div>
+        </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

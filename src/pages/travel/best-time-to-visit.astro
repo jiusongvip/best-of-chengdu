@@ -1,0 +1,47 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [{'@type': 'Article', 'headline': 'Best Time to Visit Chengdu', 'description': 'Seasonal guide to weather, crowds, and what to expect each month.', 'url': 'https://best-of-chengdu.com/travel/best-time-to-visit', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel'}, {'@type': 'ListItem', 'position': 3, 'name': 'Best Time to Visit', 'item': 'https://best-of-chengdu.com/travel/best-time-to-visit'}]}],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Time to Visit Chengdu" description="Seasonal guide to weather, crowds, and what to expect each month.">
+  <Header />
+
+  <main>
+    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
+        Best Time to Visit Chengdu
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Chengdu is a year-round destination, but each season brings a different character. Spring flowers, summer storms, autumn gold, and winter hotpot. Here is what to expect.</p>
+    </section>
+    <section class="max-w-[860px] mx-auto px-6 pb-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Season by season</h2>
+      <div class="space-y-4">
+        <div class="p-5 rounded-xl border border-border"><div class="flex items-center gap-2 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">BEST</span><h3 class="font-display font-semibold text-[#1a1a1a]">Spring (March-May)</h3></div><p class="text-sm text-gray-500">The ideal season. Temperatures are mild (15-25°C), flowers bloom across the city, and pandas are at their most active. Occasional light rain, so pack a jacket. This is also the best time for outdoor tea houses and long walks through People's Park.</p></div>
+        <div class="p-5 rounded-xl border border-border"><div class="flex items-center gap-2 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">GOOD</span><h3 class="font-display font-semibold text-[#1a1a1a]">Autumn (September-November)</h3></div><p class="text-sm text-gray-500">Crisp, clear days and golden ginkgo trees lining the streets. Temperatures are similar to spring but the humidity drops. September can still be warm. October and November are perfect. The best months for photography, especially the ginkgo avenues around Daci Temple.</p></div>
+        <div class="p-5 rounded-xl border border-border"><div class="flex items-center gap-2 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500 font-medium">MIXED</span><h3 class="font-display font-semibold text-[#1a1a1a]">Summer (June-August)</h3></div><p class="text-sm text-gray-500">Hot, humid, and rainy. Temperatures hit 30-35°C with high humidity. Afternoon thunderstorms are common. On the plus side: summer is baby panda season at the Panda Base, street food is at its peak, and the surrounding mountains offer cool escapes. Pack an umbrella and light clothing.</p></div>
+        <div class="p-5 rounded-xl border border-border"><div class="flex items-center gap-2 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500 font-medium">QUIET</span><h3 class="font-display font-semibold text-[#1a1a1a]">Winter (December-February)</h3></div><p class="text-sm text-gray-500">Cold and damp (5-10°C) but rarely freezing. The famous Chengdu fog sets in, giving the city a moody atmosphere. Hotpot tastes best in winter, and tourist sites are empty. Hotel prices drop significantly. If you don't mind the gray skies, winter offers the most authentic local experience without the crowds.</p></div>
+    </section>
+    <section class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Quick reference</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+          <div class="p-4 rounded-xl bg-white border border-border text-center"><p class="font-semibold text-[#1a1a1a]">Mar-May</p><p class="text-gray-500 mt-0.5">15-25°C</p><p class="text-xs text-accent mt-0.5">Best season</p></div>
+          <div class="p-4 rounded-xl bg-white border border-border text-center"><p class="font-semibold text-[#1a1a1a]">Jun-Aug</p><p class="text-gray-500 mt-0.5">28-35°C</p><p class="text-xs text-gray-400 mt-0.5">Hot & rainy</p></div>
+          <div class="p-4 rounded-xl bg-white border border-border text-center"><p class="font-semibold text-[#1a1a1a]">Sep-Nov</p><p class="text-gray-500 mt-0.5">15-25°C</p><p class="text-xs text-accent mt-0.5">Ginkgo season</p></div>
+          <div class="p-4 rounded-xl bg-white border border-border text-center"><p class="font-semibold text-[#1a1a1a]">Dec-Feb</p><p class="text-gray-500 mt-0.5">5-10°C</p><p class="text-xs text-gray-400 mt-0.5">Quiet & cozy</p></div>
+        </div>
+        <p class="text-sm text-gray-400 mt-6 text-center">Avoid traveling during Chinese New Year (late Jan/early Feb) and National Day (Oct 1-7) unless you enjoy massive crowds and inflated prices.</p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

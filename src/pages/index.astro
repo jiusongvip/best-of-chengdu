@@ -1,0 +1,168 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const categories = [
+  {
+    label: 'Food',
+    href: '/food',
+    image: '/images/food.webp',
+    desc: 'From fiery hotpot to delicate street snacks, discover what makes Chengdu the UNESCO City of Gastronomy.',
+  },
+  {
+    label: 'Attractions',
+    href: '/attractions',
+    image: '/images/attractions.webp',
+    desc: 'Ancient temples, giant pandas, and vibrant markets. The best sights in and around the city.',
+  },
+  {
+    label: 'Experiences',
+    href: '/experiences',
+    image: '/images/experiences.webp',
+    desc: 'Sichuan opera, tea houses, and nightlife. The moments that make Chengdu unforgettable.',
+  },
+  {
+    label: 'Travel Guide',
+    href: '/travel',
+    image: '/images/travel.webp',
+    desc: 'When to visit, where to stay, and how to get around. Everything you need to plan your trip.',
+  },
+];
+
+const topPicks = [
+  { label: 'Best Hotpot in Chengdu', href: '/food/hotpot', tag: 'Food' },
+  { label: 'Chengdu Panda Base Guide', href: '/attractions/panda-base', tag: 'Attractions' },
+  { label: 'Best Street Food', href: '/food/street-food', tag: 'Food' },
+  { label: 'Sichuan Opera Guide', href: '/experiences/sichuan-opera', tag: 'Experiences' },
+  { label: 'Best Time to Visit', href: '/travel/best-time-to-visit', tag: 'Travel' },
+  { label: 'Best Sichuan Restaurants', href: '/food/sichuan-restaurants', tag: 'Food' },
+  { label: 'Chengdu Ancient Streets', href: '/attractions/ancient-streets', tag: 'Attractions' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  'datePublished': '2026-07-29',
+  'dateModified': '2026-07-29',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: 'Best of Chengdu — Ultimate Local Guide to Food, Attractions & Hidden Gems',
+      description: 'Discover the best of Chengdu with our curated local guide. Top restaurants, must-see attractions, hidden tea houses, and insider tips for your perfect trip.',
+      url: 'https://best-of-chengdu.com/',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://best-of-chengdu.com/' }],
+    },
+    {
+      '@type': 'Organization',
+      name: 'Best of Chengdu',
+      url: 'https://best-of-chengdu.com/',
+      description: 'A locally curated guide to the very best of Chengdu, Sichuan.',
+    },
+  ],
+};
+---
+
+<BaseLayout
+  schemaJson={JSON.stringify(schema)} title="Ultimate Local Guide"
+  description="Discover the best of Chengdu with our curated local guide. Top Sichuan restaurants, must-see attractions like the Panda Base, hidden tea houses, ancient streets, and insider tips for your perfect trip to China's food capital."
+>
+  <Header />
+
+  <main>
+    <section class="relative">
+      <div class="absolute inset-0 bg-surface"></div>
+      <div class="max-w-[1200px] mx-auto relative">
+        <div class="grid md:grid-cols-2 gap-0 min-h-[500px] md:min-h-[640px] items-stretch">
+          <div class="flex flex-col justify-center px-6 md:px-12 py-20 md:py-0">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tighter leading-[1.05] text-[#1a1a1a] max-w-[12ch]">
+              Discover the Best of Chengdu
+            </h1>
+            <p class="mt-5 text-base md:text-lg text-gray-500 leading-relaxed max-w-[42ch]">
+              A locally curated guide to Chengdu's finest food, hidden attractions, authentic experiences, and everything you need for an unforgettable trip to Sichuan's capital.
+            </p>
+            <div class="mt-8">
+              <a
+                href="/food"
+                class="inline-flex items-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full text-sm font-medium hover:bg-accent-dark transition-colors duration-150"
+              >
+                Start exploring
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="relative overflow-hidden min-h-[300px] md:min-h-0">
+            <img
+             src="/images/hero.webp"
+              alt="Chengdu street scene with traditional red lanterns"
+              class="absolute inset-0 w-full h-full object-cover object-[50%_30%]"
+              loading="eager"
+            />
+          </div>
+        </div>
+    </section>
+
+    <section class="max-w-[1200px] mx-auto px-6 py-24 md:py-32">
+      <h2 class="text-3xl md:text-4xl font-display font-semibold tracking-tight mb-4 reveal">What are you looking for?</h2>
+      <p class="text-gray-500 text-lg max-w-[48ch] mb-12 reveal">Every corner of Chengdu has a story. Start with what calls to you.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {categories.map(cat => (
+          <a href={cat.href} class="group block rounded-2xl overflow-hidden border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
+            <div class="aspect-[4/3] overflow-hidden bg-surface">
+              <img src={cat.image} alt={cat.label} class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-5">
+              <h3 class="font-display font-semibold text-lg text-[#1a1a1a] group-hover:text-accent transition-colors">{cat.label}</h3>
+              <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">{cat.desc}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-surface py-24 md:py-32">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-display font-semibold tracking-tight mb-4">Top picks this season</h2>
+        <p class="text-gray-500 text-lg max-w-[48ch] mb-12">Our handpicked favorites. Updated regularly by local insiders.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {topPicks.map((pick) => (
+            <a href={pick.href} class="flex items-center gap-4 p-4 rounded-xl bg-white border border-border hover:border-accent/20 hover:shadow-sm transition-all duration-200 group">
+              <span class="shrink-0 w-9 h-9 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">{pick.tag.slice(0, 2)}</span>
+              <span class="text-sm font-medium text-[#1a1a1a] group-hover:text-accent transition-colors flex-1">{pick.label}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-gray-300 group-hover:text-accent transition-colors shrink-0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          ))}
+        </div>
+        <div class="mt-8 text-center md:text-left">
+          <a href="/food" class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-dark transition-colors">
+            Browse all guides
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+    </section>
+
+    <section class="max-w-[1200px] mx-auto px-6 py-24 md:py-32">
+      <div class="bg-accent rounded-2xl p-10 md:p-16 text-center">
+        <h2 class="text-3xl md:text-4xl font-display font-semibold tracking-tight text-white mb-4">Get the inside scoop</h2>
+        <p class="text-white/80 text-lg max-w-[48ch] mx-auto mb-8">Join our newsletter for seasonal guides, new restaurant openings, and local tips delivered to your inbox.</p>
+        <form class="flex gap-3 max-w-md mx-auto" onsubmit="event.preventDefault()">
+          <input
+            type="email"
+            placeholder="Your email address"
+            class="flex-1 px-5 py-3.5 rounded-full text-sm bg-white/15 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-white/40 transition-colors"
+          />
+          <button
+            type="submit"
+            class="px-7 py-3.5 rounded-full bg-white text-accent text-sm font-semibold hover:bg-white/90 transition-colors duration-150 shrink-0"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
