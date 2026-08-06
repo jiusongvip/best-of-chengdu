@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 
-const { title, description, schemaJson } = Astro.props;
+const { title, description, schemaJson, noindex } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, '');
 ---
 
@@ -13,11 +13,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/,
     <title>{title} | Best of Chengdu</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonicalUrl} />
-    <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    {!noindex && <link rel="canonical" href={canonicalUrl} />}
+    {!noindex && <link rel="alternate" hreflang="en" href={canonicalUrl} />}
     <link rel="preload" href="/_astro/outfit-latin-700-normal.Cu9v6i1X.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/_astro/outfit-latin-400-normal.BGsTXAXT.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    {!noindex && <link rel="alternate" hreflang="x-default" href={canonicalUrl} />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <meta property="og:title" content={`${title} | Best of Chengdu`} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
