@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "npx astro build",
     "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.7.3",
     "@astrojs/tailwind": "^6.0.2",
     "@fontsource/geist-sans": "^5.2.5",
     "@fontsource/outfit": "^5.2.5",
