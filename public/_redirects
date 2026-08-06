@@ -1,2 +1,0 @@
-# Strip trailing slash — must come BEFORE Pretty URL processing
-/*/  /:splat  301
