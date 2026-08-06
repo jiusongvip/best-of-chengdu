@@ -3,76 +3,594 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 
+const neighborhoods = [
+  {
+    rank: 1,
+    name: 'Chunxi Road / Taikoo Li',
+    tag: 'Central · Best for first-timers',
+    icon: '🏙️',
+    vibe: 'The beating heart of Chengdu. Pedestrian streets, massive shopping malls, and the metro hub all within walking distance. The IFS building with its famous climbing panda sculpture is here. Chunxi Road Metro station (Lines 2 & 3) connects you to any part of the city in under 30 minutes. This is where Chengdu feels most like a modern metropolis — neon signs, luxury boutiques, and the constant hum of 21 million people going about their day.',
+    ourPick: { name: 'Canopy by Hilton Chengdu', price: '¥600–1,000', desc: 'Our pick for best value in this area. Hilton\'s lifestyle brand on the edge of Taikoo Li — modern rooms, free bikes, rooftop terrace, and walking distance to everything. At ¥600/night you get a ¥1,200/night location.' },
+    hotels: [
+      { name: 'The Temple House (博舍)', price: '¥1,500–3,000', tier: 'luxury', tierLabel: 'Luxury', desc: 'A design hotel inside a restored Qing-dynasty courtyard in Taikoo Li. Minimalist and serene. The pool and spa are destination-worthy. Book months ahead for courtyard suites. Only 100 rooms — sells out fast.' },
+      { name: 'Niccolo Chengdu (尼依格罗)', price: '¥1,200–2,500', tier: 'luxury', tierLabel: 'Luxury', desc: 'Sleek high-rise inside the IFS complex. Floor-to-ceiling windows, sky lobby bar, excellent Italian restaurant. The views over Taikoo Li at sunset are spectacular. Ask for a corner room.' },
+      { name: 'Holiday Inn Express Wuhou', price: '¥350–550', tier: 'mid', tierLabel: 'Mid-range', desc: 'Reliable chain comfort. Clean, predictable, includes breakfast. English-speaking front desk. Not glamorous but dependable — exactly what you want after a long flight when everything needs to just work.' },
+      { name: 'Chengdu Flipflop Hostel', price: '¥50–200', tier: 'budget', tierLabel: 'Budget', desc: 'The best-rated hostel in the Chunxi area. Clean dorms, friendly vibe, walking distance to everything. Private rooms from ¥180. Great common area for meeting other travelers. Hot showers, decent WiFi.' },
+    ],
+    bestFor: 'First-time visitors, shoppers, anyone who wants to be steps from everything',
+    transit: 'Metro Lines 2 & 3 at Chunxi Road. Direct Metro Line 10 from Shuangliu Airport (30 min).',
+    localTip: 'Walk east from Taikoo Li toward the river after dinner. The Anshun Bridge lights up at night — one of Chengdu\'s most photogenic spots, and surprisingly quiet compared to the shopping district. Grab a drink at one of the riverside bars for a view that most tourists miss.',
+  },
+  {
+    rank: 2,
+    name: 'Kuanzhai Alley / Qingyang District',
+    tag: 'Cultural · Best for atmosphere',
+    icon: '🏮',
+    vibe: 'Three parallel Qing-dynasty alleys — Kuan (wide), Zhai (narrow), and Jing (well) — form the historic heart of Chengdu. Converted courtyard homes hide boutique hotels behind carved wooden doors. Mornings start with the smell of street food and the sound of tea being poured. The area gets touristy by midday, but at 7 AM it\'s magical — just you, the lanterns, and the occasional bicycle bell. Less convenient than Chunxi for metro connections, but you\'re trading 10 minutes of transit for a much richer experience. The surrounding Qingyang district has Chengdu\'s best concentration of temples, traditional teahouses, and authentic street food.',
+    ourPick: { name: 'Buddha Zen Hotel (圆和圆)', price: '¥500–900', desc: 'Our pick for atmosphere. A Zen-inspired boutique hotel in a converted temple guesthouse near Wenshu Monastery. Bamboo gardens, meditation spaces, vegetarian restaurant. Unlike any chain hotel — and at mid-range prices. The garden courtyard at breakfast is worth the stay alone.' },
+    hotels: [
+      { name: 'Diaoyutai Boutique (钓鱼台)', price: '¥1,200–2,800', tier: 'luxury', tierLabel: 'Luxury', desc: 'The king of courtyard hotels. Rooms in restored Qing buildings with antique furniture and modern bathrooms. Imperial-style Sichuan cuisine on-site. Only ~45 rooms — book well ahead. The courtyard suites have private gardens.' },
+      { name: 'Chengdu Lazybones Hostel', price: '¥60–300', tier: 'budget', tierLabel: 'Budget', desc: 'The most famous backpacker spot in Chengdu, inside a Kuanzhai courtyard. Dorm beds from ¥60, private doubles from ¥200. Great common area with a bar, slightly worn but full of character. Book a private room in the old courtyard building.' },
+      { name: 'Wenjun Hotel (文君楼)', price: '¥300–500', tier: 'mid', tierLabel: 'Mid-range', desc: 'A converted courtyard guesthouse on Qintai Road, steps from Kuanzhai Alley. Traditional Sichuan architecture with modern bathrooms. Excellent value — feels like a ¥800 hotel for half the price. The garden courtyard café is a hidden gem.' },
+    ],
+    bestFor: 'Culture lovers, couples, photographers, honeymooners, anyone who values atmosphere over convenience',
+    transit: 'Metro Line 4 at Kuanzhai Xiangzi Station. 15-min walk or ¥12 Didi to most central spots.',
+    localTip: 'Skip the overpriced courtyard restaurants on the main alley. Walk 5 minutes west to Tongzilin Road — the same Qing-dynasty architecture at half the price with zero tourist markup. The Muslim quarter around the mosque nearby has incredible lamb noodle soup (羊肉泡馍) for ¥25.',
+  },
+  {
+    rank: 3,
+    name: 'Jinli / Wuhou Area',
+    tag: 'Tourist-friendly · Best for convenience',
+    icon: '🎋',
+    vibe: 'Walk to Jinli Ancient Street and Wuhou Shrine in minutes. This area is built for tourism — English is more common here than anywhere else in Chengdu, restaurants are comfortable with foreign visitors, and you can navigate on foot without a map. It can feel a bit manufactured compared to Kuanzhai, but after a 14-hour flight, "manufactured but convenient" is exactly what you want. The area has the highest density of restaurants with picture menus and English-speaking staff in Chengdu. Great for families, older travelers, and anyone who values walkability over authenticity.',
+    ourPick: { name: 'Jinjiang Hotel (锦江宾馆)', price: '¥350–600', desc: 'Our pick for value + convenience. A Chengdu institution since the 1960s, recently renovated. Old-school Chinese hospitality with modern comforts. Famous dim sum restaurant on the ground floor — locals drive across the city for it. 10-min walk to Jinli. The garden grounds are a peaceful escape from the city.' },
+    hotels: [
+      { name: 'Millennium Hotel (明宇尚雅)', price: '¥500–900', tier: 'mid', tierLabel: 'Mid-range', desc: 'Solid 5-star Chinese chain. Large rooms, professional service, 10-min walk to Jinli. Breakfast buffet has both Chinese and Western options — rare at this price. Good family rooms with separate living areas.' },
+      { name: 'Tibet Hotel Chengdu (成都西藏饭店)', price: '¥400–700', tier: 'mid', tierLabel: 'Mid-range', desc: 'Unique Tibetan-themed hotel near Wuhou Shrine. Tibetan décor throughout, yak butter tea in the lobby, surprisingly good Tibetan restaurant. A memorable alternative to generic chain hotels.' },
+      { name: 'Chengdu Jin Yun Hotel', price: '¥200–350', tier: 'budget', tierLabel: 'Budget', desc: 'Clean, basic rooms near Wuhou Shrine. No frills, excellent location. Book through Ctrip for the lowest rates. Front desk speaks minimal English — have your booking confirmation ready on your phone.' },
+    ],
+    bestFor: 'Families, older travelers, first-timers prioritizing walkable sightseeing, people who want English-friendly service',
+    transit: 'Metro Line 3 at Gaoshengqiao Station. 10-min walk to Jinli, 8-min Didi to People\'s Park.',
+    localTip: 'Jinli Street at 6 PM is shoulder-to-shoulder tourists. Go at 8 AM instead — the lanterns are still beautiful, the shops are just opening, and you\'ll have the cobblestone lanes almost to yourself. The Tibetan quarter nearby (south of Wuhou Shrine) has excellent Tibetan restaurants and handicraft shops that most tourists never find.',
+  },
+  {
+    rank: 4,
+    name: 'Yulin / Hi-Tech Zone',
+    tag: 'Local · Best for food & slow travel',
+    icon: '🌳',
+    vibe: 'The city\'s most liveable neighborhood. Tree-lined streets, independent coffee shops, craft cocktail bars, and Chengdu\'s best concentration of non-touristy restaurants. This is where locals actually live, eat, and hang out. No major sights within walking distance — you\'ll Metro or Didi to attractions — but you\'ll eat better here than anywhere else in the city. The Hi-Tech Zone section is modern and spacious with wide boulevards; Yulin proper is older and more characterful with narrow lanes and decades-old noodle shops. Both reward travelers who prefer discovering a city over ticking off landmarks. This is also where Chengdu\'s small but growing expat community tends to cluster.',
+    ourPick: { name: 'Renaissance Chengdu (万丽)', price: '¥550–950', desc: 'Our pick for comfort in the south. Marriott\'s upscale brand in the Hi-Tech Zone. Modern, spacious rooms with mountain views on clear days. The lobby bar is a local expat hangout — great for travel tips over a cocktail. Fantastic breakfast buffet with both Chinese and Western options.' },
+    hotels: [
+      { name: 'The Ritz-Carlton (丽思卡尔顿)', price: '¥1,200–2,500', tier: 'luxury', tierLabel: 'Luxury', desc: 'Grand luxury in the Hi-Tech Zone. Impeccable service, stunning indoor pool, best afternoon tea in Chengdu. Worth the splurge for a special occasion or a pampering finale to your trip. The Flair bar on the 27th floor has the best skyline views in the city.' },
+      { name: 'Fairfield by Marriott (万枫)', price: '¥300–500', tier: 'mid', tierLabel: 'Mid-range', desc: 'Marriott\'s budget brand — clean, modern, reliable. Excellent value in the Hi-Tech Zone. Free breakfast, comfortable beds, English-speaking staff. Not exciting but dependable — a safe choice for business travelers on a budget.' },
+      { name: 'Joyhub Air Hotel (喜悦秘境)', price: '¥300–500', tier: 'budget', tierLabel: 'Budget', desc: 'Stylish budget option with quirky design, rooftop terrace, English-speaking staff. Walking distance to Kehua Road\'s legendary late-night food stalls. Popular with digital nomads for the rooftop coworking space.' },
+    ],
+    bestFor: 'Return visitors, food-focused travelers, long stays (5+ nights), digital nomads, people who want to eat where locals eat',
+    transit: 'Metro Line 1. 15–25 min to central attractions. Close to Chengdu South Station for day trips.',
+    localTip: 'Kehua Road after 10 PM is Chengdu\'s real night market. Skewers grilled over charcoal, cold beer served in bowls, and not a single English menu. Come hungry, point at what looks good, and pay about ¥60 for a feast. The stretch between Kehua North Road and Yulin Street has 40+ food stalls — start at the south end and work your way north.',
+  },
+  {
+    rank: 5,
+    name: 'Panda Base Area / Chenghua District',
+    tag: 'Specialized · Best for panda fanatics',
+    icon: '🐼',
+    vibe: 'A niche choice for travelers whose primary mission is pandas. The Chengdu Research Base of Giant Panda Breeding is in the northern suburbs — staying nearby means you can be at the gates by 7:30 AM, beating the tour buses by a full hour. The flip side: you\'re 40 minutes by Metro from the city center, and the area around the base is suburban and quiet with limited evening entertainment. This area makes sense if pandas are your #1 priority and you\'re planning multiple visits, or if you\'re combining with a trip to the Dujiangyan Panda Base the next day. Hotels here are generally mid-range business hotels catering to domestic tourists.',
+    ourPick: { name: 'Crowne Plaza Chengdu Panda Garden (熊猫花园皇冠假日)', price: '¥450–750', desc: 'The closest international-brand hotel to the Panda Base — 10 minutes by taxi. Panda-themed rooms (seriously — panda murals, panda pillows, panda stuffed animals on the bed). Kids love it. The hotel can arrange Panda Base tickets and early-morning transfers.' },
+    hotels: [
+      { name: 'Holiday Inn Chengdu Panda Garden', price: '¥350–550', tier: 'mid', tierLabel: 'Mid-range', desc: 'IHG\'s mid-range option, 15 min from the base. Clean, comfortable, reliable. Good for families — connecting rooms available. The breakfast buffet starts at 6:30 AM so you can eat before the panda rush.' },
+      { name: 'Atour Hotel Panda Base (亚朵)', price: '¥300–500', tier: 'mid', tierLabel: 'Mid-range', desc: 'Chinese boutique chain known for quality at reasonable prices. Books and tea in the lobby, memory foam pillows, excellent service. 12 min by taxi to the base. Popular with Chinese business travelers — that\'s a good sign.' },
+      { name: '7 Days Inn Zhaojue Temple', price: '¥120–250', tier: 'budget', tierLabel: 'Budget', desc: 'Basic budget chain. Clean enough, functional, the cheapest option near the base. You\'re paying for location proximity to pandas, not comfort. Bring earplugs — Chinese budget hotels can be noisy.' },
+    ],
+    bestFor: 'Panda enthusiasts planning multiple visits, families with panda-obsessed kids, photographers who want dawn light at the base',
+    transit: 'Metro Line 3 to Panda Avenue Station, then 10-min shuttle bus. 40 min by Metro to Chunxi Road. Didi to city center: ¥35–50, 25–35 minutes.',
+    localTip: 'The Panda Base opens at 7:30 AM — the pandas are most active 7:30–9:30 AM before they retreat to air-conditioned enclosures. Staying nearby means you can arrive at opening time. By 10 AM the base is packed with tour groups. After your panda visit, take Bus 198 back to Panda Avenue Metro and you\'re in the city by lunch. Don\'t bother with the restaurants around the base — eat in the city instead.',
+  },
+];
+
+const priceTiers = [
+  {
+    tier: 'Budget (under ¥350/night)',
+    icon: '🎒',
+    desc: 'You\'ll get a clean but basic room. Expect: firm Chinese beds (harder than Western mattresses), Chinese-style bathrooms (often wet-room style with a shower over the toilet area), reliable hot water and WiFi, minimal English at the front desk. At this price, choose chains (Holiday Inn Express, 7 Days Inn, Hanting) over independent guesthouses — consistency matters.',
+    whatYouGet: ['Clean private room with en-suite bathroom', 'Air conditioning and hot water (check reviews — not guaranteed in the cheapest places)', 'WiFi (usually fine for browsing; bring a VPN for anything else)', 'Minimal English — translation app required', 'No breakfast (usually) — eat at a local noodle shop for ¥10–15'],
+    bestFor: 'Backpackers, solo travelers on a tight budget, anyone who plans to be out exploring all day and just needs a place to sleep',
+    sampleHotels: 'Holiday Inn Express (¥350), Jin Yun Hotel (¥200), Lazybones Hostel private rooms (¥200), 7 Days Inn (¥150)',
+  },
+  {
+    tier: 'Mid-range (¥350–800/night)',
+    icon: '🏨',
+    desc: 'The sweet spot for most travelers. You get international-standard comfort at 30–50% less than Beijing or Shanghai. Expect: comfortable Western-style beds, English-speaking front desk, a proper breakfast buffet with Chinese and Western options, clean modern bathrooms with separate showers. This is where Chengdu hotels really shine — the value is remarkable.',
+    whatYouGet: ['Comfortable Western-style beds (not the hard Chinese mattresses)', 'English-speaking front desk staff', 'Breakfast buffet with both Chinese and Western options', 'Clean, modern bathroom with separate shower (no wet-room surprises)', 'Concierge who can help book day trips and trains', 'Gym (basic but functional)', 'Location in or near a major neighborhood'],
+    bestFor: 'Most travelers — this is the sweet spot where comfort meets value. Couples, families, business travelers on a budget, anyone who wants a reliably good hotel without paying luxury prices.',
+    sampleHotels: 'Canopy by Hilton (¥600), Jinjiang Hotel (¥400), Renaissance (¥600), Buddha Zen Hotel (¥600), Millennium Hotel (¥600)',
+  },
+  {
+    tier: 'Luxury (¥800–3,000+/night)',
+    icon: '👑',
+    desc: 'World-class hotels at prices that would be 2–3× higher in Tokyo, London, or New York. Chengdu\'s luxury hotels compete on design and service — the Temple House regularly appears on "best hotel in China" lists. At this tier, you\'re choosing between international chains (Ritz-Carlton, St. Regis, Waldorf Astoria) and unique boutique properties (Temple House, Diaoyutai) in historic buildings. Both are excellent; the boutiques offer a more memorable, distinctly Chinese experience.',
+    whatYouGet: ['Impeccable service — concierge can handle any request, in English', 'Destination restaurants (Michelin-starred or local equivalent)', 'Stunning pools and full-service spas', 'Luxury bedding and premium toiletries', 'Historic architecture or panoramic skyline views', 'Club lounge access with free evening cocktails and canapés', 'Butler service at top properties', 'Airport transfer in a luxury car (included or bookable)'],
+    bestFor: 'Special occasions (honeymoon, anniversary, milestone birthday), luxury travelers, anyone who wants a hotel that is itself a destination',
+    sampleHotels: 'The Temple House (¥1,500), Ritz-Carlton (¥1,200), Niccolo (¥1,200), Diaoyutai Boutique (¥1,500), St. Regis (¥1,300), Waldorf Astoria (¥1,500)',
+  },
+  {
+    tier: 'Serviced Apartments (¥400–1,200/night)',
+    icon: '🏠',
+    desc: 'An underrated option for stays of 5+ nights. Serviced apartments give you a kitchen, living room, and washer-dryer — game-changers for longer stays. Prices are competitive with mid-range hotels but you get 2–3× the space. Most are in the Hi-Tech Zone or near Taikoo Li. Book through Trip.com or directly with Fraser / Ascott / Oakwood.',
+    whatYouGet: ['Full kitchen with stove, microwave, refrigerator', 'Separate living room and bedroom', 'In-unit washer-dryer', 'Weekly housekeeping (daily available for extra)', 'Gym and sometimes a pool', '50–80 square meters (vs 25–35 for a standard hotel room)'],
+    bestFor: 'Stays of 5+ nights, families who need space and a kitchen, digital nomads, anyone who wants to feel like they live in Chengdu rather than visit it',
+    sampleHotels: 'Fraser Suites Chengdu (¥600), Ascott Raffles City (¥700), Oakwood (¥500), Somerset Riverview (¥550)',
+  },
+];
+
+const roomTypeGlossary = [
+  { chinese: '大床房 (dà chuáng fáng)', english: 'King/Queen bed room', note: 'One large bed. The most common room type. "大床" means "big bed" — usually a king (1.8m wide) or queen (1.5m). If you\'re a couple, this is what you want.' },
+  { chinese: '双床房 (shuāng chuáng fáng)', english: 'Twin room', note: 'Two single beds. The default for Chinese business travelers. If you\'re two friends who don\'t want to share a bed, book this.' },
+  { chinese: '套房 (tào fáng)', english: 'Suite', note: 'Separate living room + bedroom. More space, higher price. Worth it for stays of 3+ nights.' },
+  { chinese: '无窗房 (wú chuāng fáng)', english: 'Windowless room', note: 'WARNING: Some budget hotels have interior rooms with no window. Always check photos carefully. If the price seems too good to be true, it\'s probably windowless.' },
+  { chinese: '含早 (hán zǎo)', english: 'Breakfast included', note: 'Look for this — Chinese hotel breakfasts are usually excellent, with both Chinese (congee, dumplings, noodles) and Western (eggs, toast, cereal) options.' },
+  { chinese: '标准间 (biāo zhǔn jiān)', english: 'Standard room', note: 'Usually means a twin room. Generic term — check the bed configuration before booking.' },
+];
+
+const bookingPlatforms = [
+  { platform: 'Trip.com (Ctrip English)', bestFor: 'Best overall for foreigners. Widest selection, English interface, foreign cards accepted, free cancellation on most bookings.', priceAccuracy: '★★★★★', selection: '★★★★★', tips: 'Download the app before your trip. The "Hotels" tab has better deals than the "Travel" tab. Look for "Pay at Hotel" options if you prefer not to prepay.' },
+  { platform: 'Agoda', bestFor: 'Sometimes cheaper than Trip.com for international chains. Better for last-minute bookings. Good loyalty program (AgodaVIP).', priceAccuracy: '★★★★☆', selection: '★★★★☆', tips: 'Check Agoda before booking on Trip.com — especially for Hilton, Marriott, and IHG properties. Prices can be ¥50–150 lower per night.' },
+  { platform: 'Booking.com', bestFor: 'Familiar interface for Western travelers. Good for guesthouses and hostels. The "Genius" loyalty discount is genuinely useful.', priceAccuracy: '★★★★☆', selection: '★★★☆☆', tips: 'Booking.com has fewer Chinese hotels than Trip.com but often has better descriptions and reviews in English. Best for researching, then cross-check price on Trip.com.' },
+  { platform: 'Direct hotel website', bestFor: 'International chains only (Hilton, Marriott, IHG). Use your loyalty status for upgrades, late checkout, and points earning.', priceAccuracy: '★★★★★', selection: '★★☆☆☆', tips: 'Marriott Bonvoy and Hilton Honors work in China. If you have elite status, book direct — the upgrade chances in China are surprisingly good because elite tiers are less common here.' },
+  { platform: 'Fliggy (飞猪) / Meituan (美团)', bestFor: 'Chinese-language apps with the absolute lowest prices. Requires Chinese payment method (Alipay/WeChat Pay).', priceAccuracy: '★★★★★', selection: '★★★★★', tips: 'Not recommended for first-time visitors without Chinese language skills. The savings (10–20%) rarely justify the hassle if you don\'t read Chinese.' },
+];
+
+const decisionMatrix = [
+  { traveler: 'First-time visitor, 2–4 days', pick: 'Chunxi Road / Taikoo Li', reason: 'You want to be in the center. Walk to shopping, Metro to pandas. This is the zero-regret choice for a short first visit.' },
+  { traveler: 'Couple on a romantic trip', pick: 'Kuanzhai Alley / Qingyang', reason: 'Courtyard hotels, lantern-lit alleys, tea houses at dawn. The Diaoyutai or Buddha Zen Hotel will make your trip.' },
+  { traveler: 'Family with kids under 12', pick: 'Jinli / Wuhou or Panda Base area', reason: 'Jinli for walkable sightseeing and English-friendly restaurants. Panda Base area if the kids are panda-obsessed. Both have family-friendly hotels with connecting rooms.' },
+  { traveler: 'Food-obsessed traveler', pick: 'Yulin / Hi-Tech Zone', reason: 'You\'ll eat at local restaurants near your hotel every night. The best food in Chengdu is in this neighborhood. Stay here and commute to the sights.' },
+  { traveler: 'Solo backpacker on a budget', pick: 'Kuanzhai Alley (hostels) or Yulin', reason: 'Kuanzhai for the social hostel scene (Lazybones). Yulin for cheap, incredible street food. Both have ¥50–200 options.' },
+  { traveler: 'Business traveler', pick: 'Hi-Tech Zone or Chunxi Road', reason: 'Hi-Tech Zone for meetings in the south. Chunxi Road for central convenience. Both have international chains with business facilities.' },
+  { traveler: 'Luxury traveler (special occasion)', pick: 'Chunxi Road / Taikoo Li', reason: 'The Temple House is one of Asia\'s best design hotels. The Ritz-Carlton Flair bar has the best skyline views. Niccolo\'s corner rooms are spectacular.' },
+  { traveler: 'Long stay (7+ nights)', pick: 'Yulin / Hi-Tech Zone (serviced apartment)', reason: 'A serviced apartment with kitchen and laundry will feel like home. Yulin gives you a neighborhood to belong to, not just a hotel to sleep in.' },
+];
+
+const faqs = [
+  { q: 'Which neighborhood is best for first-time visitors?', a: 'Chunxi Road / Taikoo Li. You\'re in the center — walk to shopping and dining, Metro to the Panda Base in 30 minutes, Didi anywhere else in 15. English is more common here. If you only have 2–3 days, this is where you want to be. If you prefer atmosphere over convenience, pick Kuanzhai Alley instead.' },
+  { q: 'How much should I budget for a hotel in Chengdu?', a: 'A clean, comfortable chain hotel runs ¥200–350/night. A very nice mid-range hotel is ¥400–800. Luxury starts around ¥800 and goes to ¥3,000. Chengdu hotels are 30–50% cheaper than equivalent hotels in Beijing or Shanghai — your money goes surprisingly far here. For most travelers, ¥400–600/night gets you a hotel that would cost ¥800–1,200 in Beijing.' },
+  { q: 'Can I pay with a foreign credit card at Chengdu hotels?', a: 'International chains (Hilton, Marriott, IHG) and upscale Chinese hotels accept foreign cards without issues. Smaller local hotels and boutique guesthouses often only accept WeChat Pay, Alipay, or Chinese bank cards. Book through Trip.com or Booking.com to pay online with your card before arrival — this is the safest approach. Always carry ¥1,000–2,000 in cash as backup for deposits at smaller hotels.' },
+  { q: 'What\'s the difference between a Chinese 5-star and an international 5-star?', a: 'Chinese 5-star hotels are comfortable but the rating system is looser than international standards. A Chinese 5-star is roughly equivalent to a Western 3.5–4 star. International chains (Hilton, Marriott, IHG) maintain their global standards. For a genuinely luxurious stay, stick with international brands or verified boutique hotels like The Temple House. Read recent Trip.com reviews — they\'re more honest than the star rating.' },
+  { q: 'Should I book in advance or can I walk in?', a: 'Book in advance — at least 1 week ahead for normal periods, 3–4 weeks for Chinese holidays. Walking in without a reservation works for large chain hotels but you\'ll pay the rack rate (often 30–50% higher than online prices). Boutique hotels like The Temple House and Diaoyutai sell out weeks in advance. Budget hotels in popular areas fill up on weekends.' },
+  { q: 'Do Chengdu hotels have Western amenities (gym, pool, etc.)?', a: 'International chains: yes — gyms, pools, business centers, English TV channels. Chinese mid-range hotels: gym is common, pool is rare. Budget hotels: no gym, no pool, possibly no elevator in older buildings. WiFi is universal and usually decent (5–20 Mbps). Check specific amenities on Trip.com before booking — photos are generally honest.' },
+  { q: 'Are there hotels near the Panda Base?', a: 'Yes — the Crowne Plaza Panda Garden is 10 minutes away and has panda-themed rooms (kids love it). Holiday Inn Panda Garden and Atour Hotel are also nearby, 12–15 minutes. Staying near the base means you can arrive at 7:30 AM opening time when pandas are most active. The trade-off: you\'re 40 minutes from downtown. Worth it if pandas are a top priority.' },
+  { q: 'What about Airbnb and vacation rentals in Chengdu?', a: 'Airbnb operates in China but the selection in Chengdu is limited compared to hotels. Apartments on Airbnb tend to be in residential buildings with no English support and hit-or-miss quality. For stays under 5 nights, hotels are more reliable. For 7+ nights, consider a serviced apartment (Fraser, Ascott, Oakwood) — they offer hotel-quality service with apartment-style living, booked through Trip.com or directly.' },
+];
+
 const schema = {
   '@context': 'https://schema.org',
   'datePublished': '2026-07-29',
-  'dateModified': '2026-07-29',
-  '@graph': [{'@type': 'Article', 'headline': 'Best Hotels in Chengdu', 'description': 'Where to stay in Chengdu, from boutique courtyard hotels to luxury brands.', 'url': 'https://best-of-chengdu.com/travel/hotels', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel'}, {'@type': 'ListItem', 'position': 3, 'name': 'Hotels', 'item': 'https://best-of-chengdu.com/travel/hotels'}]}],
+  'dateModified': '2026-08-05',
+  '@graph': [
+    { '@type': 'Article', 'headline': 'Where to Stay in Chengdu 2026 — Best Hotels & Neighborhoods Guide', 'description': 'Comprehensive neighborhood guide with 17 specific hotel recommendations across 5 neighborhoods. Real price ranges, room type glossary, booking platform comparison, and honest local advice. From luxury Qing-dynasty courtyard hotels to ¥60 hostel beds.', 'url': 'https://best-of-chengdu.com/travel/hotels', 'author': { '@type': 'Organization', 'name': 'Best of Chengdu' } },
+    { '@type': 'BreadcrumbList', 'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'Hotels', 'item': 'https://best-of-chengdu.com/travel/hotels' },
+    ]},
+    { '@type': 'FAQPage', 'mainEntity': faqs.map((faq) => ({ '@type': 'Question', 'name': faq.q, 'acceptedAnswer': { '@type': 'Answer', 'text': faq.a } })) },
+  ],
 };
 ---
 
-<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Hotels in Chengdu" description="Where to stay in Chengdu, from boutique courtyard hotels to luxury brands.">
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Where to Stay in Chengdu 2026 — Best Hotels & Neighborhoods Guide | Best of Chengdu" description="Comprehensive guide with 17 hotels across 5 neighborhoods, real prices, room type glossary, booking platform comparison. From ¥60 hostels to ¥3,000 luxury courtyards.">
   <Header />
 
   <main>
-    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
-      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
-        Best Hotels in Chengdu
-      </h1>
-      <p class="mt-4 text-lg text-gray-500 leading-relaxed">From restored Qing-dynasty courtyards to sleek international towers, Chengdu has accommodation for every style and budget. Here is where to stay and which neighborhood suits you.</p>
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] via-[#2d1a1a] to-[#1a1a2d] text-white">
+      <div class="max-w-[860px] mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-24">
+        <p class="text-xs font-medium tracking-widest uppercase text-white/50 mb-4">Where to Stay · Updated August 2026</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tighter leading-[1.05] mb-5">
+          Where to Stay in<br class="hidden sm:block" /> Chengdu
+        </h1>
+        <p class="text-lg text-white/60 leading-relaxed max-w-[52ch] mb-8">
+          17 specific places to sleep across 5 neighborhoods. Real prices. Room type translations. Booking platform comparisons. And the one neighborhood you should pick if you only have 48 hours.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#neighborhoods" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-white/25 transition-colors">See neighborhoods ↓</a>
+          <a href="#price-tiers" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Price guide</a>
+          <a href="#decision" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Which area for me?</a>
+          <a href="/travel/transportation" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Getting around →</a>
+        </div>
+      </div>
     </section>
-    <section class="max-w-[860px] mx-auto px-6 pb-16">
-      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Best neighborhoods to stay</h2>
-      <div class="space-y-4">
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">1</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Chunxi Road / Taikoo Li</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Central</span></div><p class="text-sm text-gray-500 mt-1">The beating heart of Chengdu. Walking distance to shopping, dining, and the metro hub. The Temple House and Niccolo are here if you want luxury. Mid-range options cluster around Chunxi Road. Best for first-time visitors who want to be in the center of everything.</p></div></div>
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">2</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Kuanzhai Alley Area</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Cultural</span></div><p class="text-sm text-gray-500 mt-1">Stay in a converted courtyard hotel within the historic alley district. Boutique options like Diaoyutai Boutique Hotel offer rooms in Qing-dynasty buildings. Great for travelers who want atmosphere over convenience.</p></div></div>
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">3</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Yulin / South of the River</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Local & artsy</span></div><p class="text-sm text-gray-500 mt-1">The city's most liveable neighborhood. Tree-lined streets, independent coffee shops, and the best concentration of local restaurants. Fewer chains, more character. Perfect for return visitors or those who prefer a slower pace.</p></div></div>
+
+    <!-- STATS BAR -->
+    <section class="max-w-[860px] mx-auto px-6 -mt-8 relative z-10">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="p-5 rounded-xl bg-white border border-border shadow-sm text-center">
+          <span class="block text-2xl font-bold text-accent">¥200</span>
+          <span class="block text-[10px] text-gray-400 uppercase tracking-wide mt-1">Budget / night</span>
+        </div>
+        <div class="p-5 rounded-xl bg-white border border-border shadow-sm text-center">
+          <span class="block text-2xl font-bold text-accent">¥600</span>
+          <span class="block text-[10px] text-gray-400 uppercase tracking-wide mt-1">Mid-range sweet spot</span>
+        </div>
+        <div class="p-5 rounded-xl bg-white border border-border shadow-sm text-center">
+          <span class="block text-2xl font-bold text-accent">¥1,500</span>
+          <span class="block text-[10px] text-gray-400 uppercase tracking-wide mt-1">Luxury starts at</span>
+        </div>
+        <div class="p-5 rounded-xl bg-white border border-border shadow-sm text-center">
+          <span class="block text-2xl font-bold text-accent">−40%</span>
+          <span class="block text-[10px] text-gray-400 uppercase tracking-wide mt-1">vs Beijing / Shanghai</span>
+        </div>
+      </div>
     </section>
-        <section class="max-w-[860px] mx-auto px-6 pb-12">
-      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Neighborhood comparison</h2>
-      <div class="overflow-x-auto rounded-xl border border-border">
-        <table class="w-full text-sm">
-          <thead class="bg-surface">
-            <tr>
-              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Area</th>
-              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Vibe</th>
-              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Budget</th>
-              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Best for</th>
+
+    <!-- QUICK VERDICT -->
+    <section class="max-w-[860px] mx-auto px-6 pt-12 pb-8">
+      <div class="p-6 rounded-2xl bg-accent/5 border border-accent/10">
+        <div class="flex items-start gap-3">
+          <span class="text-2xl shrink-0">💡</span>
+          <div>
+            <h2 class="font-display font-semibold text-lg text-[#1a1a1a] mb-2">The 30-Second Guide</h2>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              <strong class="text-[#1a1a1a]">Stay in Chunxi Road / Taikoo Li</strong> if it's your first visit and you want to be in the center of everything (¥350–3,000/night).
+              <strong class="text-[#1a1a1a]">Stay in Kuanzhai Alley</strong> if you want atmosphere — courtyard hotels in Qing-dynasty buildings (¥60–2,800/night).
+              <strong class="text-[#1a1a1a]">Stay in Yulin / Hi-Tech Zone</strong> if food is your priority — the best local restaurants are here (¥300–2,500/night).
+              <strong class="text-[#1a1a1a]">Stay near the Panda Base</strong> if you want to be at the gates by 7:30 AM for the pandas' most active hours (¥120–750/night).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEIGHBORHOODS -->
+    <section id="neighborhoods">
+      {neighborhoods.map((area) => (
+        <div class="max-w-[860px] mx-auto px-6 pb-14">
+          <div class="flex items-center gap-4 mb-5">
+            <div class="shrink-0 w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-2xl">{area.icon}</div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-bold">#{area.rank}</span>
+                <h2 class="text-2xl font-display font-semibold tracking-tight text-[#1a1a1a]">{area.name}</h2>
+              </div>
+              <span class="text-xs text-accent font-medium">{area.tag}</span>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface/60 border border-border/50 mb-5">
+            <p class="text-sm text-gray-600 leading-relaxed">{area.vibe}</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-accent/5 border border-accent/20 mb-5 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">OUR PICK</div>
+            <h3 class="text-xs font-semibold text-accent uppercase tracking-widest mb-2">★ Best Value in This Area</h3>
+            <div class="flex flex-wrap items-baseline gap-2 mb-1">
+              <span class="font-semibold text-[#1a1a1a]">{area.ourPick.name}</span>
+              <span class="text-xs text-accent font-medium">{area.ourPick.price}/night</span>
+            </div>
+            <p class="text-xs text-gray-500 leading-relaxed">{area.ourPick.desc}</p>
+          </div>
+
+          <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">More Hotels in This Area</h3>
+          <div class="space-y-2.5 mb-5">
+            {area.hotels.map((hotel) => (
+              <div class={`p-4 rounded-xl border bg-white transition-colors duration-200 ${
+                hotel.tier === 'luxury' ? 'border-amber-200 hover:border-amber-300' :
+                hotel.tier === 'mid' ? 'border-border hover:border-accent/30' :
+                'border-border/50 hover:border-border'
+              }`}>
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <span class="font-semibold text-[#1a1a1a] text-sm">{hotel.name}</span>
+                  <span class={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${
+                    hotel.tier === 'luxury' ? 'bg-amber-100 text-amber-700' :
+                    hotel.tier === 'mid' ? 'bg-accent/10 text-accent' :
+                    'bg-gray-100 text-gray-500'
+                  }`}>{hotel.tierLabel}</span>
+                  <span class="text-[11px] text-gray-400 ml-auto">{hotel.price}/night</span>
+                </div>
+                <p class="text-xs text-gray-500 leading-relaxed">{hotel.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-500">
+            <span><span class="font-medium text-[#1a1a1a]">Best for:</span> {area.bestFor}</span>
+            <span><span class="font-medium text-[#1a1a1a]">Transit:</span> {area.transit}</span>
+          </div>
+
+          <div class="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-100 flex items-start gap-3">
+            <span class="text-sm shrink-0">🔑</span>
+            <div>
+              <span class="block text-[10px] font-semibold text-amber-700 uppercase tracking-widest mb-1">Local Secret</span>
+              <p class="text-xs text-amber-800 leading-relaxed">{area.localTip}</p>
+            </div>
+          </div>
+
+          <hr class="mt-10 border-border/30" />
+        </div>
+      ))}
+    </section>
+
+    <!-- PRICE TIERS -->
+    <section id="price-tiers" class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">What to Expect at Each Price Point</h2>
+        <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Chengdu hotels deliver more value per yuan than almost any major city in China. Here's exactly what you get — and don't get — at each tier.</p>
+        <div class="space-y-5">
+          {priceTiers.map((tier) => (
+            <div class="rounded-2xl border border-border bg-white overflow-hidden">
+              <div class="p-6">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="text-2xl">{tier.icon}</span>
+                  <h3 class="text-lg font-display font-semibold text-[#1a1a1a]">{tier.tier}</h3>
+                </div>
+                <p class="text-sm text-gray-500 leading-relaxed mb-5">{tier.desc}</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <h4 class="text-xs font-semibold text-[#1a1a1a] uppercase tracking-wide mb-3">What You Get</h4>
+                    <ul class="space-y-2">
+                      {tier.whatYouGet.map((item) => (
+                        <li class="flex items-start gap-2 text-xs text-gray-500">
+                          <span class="text-accent mt-0.5 shrink-0">✓</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="bg-surface rounded-xl p-4">
+                    <h4 class="text-xs font-semibold text-[#1a1a1a] uppercase tracking-wide mb-2">Best For</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-3">{tier.bestFor}</p>
+                    <h4 class="text-xs font-semibold text-[#1a1a1a] uppercase tracking-wide mb-1">Example Hotels</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">{tier.sampleHotels}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ROOM TYPE GLOSSARY -->
+    <section class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Chinese Hotel Room Types — Translated</h2>
+      <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Booking on a Chinese platform? These are the room type labels you'll see — knowing them saves you from accidentally booking a windowless room with twin beds when you wanted a king.</p>
+      <div class="overflow-x-auto rounded-xl border border-border bg-white">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-surface/50">
+              <th class="text-left py-3 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Chinese</th>
+              <th class="text-left py-3 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">English</th>
+              <th class="text-left py-3 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">What It Means</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="border-t border-border">
-              <td class="p-4 font-medium text-[#1a1a1a]">Chunxi / Taikoo Li</td>
-              <td class="p-4 text-gray-500">Central, busy</td>
-              <td class="p-4 text-gray-500">400-1500+ RMB</td>
-              <td class="p-4 text-gray-500">First-time visitors, shopping</td>
-            </tr>
-            <tr class="border-t border-border">
-              <td class="p-4 font-medium text-[#1a1a1a]">Kuanzhai Alley</td>
-              <td class="p-4 text-gray-500">Cultural, historic</td>
-              <td class="p-4 text-gray-500">400-1200 RMB</td>
-              <td class="p-4 text-gray-500">Culture lovers, couples</td>
-            </tr>
-            <tr class="border-t border-border">
-              <td class="p-4 font-medium text-[#1a1a1a]">Yulin / South River</td>
-              <td class="p-4 text-gray-500">Artsy, local</td>
-              <td class="p-4 text-gray-500">200-600 RMB</td>
-              <td class="p-4 text-gray-500">Return visitors, slow travel</td>
-            </tr>
+            {roomTypeGlossary.map((row, i) => (
+              <tr class={`border-t border-border hover:bg-accent/[0.02]`}>
+                <td class="py-3 px-5 font-medium text-[#1a1a1a] text-xs">{row.chinese}</td>
+                <td class="py-3 px-5 font-medium text-accent text-xs">{row.english}</td>
+                <td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">{row.note}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
     </section>
+
+    <!-- BOOKING PLATFORM COMPARISON -->
     <section class="bg-surface py-20">
       <div class="max-w-[860px] mx-auto px-6">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Hotel picks by budget</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="p-5 rounded-xl bg-white border border-border"><span class="text-xs font-medium text-accent mb-2 block">BUDGET</span><h3 class="font-semibold text-[#1a1a1a]">200-400 RMB</h3><p class="text-sm text-gray-500 mt-1">Clean, comfortable options from local chains like Hanting and 7 Days Inn. International hostels with private rooms around 200 RMB. Book through Ctrip for the best rates.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><span class="text-xs font-medium text-accent mb-2 block">MID-RANGE</span><h3 class="font-semibold text-[#1a1a1a]">400-800 RMB</h3><p class="text-sm text-gray-500 mt-1">International brands like Holiday Inn and local boutique hotels. Nicely designed rooms with good locations. The sweet spot for quality without the price tag.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><span class="text-xs font-medium text-accent mb-2 block">LUXURY</span><h3 class="font-semibold text-[#1a1a1a]">800+ RMB</h3><p class="text-sm text-gray-500 mt-1">The Temple House, Niccolo, St. Regis, and Ritz-Carlton. World-class service with Chengdu character. The Temple House's courtyard suites are worth the splurge for a special occasion.</p></div>
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Where to Book — Platform Comparison</h2>
+        <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Not all booking platforms show the same hotels or prices. Here's which one to use for your situation.</p>
+        <div class="space-y-3">
+          {bookingPlatforms.map((bp) => (
+            <div class="p-5 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors">
+              <div class="flex flex-wrap items-center gap-3 mb-2">
+                <h3 class="font-semibold text-[#1a1a1a]">{bp.platform}</h3>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">{bp.bestFor.split('.')[0]}</span>
+              </div>
+              <p class="text-sm text-gray-500 leading-relaxed mb-3">{bp.bestFor}</p>
+              <div class="flex items-center gap-4 text-[10px] text-gray-400">
+                <span>Price accuracy: {bp.priceAccuracy}</span>
+                <span>Selection: {bp.selection}</span>
+              </div>
+              <p class="text-xs text-accent leading-relaxed mt-2 bg-accent/[0.03] rounded-lg p-3">{bp.tips}</p>
+            </div>
+          ))}
         </div>
+      </div>
+    </section>
+
+    <!-- DECISION MATRIX -->
+    <section id="decision" class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Which Neighborhood for You?</h2>
+      <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Match your travel style to the right neighborhood. No wrong answers — just different trade-offs.</p>
+      <div class="overflow-x-auto rounded-xl border border-border bg-white">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-surface/50">
+              <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">If You're A...</th>
+              <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Stay In...</th>
+              <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            {decisionMatrix.map((row, i) => (
+              <tr class={`border-t border-border hover:bg-accent/[0.02]`}>
+                <td class="py-3 px-5 font-semibold text-[#1a1a1a] text-xs">{row.traveler}</td>
+                <td class="py-3 px-5 text-xs text-accent font-medium">{row.pick}</td>
+                <td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">{row.reason}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- NEIGHBORHOOD COMPARISON TABLE -->
+    <section class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Neighborhoods at a Glance</h2>
+        <div class="overflow-x-auto rounded-xl border border-border bg-white">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-surface/50">
+                <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Area</th>
+                <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Vibe</th>
+                <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Price Range</th>
+                <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Best For</th>
+                <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Metro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-border hover:bg-accent/[0.02]">
+                <td class="py-3 px-5 font-semibold text-[#1a1a1a]">Chunxi / Taikoo Li</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Central, busy, modern</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">¥350–3,000</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">First-timers, shoppers</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Lines 2, 3</td>
+              </tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]">
+                <td class="py-3 px-5 font-semibold text-[#1a1a1a]">Kuanzhai / Qingyang</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Cultural, historic</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">¥60–2,800</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Culture lovers, couples</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Line 4</td>
+              </tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]">
+                <td class="py-3 px-5 font-semibold text-[#1a1a1a]">Jinli / Wuhou</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Tourist-friendly</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">¥200–900</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Families, convenience</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Line 3</td>
+              </tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]">
+                <td class="py-3 px-5 font-semibold text-[#1a1a1a]">Yulin / Hi-Tech</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Local, artsy, foodie</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">¥300–2,500</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Return visitors, foodies</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Line 1</td>
+              </tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]">
+                <td class="py-3 px-5 font-semibold text-[#1a1a1a]">Panda Base / Chenghua</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Suburban, quiet, panda-focused</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">¥120–750</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Panda enthusiasts, families</td>
+                <td class="py-3 px-5 text-gray-500 text-xs">Line 3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING TIPS -->
+    <section class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">How to Book Hotels in China — 6 Tips</h2>
+      <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Booking hotels in China works differently — here's what saves you money and avoids the common pitfalls.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="flex items-start gap-3 p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors">
+          <span class="text-xl shrink-0 mt-0.5">📱</span>
+          <div>
+            <h3 class="font-semibold text-sm text-[#1a1a1a] mb-0.5">Book through Ctrip (Trip.com)</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">The English version of Ctrip is Trip.com — widest selection of Chinese hotels in English, lowest rates, foreign credit cards accepted, free cancellation on most bookings.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors">
+          <span class="text-xl shrink-0 mt-0.5">🔍</span>
+          <div>
+            <h3 class="font-semibold text-sm text-[#1a1a1a] mb-0.5">Cross-check with Agoda and Booking.com</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">International chains sometimes cheaper on Agoda or Booking.com. Check both before committing. Agoda often has better Asia deals.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors">
+          <span class="text-xl shrink-0 mt-0.5">📅</span>
+          <div>
+            <h3 class="font-semibold text-sm text-[#1a1a1a] mb-0.5">Avoid Chinese New Year and Golden Week</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">Late January/early February (CNY) and October 1–7 (National Day) — prices double or triple, best hotels sell out weeks ahead. Avoid if your dates are flexible.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors">
+          <span class="text-xl shrink-0 mt-0.5">🈶</span>
+          <div>
+            <h3 class="font-semibold text-sm text-[#1a1a1a] mb-0.5">Always carry the Chinese address</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">Have your hotel name and address in Chinese characters on your phone. Taxi drivers won't know "The Temple House" but they know "博舍酒店". Hotels can print a card.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors">
+          <span class="text-xl shrink-0 mt-0.5">🛂</span>
+          <div>
+            <h3 class="font-semibold text-sm text-[#1a1a1a] mb-0.5">Look for "accepts foreign guests" badge</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">Not all Chinese hotels can host foreigners. On Trip.com, filter for this badge. Critical for small budget hotels — strictly enforced.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors">
+          <span class="text-xl shrink-0 mt-0.5">💬</span>
+          <div>
+            <h3 class="font-semibold text-sm text-[#1a1a1a] mb-0.5">Email for long-stay discounts</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">Staying 5+ nights? Email the hotel directly. Many Chinese hotels offer 20–40% unpublished discounts for extended stays. Worth the 5-minute email.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-8">Chengdu Hotels FAQ</h2>
+        <div class="space-y-3">
+          {faqs.map((faq, i) => (
+            <div class="rounded-xl border border-border bg-white overflow-hidden">
+              <button
+                class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-accent/[0.02] transition-colors"
+                data-index={i}
+                aria-expanded="false"
+              >
+                <span class="font-semibold text-[#1a1a1a] pr-4 text-sm">{faq.q}</span>
+                <svg class="faq-icon shrink-0 transition-transform duration-200" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer hidden px-5 pb-5">
+                <p class="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CROSSLINKS -->
+    <section class="max-w-[860px] mx-auto px-6 py-12">
+      <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-4">Continue Planning</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="/travel/transportation" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="text-lg mb-2 block">🚇</span>
+          <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Getting Around →</h3>
+          <p class="text-xs text-gray-500 mt-1">Metro lines, Didi setup, airport transfers.</p>
+        </a>
+        <a href="/travel/best-time-to-visit" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="text-lg mb-2 block">📅</span>
+          <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Best Time to Visit →</h3>
+          <p class="text-xs text-gray-500 mt-1">Month-by-month weather, crowds & prices.</p>
+        </a>
+        <a href="/attractions/day-trips" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="text-lg mb-2 block">🏯</span>
+          <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Day Trips →</h3>
+          <p class="text-xs text-gray-500 mt-1">Leshan Buddha, Mount Qingcheng & more.</p>
+        </a>
+      </div>
     </section>
   </main>
 
   <Footer />
+
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !answer.classList.contains('hidden');
+        answer.classList.toggle('hidden');
+        icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  </script>
 </BaseLayout>

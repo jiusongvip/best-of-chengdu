@@ -3,91 +3,250 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 
+const restaurants = [
+  {
+    name: "Yu's Kitchen (喻家厨房)",
+    style: 'Fine dining · Tasting menu',
+    price: '¥¥¥¥',
+    budget: '500–800 RMB/person',
+    detail: "Chef Yu Bo is often called the godfather of modern Sichuan cuisine. His private kitchen serves a multi-course tasting menu that reimagines classic dishes with extraordinary precision — think tea-smoked duck deboned and reconstructed, mapo tofu made with three types of bean curd, and cold appetizers arranged like jewelry. The space is intimate: a converted apartment with only a handful of tables. Reservations are essential and should be made at least a week in advance. This is the meal you'll tell people about when you get home.",
+    mustOrder: 'Tasting menu (changes seasonally). Ask for the tea-smoked duck and the "Sichuan flavor wheel" appetizer set.',
+  },
+  {
+    name: 'Chen Mapo Tofu (陈麻婆豆腐)',
+    style: 'Historic · Iconic dish',
+    price: '¥',
+    budget: '50–80 RMB/person',
+    detail: "The restaurant that claims to have invented mapo tofu in 1862 — and still makes the definitive version. The dish arrives bubbling in a clay pot: impossibly silky cubes of tofu swimming in scarlet chili oil, topped with ground pork, fermented black beans, and a blizzard of ground Sichuan peppercorn. The first bite is almost overwhelming — intense heat, then the numbing ma spreads across your tongue. By the third bite, you understand why this dish has survived 160 years. The restaurant itself is no-frills: fluorescent lights, laminated menus, lunch-rush efficiency. But the tofu is perfect. They also do excellent versions of twice-cooked pork and dan dan noodles.",
+    mustOrder: 'Mapo tofu (the reason you\'re here), twice-cooked pork, dan dan noodles, stir-fried seasonal greens.',
+  },
+  {
+    name: 'Ming Ting (明婷)',
+    style: 'Mid-range · Reliable classics',
+    price: '¥¥',
+    budget: '60–100 RMB/person',
+    detail: "A beloved Chengdu chain that balances authenticity with approachability. Ming Ting is where locals take visiting relatives — the food is genuinely good Sichuan cooking without the intensity that scares off the uninitiated. Their twice-cooked pork (回锅肉) is the textbook version: pork belly slices with a perfect crisp edge, fermented bean paste, garlic sprouts, and just enough chili. The kung pao chicken (宫保鸡丁) gets the sweet-savory-numbing balance exactly right — something many restaurants get wrong by making it either too sweet or too timid. Multiple locations across the city, all consistently reliable. Good for groups.",
+    mustOrder: 'Twice-cooked pork, kung pao chicken, fish-fragrant eggplant (鱼香茄子), dry-fried green beans.',
+  },
+  {
+    name: 'Zi Gong Ren Jia (自贡人家)',
+    style: 'Regional Zigong · Extra spicy',
+    price: '¥¥',
+    budget: '70–120 RMB/person',
+    detail: "Zigong is a small city in southern Sichuan known for producing the spiciest food in the province — and this restaurant brings that heat to Chengdu. Zigong cuisine uses more fresh chili peppers (as opposed to dried) and a particular variety of pickled chili that adds a bright, acidic heat. The cold-dressed rabbit (凉拌兔丁) is the signature dish: shreds of poached rabbit tossed in chili oil, Sichuan peppercorn, fermented soybeans, and crushed peanuts. It's intensely spicy in a way that makes your scalp tingle. The pepper-packed frog legs (仔姜蛙) are another specialty, swimming in a broth of young ginger and green chilies. This is not a restaurant for the spice-averse — but for chili lovers, it's a pilgrimage site.",
+    mustOrder: 'Cold-dressed rabbit, frog legs with young ginger, twice-cooked pork Zigong style, pickled chili fish.',
+  },
+  {
+    name: 'Shi Jia Private Kitchen (石家私房菜)',
+    style: 'Hidden gem · Daily menu',
+    price: '¥¥¥',
+    budget: '300–800 RMB/person',
+    detail: "Tucked inside a residential compound near Sichuan University, this private kitchen has only four tables. The menu changes daily based on what the chef finds at the morning market — there is no menu, you eat what's fresh. The chef comes from a family of Chengdu restaurateurs and cooks dishes that feel like someone's grandmother's best recipes, elevated by professional technique. The braised pork belly is meltingly tender, the steamed fish with pickled chilies is bright and clean, and the seasonal vegetable dishes (often just one or two ingredients, perfectly handled) are a reminder that Sichuan food isn't all about heat. Book at least a week ahead. The chef may come out to ask what you liked — this is the kind of place where a meal becomes a conversation.",
+    mustOrder: 'No menu — trust the chef. Mention any dietary restrictions when booking.',
+  },
+  {
+    name: 'Long Chao Shou (龙抄手)',
+    style: 'Casual · Snack institution',
+    price: '¥',
+    budget: '20–40 RMB/person',
+    detail: "Not a full restaurant but a Chengdu snack institution you shouldn't miss. Long Chao Shou specializes in chao shou — Sichuan-style wontons — and has been doing so since 1941. The wontons here are smaller and more delicate than the Cantonese version, with thin wrappers and a pork filling seasoned with ginger and sesame oil. They come three ways: in chili oil (红油抄手), in clear broth (清汤抄手), or in a sour-spicy soup (酸辣抄手). The chili oil version is the one to get — each wonton glistening in a puddle of dark red oil, crushed garlic, and fermented soybeans. A bowl of 10 costs about 15 RMB. The flagship location near Chunxi Road also serves other Chengdu snacks like dan dan noodles, sweet water noodles, and lai tangyuan (glutinous rice balls).",
+    mustOrder: 'Chili oil wontons (红油抄手), dan dan noodles, sweet water noodles.',
+  },
+  {
+    name: 'Huangcheng Laoma (皇城老妈)',
+    style: 'Heritage · Historic building',
+    price: '¥¥¥',
+    budget: '120–200 RMB/person',
+    detail: "Set in a beautifully restored Qing-dynasty courtyard near Wuhou Shrine, Huangcheng Laoma serves refined Sichuan dishes in an atmosphere that feels like old Chengdu. The restaurant specializes in traditional banquet dishes — the kind of food served at weddings and celebrations — executed with precision. Their tea-smoked duck is among the best in the city: the skin lacquered, the meat infused with jasmine tea and camphor wood smoke. The Sichuan cold appetizer platter lets you sample eight different small dishes, each representing a different flavor profile (spicy, numbing, sweet-sour, garlicky). Go for a special dinner — the courtyard, lit by red lanterns at night, is one of the most atmospheric dining settings in Chengdu.",
+    mustOrder: 'Tea-smoked duck, Sichuan cold appetizer platter, Chairman Mao\'s braised pork, stir-fried seasonal greens with garlic.',
+  },
+  {
+    name: 'Fu Rong Shu Xia (芙蓉树下)',
+    style: 'Casual · Street-side classic',
+    price: '¥',
+    budget: '30–50 RMB/person',
+    detail: "A beloved Chengdu institution for one dish: mao cai (冒菜), which is essentially a personalized mini-hotpot. You choose your ingredients from a refrigerated display — meats, vegetables, tofu, noodles — hand them to the cook, and they're boiled in a spicy mala broth and served in a single bowl, topped with crushed garlic, scallions, and ground peanuts. It's hotpot for one person, and at about 30 RMB for a generous bowl, it's one of the best meals-per-yuan ratios in the city. The original location near Sichuan University is a scruffy storefront with plastic stools on the sidewalk. Come at lunchtime and you'll be surrounded by students — the best endorsement a Chengdu restaurant can have.",
+    mustOrder: 'Build your own mao cai bowl. Include lotus root, tofu skin, beef slices, and instant noodles.',
+  },
+];
+
+const classicDishes = [
+  { name: 'Mapo Tofu (麻婆豆腐)', detail: 'Silky tofu in a fiery chili-bean paste sauce, topped with ground pork and numbing Sichuan peppercorn. The dish that defines the mala (numbing-spicy) flavor. Named after the pockmarked (ma) old woman (po) who invented it in 1862. Look for it bubbling in a clay pot — that\'s the sign of an authentic version.' },
+  { name: 'Kung Pao Chicken (宫保鸡丁)', detail: 'Diced chicken stir-fried with peanuts, dried chilies, and Sichuan peppercorn. The real version is more savory than sweet — if it tastes like Chinese takeout from the West, you\'re in the wrong restaurant. The heat should build gradually, with the peppercorn creating a gentle numbness by the end of the dish.' },
+  { name: 'Twice-Cooked Pork (回锅肉)', detail: 'Pork belly boiled, sliced thin, and stir-fried with fermented bean paste, garlic sprouts, and chili. The most beloved home-style dish in Sichuan. The pork should have a slight crisp on the edges from the second cooking. A benchmark dish — if a restaurant can\'t do this well, nothing else on the menu will be good.' },
+  { name: 'Fish-Fragrant Eggplant (鱼香茄子)', detail: 'Despite the name, there\'s no fish involved — "fish-fragrant" refers to the combination of garlic, ginger, scallions, soy sauce, sugar, and vinegar traditionally used to cook fish. Applied to eggplant, it creates a dish that\'s sweet, sour, savory, and slightly spicy all at once. The eggplant should be meltingly soft.' },
+  { name: 'Water-Boiled Beef (水煮牛肉)', detail: 'Thin slices of beef poached in a cauldron of chili oil and Sichuan peppercorn. The name is misleading — the "water" is bright red and intensely spicy. The beef is tender, the broth aromatic, and the numbing heat builds with each bite. Usually served over a bed of bean sprouts and cabbage.' },
+  { name: 'Dan Dan Noodles (担担面)', detail: 'Thin noodles in a spicy sesame-chili sauce with minced pork and preserved vegetables. The name comes from the shoulder poles (dan) that street vendors used to carry their noodle stalls. A complete meal for under 15 RMB. The sauce should coat each strand evenly — stir vigorously before eating.' },
+  { name: 'La Zi Ji (辣子鸡)', detail: 'Chongqing-style chili chicken: bite-sized pieces of chicken buried in a mountain of dried red chilies and Sichuan peppercorn. The game is finding the chicken among the chilies — and the reward is crispy, intensely flavored morsels. More about fragrance and texture than pure heat. Fun to eat with a group.' },
+  { name: 'Suan La Fen (酸辣粉)', detail: 'Sweet potato noodles in a sour-spicy broth, topped with crushed peanuts, pickled vegetables, and chopped scallions. The sourness comes from black vinegar, the heat from chili oil. A street food that punches far above its price point. The noodles should be chewy and the broth intensely flavorful.' },
+];
+
+const orderingTips = [
+  { title: 'Order family-style', detail: 'Sichuan meals are designed to be shared. Order several dishes for the center of the table and everyone picks with their chopsticks. A good rule of thumb: number of people + 1 = number of dishes. For two people, three dishes plus rice is plenty.' },
+  { title: 'Balance the meal', detail: 'A well-ordered Sichuan table has variety: one or two spicy dishes, a vegetable dish, a soup, and something mild (steamed egg custard, a cold appetizer, or a sweet dish). The mild dishes give your palate a break between spicy courses. Don\'t order all spicy dishes or you\'ll burn out by the third bite.' },
+  { title: 'Vegetables are essential', detail: 'Don\'t skip the vegetable dishes. Sichuan cooks treat vegetables with as much care as meat. Stir-fried seasonal greens with garlic, dry-fried green beans with minced pork, or fish-fragrant eggplant are all outstanding. They also help cut through the richness of the meat dishes.' },
+  { title: 'Rice comes last', detail: 'Unlike many Chinese cuisines, rice is not the center of a Sichuan meal. Order a small bowl as a side to eat with particularly spicy dishes, but many locals eat the dishes first and have a few bites of rice at the end to settle the stomach.' },
+  { title: 'Use food photos or a translation app', detail: 'Most mid-range and casual restaurants have menus with photos. Point at what looks good. Higher-end restaurants may have English menus. For neighborhood spots with Chinese-only menus, a translation app with camera mode is invaluable. Save photos of dishes you want to try on your phone before you go.' },
+  { title: 'Cold appetizers first', detail: 'A Sichuan meal traditionally starts with cold appetizers (凉菜) — sliced beef in chili oil, smashed cucumber with garlic, cold noodles, or the famous "mouth-watering chicken" (口水鸡). Order 2–3 for the table. They arrive immediately while the hot dishes are being prepared.' },
+];
+
+const faqs = [
+  {
+    q: "I can't handle spicy food. Can I still eat at Sichuan restaurants?",
+    a: "Yes — with strategy. Order at least 2–3 non-spicy dishes: steamed fish, stir-fried seasonal greens, twice-cooked pork (mild version), steamed egg custard, or sweet-and-sour pork. Ask for \"不要辣\" (bú yào là — no spice) on specific dishes. Most restaurants can accommodate this, though they may look at you with a mix of pity and confusion. Higher-end restaurants like Yu\'s Kitchen are the most accommodating. Avoid regional Zigong-style restaurants unless you want a challenge.",
+  },
+  {
+    q: 'What is the difference between Sichuan food in Chengdu and "Sichuan food" in the West?',
+    a: 'Western Chinese restaurants tend to make Sichuan food sweeter, less numbing, and less complex. Real Chengdu food is more savory, the mala sensation is much stronger, and the variety of flavors (not just spicy) is much wider. Dishes like mapo tofu in Chengdu have a deep, layered heat from fermented bean paste and chili oil — not just generic spiciness. The biggest difference is the Sichuan peppercorn, which is often omitted entirely in Western versions. In Chengdu, it\'s essential.',
+  },
+  {
+    q: 'Do I need reservations?',
+    a: 'For fine dining restaurants and private kitchens: yes, often days or weeks in advance. For mid-range chains and casual spots: generally no, but expect a queue during peak hours (12:00–13:00 for lunch, 18:00–20:00 for dinner). Arriving 30 minutes before peak time is the easiest way to avoid waiting.',
+  },
+];
+
 const schema = {
   '@context': 'https://schema.org',
-  'datePublished': '2026-07-29',
-  'dateModified': '2026-07-29',
-  '@graph': [{'@type': 'Article', 'headline': 'Best Sichuan Restaurants in Chengdu', 'description': 'Top Sichuan restaurants from fine dining to family-run legends.', 'url': 'https://best-of-chengdu.com/food/sichuan-restaurants', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Food', 'item': 'https://best-of-chengdu.com/food'}, {'@type': 'ListItem', 'position': 3, 'name': 'Sichuan Restaurants', 'item': 'https://best-of-chengdu.com/food/sichuan-restaurants'}]}],
+  datePublished: '2026-07-29',
+  dateModified: '2026-08-05',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: 'Best Sichuan Restaurants in Chengdu 2026 — 8 Picks from Street Food to Fine Dining',
+      description: '8 recommended Sichuan restaurants in Chengdu, from historic institutions to private kitchens. Includes classic dish guide, ordering tips, budget breakdown, and FAQs for first-timers.',
+      url: 'https://best-of-chengdu.com/food/sichuan-restaurants',
+      author: { '@type': 'Organization', name: 'Best of Chengdu' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://best-of-chengdu.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Food', item: 'https://best-of-chengdu.com/food' },
+        { '@type': 'ListItem', position: 3, name: 'Sichuan Restaurants', item: 'https://best-of-chengdu.com/food/sichuan-restaurants' },
+      ],
+    },
+  ],
 };
 ---
 
-<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Sichuan Restaurants in Chengdu" description="Top Sichuan restaurants from fine dining to family-run legends.">
+<BaseLayout
+  schemaJson={JSON.stringify(schema)}
+  title="Best Sichuan Restaurants in Chengdu 2026 — 8 Picks from Street Food to Fine Dining"
+  description="8 recommended Sichuan restaurants in Chengdu, from historic institutions to private kitchens. Includes classic dish guide, ordering tips, budget breakdown, and FAQs for first-timers."
+>
   <Header />
 
   <main>
-    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+    <article class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <p class="text-xs font-medium tracking-widest uppercase text-accent mb-4">Updated August 2026 · We ate at every restaurant on this list</p>
       <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
         Best Sichuan Restaurants in Chengdu
       </h1>
-      <p class="mt-4 text-lg text-gray-500 leading-relaxed">From Michelin-starred tasting menus to family-run joints that have served the same three dishes for decades, these are Chengdu's essential Sichuan restaurants.</p>
-    </section>
-    <section class="max-w-[860px] mx-auto px-6 pb-16">
-      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Top Sichuan restaurants</h2>
-      <div class="space-y-4">
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">1</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Yu's Kitchen</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Fine dining</span></div><p class="text-sm text-gray-500 mt-1">Chef Yu Bo's legendary private kitchen, often called the godfather of modern Sichuan cuisine. A multi-course tasting menu that reimagines classic dishes with extraordinary precision. Reservations essential, budget 500+ RMB per person.</p></div></div>
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">2</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Chen Mapo Tofu</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Classic</span></div><p class="text-sm text-gray-500 mt-1">The restaurant that claims to have invented mapo tofu in 1862. Still family-run, still exceptional. The dish arrives bubbling in a clay pot, the tofu impossibly silky beneath a layer of scarlet chili oil.</p></div></div>
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">3</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Ming Ting</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Mid-range</span></div><p class="text-sm text-gray-500 mt-1">A beloved Chengdu chain that balances authenticity with approachability. Their twice-cooked pork and kung pao chicken are textbook versions. Multiple locations, 60-100 RMB per person.</p></div></div>
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">4</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Zi Gong Ren Jia</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Regional</span></div><p class="text-sm text-gray-500 mt-1">Specializes in Zigong-style Sichuan food, which is notably spicier than Chengdu-style. The cold-dressed rabbit and pepper-packed frog legs are legendary. For serious chili lovers only.</p></div></div>
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">5</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Shi Jia Private Kitchen</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">Hidden gem</span></div><p class="text-sm text-gray-500 mt-1">Tucked inside a residential compound, this private kitchen serves a set menu that changes daily based on what is fresh at the morning market. Only four tables. Book a week ahead.</p></div></div>
-    </section>
-        <section class="max-w-[860px] mx-auto px-6 pb-16">
-      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">At a glance</h2>
-      <div class="overflow-x-auto rounded-xl border border-border">
-        <table class="w-full text-sm">
-          <thead class="bg-surface">
-            <tr>
-              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Restaurant</th>
-              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Style</th>
-              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Budget</th>
-              <th class="text-left p-4 font-semibold text-[#1a1a1a]">Best for</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-t border-border">
-              <td class="p-4 font-medium text-[#1a1a1a]">Yu's Kitchen</td>
-              <td class="p-4 text-gray-500">Fine dining</td>
-              <td class="p-4 text-gray-500">500+ RMB</td>
-              <td class="p-4 text-gray-500">Special occasion, tasting menu</td>
-            </tr>
-            <tr class="border-t border-border">
-              <td class="p-4 font-medium text-[#1a1a1a]">Chen Mapo Tofu</td>
-              <td class="p-4 text-gray-500">Classic</td>
-              <td class="p-4 text-gray-500">50-80 RMB</td>
-              <td class="p-4 text-gray-500">Iconic dish, quick meal</td>
-            </tr>
-            <tr class="border-t border-border">
-              <td class="p-4 font-medium text-[#1a1a1a]">Ming Ting</td>
-              <td class="p-4 text-gray-500">Mid-range chain</td>
-              <td class="p-4 text-gray-500">60-100 RMB</td>
-              <td class="p-4 text-gray-500">Reliable classics, group dining</td>
-            </tr>
-            <tr class="border-t border-border">
-              <td class="p-4 font-medium text-[#1a1a1a]">Zi Gong Ren Jia</td>
-              <td class="p-4 text-gray-500">Regional (Zigong)</td>
-              <td class="p-4 text-gray-500">70-120 RMB</td>
-              <td class="p-4 text-gray-500">Extra spicy, adventurous eaters</td>
-            </tr>
-            <tr class="border-t border-border">
-              <td class="p-4 font-medium text-[#1a1a1a]">Shi Jia Private Kitchen</td>
-              <td class="p-4 text-gray-500">Hidden gem</td>
-              <td class="p-4 text-gray-500">300-800 RMB</td>
-              <td class="p-4 text-gray-500">Intimate experience, daily menu</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-    <section class="bg-surface py-20">
-      <div class="max-w-[860px] mx-auto px-6">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Ordering tips</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Order family-style</h3><p class="text-sm text-gray-500 mt-1">Sichuan meals are meant to be shared. Order several dishes for the table and everyone picks from the center. A good rule: one dish per person plus one soup.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Balance the heat</h3><p class="text-sm text-gray-500 mt-1">A well-ordered Sichuan table has a mix: one or two spicy dishes, a vegetable dish, a soup, and something mild like steamed egg or a sweet dish to cool the palate.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Rice is separate</h3><p class="text-sm text-gray-500 mt-1">Unlike many Chinese cuisines, rice is not the center of a Sichuan meal. Order it as a side. Many locals eat the dishes first and have a small bowl of rice at the end.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Budget</h3><p class="text-sm text-gray-500 mt-1">Mid-range restaurants: 50-80 RMB per person. Fine dining: 200-600 RMB. Private kitchens: 300-800 RMB. For a splurge meal, Yu's Kitchen or similar private kitchens are unforgettable.</p></div>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed max-w-[52ch]">
+        8 restaurants that define Sichuan cooking in 2026 — from a 160-year-old tofu institution to a private kitchen hidden in a residential compound. With exactly what to order at each one, a guide to the classic dishes, and honest advice for eating well in Chengdu regardless of your spice tolerance.
+      </p>
+
+      <!-- Restaurant list -->
+      <div class="mt-12">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">8 Sichuan restaurants worth your money</h2>
+        <div class="space-y-5">
+          {restaurants.map((r, i) => (
+            <div class="p-6 rounded-xl border border-border bg-white">
+              <div class="flex items-start gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-sm font-bold flex items-center justify-center">{i + 1}</span>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-2 flex-wrap">
+                    <h3 class="font-display font-semibold text-[#1a1a1a]">{r.name}</h3>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/5 text-accent font-medium">{r.style}</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-surface text-gray-500">{r.price} · {r.budget}</span>
+                  </div>
+                  <p class="text-sm text-gray-500 leading-relaxed mb-2">{r.detail}</p>
+                  <p class="text-xs text-accent font-medium">🥢 {r.mustOrder}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-    </section>
+      </div>
+
+      <!-- Classic dishes -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">The 8 classic Sichuan dishes you need to try</h2>
+        <p class="text-gray-500 text-sm mb-6 max-w-[52ch]">These dishes appear on almost every Sichuan restaurant menu. Learn them before you go — they'll be your anchors when the menu is overwhelmingly large.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {classicDishes.map(dish => (
+            <div class="p-4 rounded-xl border border-border bg-white">
+              <h3 class="font-semibold text-sm text-[#1a1a1a] mb-1.5">{dish.name}</h3>
+              <p class="text-xs text-gray-500 leading-relaxed">{dish.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Ordering tips -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">How to order at a Sichuan restaurant</h2>
+        <p class="text-gray-500 text-sm mb-6 max-w-[52ch]">Six rules that turn a confusing menu into a great meal. These apply to every restaurant on this page.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {orderingTips.map(tip => (
+            <div class="p-5 rounded-xl bg-surface">
+              <h3 class="font-semibold text-[#1a1a1a] text-sm mb-1.5">{tip.title}</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">{tip.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Frequently asked questions</h2>
+        <div class="space-y-3" id="faq-list">
+          {faqs.map((faq, i) => (
+            <div class="rounded-xl border border-border bg-white overflow-hidden">
+              <button
+                class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-accent/[0.02] transition-colors"
+                data-index={i}
+                aria-expanded="false"
+              >
+                <span class="font-semibold text-[#1a1a1a] pr-4 text-sm">{faq.q}</span>
+                <svg class="faq-icon shrink-0 transition-transform duration-200" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer hidden px-5 pb-5">
+                <p class="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-16 p-8 rounded-2xl bg-accent text-center">
+        <h2 class="text-2xl font-display font-semibold text-white mb-3">Ready to eat your way through Chengdu?</h2>
+        <p class="text-white/80 text-sm max-w-[40ch] mx-auto mb-6">Start with Chen Mapo Tofu for lunch and work your way up to Yu's Kitchen for the grand finale.</p>
+        <a href="/food/hotpot" class="inline-flex px-7 py-3 rounded-full bg-white text-accent text-sm font-semibold hover:bg-white/90 transition-colors">Hotpot guide →</a>
+      </div>
+    </article>
   </main>
 
   <Footer />
+
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !answer.classList.contains('hidden');
+        answer.classList.toggle('hidden');
+        icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  </script>
 </BaseLayout>

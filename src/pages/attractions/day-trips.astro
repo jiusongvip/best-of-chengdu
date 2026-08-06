@@ -3,43 +3,381 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 
+const trips = [
+  {
+    rank: 1, name: 'Leshan Giant Buddha (乐山大佛)', icon: '🪨',
+    tag: 'UNESCO · Most popular day trip · 71m tall',
+    hero: 'A Buddha the size of a 23-story building, carved into a red sandstone cliff in the 8th century, staring serenely at the confluence of three rivers for 1,300 years. The largest stone Buddha on Earth.',
+    time: '50–70 min by train', cost: 'Train ¥50–60 · Entrance ¥80 · Boat ¥70',
+    whyGo: 'This is the largest stone Buddha on earth — 71 meters tall, carved over 90 years during the Tang Dynasty. Each ear is 7 meters long. Each foot can seat 100 people. The scale is genuinely disorienting in person — photos cannot capture the vertigo of standing at the Buddha\'s toes and looking up. The Buddha was built to calm the treacherous waters where three rivers meet, and legend says the stone debris dumped during construction actually did slow the currents. The surrounding park has temple complexes, cliff-side carvings, and river views that make the trip worthwhile even beyond the main attraction.',
+    howTo: 'High-speed train from Chengdu South or East Station to Leshan Station (50–70 min, ¥50–60). Trains every 30–60 min. From Leshan Station: Bus 3 (¥2, 30 min) or taxi (¥15–20, 15 min) to the scenic area. Book morning trains before 9 AM — they sell out fastest.',
+    activities: [
+      { icon: '🥾', text: 'Walk the cliffside path from the Buddha\'s head to its feet — 250 steep steps carved into the cliff. The view from the toes looking up is the money shot. The staircase is single-file and narrow — go early.' },
+      { icon: '🚤', text: 'Take the 30-min river boat tour (¥70) for the best full-Buddha photo. The boat pulls up directly in front of the Buddha — this is the postcard view you see in every guidebook.' },
+      { icon: '🏛️', text: 'Explore Lingyun Temple and Mahaoya Tomb Museum inside the scenic area. Less crowded than the Buddha path, surprisingly interesting Han-dynasty cliff tombs.' },
+      { icon: '🍜', text: 'Walk through Leshan old town after — quieter and more authentic than Chengdu\'s tourist streets. Good for a late lunch before the train back. Try Leshan\'s famous sweet-skin duck (甜皮鸭).' },
+    ],
+    tips: [
+      'Go on a weekday — weekend crowds turn the cliff staircase into a slow-moving 45-minute queue.',
+      'The boat tour (¥70, 30 min) is worth it even if you walk the path — completely different perspectives.',
+      'Morning trains arriving before 10 AM beat the biggest crowds. Aim for 8 AM departure from Chengdu.',
+      'The staircase is steep, narrow, and uneven — not suitable for mobility issues or severe fear of heights.',
+    ],
+    food: 'Leshan is famous for sweet-skin duck (甜皮鸭) — crispy, caramelized skin on roasted duck. Also try qiaojiao beef (跷脚牛肉) — beef soup with Chinese herbs, a Leshan specialty. The restaurants near the river in Leshan old town are much better than the tourist traps near the Buddha entrance.',
+  },
+  {
+    rank: 2, name: 'Mount Qingcheng (青城山)', icon: '⛰️',
+    tag: 'UNESCO · Taoist birthplace · 1,800 years of spirituality',
+    hero: 'Stone staircases climbing into mist, ancient Taoist temples hidden in dense forest, and the birthplace of China\'s only indigenous philosophy. A mountain that has been a place of spiritual retreat since the Han Dynasty.',
+    time: '30–40 min by train', cost: 'Train ¥10–15 · Front Mt ¥90 · Back Mt ¥20 · Cable car ¥35–60',
+    whyGo: 'One of Taoism\'s birthplaces — monks have been seeking enlightenment on this mountain for over 1,800 years. Front Mountain (前山) has well-maintained paths, a cable car, and the most important temples. Back Mountain (后山) is wilder, steeper, and mostly empty — a proper hike through dense forest past waterfalls. The air is noticeably cooler and cleaner than Chengdu (5–8°C cooler), the forest is dense and green, and when the mist rolls in (which it often does), the temples look like they\'re floating in clouds. Even on a crowded weekend, you can find quiet corners — the mountain absorbs people.',
+    howTo: 'Metro Line 2 to Xipu Station, then high-speed train to Qingchengshan Station (30–40 min, ¥10–15). From the station: shuttle bus (¥10) or taxi (¥20) to the Front Mountain gate (15 min) or Back Mountain gate (25 min). Trains are less frequent than Leshan — check times in advance on Trip.com.',
+    activities: [
+      { icon: '🚡', text: 'Front Mountain: cable car up (¥35), visit Jianfu Palace and Shangqing Palace, walk down through the forest. 4–5 hours relaxed pace. The temples are active — you\'ll see monks and incense burning.' },
+      { icon: '🥾', text: 'Back Mountain: no cable car — a proper hike past waterfalls and through bamboo groves to Baiyun Temple. 5–7 hours round-trip. Quiet, wild, and almost empty of tourists.' },
+      { icon: '🏯', text: 'Visit active Taoist temples — monks still live and practice here. Incense burns in bronze urns. Genuinely spiritual, not touristy. Jianfu Palace and Tianshi Cave are the highlights.' },
+      { icon: '🍵', text: 'Stop at a mountain tea house. Locally grown Qingcheng tea — a green tea with a distinctive vegetal sweetness, ¥20–30 for a covered cup. Worth it for the view and the rest.' },
+    ],
+    tips: [
+      'Front Mountain for temples and ease. Back Mountain for nature and solitude. You cannot do both in one day — choose one.',
+      'Wear proper hiking shoes. Even Front Mountain has hundreds of stone steps — flip-flops will ruin your day.',
+      'Front Mountain cable car queue can exceed 1 hour on weekends. Arrive before 9 AM to beat it.',
+      'Combine with Dujiangyan (30 min away by train) for a full day: mountain morning, irrigation system afternoon.',
+    ],
+    food: 'Qingcheng has its own cuisine: Qingcheng bacon (青城山老腊肉) — smoky, aged pork; Qingcheng tofu (青城豆腐) made with mountain spring water; and locally grown bamboo shoots. Eat at a guesthouse restaurant on the mountain for the best experience, not in the town at the base.',
+  },
+  {
+    rank: 3, name: 'Dujiangyan Irrigation System (都江堰)', icon: '🌊',
+    tag: 'UNESCO · 2,200-year-old engineering · Still functioning',
+    hero: 'No dam. No pumps. No electricity. Just brilliantly placed stones, channels, and the river\'s own force — controlling floods and irrigating farmland for 22 centuries. Modern engineers still study this system.',
+    time: '30–40 min by train', cost: 'Train ¥10–15 · Entrance ¥90',
+    whyGo: 'Built in 256 BC, this is not an ancient ruin — it\'s a working irrigation system that still diverts the Min River to water 5,300 km² of farmland. The engineer Li Bing figured out how to split the river, control silt, and regulate flow using nothing but cleverly placed stones and channels. No dam. The system is so elegant that modern hydraulic engineers make pilgrimages here. The park is beautiful — suspension bridges swaying over rushing water, pavilions with mountain views, and the strange satisfaction of understanding how a 2,200-year-old machine still works perfectly. Much of the walking is flat and paved — easier on the legs than Qingcheng.',
+    howTo: 'Same train line as Mount Qingcheng — get off one stop earlier at Lidui Park Station (离堆公园站). The park entrance is a 10-minute walk from the station. Trains from Xipu Station (Metro Line 2) take 30–40 min, ¥10–15 each way.',
+    activities: [
+      { icon: '🌉', text: 'Cross the Anlan Suspension Bridge — a 261-meter bridge swaying above the rushing Min River. Built in the Song Dynasty, rebuilt many times. Dramatic river views and a genuine thrill.' },
+      { icon: '🏯', text: 'Visit Erwang Temple honoring Li Bing and his son. Hillside perch with panoramic views over the entire irrigation system. Classic Sichuan temple architecture with curved eaves.' },
+      { icon: '🔀', text: 'See the "Fish Mouth" levee — the heart of the system that splits the river into inner and outer flows. Looks simple — a pile of stones and bamboo — but the engineering is profound.' },
+      { icon: '💧', text: 'The "Flying Sand Weir" spillway — automatically diverts excess water and silt during floods. Still works perfectly after 2,200 years with zero maintenance to the core mechanism.' },
+    ],
+    tips: [
+      'The park takes 2–3 hours. Pair with Mount Qingcheng for a full day — they\'re 30 min apart by train.',
+      'Watch a 5-minute explainer video before you go. It transforms the experience from "nice park" to "how did they build this."',
+      'Much of the walking is flat and paved — easier on the legs than Qingcheng. Good for a relaxed afternoon.',
+      'Dujiangyan city has excellent river-fish restaurants near the train station. Stay for dinner, not just lunch.',
+    ],
+    food: 'Dujiangyan is famous for river fish (河鲜) — fresh from the Min River. Try douhua fish (豆花鱼) — tender fish fillets in chili oil with silken tofu. The restaurants along the river near the old town bridge are the best. Also try Dujiangyan\'s version of dan dan noodles — locals claim theirs predates Chengdu\'s.',
+  },
+  {
+    rank: 4, name: 'Sanxingdui Museum (三星堆博物馆)', icon: '🗿',
+    tag: 'Archaeological enigma · New museum 2023 · Lost civilization',
+    hero: 'Enormous bronze masks with bulging eyes. A 4-meter sacred tree of bronze and gold. An entire civilization that existed 3,000 years ago, left behind treasures that rival Egypt — and then vanished without a word in any historical record.',
+    time: '50–70 min by car', cost: 'Didi/Taxi ¥100–150 each way · Entrance ¥72 · Audio guide ¥40',
+    whyGo: 'In 1986, farmers digging a well found something that rewrote Chinese history — a previously unknown Bronze Age civilization that thrived in Sichuan 3,000–5,000 years ago. They left behind enormous bronze masks with bulging eyes and angular features unlike anything else in Chinese art, a 4-meter bronze "sacred tree" that took archaeologists 10 years to reassemble, and exquisite gold foil work hammered to 0.2mm thickness. We still don\'t know who these people were, what language they spoke, or why they buried and burned their treasures before disappearing. The new museum building (opened 2023) is world-class — this is Sichuan\'s answer to the Egyptian Museum.',
+    howTo: 'No train connection — Didi, taxi, or private driver required. From central Chengdu: 50–70 minutes, ¥100–150 each way. Ask the driver to wait (¥50–80/hour extra) or arrange a round trip. Some hotels can arrange a driver for ¥500–600/day. Alternatively, some agencies run half-day bus tours to Sanxingdui for ¥200–300 including transport and ticket.',
+    activities: [
+      { icon: '🎭', text: 'The bronze mask gallery — masks from palm-sized to 1.3 meters wide. Bulging eyes, angular faces, gold foil. Unlike anything else in Chinese archaeology. The largest mask weighs 85 kg.' },
+      { icon: '🌳', text: 'The sacred tree — 3.96 meters of bronze with dragons, birds, and coins hanging from branches. Ten years to reassemble from hundreds of fragments. The centerpiece of the museum.' },
+      { icon: '✨', text: 'The gold scepter and sunbird foil — exquisite hammered gold, 0.2mm thin. The sunbird design (four birds circling a sun) is now Chengdu tourism\'s official logo.' },
+      { icon: '🏛️', text: 'The new museum building itself — a striking modern design opened in 2023. Exhibition design is genuinely museum-quality by international standards. Café and excellent gift shop.' },
+    ],
+    tips: [
+      'Book tickets in advance on the official WeChat mini-program or through your hotel — daily visitor caps are strict and tickets sell out, especially on weekends.',
+      'The English audio guide (¥40) is essential. Exhibits are poorly labeled in English — you\'ll miss 80% of the context without it.',
+      'Weekday mornings are quietest. Weekends draw large Chinese tour groups that move through the museum in waves.',
+      'The actual archaeological site (10 km from the museum) is not open to visitors — all treasures are in the museum in Guanghan.',
+    ],
+    food: 'Sanxingdui museum café serves surprisingly good coffee and light meals. Guanghan city (near the museum) is famous for chuanchuan (串串) — DIY skewer hotpot where you pick skewers from a fridge and cook them in a communal pot. Much cheaper and more local than Chengdu chuanchuan. Try Chuanchuan Xiang (串串香) on Guanghan\'s main street.',
+  },
+  {
+    rank: 5, name: 'Mount Emei (峨眉山)', icon: '🏔️',
+    tag: 'UNESCO · Sacred Buddhist mountain · 3,099m · Golden Summit sunrise',
+    hero: 'One of China\'s four sacred Buddhist mountains. A 3,099-meter peak rising from subtropical forest, where the sunrise over a sea of clouds has drawn pilgrims for two millennia. The Golden Summit temple sits above the cloud line like a vision from another world.',
+    time: '1–1.5 hrs by train', cost: 'Train ¥60–80 · Entrance ¥160 · Cable car ¥65–120 · Bus ¥90',
+    whyGo: 'The summit experience is genuinely transcendent — not a word to use lightly. You ride a cable car through cloud layers, emerge at 3,077 meters, and find a massive golden Buddha statue surrounded by a temple complex perched on the edge of a cliff. Below you: an ocean of clouds. The Golden Summit (金顶) at sunrise is one of China\'s most spectacular sights — when conditions align, you get the "Buddha\'s Light" phenomenon (a circular rainbow halo around your shadow in the clouds). The mountain has 30+ temples scattered across its slopes, troops of wild monkeys (aggressive — hold onto your belongings), and ecological zones that shift from subtropical to alpine as you ascend. This is a long day trip or better yet, an overnight stay.',
+    howTo: 'High-speed train from Chengdu South or East to Emeishan Station (1–1.5 hrs, ¥60–80). From the station: bus to Baoguo Temple (the mountain base, ¥10, 10 min). Then: park bus to Leidongping (¥90 round-trip, 2 hours of switchbacks), then 1.5 km walk or cable car (¥65 up, ¥55 down) to the Golden Summit. Total transit from Chengdu to summit: 4–5 hours. Start by 6 AM to make it a day trip. Overnight at the summit (basic guesthouses from ¥200) or at the base (better hotels) is recommended for a more relaxed experience.',
+    activities: [
+      { icon: '🌅', text: 'Golden Summit sunrise — the main event. The gold-plated Puxian Buddha statue (48 meters tall) illuminated by dawn light. Arrive at the summit by 5:30 AM to secure a good viewing spot.' },
+      { icon: '🐒', text: 'The notorious Emei monkeys — they\'ve been begging from pilgrims for centuries and have gotten bold. Don\'t carry visible food or plastic bags — they associate both with snacks and will grab them.' },
+      { icon: '🏯', text: 'Baoguo Temple at the mountain base — 16th century, still active, with a famous 3.5-meter bronze bell. Good for a visit before or after your summit trip.' },
+      { icon: '🥾', text: 'Full ascent hike: 2–3 days from base to summit on foot. 60 km of stone steps through every climate zone. For serious hikers only — the record is 4 hours, but mere mortals take 2–3 days.' },
+    ],
+    tips: [
+      'This is a LONG day trip from Chengdu — 4–5 hours of transit each way. Strongly consider an overnight stay at the summit or mountain base.',
+      'Summit temperatures are 15–20°C colder than Chengdu — bring warm layers even in summer. Winter requires full cold-weather gear.',
+      'Monkeys are aggressive. Do not carry visible food. Do not wear shiny jewelry. Hold your backpack in front of you. A walking stick helps — monkeys respect sticks.',
+      'The "Buddha\'s Light" phenomenon (佛光) is most common on clear mornings after rain, especially in autumn. You need sunlight + clouds below you + the right angle.',
+    ],
+    food: 'Emei\'s specialty is vegetarian Buddhist cuisine (素斋) — temple restaurants serve elaborate multi-course vegetarian meals that mimic meat dishes using tofu, mushrooms, and gluten. Try the "Buddha Jumps Over the Wall" vegetarian version. Mountain guesthouses also serve simple rice and vegetable dishes. Bring snacks — food at the summit is expensive and limited.',
+  },
+  {
+    rank: 6, name: 'Huanglongxi Ancient Town (黄龙溪古镇)', icon: '🏘️',
+    tag: '1,700-year-old water town · 40 min from Chengdu · Free entry',
+    hero: 'Stone-paved lanes winding along a river, wooden buildings from the Ming and Qing dynasties, and seven ancient banyan trees shading the main street. An ancient river-port town that feels like stepping into a Chinese ink painting — without the crowds of Chengdu\'s more famous ancient streets.',
+    time: '40–60 min by bus or Didi', cost: 'Bus ¥15 · Didi ¥80–120 · Free entry',
+    whyGo: 'The closest authentic ancient town to Chengdu — 40 minutes by bus from the city center. Unlike Jinli (which is a modern recreation), Huanglongxi is a genuine 1,700-year-old river port with original Ming and Qing dynasty architecture. Narrow stone lanes, wooden shopfronts, seven ancient banyan trees (the oldest is 1,000+ years old), and three temples still in use. In summer, locals wade into the shallow river to cool off — it feels like a scene from a century ago. The town is a working community, not a museum — people still live in the old houses, dry laundry on bamboo poles, and play mahjong in doorways. Free entry makes it the best-value day trip from Chengdu.',
+    howTo: 'Bus from Xinnanmen Bus Station (新南门汽车站, near Chunxi Road): ¥15, 40–60 minutes, departures every 30 minutes. Or Didi: ¥80–120, 40–50 minutes. The bus drops you at the town entrance. Return buses run until about 6 PM — check the last departure time when you arrive.',
+    activities: [
+      { icon: '🚶', text: 'Wander the main street — stone-paved, lined with wooden buildings, flower baskets hanging from eaves. The best photography is in the early morning or late afternoon golden light.' },
+      { icon: '🌳', text: 'Visit the seven ancient banyan trees — the oldest is over 1,000 years old, its aerial roots forming a natural canopy over the riverbank. Locals leave offerings at its base.' },
+      { icon: '🏯', text: 'Three active temples: Gulong (Dragon), Zhenjiang (River God), and Chaoyin (Buddhist). Modest but genuine — incense burns, monks chant, locals pray. Free entry to all three.' },
+      { icon: '💧', text: 'In summer: join the locals wading and splashing in the shallow river that runs through town. Kids bring water guns. It\'s chaotic, joyful, and the most local experience you\'ll have near Chengdu.' },
+    ],
+    tips: [
+      'Go on a weekday — weekends bring domestic tourists from Chengdu and the atmosphere shifts from peaceful to festive chaos.',
+      'Summer water-play is the town\'s unique attraction. Bring sandals and clothes you don\'t mind getting wet. Water guns sold everywhere for ¥5–10.',
+      'The town is small — 2–3 hours is plenty. Combine with a morning at the Panda Base for a full day (Pandas 7:30–10 AM, Huanglongxi 11 AM–3 PM, back by 4 PM).',
+      'Local snacks along the main street are genuine — try yellow bean cake (黄豆糕) and dragon\'s beard candy (龙须糖) made fresh by elderly vendors.',
+    ],
+    food: 'Huanglongxi\'s signature dish is pearl tofu (珍珠豆腐) — tofu balls stuffed with minced pork in a light broth. Also try "one-pole noodles" (一根面) — a single continuous noodle stretched by hand, served in chili oil. Street vendors along the river sell grilled fish on skewers and sticky rice cakes. The restaurants with river-view terraces are more expensive but worth it for the setting.',
+  },
+  {
+    rank: 7, name: 'Bifengxia Panda Base (碧峰峡熊猫基地)', icon: '🐾',
+    tag: 'Alternative panda experience · Natural habitat · Volunteer programs',
+    hero: 'Pandas living in a forested canyon instead of enclosures. Fewer visitors than the Chengdu base. And the chance to see pandas in something approaching their natural habitat — steep bamboo-covered slopes with mist drifting through the valleys.',
+    time: '2–2.5 hrs by bus', cost: 'Bus ¥50–60 · Entrance ¥118 · Volunteer program ¥700+',
+    whyGo: 'The Chengdu Research Base (near the city) is iconic but crowded — by 10 AM the viewing areas are 5 people deep. Bifengxia, outside Ya\'an city, is the alternative. Fewer visitors. Pandas in forested canyon enclosures that feel more like their natural habitat. The base is also a breeding and reintroduction center — some of the pandas here are being prepared for release into the wild. You can sign up for the volunteer program (¥700+, must book weeks ahead) to prepare panda food, clean enclosures, and observe behavior up close. The canyon itself is beautiful — waterfalls, hiking trails, and a suspension bridge — worth the trip even if you skip the panda volunteer program. This is a full-day commitment: 2+ hours each way.',
+    howTo: 'Bus from Xinnanmen Bus Station to Ya\'an (雅安, 2 hours, ¥45–55), then local bus or taxi to Bifengxia (30 min, ¥15–20 by taxi). Or book a private car with driver from Chengdu: ¥600–800 round-trip, 2–2.5 hours each way. Some hotels and travel agencies can arrange door-to-door transport. Start by 7 AM to have meaningful time at the base.',
+    activities: [
+      { icon: '🐼', text: 'Panda viewing in the canyon enclosures — pandas roam larger, more natural spaces than at the Chengdu base. Morning (8:30–10:30 AM) is feeding time and peak activity.' },
+      { icon: '🙋', text: 'Volunteer program: prepare panda food (panda bread — a steamed corn and soybean cake), clean enclosures, and observe behavior with keepers. ¥700+, advance booking required.' },
+      { icon: '🌿', text: 'Hike the canyon trail — waterfalls, suspension bridge, lush vegetation. The canyon itself is a scenic area, not just a panda base. 2–3 hours for the full loop.' },
+      { icon: '📸', text: 'Fewer people + bigger enclosures = better photos. The pandas here are often more active because the enclosures give them more room to move. No glass barriers — just a low fence and bamboo.' },
+    ],
+    tips: [
+      'The volunteer program requires booking 2–4 weeks ahead — it\'s popular with Chinese university students and fills up fast.',
+      'Bifengxia is cooler and rainier than Chengdu — bring a rain jacket even if Chengdu\'s forecast is clear. The canyon creates its own microclimate.',
+      'This is a FULL day — 2+ hours each way. Leave Chengdu by 7 AM, return around 6–7 PM. Not suitable for travelers with limited time.',
+      'If you\'ve already been to the Chengdu Panda Base, Bifengxia offers a meaningfully different experience. If you haven\'t been to either, the Chengdu base is more convenient for most travelers.',
+    ],
+    food: 'Ya\'an city (the transit point for Bifengxia) is famous for Ya fish (雅鱼) — a freshwater fish with a distinctive sword-shaped bone in its head, served in a clear broth. Also try Ya\'an\'s Tibetan-influenced butter tea and roasted barley bread — Ya\'an is historically the gateway between Han China and Tibet. Eat in Ya\'an on the way back, not at the tourist restaurants near the base.',
+  },
+  {
+    rank: 8, name: 'Anren Museum Town (安仁古镇)', icon: '🏛️',
+    tag: '1930s architecture · China\'s largest private museum cluster · 1 hr from Chengdu',
+    hero: 'A perfectly preserved 1930s Chinese town frozen in the Republican era, where 27 mansions built by a single wealthy family now house museums — including a world-class collection of WWII artifacts telling China\'s side of the war.',
+    time: '50–70 min by bus or car', cost: 'Bus ¥20 · Didi ¥120–180 · Museum combo ¥60–100',
+    whyGo: 'Anren is three things at once: a preserved Republican-era (1912–1949) town with original architecture, a museum cluster housing one of China\'s best private collections, and a deeply atmospheric place to spend a day. The Liu family — Sichuan\'s most powerful warlord clan — built 27 mansions here in the 1930s, blending Chinese courtyard design with Western Art Deco influences. After 1949, the mansions were preserved rather than destroyed, and they now form the backdrop for a series of excellent museums. The standout: the Jianchuan Museum Cluster, China\'s largest private museum, with a remarkable WWII collection that tells the story of China\'s war against Japan — a narrative largely unknown in the West. The town is also home to a 1960s-era "educated youth" memorial, documenting the millions of urban youth sent to the countryside during the Cultural Revolution.',
+    howTo: 'Bus from Chadianzi Bus Station (茶店子汽车站) to Anren: ¥20, 50–70 minutes, departures every 30–60 minutes. Or Didi/taxi from Chengdu: ¥120–180, 50–70 minutes. The bus station in Anren is a 10-minute walk from the museum cluster. The town is walkable — all museums, streets, and restaurants are within a 15-minute radius.',
+    activities: [
+      { icon: '🏛️', text: 'Jianchuan Museum Cluster — 30+ exhibition halls across a sprawling campus. The WWII hall is world-class: thousands of artifacts, personal letters from soldiers, Japanese surrender documents. Budget 3–4 hours just for Jianchuan.' },
+      { icon: '🏠', text: 'Liu Family Manor (刘氏庄园) — the largest of the 27 Liu family mansions. Lavish 1930s interiors, ornate woodcarvings, a greenhouse, and a private theater. A glimpse into pre-revolutionary elite life.' },
+      { icon: '🚶', text: 'Walk the old street (安仁老街) — restored Republican-era shopfronts, cobblestone lanes, vintage streetlamps. The old post office and bank buildings are particularly photogenic.' },
+      { icon: '🎭', text: 'The Cultural Revolution memorial hall — personal artifacts, photographs, and letters from the "sent-down youth" (知青) generation. Moving and rarely seen by foreign visitors.' },
+    ],
+    tips: [
+      'The Jianchuan Museum is the main reason to come. Budget 3–4 hours for it alone. The WWII hall alone could take 2 hours if you read everything. English signage is limited — an audio guide or guidebook helps.',
+      'Anren is popular with Chinese tourists but almost unknown to foreigners — you\'ll likely be the only Western visitor. This makes it feel more like discovery and less like a tour bus stop.',
+      'Some museum halls close for lunch (12:00–1:30 PM). Plan around this — visit the outdoor areas during lunch and indoor halls before and after.',
+      'The town is small and walkable. You can see everything in a full day (9 AM–5 PM) without rushing. Last bus back to Chengdu is around 6 PM — confirm the time when you arrive.',
+    ],
+    food: 'Anren\'s specialty is "Liu Family feast" (刘氏家宴) — dishes based on recipes from the Liu family kitchens. Try the twice-cooked pork (回锅肉) and steamed pork belly with preserved vegetables (梅菜扣肉). The old street has several restaurants in converted mansion courtyards — eat in a 1930s warlord\'s dining room. Also try Anren tofu pudding (豆花) — silken tofu in a sweet or savory broth, a local breakfast staple.',
+  },
+];
+
+const itineraries = [
+  { combo: 'Qingcheng + Dujiangyan', difficulty: 'Moderate', time: 'Full day (8 AM – 6 PM)', desc: 'The classic combo. Mount Qingcheng Front Mountain in the morning (8:30 AM–12:30 PM), train to Dujiangyan (30 min), lunch by the river, explore the irrigation system 1:30–4:00 PM, back to Chengdu by 5:30 PM. Tight but very doable — they\'re on the same train line from Xipu. Pace yourself on Qingcheng\'s steps so you still have energy for Dujiangyan in the afternoon.' },
+  { combo: 'Panda Base AM + Huanglongxi PM', difficulty: 'Easy', time: 'Full day (7:30 AM – 4 PM)', desc: 'Panda Base at opening (7:30–10:00 AM — pandas are most active early), then bus 198 back to Panda Avenue Metro, head to Xinnanmen Bus Station, bus to Huanglongxi (40 min). Arrive by 11:30 AM, lunch in the old town, explore until 3 PM, back to Chengdu by 4 PM. Two very different experiences in one day — modern panda conservation + ancient river town.' },
+  { combo: 'Leshan AM + Emei base PM', difficulty: 'High', time: 'Very full day (7 AM – 8 PM)', desc: 'Early train to Leshan (7:30 AM), see the Buddha (9:00 AM–12:00 PM), train to Emeishan (12:30 PM, 30 min), visit Baoguo Temple at the mountain base and the surrounding hot spring town (1:30–5:00 PM), train back to Chengdu (5:30 PM). You won\'t reach the summit — this is base exploration only. Ambitious but rewarding if you have limited days.' },
+  { combo: 'Sanxingdui AM + Anren PM', difficulty: 'Moderate', time: 'Full day (8 AM – 6 PM)', desc: 'Didi to Sanxingdui (8:00 AM, arrive 9:00 AM), explore the museum until 1:00 PM, Didi to Anren (1:30 PM, 1 hour, ~¥150), explore Anren\'s museums and old street 2:30–5:30 PM, Didi back to Chengdu. Two of Sichuan\'s best museums in one day. Only works with a hired car or driver — impractical with public transport for both.' },
+  { combo: 'Mount Emei Overnight', difficulty: 'High', time: '2 days', desc: 'Day 1: train to Emeishan (morning), bus to Leidongping (2 hours), cable car to summit, explore Golden Summit, overnight at summit guesthouse (¥200–400). Day 2: sunrise at Golden Summit (5:30 AM), cable car down, visit monkey areas, Baoguo Temple, train back to Chengdu by afternoon. The overnight transforms Emei from a stressful day trip into a pilgrimage.' },
+];
+
+const decisionGuide = [
+  { you: 'Want the single most iconic experience', pick: 'Leshan Giant Buddha', because: 'Nothing on Earth compares to it. Easy to reach, profound in person. The best single day trip from Chengdu.' },
+  { you: 'Love hiking and nature', pick: 'Mount Qingcheng', because: 'Front Mountain for temples and ease. Back Mountain for wild forest hiking. Close to Chengdu — you can be on the trail 1 hour after leaving your hotel.' },
+  { you: 'Fascinated by history and engineering', pick: 'Dujiangyan', because: '2,200 years old and still working. More intellectually satisfying than visually spectacular — but deeply impressive once you understand what you\'re looking at.' },
+  { you: 'Want to see things that don\'t exist anywhere else', pick: 'Sanxingdui Museum', because: 'A lost civilization that nobody knew existed until 1986. Bronze masks, gold foil, and a sacred tree. Questions without answers. One of the world\'s great archaeological mysteries.' },
+  { you: 'Seeking a spiritual or transcendent experience', pick: 'Mount Emei', because: 'The Golden Summit above the clouds at sunrise. A pilgrimage site for 2,000 years. Worth the long journey — especially if you stay overnight.' },
+  { you: 'Want a relaxed, atmospheric day with no crowds', pick: 'Huanglongxi or Anren', because: 'Huanglongxi for an ancient water town with genuine local life. Anren for museums and Republican-era architecture. Both are free or cheap, easy to reach, and almost empty of foreign tourists.' },
+  { you: 'Are panda-obsessed and want a deeper experience', pick: 'Bifengxia', because: 'The volunteer program puts you inside the panda enclosures. The canyon setting is more natural than the Chengdu base. Worth the 2-hour journey if pandas are your priority.' },
+  { you: 'Have 2–3 free days and want a bigger adventure', pick: 'Mount Emei overnight', because: 'The overnight trip transforms Emei from a long day trip into a genuine pilgrimage. Sunset and sunrise at the summit. Monkeys, temples, and cloud seas. The crown jewel of Sichuan day trip extensions.' },
+];
+
+const faqs = [
+  { q: 'Which day trip if I only have time for one?', a: 'Leshan Giant Buddha. It\'s the most iconic, easiest to reach, and genuinely unlike anything else on Earth. Leave Chengdu at 8 AM, see the Buddha (walk the path AND take the boat — the boat gives you the postcard view), lunch in Leshan old town, back by 2–3 PM. You still have your evening free for hotpot. It\'s the lowest-risk, highest-reward day trip from Chengdu.' },
+  { q: 'Can I do Qingcheng + Dujiangyan in one day?', a: 'Yes — they\'re on the same train line, 30 minutes apart. Recommended itinerary: Qingcheng Front Mountain in the morning (take the cable car up to save time, arrive at Xipu by 8:00 AM, on the mountain by 9:00 AM, descend by 12:30 PM), train to Dujiangyan (30 min), lunch in Dujiangyan city, explore the irrigation system 1:30–4:00 PM, train back to Chengdu by 5:00 PM. Tight but very doable if you\'re in reasonable shape. If you prefer a relaxed pace, split them across two days.' },
+  { q: 'Do I need to book train tickets ahead?', a: 'Leshan and weekend trains: yes, 1+ day ahead on Trip.com. Weekday trains to Qingcheng/Dujiangyan via Xipu: same-day is usually fine at the station — these are commuter trains with frequent departures. Emeishan: book ahead, especially for morning trains on weekends. Chinese holidays: book EVERYTHING well ahead — every train sells out completely. You\'ll need your passport number to book on Trip.com.' },
+  { q: 'Can I use Didi for day trips?', a: 'Yes — ¥400–800 for a full day with wait time (8–10 hours). Good for groups of 3–4 (split the cost), for Sanxingdui (no train connection), and for the Panda Base + Huanglongxi combo (public transport between them is inconvenient). For Leshan and Qingcheng/Dujiangyan, the train is faster AND cheaper. For Mount Emei and Bifengxia, a hired car (¥600–800/day) is the most comfortable option — book through your hotel or a travel agency.' },
+  { q: 'What about group tours vs going independently?', a: 'Independent travel wins for most destinations. Leshan, Qingcheng, Dujiangyan, and Huanglongxi are easy to reach by public transport — you\'ll save 50–70% vs a tour and have full control of your schedule. Sanxingdui: a half-day group tour (¥200–300 including transport and ticket) can be simpler than arranging your own driver. Bifengxia volunteer program: must be arranged in advance regardless. Mount Emei: independent is fine if you read up on the bus/cable car system — it\'s well-organized with English signage.' },
+  { q: 'Are these day trips suitable for kids?', a: 'Huanglongxi: excellent for kids — flat, walkable, water play in summer, free entry. Panda Base (Chengdu or Bifengxia): kids love it — pandas are universally appealing. Leshan: the staircase is steep and narrow — fine for kids 8+ who can handle steps, challenging for younger children (no strollers on the cliff path — take the boat instead). Mount Qingcheng and Emei: hundreds/thousands of steps — only for fit kids 10+. Sanxingdui: the museum is fascinating for kids 8+ who like "mystery" stories; younger kids may be bored. Anren: the WWII museum is heavy content — better for teens and adults.' },
+  { q: 'What\'s the best season for day trips?', a: 'Spring (March–May) and autumn (September–November) are ideal for all destinations — comfortable temperatures, manageable crowds. Summer (June–August): hot and humid but the mountain destinations (Qingcheng, Emei) offer cool relief at higher elevations. Huanglongxi\'s river water-play is summer-only. Winter (December–February): Leshan, Sanxingdui, and Anren are fine year-round. Mount Emei in winter is spectacular (snow-dusted temples above the clouds) but dress warmly. Avoid Golden Week (Oct 1–7) and Chinese New Year — every destination is overwhelmed.' },
+  { q: 'How do I combine day trips into a multi-day itinerary?', a: 'For a 3-day trip: Day 1 — Leshan Giant Buddha (morning, back by 2 PM) + Chengdu city exploration (afternoon/evening). Day 2 — Panda Base (7:30–10 AM) + Huanglongxi Ancient Town (11 AM–3 PM). Day 3 — Mount Qingcheng (morning) + Dujiangyan (afternoon). For a 5-day trip, add Day 4: Sanxingdui Museum (half-day) + Anren Museum Town (afternoon), and Day 5: rest/recovery or Mount Emei overnight (Day 4–5). See our transportation guide for train booking details for each route.' },
+];
+
 const schema = {
-  '@context': 'https://schema.org',
-  'datePublished': '2026-07-29',
-  'dateModified': '2026-07-29',
-  '@graph': [{'@type': 'Article', 'headline': 'Best Day Trips from Chengdu', 'description': 'Leshan Giant Buddha, Mount Qingcheng, and the best escapes from the city.', 'url': 'https://best-of-chengdu.com/attractions/day-trips', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Attractions', 'item': 'https://best-of-chengdu.com/attractions'}, {'@type': 'ListItem', 'position': 3, 'name': 'Day Trips', 'item': 'https://best-of-chengdu.com/attractions/day-trips'}]}],
+  '@context': 'https://schema.org', 'datePublished': '2026-07-29', 'dateModified': '2026-08-05',
+  '@graph': [
+    { '@type': 'Article', 'headline': '8 Best Day Trips from Chengdu 2026 — Leshan Buddha, Mount Qingcheng, Emei & More', 'description': 'Complete guide to 8 day trips: Leshan Giant Buddha, Mount Qingcheng, Dujiangyan, Sanxingdui, Mount Emei, Huanglongxi Ancient Town, Bifengxia Panda Base, Anren Museum Town. Ticket prices, detailed transport, honest tips, food recommendations, itinerary combinations.', 'url': 'https://best-of-chengdu.com/attractions/day-trips', 'author': { '@type': 'Organization', 'name': 'Best of Chengdu' } },
+    { '@type': 'BreadcrumbList', 'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Attractions', 'item': 'https://best-of-chengdu.com/attractions' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'Day Trips', 'item': 'https://best-of-chengdu.com/attractions/day-trips' },
+    ]},
+    { '@type': 'FAQPage', 'mainEntity': faqs.map((faq) => ({ '@type': 'Question', 'name': faq.q, 'acceptedAnswer': { '@type': 'Answer', 'text': faq.a } })) },
+  ],
 };
 ---
 
-<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Day Trips from Chengdu" description="Leshan Giant Buddha, Mount Qingcheng, and the best escapes from the city.">
+<BaseLayout schemaJson={JSON.stringify(schema)} title="8 Best Day Trips from Chengdu 2026 — Leshan Buddha, Mount Qingcheng, Emei & More | Best of Chengdu" description="Complete guide to 8 day trips: Leshan Buddha, Mount Qingcheng, Dujiangyan, Sanxingdui, Mount Emei, Huanglongxi, Bifengxia Panda Base, Anren Museum Town. Prices, transport, food, tips, itinerary combos.">
   <Header />
-
   <main>
-    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
-      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
-        Best Day Trips from Chengdu
-      </h1>
-      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Some of Sichuan's most remarkable sights are a short trip from Chengdu. From ancient Buddha carvings to misty Taoist mountains, here are the best day trips to take.</p>
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-[#1a2416] via-[#1a2a1a] to-[#162416] text-white">
+      <div class="max-w-[860px] mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-24">
+        <p class="text-xs font-medium tracking-widest uppercase text-white/50 mb-4">Day Trips · Updated August 2026</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tighter leading-[1.05] mb-5">8 Best Day Trips from Chengdu</h1>
+        <p class="text-lg text-white/60 leading-relaxed max-w-[52ch] mb-8">A 71-meter Buddha carved into a cliff. A mist-shrouded Taoist mountain. A lost civilization discovered by accident. A 2,200-year-old engineering miracle that still works. A sacred summit above the clouds. And three more — all within two hours.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#leshan" class="inline-flex items-center gap-2 bg-white/15 border border-white/20 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-white/25 transition-colors">All destinations ↓</a>
+          <a href="#itineraries" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Itinerary combos</a>
+          <a href="#decision" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Which trip for me?</a>
+        </div>
+      </div>
     </section>
-    <section class="max-w-[860px] mx-auto px-6 pb-16">
-      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Top day trips</h2>
-      <div class="space-y-4">
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">1</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Leshan Giant Buddha</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">1.5 hrs by train</span></div><p class="text-sm text-gray-500 mt-1">A 71-meter tall Buddha carved into a cliff face in the 8th century. The scale is staggering. Take a boat ride for the best view, then climb the stairs alongside the Buddha to appreciate the craftsmanship. The surrounding park is pleasant but the Buddha is the star.</p></div></div>
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">2</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Mount Qingcheng</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">1 hr by train</span></div><p class="text-sm text-gray-500 mt-1">One of the birthplaces of Taoism. Dense forest, ancient temples, and stone paths winding up the mountain. The front mountain is developed with cable cars and paved paths. The back mountain is wilder and more challenging. Choose based on your fitness and time.</p></div></div>
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">3</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Dujiangyan Irrigation System</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">1 hr by train</span></div><p class="text-sm text-gray-500 mt-1">A 2,200-year-old engineering marvel that still works today. Built to control flooding on the Min River, it is a UNESCO site and a testament to ancient Chinese ingenuity. Pair with Mount Qingcheng since they share the same train line.</p></div></div>
-        <div class="p-5 rounded-xl border border-border flex gap-4"><span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">4</span><div><div class="flex items-center gap-2"><h3 class="font-display font-semibold text-[#1a1a1a]">Sanxingdui Museum</h3><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">1 hr by car</span></div><p class="text-sm text-gray-500 mt-1">An archaeological site that rewrote Chinese history. The museum displays enormous bronze masks, gold artifacts, and a massive bronze sacred tree from a mysterious 3,000-year-old civilization. The new museum building opened in 2023 is world-class.</p></div></div>
+
+    <!-- DESTINATIONS -->
+    {trips.map((trip, idx) => (
+      <section id={idx === 0 ? 'leshan' : idx === 1 ? 'qingcheng' : undefined} class="max-w-[860px] mx-auto px-6 pt-16 pb-8">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="shrink-0 w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center text-3xl">{trip.icon}</div>
+          <div>
+            <div class="flex items-center gap-2"><span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-bold">#{trip.rank}</span><h2 class="text-2xl font-display font-semibold text-[#1a1a1a]">{trip.name}</h2></div>
+            <span class="text-xs text-accent font-medium">{trip.tag}</span>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-accent/5 border border-accent/10 mb-5 italic text-sm text-gray-600 leading-relaxed">"{trip.hero}"</div>
+
+        <div class="grid grid-cols-2 gap-2 mb-5">
+          <div class="p-3 rounded-lg bg-surface text-center"><span class="block text-[10px] text-gray-400 mb-0.5">Duration</span><span class="block text-xs font-semibold">{trip.time}</span></div>
+          <div class="p-3 rounded-lg bg-surface text-center"><span class="block text-[10px] text-gray-400 mb-0.5">Cost</span><span class="block text-xs font-semibold leading-snug">{trip.cost}</span></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          <div>
+            <h3 class="text-xs font-semibold text-[#1a1a1a] uppercase tracking-wide mb-2">Why Go</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">{trip.whyGo}</p>
+          </div>
+          <div class="bg-surface rounded-xl p-4">
+            <h3 class="text-xs font-semibold text-[#1a1a1a] uppercase tracking-wide mb-2">How to Get There</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">{trip.howTo}</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          <div>
+            <h3 class="text-xs font-semibold text-[#1a1a1a] uppercase tracking-wide mb-2">What to Do</h3>
+            <div class="space-y-2">
+              {trip.activities.map(a => (
+                <div class="flex items-start gap-2 text-xs text-gray-500"><span class="text-base shrink-0 mt-0.5">{a.icon}</span><span>{a.text}</span></div>
+              ))}
+            </div>
+          </div>
+          <div class="bg-amber-50 rounded-xl p-4 border border-amber-100">
+            <h3 class="text-xs font-semibold text-amber-700 uppercase tracking-wide mb-2">⚠️ Tips & Warnings</h3>
+            <div class="space-y-2">
+              {trip.tips.map(t => (
+                <div class="flex items-start gap-2 text-xs text-amber-800"><span class="shrink-0 mt-0.5">•</span><span>{t}</span></div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-surface border border-border">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-base">🍜</span>
+            <h3 class="text-xs font-semibold text-[#1a1a1a] uppercase">What to Eat</h3>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">{trip.food}</p>
+        </div>
+        <hr class="mt-10 border-border/30" />
+      </section>
+    ))}
+
+    <!-- ITINERARY COMBOS -->
+    <section id="itineraries" class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Recommended Itinerary Combinations</h2>
+        <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Some destinations pair perfectly. These combinations maximize your time and minimize transit — tested and proven.</p>
+        <div class="space-y-4">
+          {itineraries.map((itin) => (
+            <div class="p-5 rounded-xl border border-border bg-white hover:shadow-sm transition-shadow">
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <h3 class="font-semibold text-[#1a1a1a]">{itin.combo}</h3>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">{itin.difficulty}</span>
+                <span class="text-[10px] text-gray-400">{itin.time}</span>
+              </div>
+              <p class="text-sm text-gray-500 leading-relaxed">{itin.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
+
+    <!-- DECISION GUIDE -->
+    <section id="decision" class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Which Day Trip Is Right for You?</h2>
+      <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Match your interests to the right destination. No wrong answers — just different kinds of unforgettable.</p>
+      <div class="overflow-x-auto rounded-xl border border-border bg-white">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-surface/50">
+              <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">If You...</th>
+              <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Go To...</th>
+              <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            {decisionGuide.map((row, i) => (
+              <tr class="border-t border-border hover:bg-accent/[0.02]">
+                <td class="py-3 px-5 font-semibold text-[#1a1a1a] text-xs">{row.you}</td>
+                <td class="py-3 px-5 text-xs text-accent font-medium">{row.pick}</td>
+                <td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">{row.because}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
     <section class="bg-surface py-20">
       <div class="max-w-[860px] mx-auto px-6">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Planning your day trip</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">By train</h3><p class="text-sm text-gray-500 mt-1">Leshan, Mount Qingcheng, and Dujiangyan are all reachable by high-speed train from Chengdu East or Chengdu South station. Tickets are 30-60 RMB each way. Book on 12306.cn or at the station.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">By car</h3><p class="text-sm text-gray-500 mt-1">Sanxingdui and more remote sites are easier to reach by car. Didi or private driver for a day costs 400-800 RMB. Many hotels can arrange a driver.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Best combos</h3><p class="text-sm text-gray-500 mt-1">Mount Qingcheng + Dujiangyan in one day is popular (they are 30 minutes apart). Leshan can be a half-day trip if you only see the Buddha.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">When to go</h3><p class="text-sm text-gray-500 mt-1">Spring and autumn are ideal for all day trips. Summer is hot but Qingcheng's forest provides shade. Winter is cold but the sites are empty. Avoid Chinese public holidays or arrive at opening time.</p></div>
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Quick Comparison</h2>
+        <div class="overflow-x-auto rounded-xl border border-border bg-white">
+          <table class="w-full text-sm border-collapse">
+            <thead><tr class="bg-surface/50"><th class="text-left py-3 px-4 font-medium text-gray-400 text-xs uppercase tracking-wide">Destination</th><th class="text-left py-3 px-4 font-medium text-gray-400 text-xs uppercase tracking-wide">Travel Time</th><th class="text-left py-3 px-4 font-medium text-gray-400 text-xs uppercase tracking-wide">Cost</th><th class="text-left py-3 px-4 font-medium text-gray-400 text-xs uppercase tracking-wide">Physical</th><th class="text-left py-3 px-4 font-medium text-gray-400 text-xs uppercase tracking-wide">Time Needed</th><th class="text-left py-3 px-4 font-medium text-gray-400 text-xs uppercase tracking-wide">Best For</th></tr></thead>
+            <tbody>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-2.5 px-4 font-semibold text-[#1a1a1a] text-xs">Leshan Buddha</td><td class="py-2.5 px-4 text-xs text-gray-500">50–70 min train</td><td class="py-2.5 px-4 text-xs text-gray-500">¥80–150</td><td class="py-2.5 px-4 text-xs text-gray-500">Moderate</td><td class="py-2.5 px-4 text-xs text-gray-500">4–5 hrs</td><td class="py-2.5 px-4 text-xs text-gray-500">First-timers, photographers</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-2.5 px-4 font-semibold text-[#1a1a1a] text-xs">Mount Qingcheng</td><td class="py-2.5 px-4 text-xs text-gray-500">30–40 min train</td><td class="py-2.5 px-4 text-xs text-gray-500">¥90–150</td><td class="py-2.5 px-4 text-xs text-gray-500">High</td><td class="py-2.5 px-4 text-xs text-gray-500">4–7 hrs</td><td class="py-2.5 px-4 text-xs text-gray-500">Hikers, nature lovers</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-2.5 px-4 font-semibold text-[#1a1a1a] text-xs">Dujiangyan</td><td class="py-2.5 px-4 text-xs text-gray-500">30–40 min train</td><td class="py-2.5 px-4 text-xs text-gray-500">¥90</td><td class="py-2.5 px-4 text-xs text-gray-500">Low</td><td class="py-2.5 px-4 text-xs text-gray-500">2–3 hrs</td><td class="py-2.5 px-4 text-xs text-gray-500">History buffs, families</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-2.5 px-4 font-semibold text-[#1a1a1a] text-xs">Sanxingdui</td><td class="py-2.5 px-4 text-xs text-gray-500">50–70 min car</td><td class="py-2.5 px-4 text-xs text-gray-500">¥72–112</td><td class="py-2.5 px-4 text-xs text-gray-500">Low</td><td class="py-2.5 px-4 text-xs text-gray-500">2.5–3.5 hrs</td><td class="py-2.5 px-4 text-xs text-gray-500">Museum lovers, curious minds</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-2.5 px-4 font-semibold text-[#1a1a1a] text-xs">Mount Emei</td><td class="py-2.5 px-4 text-xs text-gray-500">1–1.5 hrs train</td><td class="py-2.5 px-4 text-xs text-gray-500">¥250–400</td><td class="py-2.5 px-4 text-xs text-gray-500">High</td><td class="py-2.5 px-4 text-xs text-gray-500">Full day+</td><td class="py-2.5 px-4 text-xs text-gray-500">Pilgrims, sunrise chasers</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-2.5 px-4 font-semibold text-[#1a1a1a] text-xs">Huanglongxi</td><td class="py-2.5 px-4 text-xs text-gray-500">40–60 min bus</td><td class="py-2.5 px-4 text-xs text-gray-500">Free entry</td><td class="py-2.5 px-4 text-xs text-gray-500">Low</td><td class="py-2.5 px-4 text-xs text-gray-500">2–3 hrs</td><td class="py-2.5 px-4 text-xs text-gray-500">Relaxed explorers, families</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-2.5 px-4 font-semibold text-[#1a1a1a] text-xs">Bifengxia</td><td class="py-2.5 px-4 text-xs text-gray-500">2–2.5 hrs bus</td><td class="py-2.5 px-4 text-xs text-gray-500">¥118–818</td><td class="py-2.5 px-4 text-xs text-gray-500">Low–Moderate</td><td class="py-2.5 px-4 text-xs text-gray-500">Full day</td><td class="py-2.5 px-4 text-xs text-gray-500">Panda enthusiasts</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-2.5 px-4 font-semibold text-[#1a1a1a] text-xs">Anren</td><td class="py-2.5 px-4 text-xs text-gray-500">50–70 min bus</td><td class="py-2.5 px-4 text-xs text-gray-500">¥60–100</td><td class="py-2.5 px-4 text-xs text-gray-500">Low</td><td class="py-2.5 px-4 text-xs text-gray-500">4–6 hrs</td><td class="py-2.5 px-4 text-xs text-gray-500">History buffs, museum lovers</td></tr>
+            </tbody>
+          </table>
         </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-8">Day Trip FAQ</h2>
+      <div class="space-y-3">{faqs.map((faq, i) => (<div class="rounded-xl border border-border bg-white overflow-hidden"><button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-accent/[0.02] transition-colors" data-index={i} aria-expanded="false"><span class="font-semibold text-[#1a1a1a] pr-4 text-sm">{faq.q}</span><svg class="faq-icon shrink-0 transition-transform duration-200" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer hidden px-5 pb-5"><p class="text-sm text-gray-500 leading-relaxed">{faq.a}</p></div></div>))}</div>
+    </section>
+
+    <!-- CROSSLINKS -->
+    <section class="max-w-[860px] mx-auto px-6 pb-24">
+      <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-4">Continue Planning</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="/travel/transportation" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all"><span class="text-lg mb-2 block">🚇</span><h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Getting Around →</h3><p class="text-xs text-gray-500 mt-1">Metro, Didi, train booking guide.</p></a>
+        <a href="/travel/hotels" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all"><span class="text-lg mb-2 block">🏨</span><h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Where to Stay →</h3><p class="text-xs text-gray-500 mt-1">5 neighborhoods & 17 hotel picks.</p></a>
+        <a href="/" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all"><span class="text-lg mb-2 block">🏠</span><h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Full Chengdu Guide →</h3><p class="text-xs text-gray-500 mt-1">Food, pandas, attractions & FAQ.</p></a>
+      </div>
     </section>
   </main>
-
   <Footer />
+  <script>document.querySelectorAll('.faq-toggle').forEach(b=>{b.addEventListener('click',()=>{const a=b.nextElementSibling,i=b.querySelector('.faq-icon'),o=!a.classList.contains('hidden');a.classList.toggle('hidden');i.style.transform=o?'rotate(0deg)':'rotate(180deg)';b.setAttribute('aria-expanded',String(!o))})})</script>
 </BaseLayout>

@@ -3,45 +3,515 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 
+const metroLines = [
+  { line: 'Line 1', color: '#0066CC', keyStations: 'Wenshu Monastery, Tianfu Square, Hi-Tech Zone, Chengdu South Station', touristUse: 'North-south artery. Wenshu Monastery (Buddhist temple), Tianfu Square (Science Museum), Hi-Tech Zone. Connects to Chengdu South Station for Leshan & Mount Qingcheng trains.' },
+  { line: 'Line 2', color: '#FF6600', keyStations: 'People\'s Park, Chunxi Road, Chengdu East Station, Xipu', touristUse: 'The single most useful line for tourists. People\'s Park (tea houses!), Chunxi Road (shopping & hotels), Chengdu East Station (high-speed trains to Chongqing & Xi\'an), Xipu (transfer to day-trip trains).' },
+  { line: 'Line 3', color: '#CC0066', keyStations: 'Panda Avenue (for Panda Base), Wuhou Shrine, Gaoshengqiao (Jinli)', touristUse: 'The panda line. Panda Avenue Station → 10-min shuttle bus to the pandas. Also stops at Wuhou Shrine and near Jinli Ancient Street. This is your second-most-used line after Line 2.' },
+  { line: 'Line 4', color: '#33AA33', keyStations: 'Kuanzhai Xiangzi (Kuanzhai Alley), Chengdu University, Wannianchang', touristUse: 'Direct access to Kuanzhai Alley. Also connects to Chengdu West Railway Station. Less tourist-heavy than Lines 2 and 3 but essential if staying in the Kuanzhai area.' },
+  { line: 'Line 7', color: '#66CCFF', keyStations: 'Chengdu South Station, Taipingyuan, East Station (transfer), Sichuan Normal University', touristUse: 'The loop line — circles the entire city. Best for transfers between radial lines without going through the center. Connects both South Station and East Station transfer hubs.' },
+  { line: 'Line 10', color: '#3366CC', keyStations: 'Shuangliu Airport T1 & T2, Taipingyuan (transfer hub)', touristUse: 'Airport express from Shuangliu (CTU). 20–30 min to city center, ¥5–7. Transfer to Lines 3 or 7 at Taipingyuan. Runs 6:00 AM–11:00 PM. This is how 90% of travelers get into the city from CTU.' },
+  { line: 'Line 18', color: '#9933CC', keyStations: 'Tianfu Airport T1 & T2, Chengdu South Station, Incubation Park, Century City', touristUse: 'Airport express from Tianfu (TFU). 45–50 min to South Station, ¥10–12. Transfers to Lines 1 & 7. Runs 6:00 AM–11:30 PM. Fastest way from the new airport — the Didi alternatives are ¥150–200 and take longer in traffic.' },
+];
+
+const modes = [
+  {
+    icon: '🚇', title: 'Metro (地铁) — The Backbone',
+    desc: '14 lines, English signage everywhere. Clean, air-conditioned, trains every 3–5 minutes. Runs 6:00 AM to midnight. Single rides ¥2–8. For tourists, the Metro + Didi combo covers 95% of trips. Get Alipay\'s transport QR code (no deposit, instant refill) or buy a Transportation Card (¥20 deposit) at any station.',
+    tips: ['Set up Alipay transport QR on day one — works for Metro AND buses', 'Avoid 8:00–9:00 AM and 5:30–7:00 PM — trains get Tokyo-level packed', 'Last trains depart ~11:00–11:30 PM — check your specific line on the platform display', 'All station maps, ticket machines, and announcements are in English — surprisingly good'],
+  },
+  {
+    icon: '🚕', title: 'Didi (滴滴) — China\'s Uber',
+    desc: 'Uber doesn\'t exist in China. Didi is excellent — reliable, affordable, with an English interface. Download the "Didi Great China" version (NOT the international "DiDi" app — that\'s for other countries). Link a foreign card in Settings before your first ride. Typical fares: ¥15–25 for short hops, ¥30–50 across town, ¥60–80 to Shuangliu Airport. Drivers won\'t speak English but the app handles everything — destination, navigation, payment. You never need to say a word.',
+    tips: ['Download "Didi Great China" (滴滴出行) before you arrive — airport WiFi is unreliable', 'Set language to English in Settings → Language before your first ride', 'Match the license plate on the app to the car — always verify before getting in', 'If the driver calls (they often do), don\'t answer — they\'ll figure out pickup without talking'],
+  },
+  {
+    icon: '🚲', title: 'Bike Sharing (共享单车) — Surprisingly Great',
+    desc: 'Blue (Hello/Haluo 哈啰), yellow (Meituan 美团), green (Qingju 青桔) bikes are on every single block. Chengdu is flat with dedicated bike lanes — one of China\'s most bikeable cities. Unlock with Alipay/WeChat QR scan, ¥1.50 per 30 minutes. Park in blue zones on the app map or face a ¥5–20 fine. Perfect for neighborhood exploration and short trips when the Metro feels like overkill.',
+    tips: ['Alipay has built-in bike unlock — tap "Scan", point at QR code on the handlebar, ride away', 'Test the bike before unlocking: squeeze both brakes, spin the wheels, ring the bell', 'Park only in the blue zones on the app map — fines for leaving bikes randomly on the sidewalk', 'A bike ride through People\'s Park and the surrounding hutong-style lanes at dusk is genuinely magical'],
+  },
+  {
+    icon: '🚖', title: 'Taxis (出租车) — The Fallback',
+    desc: 'Green-and-yellow taxis are everywhere except during rain and rush hour. Flag fall ¥8 (first 2 km), then ¥1.90/km. Across the city center: rarely over ¥40. Drivers speak zero English — always show your destination in Chinese characters on your phone. Meters are honest (rigged meters are vanishingly rare in Chengdu). No tipping — it\'s not part of Chinese culture. Use Didi when you can\'t find a street taxi — it\'s usually ¥5–10 cheaper anyway.',
+    tips: ['Always carry your destination in Chinese characters — save key addresses as phone screenshots', 'Hotels will write addresses in Chinese on a card — ask at the front desk on day one', 'Look for the red LED sign showing "空车" (kōng chē = empty car) — only get in marked taxis', 'Avoid "black taxis" approaching you at airports and train stations — they charge 3–5× the meter fare'],
+  },
+  {
+    icon: '🚌', title: 'Buses (公交) — For Specific Routes',
+    desc: 'Extensive network, ¥2 flat fare. The catch: Chinese-only announcements and signage. For tourists, buses are best for specific routes: Bus 198/198A from Panda Avenue Metro to the Panda Base entrance (¥2, 10 min), or airport shuttles when the Metro is closed. For everything else, Metro + Didi is more practical for non-Chinese speakers.',
+    tips: ['Bus 198/198A: Panda Avenue Metro Station → Panda Base entrance (10 min, ¥2) — essential panda shuttle', 'Use Amap (高德) or Baidu Maps for real-time bus arrival times — Google Maps doesn\'t work', 'Board at the front door, pay as you enter (scan QR code or drop ¥2 coins), exit at the rear', 'Avoid ALL buses during rush hour — you\'ll sit in traffic while the Metro flies past underneath you'],
+  },
+];
+
+const setupGuide = [
+  {
+    step: 1, title: 'Download Alipay before leaving home',
+    desc: 'Search "Alipay" in your app store. Download the international version. Complete identity verification with your passport — it takes 5 minutes and is required for the transport QR feature. Do this at home with reliable internet, not at the airport.',
+    detail: 'Open Alipay → "Me" tab → Settings (gear icon) → Account & Security → Identity Verification. Upload a photo of your passport. Approval usually takes 1–2 minutes during Chinese business hours, longer outside.',
+  },
+  {
+    step: 2, title: 'Add your foreign credit card',
+    desc: 'Alipay supports Visa, Mastercard, Amex, and JCB. Add your card in Settings before arriving — this is your payment method for Didi, Metro QR, bike sharing, and most shops and restaurants.',
+    detail: 'Alipay → "Me" → Bank Cards → Add Card. Enter your card details. Alipay will verify with a small test charge (¥1–2, refunded immediately). Some banks require 3D Secure verification — have your phone ready for the SMS code.',
+  },
+  {
+    step: 3, title: 'Activate the Transport QR Code',
+    desc: 'The single most useful feature for tourists. One QR code works for both Metro and buses across Chengdu — no separate tickets or cards needed. Scan at the gate, ride, and Alipay auto-charges your linked card.',
+    detail: 'Alipay home screen → "Transport" icon (bus icon, may be in "More" menu on first use) → select "Chengdu" from the city list → activate "Chengdu Metro & Bus QR". The QR code appears. At Metro gates: scan at the reader (look for the QR symbol). At buses: scan at the payment terminal next to the driver.',
+  },
+  {
+    step: 4, title: 'Download and set up Didi',
+    desc: 'Search for "Didi" in your app store. You want the Chinese mainland version (icon is a car and the characters 滴滴出行), NOT the international "DiDi Rider" app. Set language to English immediately — it\'s buried in Settings.',
+    detail: 'Open Didi → "Me" tab (bottom right) → Settings (gear icon, top right) → Language → English. Then add your payment method: "Me" → Wallet → Add Card. Link the same card you use for Alipay. Test with a short ride after arriving — even a ¥15 trip to verify everything works.',
+  },
+];
+
+const stationGuide = [
+  {
+    station: 'Chengdu East (成都东站)',
+    icon: '🚄',
+    lines: 'Metro Lines 2 & 7',
+    serves: 'Chongqing (1–1.5 hrs), Xi\'an (3–4 hrs), Leshan (some trains), Guiyang, Kunming',
+    navigation: 'The station is enormous — 5 floors, 26 platforms. Follow signs for "Departures" (出发) on 2F. Security check at the entrance (like an airport — bags through X-ray). Find your gate number on the giant departure board. Gates close 5 minutes before departure. The waiting hall has restaurants, convenience stores, and free WiFi (requires Chinese phone number). Give yourself 30 minutes from Metro exit to platform — the walking distances inside are significant.',
+  },
+  {
+    station: 'Chengdu South (成都南站)',
+    icon: '🚅',
+    lines: 'Metro Lines 1, 7 & 18',
+    serves: 'Leshan (50–70 min), Mount Qingcheng (some trains), Dujiangyan, Emei Mountain',
+    navigation: 'Smaller and less chaotic than East Station — much easier for first-timers. Metro Lines 1 and 7 connect directly. Follow signs for "Departures" — all platforms are on the same level. Security check is quick (5–10 min). The station is your best choice for Leshan and Qingcheng day trips — fewer crowds, simpler layout. Cafés and convenience stores inside. Give yourself 20 minutes from Metro to platform.',
+  },
+  {
+    station: 'Xipu (犀浦站)',
+    icon: '🚉',
+    lines: 'Metro Line 2 (terminus)',
+    serves: 'Mount Qingcheng (30–40 min), Dujiangyan (30–40 min)',
+    navigation: 'The secret weapon for Qingcheng and Dujiangyan day trips. Metro Line 2 terminus — ride to the end of the line. The train station is directly connected to the Metro station (follow signs for "Railway Station" from the Metro exit). Much smaller than East or South — just a few platforms. Trains are less frequent (every 30–90 minutes depending on time of day) so check schedules on Trip.com before heading here. Ticket machines have English option. 15 minutes from Metro to platform is plenty.',
+  },
+];
+
+const commonRoutes = [
+  { from: 'Chunxi Road', to: 'Panda Base', best: 'Metro', detail: 'Line 2 or 3 to Panda Avenue (20 min) → Bus 198/198A or ¥10 shuttle (10 min). Total: 30–40 min, ¥6–8.', alternative: 'Didi directly: ¥30–40, 25–35 min. Easier but costs more.' },
+  { from: 'Chunxi Road', to: 'Jinli / Wuhou Shrine', best: 'Metro', detail: 'Line 2 one stop to Tianfu Square → transfer to Line 3 → Gaoshengqiao (15 min). Walk 10 min to Jinli. Total: 25 min, ¥3.', alternative: 'Didi: ¥15–20, 15 min.' },
+  { from: 'Chunxi Road', to: 'Kuanzhai Alley', best: 'Metro', detail: 'Line 2 to People\'s Park (one stop, 3 min) → walk 10 min to Kuanzhai. Or Line 4 from Taisheng South Road. Total: 15 min, ¥2.', alternative: 'Walk: 25–30 min. Didi: ¥12–15, 10 min.' },
+  { from: 'Chunxi Road', to: 'People\'s Park', best: 'Metro or Walk', detail: 'Metro Line 2: one stop (3 min, ¥2). Or walk: 15–20 min along Shudu Avenue. Pleasant walk — do it in the morning.', alternative: 'Bike share: ¥1.50, 8 min.' },
+  { from: 'Chunxi Road', to: 'CTU (Shuangliu) Airport', best: 'Metro', detail: 'Line 2 to Taipingyuan → transfer to Line 10 → Airport T1 or T2. Total: 30–40 min, ¥6–7.', alternative: 'Didi: ¥60–80, 25–40 min depending on traffic.' },
+  { from: 'Chunxi Road', to: 'TFU (Tianfu) Airport', best: 'Metro', detail: 'Line 2 to Chengdu East → transfer to Line 7 → South Station → transfer to Line 18 → Airport. Total: 60–75 min, ¥11–13.', alternative: 'Didi: ¥150–200, 50–70 min. Only worth it with heavy luggage or late at night.' },
+  { from: 'CTU Airport', to: 'Chunxi Road', best: 'Metro', detail: 'Line 10 from Airport T1 or T2 → Taipingyuan → transfer to Line 3 → Chunxi Road. Total: 30–40 min, ¥6–7.', alternative: 'Didi: ¥60–80. Airport bus: ¥10–15, 40–60 min.' },
+  { from: 'TFU Airport', to: 'Chunxi Road', best: 'Metro', detail: 'Line 18 → South Station → Line 1 → transfer to Line 2 → Chunxi Road. Total: 60–75 min, ¥11–13. Long but reliable.', alternative: 'Didi: ¥150–200. Only for late-night arrivals after Metro closes.' },
+  { from: 'Chunxi Road', to: 'Chengdu East Station', best: 'Metro', detail: 'Line 2 directly to East Station (15 min, ¥3). No transfers needed. Metro exit connects directly to the station building.', alternative: 'Didi: ¥20–30, 15–25 min. About the same time as Metro.' },
+  { from: 'Chunxi Road', to: 'Chengdu South Station', best: 'Metro', detail: 'Line 2 to Tianfu Square → transfer to Line 1 → South Station. Total: 25–30 min, ¥4.', alternative: 'Didi: ¥30–40, 20–30 min.' },
+];
+
+const nightTransport = [
+  { option: 'Didi', availability: '24 hours — always available. Wait times may be 5–10 min longer after midnight.', cost: 'Standard rates. No surge pricing after midnight (unlike Uber in the West).', tip: 'Best option after Metro closes. Drivers are plentiful even at 2 AM in central areas.' },
+  { option: 'Night Buses', availability: 'Limited routes, numbered N1–N8. Run roughly midnight–5 AM on major corridors.', cost: '¥2–3 flat fare.', tip: 'Chinese-only. Not practical for tourists. Didi wins every time at night.' },
+  { option: 'Taxis', availability: 'Available 24 hours but harder to find after 1 AM outside of bar areas.', cost: 'Standard meter rates + 20% surcharge after 11 PM.', tip: 'Jiuyanqiao (bar street) and Lan Kwai Fong areas have plenty of taxis waiting at night. Everywhere else: use Didi.' },
+];
+
+const taxiPhrases = [
+  { chinese: '请带我去这里 (Qǐng dài wǒ qù zhèlǐ)', english: 'Please take me here', tip: 'Say this while showing your destination in Chinese on your phone. Use it every time.' },
+  { chinese: '请走高速 (Qǐng zǒu gāosù)', english: 'Please take the expressway', tip: 'Useful for airport trips — avoids the driver taking slow back roads to run up the meter. Rarely needed but good to know.' },
+  { chinese: '在这里停 (Zài zhèlǐ tíng)', english: 'Stop here', tip: 'Say this when you see your destination. Taxi drivers appreciate early notice — don\'t wait until you\'re past it.' },
+  { chinese: '打表 (Dǎ biǎo)', english: 'Use the meter', tip: 'If a driver tries to negotiate a fixed price (rare in Chengdu, more common at airports), say this firmly. Insist on the meter.' },
+  { chinese: '有发票吗? (Yǒu fāpiào ma?)', english: 'Can I have a receipt?', tip: 'For expense reports or if you leave something in the taxi. The receipt has the taxi ID — critical for lost items.' },
+];
+
+const faqs = [
+  { q: 'Can I use Google Maps in Chengdu?', a: 'No — Google Maps doesn\'t work reliably in China even with a VPN. The map data is deliberately offset by 500+ meters. Use Amap (高德地图) for Chinese-language navigation with partial English labels, or Apple Maps which works in China and has decent English coverage. Baidu Maps is the most comprehensive but entirely in Chinese. Download offline maps in Amap or Apple Maps before arrival as backup for when you don\'t have data. Pro tip: screenshot your hotel location on the map — taxi drivers respond well to visual references.' },
+  { q: 'How do I pay for the Metro as a foreigner?', a: 'Three options, ranked by convenience: (1) Alipay transport QR code — the best method. Set up before arriving. Works for Metro AND buses. No deposit. Auto-charges your linked foreign card. (2) Transportation Card (交通卡) — buy at any Metro station service counter. ¥20 deposit (refundable when you leave). Top up with cash at machines. Works everywhere the QR code does. (3) Single-journey ticket from machines at every station — select your destination on the touchscreen map, pay in cash or Alipay. Works but queuing each time gets old fast. Most travelers should set up Alipay QR on day one and never think about tickets again.' },
+  { q: 'Can I rent a car in Chengdu?', a: 'Technically yes, but we strongly advise against it. China doesn\'t recognize foreign driver\'s licenses without a Chinese temporary license (complicated to obtain, requires a medical exam and Chinese-language theory test). Chengdu traffic is chaotic by Western standards — lane markings are suggestions, scooters go everywhere, and parking is genuinely nightmarish in central areas. Metro + Didi will get you everywhere you want to go faster, cheaper, and with zero stress. The only exception: if you have a Chinese license and want to explore rural western Sichuan, a rental car makes sense. For everyone else: Didi.' },
+  { q: 'How do I buy train tickets for day trips?', a: 'Trip.com (English) or 12306.cn (Chinese only). Book 1–2 days ahead for popular routes (Leshan, Chongqing — these sell out). Weekday tickets to Qingcheng/Dujiangyan can be bought same-day at the station. ALWAYS book well ahead during Chinese holidays — every train sells out completely. You\'ll need your passport number to book. At the station: use the "Manual/Staff" gate (not the automatic turnstile) — show your passport to the attendant. Your passport IS your ticket — the booking is linked to your passport number electronically. No paper ticket needed for most trains now, but Trip.com can email you a QR code as backup.' },
+  { q: 'What if the Metro is closed when I arrive?', a: 'Shuangliu (CTU) Metro Line 10: last train around 11:00 PM. Tianfu (TFU) Metro Line 18: last train around 11:30 PM. After Metro closes: Didi is your best option. ¥60–80 from CTU, ¥150–200 from TFU. Airport buses run later than Metro on some routes (check at the bus counter in Arrivals) — ¥10–20, slower but cheaper. If your flight lands after midnight, budget for a Didi. The airport taxi queue at 1 AM can be 30+ minutes long — Didi is usually faster.' },
+  { q: 'Is it safe to take taxis at night in Chengdu?', a: 'Yes — Chengdu is a very safe city. Licensed green-and-yellow taxis are safe at any hour. Meters are honest. The main risk at night is not crime but availability — after midnight, taxis are hard to find away from bar areas. Use Didi for reliable pickup anywhere, anytime. Avoid unlicensed "black taxis" (drivers approaching you in the arrivals hall with "taxi? taxi?" — they charge 3–5× the real fare and are unnecessarily risky. Walk to the official taxi stand or use Didi instead.' },
+  { q: 'How do I use bike sharing without a Chinese phone number?', a: 'Alipay works without a Chinese phone number — just your passport-verified account and a linked foreign card. Open Alipay, tap "Scan", point at the QR code on the bike handlebar. The app will ask you to confirm your identity (first time only — passport verification handles this). After that, bikes unlock instantly. ¥1.50 per 30 minutes, auto-charged to your linked card. No deposit required when using Alipay (some standalone apps ask for a deposit — avoid those). End your ride in a blue parking zone on the app map, manually close the lock, and the app auto-ends the trip.' },
+  { q: 'What\'s the difference between CTU and TFU airports for getting into the city?', a: 'CTU (Shuangliu) is the closer, more convenient airport — 30 minutes to city center by Metro, ¥50–70 by Didi. Most international flights still use CTU. TFU (Tianfu) is Chengdu\'s new mega-airport, opened in 2021 — it\'s further out (50–75 minutes to city center) but is the growing hub for new international routes. If you have a choice, fly into CTU. If you\'re landing at TFU, budget an extra 30 minutes and ¥100+ for transport compared to CTU. TFU\'s Metro Line 18 is excellent — don\'t bother with a ¥200 Didi unless the Metro is closed.' },
+];
+
 const schema = {
   '@context': 'https://schema.org',
   'datePublished': '2026-07-29',
-  'dateModified': '2026-07-29',
-  '@graph': [{'@type': 'Article', 'headline': 'Chengdu Transportation Guide', 'description': 'Getting around Chengdu: metro, buses, taxis, and bike sharing.', 'url': 'https://best-of-chengdu.com/travel/transportation', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel'}, {'@type': 'ListItem', 'position': 3, 'name': 'Transportation', 'item': 'https://best-of-chengdu.com/travel/transportation'}]}],
+  'dateModified': '2026-08-05',
+  '@graph': [
+    { '@type': 'Article', 'headline': 'Chengdu Transportation Guide 2026 — Metro, Didi, Airports & Day Trips', 'description': 'Complete transportation guide: tourist Metro lines with colors, step-by-step Alipay & Didi setup for foreigners, CTU & TFU airport transfers, train station navigation, common routes, night transport, and Chinese taxi phrases.', 'url': 'https://best-of-chengdu.com/travel/transportation', 'author': { '@type': 'Organization', 'name': 'Best of Chengdu' } },
+    { '@type': 'BreadcrumbList', 'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'Transportation', 'item': 'https://best-of-chengdu.com/travel/transportation' },
+    ]},
+    { '@type': 'FAQPage', 'mainEntity': faqs.map((faq) => ({ '@type': 'Question', 'name': faq.q, 'acceptedAnswer': { '@type': 'Answer', 'text': faq.a } })) },
+  ],
 };
 ---
 
-<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu Transportation Guide" description="Getting around Chengdu: metro, buses, taxis, and bike sharing.">
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu Transportation Guide 2026 — Metro, Didi, Airports & Day Trips | Best of Chengdu" description="Complete guide: step-by-step Alipay & Didi setup, tourist Metro lines with colors, CTU & TFU airport transfers, train station navigation, common routes, taxi phrases, night transport options.">
   <Header />
 
   <main>
-    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
-      <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
-        Chengdu Transportation Guide
-      </h1>
-      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Chengdu's public transport is excellent, affordable, and easy to navigate even if you do not speak Chinese. Here is how to get around.</p>
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-[#0d1b2a] via-[#1b2838] to-[#0d1b2a] text-white">
+      <div class="max-w-[860px] mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-24">
+        <p class="text-xs font-medium tracking-widest uppercase text-white/50 mb-4">Getting Around · Updated August 2026</p>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tighter leading-[1.05] mb-5">
+          Chengdu<br class="hidden sm:block" /> Transportation Guide
+        </h1>
+        <p class="text-lg text-white/60 leading-relaxed max-w-[52ch] mb-8">
+          Set up Alipay and Didi before you leave home. Know which Metro lines you'll actually use. Navigate train stations without stress. And never get lost getting from either airport to your hotel.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#setup" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-white/25 transition-colors">Setup guide ↓</a>
+          <a href="#metro" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Metro lines</a>
+          <a href="#routes" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Common routes</a>
+          <a href="#airports" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Airports</a>
+        </div>
+      </div>
     </section>
-    <section class="max-w-[860px] mx-auto px-6 pb-16">
-      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Getting around Chengdu</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">Metro</h3><p class="text-sm text-gray-500 mt-1">14 lines covering the entire city. Signs and announcements in English. Clean, air-conditioned, and punctual. Single rides cost 2-8 RMB. Get a stored-value Transportation Card or use Alipay's transport QR code. Runs 6am to midnight.</p></div>
-        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">Didi / Ride-hailing</h3><p class="text-sm text-gray-500 mt-1">Uber does not operate in China. Didi is the local equivalent and works well. Download the app, link a credit card, and you can hail a car anywhere. Typical city rides are 15-40 RMB. English interface available in the app settings.</p></div>
-        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">Bike sharing</h3><p class="text-sm text-gray-500 mt-1">Blue (Hello Bike), yellow (Meituan), and green (Qingju) bikes are everywhere. Scan with Alipay or WeChat to unlock. Trips start at 1.5 RMB. Chengdu is flat and bike-friendly with dedicated lanes on most major roads.</p></div>
-        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">Taxis</h3><p class="text-sm text-gray-500 mt-1">Green taxis are widely available. Flag fall is 8 RMB for the first 2 km. Drivers rarely speak English, so show your destination in Chinese characters. Taxis are metered and honest. Tipping is not expected.</p></div>
-        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">Buses</h3><p class="text-sm text-gray-500 mt-1">Extensive network covering every corner of the city. Fares are 2 RMB flat. Routes and stops are announced in Chinese only, so buses are best for adventurous travelers or short, obvious routes.</p></div>
-        <div class="p-5 rounded-xl border border-border"><h3 class="font-display font-semibold text-[#1a1a1a]">From the airport</h3><p class="text-sm text-gray-500 mt-1">Shuangliu Airport (CTU) is connected by Metro Line 10 (30 min to city center). Tianfu Airport (TFU) is farther, served by Metro Line 18 (50 min). Both also have airport bus services. Didi from CTU is about 60 RMB, from TFU about 150 RMB.</p></div>
+
+    <!-- QUICK STATS -->
+    <section class="max-w-[860px] mx-auto px-6 -mt-8 relative z-10">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="p-5 rounded-xl bg-white border border-border shadow-sm text-center">
+          <span class="block text-2xl font-bold text-accent">14</span>
+          <span class="block text-[10px] text-gray-400 uppercase tracking-wide mt-1">Metro Lines</span>
+        </div>
+        <div class="p-5 rounded-xl bg-white border border-border shadow-sm text-center">
+          <span class="block text-2xl font-bold text-accent">¥2–8</span>
+          <span class="block text-[10px] text-gray-400 uppercase tracking-wide mt-1">Metro Fare Range</span>
+        </div>
+        <div class="p-5 rounded-xl bg-white border border-border shadow-sm text-center">
+          <span class="block text-2xl font-bold text-accent">¥15</span>
+          <span class="block text-[10px] text-gray-400 uppercase tracking-wide mt-1">Average Didi Ride</span>
+        </div>
+        <div class="p-5 rounded-xl bg-white border border-border shadow-sm text-center">
+          <span class="block text-2xl font-bold text-accent">6 AM–</span>
+          <span class="block text-[10px] text-gray-400 uppercase tracking-wide mt-1">Metro Operating</span>
+        </div>
+      </div>
     </section>
+
+    <!-- SETUP GUIDE -->
+    <section id="setup" class="max-w-[860px] mx-auto px-6 pt-16 pb-8">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Before You Leave Home — App Setup</h2>
+      <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Do these 4 things before your flight. Each takes 5 minutes now and saves hours of frustration in China. You need Alipay for payments and transport, and Didi for rides. Both work with foreign cards — but you must set them up before you arrive.</p>
+      <div class="space-y-5">
+        {setupGuide.map((s) => (
+          <div class="flex gap-4 p-5 rounded-xl border border-border bg-white">
+            <div class="shrink-0 w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-bold text-sm">{s.step}</div>
+            <div>
+              <h3 class="font-semibold text-[#1a1a1a] mb-1">{s.title}</h3>
+              <p class="text-sm text-gray-500 leading-relaxed mb-2">{s.desc}</p>
+              <div class="bg-surface rounded-lg p-3 text-xs text-gray-500 leading-relaxed">
+                <span class="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">How to do it: </span>{s.detail}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="mt-5 p-4 rounded-xl bg-amber-50 border border-amber-100 text-xs text-amber-800 leading-relaxed">
+        <strong>⚠️ Critical:</strong> Do NOT wait until you land to download these apps. Chinese airport WiFi often requires a Chinese phone number for SMS verification — a catch-22 if you haven't set up a local SIM yet. Complete steps 1–4 at home on reliable WiFi. If you absolutely must set up at the airport, find a Starbucks or McDonald's — their WiFi is more foreigner-friendly.
+      </div>
+    </section>
+
+    <!-- TRANSPORT MODES -->
+    <section id="modes" class="max-w-[860px] mx-auto px-6 pt-12 pb-8">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-8">How to Get Around</h2>
+      <div class="space-y-5">
+        {modes.map((mode) => (
+          <div class="rounded-2xl border border-border bg-white overflow-hidden hover:shadow-sm transition-shadow duration-200">
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-2xl">{mode.icon}</span>
+                <h3 class="text-lg font-display font-semibold tracking-tight text-[#1a1a1a]">{mode.title}</h3>
+              </div>
+              <p class="text-sm text-gray-500 leading-relaxed mb-4">{mode.desc}</p>
+              <div class="bg-surface rounded-xl p-4">
+                <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Pro Tips</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {mode.tips.map((tip) => (
+                    <div class="flex items-start gap-2 text-xs text-gray-500">
+                      <span class="text-accent mt-0.5 shrink-0">→</span>
+                      <span>{tip}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- METRO LINES -->
+    <section id="metro" class="bg-surface py-20 mt-12">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Metro Lines You'll Actually Use</h2>
+        <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Chengdu has 14 metro lines. As a tourist, these seven matter. Colors match the official map — use them to navigate. The other 7 lines serve residential suburbs you'll likely never visit.</p>
+        <div class="space-y-3">
+          {metroLines.map((l) => (
+            <div class="p-5 rounded-xl border border-border bg-white hover:shadow-sm transition-shadow">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="shrink-0 flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full" style={`background-color:${l.color}`}></span>
+                  <span class="font-bold text-[#1a1a1a] text-sm">{l.line}</span>
+                </div>
+                <span class="text-[10px] text-gray-400 leading-relaxed">{l.keyStations}</span>
+              </div>
+              <p class="text-xs text-gray-500 leading-relaxed">{l.touristUse}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- STATION GUIDE -->
+    <section class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Navigating Train Stations</h2>
+      <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Chinese train stations are more like airports — security checks, departure gates, and enormous buildings. Knowing which station serves your destination (and how to navigate it) prevents stressful last-minute sprints.</p>
+      <div class="space-y-5">
+        {stationGuide.map((st) => (
+          <div class="rounded-2xl border border-border bg-white overflow-hidden">
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-2xl">{st.icon}</span>
+                <div>
+                  <h3 class="font-display font-semibold text-lg text-[#1a1a1a]">{st.station}</h3>
+                  <span class="text-xs text-gray-400">Metro: {st.lines}</span>
+                </div>
+              </div>
+              <div class="mb-4">
+                <span class="text-[10px] font-semibold text-gray-400 uppercase tracking-wide">Serves:</span>
+                <span class="text-xs text-gray-500 ml-2">{st.serves}</span>
+              </div>
+              <div class="bg-surface rounded-xl p-4">
+                <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">How to Navigate</span>
+                <p class="text-xs text-gray-500 leading-relaxed">{st.navigation}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- COMMON ROUTES -->
+    <section id="routes" class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Common Routes — From X to Y</h2>
+        <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">These 10 routes cover 90% of trips you'll make. Best option first, alternatives listed. All routes originate from Chunxi Road (the central tourist hub).</p>
+        <div class="overflow-x-auto rounded-xl border border-border bg-white">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-surface/50">
+                <th class="text-left py-3 px-4 font-medium text-gray-400 text-xs uppercase tracking-wide">From → To</th>
+                <th class="text-left py-3 px-4 font-medium text-gray-400 text-xs uppercase tracking-wide">Best Way</th>
+                <th class="text-left py-3 px-4 font-medium text-gray-400 text-xs uppercase tracking-wide">Details</th>
+                <th class="text-left py-3 px-4 font-medium text-gray-400 text-xs uppercase tracking-wide">Alternative</th>
+              </tr>
+            </thead>
+            <tbody>
+              {commonRoutes.map((r, i) => (
+                <tr class="border-t border-border hover:bg-accent/[0.02]">
+                  <td class="py-3 px-4 font-semibold text-[#1a1a1a] text-xs">{r.from} →<br class="sm:hidden"/>{r.to}</td>
+                  <td class="py-3 px-4"><span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">{r.best}</span></td>
+                  <td class="py-3 px-4 text-xs text-gray-500 leading-relaxed">{r.detail}</td>
+                  <td class="py-3 px-4 text-xs text-gray-400 leading-relaxed">{r.alternative}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- AIRPORTS -->
+    <section id="airports" class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Two Airports — Know Which One</h2>
+      <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Check your ticket carefully. CTU (Shuangliu) is 30 minutes from downtown — the convenient one. TFU (Tianfu) is 50+ minutes — the new mega-airport that's further out. Your transfer plan changes completely depending on which one.</p>
+      <div class="space-y-6">
+        <div class="rounded-2xl border border-border bg-white overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="w-3 h-3 rounded-full shrink-0" style="background-color:#3366CC"></span>
+              <div>
+                <h3 class="font-display font-semibold text-lg text-[#1a1a1a]">Shuangliu International (CTU)</h3>
+                <span class="text-[10px] text-accent font-medium">Closer to city · Most international flights · Metro Line 10</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="p-4 rounded-xl bg-surface">
+                <div class="flex items-center gap-2 mb-1.5"><span class="text-base">🚇</span><span class="text-xs font-semibold text-[#1a1a1a]">Metro Line 10</span></div>
+                <p class="text-[11px] text-gray-500 leading-relaxed">20–30 min to city center · ¥5–7 · 6:00 AM–11:00 PM. Transfer to Lines 3 or 7 at Taipingyuan. This is what 90% of travelers use — the simplest and cheapest option.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-surface">
+                <div class="flex items-center gap-2 mb-1.5"><span class="text-base">🚕</span><span class="text-xs font-semibold text-[#1a1a1a]">Taxi / Didi</span></div>
+                <p class="text-[11px] text-gray-500 leading-relaxed">25–40 min to Chunxi Road · ¥50–70. Official taxi stand outside Arrivals. Didi pickup zone is clearly marked with English signs. Ignore touts inside the terminal saying "taxi" — walk to the official area.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-surface">
+                <div class="flex items-center gap-2 mb-1.5"><span class="text-base">🚌</span><span class="text-xs font-semibold text-[#1a1a1a]">Airport Bus</span></div>
+                <p class="text-[11px] text-gray-500 leading-relaxed">¥10–15 · Multiple routes to major hotels. Slower than Metro but runs later into the night. Buy tickets at the bus counter in Arrivals. Some routes run until the last flight lands.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-border bg-white overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="w-3 h-3 rounded-full shrink-0" style="background-color:#9933CC"></span>
+              <div>
+                <h3 class="font-display font-semibold text-lg text-[#1a1a1a]">Tianfu International (TFU)</h3>
+                <span class="text-[10px] text-accent font-medium">New mega-airport · Further from city · Growing international hub · Metro Line 18</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="p-4 rounded-xl bg-surface">
+                <div class="flex items-center gap-2 mb-1.5"><span class="text-base">🚇</span><span class="text-xs font-semibold text-[#1a1a1a]">Metro Line 18</span></div>
+                <p class="text-[11px] text-gray-500 leading-relaxed">45–50 min to Chengdu South Station · ¥10–12 · 6:00 AM–11:30 PM. Fastest and cheapest. Transfer to Lines 1 or 7 at South Station. Trains every 8–15 minutes. Clean, modern, uncrowded outside rush hour.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-surface">
+                <div class="flex items-center gap-2 mb-1.5"><span class="text-base">🚕</span><span class="text-xs font-semibold text-[#1a1a1a]">Taxi / Didi</span></div>
+                <p class="text-[11px] text-gray-500 leading-relaxed">50–70 min to Chunxi Road · ¥150–200. Didi is usually ¥20–30 cheaper than a street taxi from TFU. Only worth it if the Metro is closed or you have heavy luggage — otherwise, take Line 18.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-surface">
+                <div class="flex items-center gap-2 mb-1.5"><span class="text-base">🚌</span><span class="text-xs font-semibold text-[#1a1a1a]">Airport Bus</span></div>
+                <p class="text-[11px] text-gray-500 leading-relaxed">¥15–20 · 60–80 minutes. Some routes run 24 hours — the best option for late-night arrivals when Metro Line 18 has stopped. Check at the bus counter in Arrivals for the latest schedule.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 p-4 rounded-xl bg-accent/5 border border-accent/10">
+        <span class="block text-[10px] font-semibold text-accent uppercase tracking-wide mb-1">Airport Decision Guide</span>
+        <p class="text-xs text-gray-500 leading-relaxed">If you can choose: fly into <strong class="text-[#1a1a1a]">CTU (Shuangliu)</strong> — closer, faster, cheaper transfers. If your flight lands at TFU (increasingly common for new international routes): take <strong class="text-[#1a1a1a]">Metro Line 18</strong> (50 min, ¥12). Only use Didi from TFU if the Metro is closed (after 11:30 PM) or you have 2+ heavy suitcases. The ¥150–200 Didi from TFU is not worth it when a perfectly good Metro costs ¥12 and takes the same time in traffic.</p>
+      </div>
+    </section>
+
+    <!-- INTERCITY -->
     <section class="bg-surface py-20">
       <div class="max-w-[860px] mx-auto px-6">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Essential apps</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Alipay</h3><p class="text-sm text-gray-500 mt-1">The single most useful app for China travel. Pay for metro, buses, taxis, and almost every shop. Link a foreign credit card and the app handles currency conversion. Also has an integrated Didi mini-app.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Didi Chuxing</h3><p class="text-sm text-gray-500 mt-1">The ride-hailing app that replaced Uber in China. Reliable, affordable, and available in English. Set your destination by typing or dropping a pin on the map.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">MetroMan / ExploreMetro</h3><p class="text-sm text-gray-500 mt-1">Offline metro maps with route planning in English. Not essential but helpful if you are offline or want to plan multi-line journeys.</p></div>
-          <div class="p-5 rounded-xl bg-white border border-border"><h3 class="font-semibold text-[#1a1a1a]">Baidu Maps / Amap</h3><p class="text-sm text-gray-500 mt-1">Google Maps does not work reliably in China. Baidu Maps and Amap (Gaode) are the local alternatives. Amap has some English support. Both show real-time bus and metro arrival times.</p></div>
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Day Trips & Intercity Travel</h2>
+        <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Chengdu's high-speed rail network puts remarkable destinations within reach. All trains have English signage, comfortable seats, and surprisingly good punctuality. These are the routes you'll actually use.</p>
+        <div class="overflow-x-auto rounded-xl border border-border bg-white">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-surface/50">
+                <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Destination</th>
+                <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Duration</th>
+                <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Depart From</th>
+                <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Cost</th>
+                <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-3 px-5 font-semibold text-[#1a1a1a]">Chongqing (重庆)</td><td class="py-3 px-5 text-gray-500 text-xs">1–1.5 hrs</td><td class="py-3 px-5 text-gray-500 text-xs">Chengdu East</td><td class="py-3 px-5 text-gray-500 text-xs font-medium">¥150–200</td><td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">Trains every 20–30 min — China's busiest intercity route. Book 1+ day ahead.</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-3 px-5 font-semibold text-[#1a1a1a]">Leshan Buddha (乐山)</td><td class="py-3 px-5 text-gray-500 text-xs">50–70 min</td><td class="py-3 px-5 text-gray-500 text-xs">Chengdu South / East</td><td class="py-3 px-5 text-gray-500 text-xs font-medium">¥50–60</td><td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">Trains every 30–60 min. From Leshan Station: Bus 3 (¥2) or ¥15 taxi to the Buddha scenic area.</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-3 px-5 font-semibold text-[#1a1a1a]">Mt. Qingcheng (青城山)</td><td class="py-3 px-5 text-gray-500 text-xs">30–40 min</td><td class="py-3 px-5 text-gray-500 text-xs">Xipu (via Metro L2)</td><td class="py-3 px-5 text-gray-500 text-xs font-medium">¥10–15</td><td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">Metro Line 2 to Xipu terminus, then train. Shuttle bus ¥10 from station to mountain gate.</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-3 px-5 font-semibold text-[#1a1a1a]">Dujiangyan (都江堰)</td><td class="py-3 px-5 text-gray-500 text-xs">30–40 min</td><td class="py-3 px-5 text-gray-500 text-xs">Xipu (via Metro L2)</td><td class="py-3 px-5 text-gray-500 text-xs font-medium">¥10–15</td><td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">Same line as Qingcheng — get off at Lidui Park (one stop before Qingcheng). 10-min walk to entrance.</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-3 px-5 font-semibold text-[#1a1a1a]">Xi'an (西安)</td><td class="py-3 px-5 text-gray-500 text-xs">3–4 hrs</td><td class="py-3 px-5 text-gray-500 text-xs">Chengdu East</td><td class="py-3 px-5 text-gray-500 text-xs font-medium">¥260–400</td><td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">Crosses the Qinling Mountains through tunnels — an engineering marvel. Overnight stay recommended. Terracotta Warriors are 40 min from Xi'an station.</td></tr>
+              <tr class="border-t border-border hover:bg-accent/[0.02]"><td class="py-3 px-5 font-semibold text-[#1a1a1a]">Mount Emei (峨眉山)</td><td class="py-3 px-5 text-gray-500 text-xs">1–1.5 hrs</td><td class="py-3 px-5 text-gray-500 text-xs">Chengdu South / East</td><td class="py-3 px-5 text-gray-500 text-xs font-medium">¥60–80</td><td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">One of China's four sacred Buddhist mountains. 3,099m summit. Full ascent takes 2–3 days; cable car option for day-trippers. Golden Summit at sunrise is spectacular.</td></tr>
+            </tbody>
+          </table>
         </div>
+      </div>
+    </section>
+
+    <!-- NIGHT TRANSPORT -->
+    <section class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Getting Around at Night</h2>
+      <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Metro closes around 11:00–11:30 PM. Chengdu's nightlife doesn't. Here's how to get home after midnight — and why Didi is almost always the answer.</p>
+      <div class="overflow-x-auto rounded-xl border border-border bg-white">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-surface/50">
+              <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Option</th>
+              <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Availability</th>
+              <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Cost</th>
+              <th class="text-left py-3.5 px-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Tip</th>
+            </tr>
+          </thead>
+          <tbody>
+            {nightTransport.map((nt, i) => (
+              <tr class="border-t border-border hover:bg-accent/[0.02]">
+                <td class="py-3 px-5 font-semibold text-[#1a1a1a] text-xs">{nt.option}</td>
+                <td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">{nt.availability}</td>
+                <td class="py-3 px-5 text-xs text-gray-500 font-medium">{nt.cost}</td>
+                <td class="py-3 px-5 text-xs text-gray-500 leading-relaxed">{nt.tip}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAXI PHRASES -->
+    <section class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Chinese Taxi Phrases — Say These, Get There</h2>
+        <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Five phrases that cover every taxi interaction. Show these on your phone or memorize the pinyin. Taxi drivers in Chengdu speak zero English — these five lines are all you need.</p>
+        <div class="space-y-2.5">
+          {taxiPhrases.map((p, i) => (
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-white border border-border">
+              <span class="shrink-0 w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xs font-bold">{i + 1}</span>
+              <div class="flex-1">
+                <div class="flex flex-wrap items-baseline gap-2 mb-1">
+                  <span class="font-semibold text-[#1a1a1a] text-sm">{p.chinese}</span>
+                  <span class="text-xs text-gray-400">{p.english}</span>
+                </div>
+                <p class="text-xs text-gray-500 leading-relaxed">{p.tip}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-8">Transport FAQ</h2>
+      <div class="space-y-3">
+        {faqs.map((faq, i) => (
+          <div class="rounded-xl border border-border bg-white overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-accent/[0.02] transition-colors" data-index={i} aria-expanded="false">
+              <span class="font-semibold text-[#1a1a1a] pr-4 text-sm">{faq.q}</span>
+              <svg class="faq-icon shrink-0 transition-transform duration-200" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer hidden px-5 pb-5"><p class="text-sm text-gray-500 leading-relaxed">{faq.a}</p></div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CROSSLINKS -->
+    <section class="max-w-[860px] mx-auto px-6 pb-24">
+      <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-4">Continue Planning</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="/travel/hotels" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="text-lg mb-2 block">🏨</span>
+          <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Where to Stay →</h3>
+          <p class="text-xs text-gray-500 mt-1">5 neighborhoods, 17 hotels & price guide.</p>
+        </a>
+        <a href="/attractions/day-trips" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="text-lg mb-2 block">🏯</span>
+          <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Day Trips →</h3>
+          <p class="text-xs text-gray-500 mt-1">Leshan Buddha, Mount Qingcheng in detail.</p>
+        </a>
+        <a href="/" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="text-lg mb-2 block">🏠</span>
+          <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Full Chengdu Guide →</h3>
+          <p class="text-xs text-gray-500 mt-1">Food, pandas, attractions & complete FAQ.</p>
+        </a>
+      </div>
     </section>
   </main>
 
   <Footer />
+
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !answer.classList.contains('hidden');
+        answer.classList.toggle('hidden');
+        icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  </script>
 </BaseLayout>

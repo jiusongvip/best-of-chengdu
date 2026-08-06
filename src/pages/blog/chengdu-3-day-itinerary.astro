@@ -6,12 +6,12 @@ import Footer from '~/components/Footer.astro';
 const schema = {
   '@context': 'https://schema.org',
   'datePublished': '2026-07-28',
-  'dateModified': '2026-07-29',
+  'dateModified': '2026-08-05',
   '@graph': [
     {
       '@type': 'Article',
-      'headline': 'Chengdu 3-Day Itinerary: The Perfect First Visit',
-      'description': 'A carefully paced three-day plan covering pandas, food, ancient streets, and hidden corners most tourists miss.',
+      'headline': 'Chengdu 3-Day Itinerary: The Perfect First Visit (2026)',
+      'description': 'A carefully paced three-day plan covering pandas, food, ancient streets, and hidden corners most tourists miss. Includes rainy-day alternatives, family options, and a detailed budget breakdown.',
       'url': 'https://best-of-chengdu.com/blog/chengdu-3-day-itinerary',
       'author': {'@type': 'Organization', 'name': 'Best of Chengdu'},
     },
@@ -27,7 +27,7 @@ const schema = {
 };
 ---
 
-<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu 3-Day Itinerary" description="A carefully paced three-day plan covering pandas, food, ancient streets, and hidden corners most tourists miss.">
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu 3-Day Itinerary" description="A carefully paced three-day plan covering pandas, food, ancient streets, and hidden corners most tourists miss. Includes rainy-day alternatives, family options, and a detailed budget breakdown.">
   <Header />
 
   <main>
@@ -36,58 +36,183 @@ const schema = {
       <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1] mt-4">
         Chengdu 3-Day Itinerary: The Perfect First Visit
       </h1>
-      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Three days is enough to fall in love with Chengdu. This itinerary gives you the pandas, the food, the ancient streets, and a few surprises most first-time visitors miss.</p>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Three days is enough to fall in love with Chengdu. This itinerary gives you the pandas, the food, the ancient streets, and a few surprises most first-time visitors miss — all at a comfortable pace with plenty of flexibility.</p>
 
-      <section class="mt-12">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-4">Day 1: Pandas & Ancient Streets</h2>
-        <div class="space-y-4 text-gray-500 leading-relaxed">
-          <p><strong class="text-[#1a1a1a]">Morning (7:30am-12pm): Chengdu Panda Base.</strong> Arrive by 8am. Pandas are most active in the morning, especially in cooler months. Follow our <a href="/attractions/panda-base" class="text-accent hover:underline">Panda Base guide</a> for the best route. The nursery and sub-adult enclosures are the highlights.</p>
-          <p><strong class="text-[#1a1a1a]">Lunch (12:30pm):</strong> Take the shuttle back to the city and head to Chen Mapo Tofu near Wenshu Monastery. Order the namesake dish, twice-cooked pork, and a vegetable. Budget 60-80 RMB per person.</p>
-          <p><strong class="text-[#1a1a1a]">Afternoon (2-5pm): Kuanzhai Alley.</strong> Three parallel Qing-dynasty alleys with courtyard tea houses, artisan shops, and incredible people-watching. Start in Wide Alley for the grand courtyards, then explore Narrow Alley for a more intimate feel.</p>
-          <p><strong class="text-[#1a1a1a]">Evening (6pm): Jinli Ancient Street.</strong> Arrive at dusk when the red lanterns come on. The snack street is touristy but the atmosphere is unbeatable. Grab a few skewers and walk the length of the street. End with a drink at a riverside bar near Jiuyanqiao.</p>
+      <!-- Quick overview -->
+      <div class="mt-8 p-6 rounded-xl bg-surface grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+        <div>
+          <p class="font-semibold text-[#1a1a1a] mb-1">Day 1</p>
+          <p class="text-gray-500">Panda Base → Chen Mapo Tofu → Kuanzhai Alley → Jinli by night</p>
+        </div>
+        <div>
+          <p class="font-semibold text-[#1a1a1a] mb-1">Day 2</p>
+          <p class="text-gray-500">People\'s Park → Jianshe Road food crawl → Wuhou Shrine → Hotpot dinner</p>
+        </div>
+        <div>
+          <p class="font-semibold text-[#1a1a1a] mb-1">Day 3</p>
+          <p class="text-gray-500">Wenshu Monastery → Sichuan Opera → Taikoo Li → Farewell dinner</p>
+        </div>
+      </div>
+
+      <!-- Day 1 -->
+      <section class="mt-14">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Day 1: Pandas & Ancient Streets</h2>
+        <div class="space-y-5 text-gray-500 leading-relaxed">
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">7:30 AM – 12:00 PM</p>
+            <p><strong class="text-[#1a1a1a]">Chengdu Research Base of Giant Panda Breeding.</strong> Arrive by 8:00 AM — pandas are most active in the morning, especially in cooler months. The nursery and sub-adult enclosures are the highlights: watch cubs tumble over each other while adults methodically demolish bamboo. Follow our <a href="/attractions/panda-base" class="text-accent hover:underline">complete Panda Base guide</a> for the best walking route and tips on avoiding crowds.</p>
+            <p class="mt-2 text-xs text-gray-400">🎫 ¥55 · Metro Line 3 to Panda Avenue, then shuttle bus · Allow 3–4 hours</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">12:30 PM – 1:30 PM</p>
+            <p><strong class="text-[#1a1a1a]">Lunch: Chen Mapo Tofu (陈麻婆豆腐).</strong> Take the shuttle back toward the city and stop at this legendary restaurant near Wenshu Monastery. The namesake dish was invented here in 1862 — silky tofu cubes in a fiery, numbing sauce of doubanjiang, fermented black beans, and ground pork. Order the mapo tofu, twice-cooked pork, and a simple vegetable dish. Budget 60–80 RMB per person.</p>
+            <p class="mt-2 text-xs text-gray-400">📍 197 Xiyulong Street, Qingyang District · 11:00–21:00</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">2:00 PM – 5:00 PM</p>
+            <p><strong class="text-[#1a1a1a]">Kuanzhai Alley (宽窄巷子).</strong> Three parallel Qing-dynasty alleys — Wide, Narrow, and Well — that form the best-preserved courtyard neighborhood in Chengdu. Start in Wide Alley for the grand restored courtyards now housing tea houses and artisan shops. Narrow Alley has a more intimate, lived-in feel with smaller doorways and hidden bars. Well Alley is the quietest, with a few excellent tiny galleries.</p>
+            <p class="mt-2">Stop for tea at one of the courtyard tea houses. A pot of jasmine tea runs 30–50 RMB and comes with unlimited hot water refills. The people-watching is excellent — you\'ll see everything from elderly locals playing mahjong to young couples in hanfu doing photo shoots.</p>
+            <p class="mt-2 text-xs text-gray-400">📍 Qingyang District · Free entry · Metro Line 4 to Kuanzhai Xiangzi</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">6:00 PM – Late</p>
+            <p><strong class="text-[#1a1a1a]">Jinli Ancient Street (锦里).</strong> Arrive at dusk — this is when Jinli transforms. Hundreds of red lanterns flicker on along the pedestrian lane, reflecting off the dark wood facades and canal water. The snack street is undeniably touristy, but the atmosphere is unbeatable. Grab a few skewers (¥5–10 each), walk the full length of the street, and take in the spectacle.</p>
+            <p class="mt-2">For dinner, skip the tourist restaurants inside Jinli itself. Instead, walk 10 minutes to the Tibetan Quarter near Wuhou Shrine for excellent Tibetan hotpot and yak butter tea, or head to the Jiuyanqiao area for riverside bars and late-night skewer restaurants that locals actually go to.</p>
+            <p class="mt-2 text-xs text-gray-400">📍 Wuhou District, adjacent to Wuhou Shrine · Free entry · Open until ~22:00</p>
+          </div>
         </div>
       </section>
 
-      <section class="mt-12">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-4">Day 2: Food Deep Dive</h2>
-        <div class="space-y-4 text-gray-500 leading-relaxed">
-          <p><strong class="text-[#1a1a1a]">Morning (9am): People's Park.</strong> Start your day like a local. Grab a bamboo chair at <a href="/food/tea-houses" class="text-accent hover:underline">Heming Tea House</a>, order jasmine tea (15 RMB), and watch the world go by. If you're feeling social, the matchmaking corner in the north of the park is pure Chengdu theater.</p>
-          <p><strong class="text-[#1a1a1a]">Lunch (12pm): Street food crawl on Jianshe Road.</strong> This is the city's best street food strip. Start with dan dan noodles (12 RMB), follow with a guo kui stuffed flatbread (8 RMB), and finish with skewers. Don't fill up too much.</p>
-          <p><strong class="text-[#1a1a1a]">Afternoon (2-4pm): Wuhou Shrine.</strong> A serene temple complex dedicated to Zhuge Liang. The ancient cypress trees and red-walled corridors are beautiful even if you know nothing about Three Kingdoms history. The neighboring Jinli connects directly if you want to revisit it in daylight.</p>
-          <p><strong class="text-[#1a1a1a]">Dinner (7pm): Hotpot.</strong> This is the main event. Book a table at <a href="/food/hotpot" class="text-accent hover:underline">Shu Daxia or Xiaolongkan</a>. Order the nine-grid pot, beef slices, tripe, tofu skin, and lotus root. Dip everything in sesame oil with garlic and chopped scallions. Budget 80-120 RMB per person.</p>
-          <p><strong class="text-[#1a1a1a]">Late night (10pm):</strong> Walk off the hotpot along the Jinjiang River. Stop for a craft beer at a Yulin neighborhood bar if you still have room.</p>
+      <!-- Day 2 -->
+      <section class="mt-14">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Day 2: Food Deep Dive</h2>
+        <div class="space-y-5 text-gray-500 leading-relaxed">
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">9:00 AM – 11:30 AM</p>
+            <p><strong class="text-[#1a1a1a]">People\'s Park (人民公园).</strong> Start your day like a local. Grab a bamboo chair at Heming Tea House, order jasmine tea (¥15), and watch the world go by. The park is Chengdu\'s living room — on any given morning you\'ll see tai chi groups, calligraphy artists writing with water on the pavement, ballroom dancers, and the famous matchmaking corner where parents hang printed resumes of their unmarried children.</p>
+            <p class="mt-2">Ear cleaning (¥30) is a uniquely Chengdu experience available throughout the park. The practitioners use metal tools that produce a ringing sound — strange but oddly satisfying. Don\'t miss the bonsai garden in the northwest corner.</p>
+            <p class="mt-2 text-xs text-gray-400">📍 12 Citang Street, Qingyang District · Free entry · Metro Line 2 to People\'s Park</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">12:00 PM – 2:00 PM</p>
+            <p><strong class="text-[#1a1a1a]">Street food crawl: Jianshe Road (建设路).</strong> This is the city\'s best street food strip — a 500-meter stretch packed with stalls that have been serving the same dishes for decades. Start with dan dan noodles (¥12), follow with a guo kui stuffed flatbread (¥8), and work your way through skewers (¥2–5 each). The egg-baked cake (蛋烘糕) stalls are essential — they\'re small pancakes folded around sweet or savory fillings.</p>
+            <p class="mt-2">The trick to Jianshe Road is eating small portions at multiple stalls rather than committing to one. Bring cash — some of the best stalls are cash-only. Avoid weekends if possible; the crowds can be intense.</p>
+            <p class="mt-2 text-xs text-gray-400">📍 Jianshe Road, Chenghua District · Most stalls open 10:00–22:00</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">2:30 PM – 5:00 PM</p>
+            <p><strong class="text-[#1a1a1a]">Wuhou Shrine (武侯祠).</strong> A serene temple complex dedicated to Zhuge Liang, the legendary strategist of the Three Kingdoms era. The ancient cypress trees and red-walled corridors are beautiful even if you know nothing about Chinese history. The corridor on the east side — a long red wall flanked by bamboo — is one of Chengdu\'s most photogenic spots.</p>
+            <p class="mt-2">The temple houses dozens of life-sized statues of Shu Han officials, each with detailed biographies. The adjacent Sanyi Temple commemorates the oath of brotherhood between Liu Bei, Guan Yu, and Zhang Fei. Spend about 90 minutes here, then exit through the back gate directly into Jinli if you want to revisit it in daylight.</p>
+            <p class="mt-2 text-xs text-gray-400">📍 231 Wuhouci Street · ¥50 · 8:00–18:00 (summer hours until 19:00)</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">7:00 PM – 10:00 PM</p>
+            <p><strong class="text-[#1a1a1a]">Hotpot dinner.</strong> This is the main event. Book a table at <a href="/food/hotpot" class="text-accent hover:underline">Shu Daxia or Xiaolongkan</a> — both are excellent and quintessentially Chengdu. Order the nine-grid pot, paper-thin beef slices, tripe, tofu skin, lotus root, and quail eggs. Dip everything in your personal bowl of sesame oil mixed with minced garlic, chopped scallions, and a pinch of salt.</p>
+            <p class="mt-2">Pro tip: the tripe (毛肚) only needs 8–10 seconds in the broth. Count out loud — overcooking it turns it to rubber. The lotus root goes in early and can simmer indefinitely. Order a bottle of sweetened soy milk (唯怡豆奶) to cut the heat. Budget 80–120 RMB per person including drinks.</p>
+            <p class="mt-2 text-xs text-gray-400">📍 Multiple locations · Reservations recommended on weekends · Open until late</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">10:00 PM – Late</p>
+            <p><strong class="text-[#1a1a1a]">Late-night: Yulin neighborhood.</strong> Walk off the hotpot with a stroll through Yulin (玉林), Chengdu\'s most atmospheric residential neighborhood. The streets are lined with plane trees and low-rise apartment buildings from the 1990s. Duck into a craft beer bar — Medisn Brew Lab and Shuangyeer are both excellent — or find a late-night noodle shop if you\'re somehow still hungry.</p>
+          </div>
         </div>
       </section>
 
-      <section class="mt-12">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-4">Day 3: Culture & Hidden Corners</h2>
-        <div class="space-y-4 text-gray-500 leading-relaxed">
-          <p><strong class="text-[#1a1a1a]">Morning (9am): Wenshu Monastery.</strong> A working Buddhist temple with the best vegetarian restaurant in the city (try the imitation meat dishes, they're surprisingly good). The surrounding lanes are full of antique shops and old tea houses missed by most tourists.</p>
-          <p><strong class="text-[#1a1a1a]">Midday: Sichuan Opera at Shufeng Yayun.</strong> Book a matinee if available, or an early evening show. The face-changing (bian lian) is the highlight. <a href="/experiences/sichuan-opera" class="text-accent hover:underline">Read our full guide</a> for ticket tips and best seats.</p>
-          <p><strong class="text-[#1a1a1a]">Afternoon: Taikoo Li & Daci Temple.</strong> The contrast between the ancient temple and the surrounding luxury mall is pure Chengdu. Walk through the temple courtyard, then browse Taikoo Li's open-air design. The IFS panda climbing the building is a required photo.</p>
-          <p><strong class="text-[#1a1a1a]">Farewell dinner: Yu's Kitchen or Ming Ting.</strong> For a splurge, book Yu's Kitchen (500+ RMB, reservations required weeks ahead). For something more casual, Ming Ting is consistently excellent at 60-100 RMB. Either way, end with bingfen (ice jelly) for dessert.</p>
+      <!-- Day 3 -->
+      <section class="mt-14">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Day 3: Culture & Hidden Corners</h2>
+        <div class="space-y-5 text-gray-500 leading-relaxed">
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">9:00 AM – 12:00 PM</p>
+            <p><strong class="text-[#1a1a1a]">Wenshu Monastery (文殊院).</strong> A working Buddhist temple that has been operating since the Tang dynasty (618–907 AD). Unlike many Chinese temples that feel like museums, Wenshu is alive — monks chant morning prayers, incense fills the courtyards, and devotees bow before gilt statues. The architecture alone is worth the visit: sweeping tiled roofs, intricate wood carvings, and a towering iron pagoda.</p>
+            <p class="mt-2">The monastery\'s vegetarian restaurant is legendary. Try the "imitation meat" dishes made from tofu skin and mushrooms — the twice-cooked "pork" is eerily convincing. Budget 40–60 RMB per person. After eating, explore the surrounding lanes full of antique shops, calligraphy studios, and tiny tea houses where you can sit for hours over a ¥10 cup of tea.</p>
+            <p class="mt-2 text-xs text-gray-400">📍 66 Wenshuyuan Street, Qingyang District · Free entry · Vegetarian restaurant: 11:00–14:00, 17:00–19:30</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">2:00 PM – 4:00 PM</p>
+            <p><strong class="text-[#1a1a1a]">Sichuan Opera at Shufeng Yayun (蜀风雅韵).</strong> Book a matinee (usually 2:00 PM) or the early evening show. The face-changing (bian lian) is the headliner — performers switch painted silk masks in a fraction of a second, seemingly by magic — but the other acts are equally compelling: fire-spitting, shadow puppetry, and comedic skits in the Sichuan dialect. Arrive 30 minutes early for a pre-show tea service included in your ticket.</p>
+            <p class="mt-2">Shufeng Yayun is housed in a historic opera theater within the Culture Park, next to Qingyang Temple. The setting — carved wooden stage, red lanterns, courtyard seating — is as much a draw as the performance itself. Tickets from ¥120 for basic seating; ¥200–300 for front-row with snack service.</p>
+            <p class="mt-2 text-xs text-gray-400">📍 132 Qintai Road, Qingyang District · Book via Ctrip or at the ticket office · ¥120–300</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">4:30 PM – 6:30 PM</p>
+            <p><strong class="text-[#1a1a1a]">Taikoo Li & Daci Temple (太古里·大慈寺).</strong> The contrast between the 1,600-year-old Daci Temple and the surrounding luxury mall is pure Chengdu. Walk through the temple courtyard — the main hall houses a massive seated Buddha — then step out into Taikoo Li\'s open-air lanes of glass-and-steel boutiques. The IFS panda climbing the adjacent building is a required photo.</p>
+            <p class="mt-2">Taikoo Li is arranged as a modern interpretation of traditional Sichuan courtyard architecture. Even if high-end shopping isn\'t your thing, the design is worth seeing. Stop at the Muji store\'s café for a matcha latte overlooking the temple roofs, or browse the multi-story Fangsuo bookstore hidden in the basement.</p>
+            <p class="mt-2 text-xs text-gray-400">📍 Jinjiang District · Metro Lines 2/3 to Chunxi Road · Temple is free · Shops: 10:00–22:00</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface border border-border/50">
+            <p class="text-xs font-medium text-accent uppercase tracking-wide mb-1">7:30 PM – Late</p>
+            <p><strong class="text-[#1a1a1a]">Farewell dinner.</strong> For a splurge, book <a href="/food/sichuan-restaurants" class="text-accent hover:underline">Yu\'s Kitchen</a> (500+ RMB per person, reservations required weeks in advance). Chef Yu Bo\'s tasting menu reimagines classic Sichuan dishes with extraordinary precision. For something more casual, Ming Ting (明婷饭店) is a legendary family-run restaurant that\'s been serving consistently excellent Sichuan home cooking for decades at 60–100 RMB per person.</p>
+            <p class="mt-2">End your meal — and your trip — with bingfen (冰粉), the translucent ice jelly dessert topped with brown sugar, crushed peanuts, sesame seeds, and dried fruit. It\'s cooling, refreshing, and the perfect antidote to three days of spice.</p>
+          </div>
         </div>
       </section>
 
-      <section class="mt-12 p-6 rounded-xl bg-surface">
-        <h2 class="text-xl font-display font-semibold tracking-tight mb-4">Practical tips</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-500">
-          <div>
-            <p class="font-semibold text-[#1a1a1a] mb-1">Getting around</p>
-            <p>The metro covers almost everything on this itinerary. Get a transportation card or use Alipay's QR code. Didi for late-night rides (15-30 RMB per trip).</p>
+      <!-- Alternative plans -->
+      <section class="mt-14">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Alternative versions</h2>
+
+        <div class="space-y-5">
+          <div class="p-5 rounded-xl border border-border">
+            <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">☔ Rainy day version</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Swap the Panda Base for the <strong>Jinsha Site Museum</strong> — an underground museum built over a 3,000-year-old excavation site where the gold Sunbird disc was discovered. Skip Jinli\'s outdoor lanes and spend the evening at <strong>Zhongshuge Bookstore</strong>, a surreal mirrored bookstore that feels like an M.C. Escher drawing. Hotpot tastes even better on a rainy day.</p>
           </div>
-          <div>
-            <p class="font-semibold text-[#1a1a1a] mb-1">Budget</p>
-            <p>Mid-range: 500-700 RMB/day (comfortable hotel, restaurants, attractions). Budget: 200-300 RMB/day (hostel, street food, metro).</p>
+
+          <div class="p-5 rounded-xl border border-border">
+            <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">👨‍👩‍👧 Family with young kids</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Day 1: Panda Base (kids love the cub nursery), then the <strong>New Century Global Center</strong> for its indoor water park and ice rink. Day 2: People\'s Park (rent a paddle boat on the lake), then a milder hotpot with split broth. Day 3: Wenshu Monastery (feed the koi and turtles in the pond), skip the opera, and end at a dessert shop for bingfen. Strollers work on the metro but are challenging on Jinli\'s cobblestones.</p>
           </div>
-          <div>
-            <p class="font-semibold text-[#1a1a1a] mb-1">Best months</p>
-            <p>March-May and September-November. <a href="/travel/best-time-to-visit" class="text-accent hover:underline">Read the seasonal guide</a> for details.</p>
+
+          <div class="p-5 rounded-xl border border-border">
+            <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">📸 Photography-focused</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Day 1 sunrise: Panda Base (best light at opening). Afternoon: Wuhou Shrine\'s red wall corridor in late-afternoon light. Golden hour at Anshun Bridge. Day 2: Morning street photography in Yulin\'s old lanes, then Taikoo Li at blue hour when the temple and modern architecture create surreal contrasts. Day 3: Wenshu Monastery\'s incense-filled courtyards, then the Eastern Suburb Memory art district for industrial-chic backdrops.</p>
           </div>
-          <div>
-            <p class="font-semibold text-[#1a1a1a] mb-1">Book ahead</p>
-            <p>Panda Base tickets, hotpot reservations, and Yu's Kitchen should be booked in advance. Use Ctrip or ask your hotel concierge.</p>
+        </div>
+      </section>
+
+      <!-- Practical information -->
+      <section class="mt-14">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Practical tips</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div class="p-5 rounded-xl bg-surface">
+            <p class="font-semibold text-[#1a1a1a] mb-1">🚇 Getting around</p>
+            <p class="text-sm text-gray-500 leading-relaxed">The metro covers almost everything on this itinerary. Get a transportation card (¥20 deposit) from any station service desk, or use Alipay\'s QR code for ride payments. Didi (Chinese Uber) for late-night rides — expect ¥15–30 per trip within the city center. The metro runs 6:30–23:00.</p>
           </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <p class="font-semibold text-[#1a1a1a] mb-1">💰 Budget</p>
+            <p class="text-sm text-gray-500 leading-relaxed"><strong>Mid-range:</strong> 500–700 RMB/day (comfortable 3–4 star hotel, sit-down restaurants, taxis, attraction tickets). <strong>Budget:</strong> 200–300 RMB/day (hostel, street food, metro only). <strong>Splurge:</strong> 1,000+ RMB/day (5-star hotel, fine dining, private driver).</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <p class="font-semibold text-[#1a1a1a] mb-1">📅 Best months</p>
+            <p class="text-sm text-gray-500 leading-relaxed">March–May and September–November offer the most pleasant weather. Summers (June–August) are hot and humid but have the liveliest night markets. <a href="/travel/best-time-to-visit" class="text-accent hover:underline">Read the full seasonal guide</a> for month-by-month details.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <p class="font-semibold text-[#1a1a1a] mb-1">📱 Essential apps</p>
+            <p class="text-sm text-gray-500 leading-relaxed"><strong>Alipay/WeChat:</strong> essential for payments. <strong>Didi:</strong> ride-hailing. <strong>Metroman:</strong> metro maps in English. <strong>Pleco:</strong> Chinese dictionary with OCR. <strong>Google Translate:</strong> camera mode for menus. Download China VPN before arriving.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <p class="font-semibold text-[#1a1a1a] mb-1">🎫 Book ahead</p>
+            <p class="text-sm text-gray-500 leading-relaxed">Panda Base tickets, hotpot dinner reservations, Yu\'s Kitchen (weeks ahead), and Sichuan Opera tickets should be secured before your trip. Use Ctrip (Trip.com) or ask your hotel concierge for help with Chinese-language bookings.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <p class="font-semibold text-[#1a1a1a] mb-1">🏨 Where to stay</p>
+            <p class="text-sm text-gray-500 leading-relaxed">Stay near Chunxi Road or Taikoo Li for maximum convenience — you\'ll be walking distance to metro Lines 2 and 3, and surrounded by food options. The Jinjiang district is quieter but still central. Budget ¥250–600/night for a solid mid-range hotel.</p>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl border border-accent/20 bg-accent/5">
+          <p class="text-sm text-gray-600 leading-relaxed"><strong class="text-[#1a1a1a]">💡 One last tip:</strong> Chengdu runs on a later schedule than most Chinese cities. Breakfast stalls open around 7:00 AM, but restaurants often don\'t get busy for dinner until 7:30 PM. Late-night food stalls operate until 2:00 AM or later. Lean into the rhythm — slow mornings, long meals, and spontaneous evening explorations are the Chengdu way.</p>
         </div>
       </section>
     </article>

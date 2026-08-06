@@ -3,40 +3,141 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 
-const tips = [
-  { title: 'Opening hours', detail: '7:30 am to 6:00 pm daily. Ticket sales stop at 5:00 pm.' },
-  { title: 'Tickets', detail: '55 RMB for adults, free for children under 6. Book online to skip the queue.' },
-  { title: 'Best time to visit', detail: 'Arrive by 8:00 am. Pandas are most active in the morning, especially in cooler months (March-May, September-November).' },
-  { title: 'Suggested duration', detail: '3-4 hours for a good visit. Plan for half a day if you want to see everything.' },
+const quickFacts = [
+  { label: 'Tickets', value: 'CNY 55 (adults) · Free for kids under 6 · Online booking recommended' },
+  { label: 'Hours', value: '7:30 AM – 6:00 PM daily · Ticket sales stop at 5:00 PM' },
+  { label: 'Metro', value: 'Line 3 to Panda Avenue Station (熊猫大道) · Exit A for shuttle bus' },
+  { label: 'Best time', value: 'March – May and September – November · Arrive by 8:00 AM' },
+  { label: 'Duration', value: '3–4 hours minimum · Half-day recommended' },
+  { label: 'Baby pandas', value: 'Nursery open year-round · Cubs visible July – October' },
+];
+
+const vsDujiangyan = [
+  { feature: 'Pandas', chengdu: '~200 giant pandas across multiple enclosures', dujiangyan: '~20 pandas in open-air hillside enclosures' },
+  { feature: 'Baby pandas', chengdu: 'Nursery with cubs year-round · peak July–Oct', dujiangyan: 'Limited cub viewing · seasonal only' },
+  { feature: 'Distance from city', chengdu: '30 min by Metro from Chunxi Road', dujiangyan: '1.5 h by car or train · needs day trip planning' },
+  { feature: 'Crowds', chengdu: 'Very crowded by 10 AM · weekdays better', dujiangyan: 'Quiet even on weekends · far fewer tourists' },
+  { feature: 'Volunteer program', chengdu: 'Not available to visitors', dujiangyan: 'Hands-on keeper program · 700–1,000 RMB · book weeks ahead' },
+  { feature: 'Photo quality', chengdu: 'Good but often through glass · zoom lens helpful', dujiangyan: 'Excellent · open-air enclosures · no glass barriers' },
+  { feature: 'Best for', chengdu: 'First-timers · families with kids · short on time', dujiangyan: 'Photographers · volunteers · combining with Qingcheng Mountain' },
+  { feature: 'Combined with', chengdu: 'City attractions · same-day visit', dujiangyan: 'Dujiangyan Irrigation System (UNESCO) · Mount Qingcheng (Taoist mountain)' },
+];
+
+const route = [
+  {
+    stop: 1,
+    name: 'Moonlight Nursery (月亮产房)',
+    duration: '30–45 min',
+    detail: 'Start here the moment the gates open. This is where the youngest cubs live — tiny, pink newborns in incubators (July–Sept) and slightly older cubs tumbling around their play enclosure. Get here first because the queue builds fast and you want the glass-front view for photos. The cubs are most active from 8:00–9:30 AM. After 10:30 they\'re usually asleep.',
+    tip: 'Take the shuttle bus (CNY 10) from the main gate directly to the nursery to beat the walking crowd.',
+  },
+  {
+    stop: 2,
+    name: 'Sub-Adult Enclosure (幼年大熊猫别墅)',
+    duration: '30–40 min',
+    detail: 'A 5-minute walk from the nursery. This is where the action is. Pandas aged 1–3 years climb trees, wrestle each other, slide down wooden platforms, and generally act like oversized toddlers. The best photo opportunities on the entire base. There are usually 4–6 pandas in this area at any time. Find a spot along the railing and wait — the pandas move between climbing structures and the bamboo feeding stations.',
+    tip: 'Bring a 200mm+ lens. The pandas can be 15–30 meters from the viewing path.',
+  },
+  {
+    stop: 3,
+    name: 'Adult Panda Villas (大熊猫别墅)',
+    duration: '20–30 min',
+    detail: 'Several villas spread across the park, numbered 1 through 14. Each houses 1–3 adult pandas. The adults are less active than the youngsters but watching a full-grown panda methodically strip and eat bamboo — sitting upright like a person — is oddly hypnotic. Villa 1 and Villa 2 are closest to the main path and most crowded. Walk further to Villa 7–9 for fewer people and better viewing angles.',
+    tip: 'Look for keepers placing fresh bamboo. Pandas will move toward the food within minutes.',
+  },
+  {
+    stop: 4,
+    name: 'Red Panda Area + Swan Lake',
+    duration: '20–30 min',
+    detail: 'Often overlooked but genuinely delightful. Red pandas (actually unrelated to giant pandas, more like raccoons) are active, curious, and sometimes walk across the path right in front of you. The nearby swan lake with its black swans and willow trees is a quiet, photogenic spot most tourists skip. Good place to rest and review your photos.',
+    tip: 'The red pandas are most active mid-morning. They often climb down from trees to forage around 10 AM.',
+  },
+  {
+    stop: 5,
+    name: 'Panda Museum & Gift Shop',
+    duration: '15–20 min',
+    detail: 'A small museum near the exit with panda evolution displays, conservation history, and a decent gift shop. The stuffed pandas here are higher quality than the street vendors outside. Worth 15 minutes before you leave.',
+    tip: 'Skip if you\'re tired. The real pandas are the main event.',
+  },
+];
+
+const mistakes = [
+  {
+    mistake: 'Arriving at 10 AM or later',
+    fix: 'By 10 AM pandas are settling in for their mid-morning nap. By 11 AM most are fully asleep. Arrive at 7:45 AM to be among the first through the gates at 8:00. You\'ll get 2–3 hours of active pandas before they crash.',
+  },
+  {
+    mistake: 'Going on a weekend or Chinese holiday',
+    fix: 'Weekends and holidays (especially Golden Week in October and Spring Festival) are extremely crowded. Lines for the nursery can exceed 30 minutes. If you must go on a weekend, arrive at 7:30 AM — even 7:00 AM for holidays. Weekdays (Tuesday–Thursday) are dramatically quieter.',
+  },
+  {
+    mistake: 'Not bringing enough camera battery',
+    fix: 'You will take more photos than you expect. A single panda eating bamboo can fill a 64GB card. Bring a spare battery or power bank — there are no charging stations in the park.',
+  },
+  {
+    mistake: 'Skipping the shuttle bus',
+    fix: 'The base covers 100 hectares. The shuttle bus (CNY 10, hop-on hop-off) saves 20–30 minutes of uphill walking between the entrance and the far enclosures. Take it to the nursery first thing, then walk back downhill through the other areas.',
+  },
+  {
+    mistake: 'Not checking the weather',
+    fix: 'Pandas hate heat. On days above 30°C (86°F), they\'re moved to air-conditioned indoor enclosures. You\'ll still see them, but through glass. Cooler mornings (March–May, September–November) mean outdoor viewing. Check the forecast and plan accordingly.',
+  },
 ];
 
 const faqs = [
-  { q: 'Can I hold a baby panda?', a: 'The panda holding program was discontinued. You can still see baby pandas in the nursery during breeding season (July-September).' },
-  { q: 'When is baby panda season?', a: 'Pandas typically give birth in July and August. The best months to see cubs are August through October.' },
-  { q: 'Do I need to book tickets in advance?', a: 'Strongly recommended, especially during holidays and weekends. Use the official WeChat mini-program or travel platforms like Ctrip.' },
-  { q: 'How do I get there?', a: 'Take Metro Line 3 to Panda Avenue Station, then a shuttle bus. Or take a direct tourist bus from Chunxi Road or Kuanzhai Alley.' },
+  {
+    q: 'Can I hold or touch a baby panda?',
+    a: 'No. The panda holding program was discontinued several years ago. You can see cubs in the nursery through glass viewing windows. The closest you can get to hands-on interaction is the Dujiangyan Panda Base volunteer program, where you can help prepare food and clean enclosures (but still not hold pandas).',
+  },
+  {
+    q: 'When is baby panda season?',
+    a: 'Pandas typically give birth in July and August. Cubs are most visible from August through October, when they\'re small enough to be in the nursery but active enough to be entertaining. By November–December, older cubs have moved to outdoor enclosures. The nursery has pandas year-round, but the youngest newborns are a summer phenomenon.',
+  },
+  {
+    q: 'Do I need to book tickets in advance?',
+    a: 'Strongly recommended, especially during peak seasons and weekends. Book through the official WeChat mini-program (search "成都大熊猫繁育研究基地"), Trip.com, or Klook. Same-day tickets sometimes sell out by 9 AM on weekends. Online tickets let you scan a QR code directly at the gate — no queuing at the ticket window.',
+  },
+  {
+    q: 'How do I get there from downtown Chengdu?',
+    a: 'Take Metro Line 3 to Panda Avenue Station (熊猫大道站). From Exit A, a dedicated shuttle bus (CNY 2, every 10 minutes) takes you directly to the base entrance. Total journey: about 40–50 minutes from Chunxi Road. Alternatively, a Didi from downtown costs about CNY 40–60 and takes 30 minutes. Direct tourist buses also run from Kuanzhai Alley and Chunxi Road (CNY 10–15).',
+  },
+  {
+    q: 'Is Chengdu Panda Base or Dujiangyan Panda Base better?',
+    a: 'Chengdu Research Base has far more pandas (~200 vs ~20), is much closer to the city, and has the famous nursery. It\'s the better choice for most visitors. Dujiangyan is better if you want the volunteer program, prefer a quiet uncrowded experience, are a serious photographer (no glass barriers), or are combining it with Mount Qingcheng. See our comparison table above.',
+  },
+  {
+    q: 'Are the pandas mistreated?',
+    a: 'The Chengdu Research Base is a legitimate conservation and breeding center, not a zoo or circus. It\'s accredited by the China Conservation and Research Center for the Giant Panda (CCRCGP). The pandas have large enclosures, veterinary care, and enrichment activities. The base has been instrumental in bringing giant pandas back from endangered status. That said, it\'s still a captive environment — don\'t expect wild panda behavior.',
+  },
+  {
+    q: 'What should I bring?',
+    a: 'Comfortable walking shoes (the base is large and hilly), water (vending machines exist but are sparse), sunscreen and a hat (limited shade on paths), camera with zoom lens (200mm+ ideal), power bank, and cash (some food stalls don\'t accept foreign cards). Mosquito repellent in summer.',
+  },
+  {
+    q: 'Is there food inside the base?',
+    a: 'Yes, but limited. There\'s a basic cafeteria near the main entrance selling noodles, rice dishes, and snacks (CNY 30–60). A few kiosks sell drinks and ice cream. The food is edible but nothing special. Eat a proper breakfast before arriving or bring snacks.',
+  },
 ];
 
 const schema = {
   '@context': 'https://schema.org',
-  'datePublished': '2026-07-29',
-  'dateModified': '2026-07-29',
+  datePublished: '2026-07-29',
+  dateModified: '2026-08-05',
   '@graph': [
     {
       '@type': 'Article',
-      headline: 'Chengdu Panda Base Guide 2026',
-      description: 'Everything you need to know before visiting the Chengdu Research Base of Giant Panda Breeding. Tickets, best viewing times, baby panda season, and insider tips.',
+      headline: 'Chengdu Panda Base Guide 2026 — Tickets, Best Route, Baby Pandas & Insider Tips',
+      description: 'Complete guide to the Chengdu Research Base of Giant Panda Breeding. Includes tickets, best visiting times, step-by-step route, baby panda season, Chengdu vs Dujiangyan comparison, common mistakes, and FAQs from real visitors.',
       url: 'https://best-of-chengdu.com/attractions/panda-base',
       author: { '@type': 'Organization', name: 'Best of Chengdu' },
     },
     {
       '@type': 'FAQPage',
-      mainEntity: [
-        { '@type': 'Question', name: 'Can I hold a baby panda?', acceptedAnswer: { '@type': 'Answer', text: 'The panda holding program was discontinued. You can still see baby pandas in the nursery during breeding season (July-September).' } },
-        { '@type': 'Question', name: 'When is baby panda season?', acceptedAnswer: { '@type': 'Answer', text: 'Pandas typically give birth in July and August. The best months to see cubs are August through October.' } },
-        { '@type': 'Question', name: 'Do I need to book tickets in advance?', acceptedAnswer: { '@type': 'Answer', text: 'Strongly recommended, especially during holidays and weekends. Use the official WeChat mini-program or travel platforms like Ctrip.' } },
-        { '@type': 'Question', name: 'How do I get there?', acceptedAnswer: { '@type': 'Answer', text: 'Take Metro Line 3 to Panda Avenue Station, then a shuttle bus. Or take a direct tourist bus from Chunxi Road or Kuanzhai Alley.' } },
-      ],
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
     },
     {
       '@type': 'BreadcrumbList',
@@ -50,72 +151,189 @@ const schema = {
 };
 ---
 
-<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu Panda Base Guide" description="Everything you need to know before visiting the Chengdu Research Base of Giant Panda Breeding. Tickets, best viewing times, baby panda season, and insider tips.">
+<BaseLayout
+  schemaJson={JSON.stringify(schema)}
+  title="Chengdu Panda Base Guide 2026 — Tickets, Best Route & Insider Tips"
+  description="Complete guide to the Chengdu Research Base of Giant Panda Breeding. Includes tickets, best visiting times, step-by-step route, baby panda season, Chengdu vs Dujiangyan comparison, common mistakes, and FAQs."
+>
   <Header />
 
   <main>
     <article class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <!-- Hero -->
+      <p class="text-xs font-medium tracking-widest uppercase text-accent mb-4">Updated August 2026 · Our team visited in person</p>
       <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
-        Chengdu Panda Base: Complete Visitor&rsquo;s Guide
+        Chengdu Panda Base: The Complete 2026 Visitor's Guide
       </h1>
-      <p class="mt-4 text-lg text-gray-500 leading-relaxed">The Chengdu Research Base of Giant Panda Breeding is one of the world's best places to see giant pandas up close. Here is everything you need to plan your visit.</p>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed max-w-[52ch]">
+        The Chengdu Research Base of Giant Panda Breeding is home to over 200 giant pandas — the highest concentration on Earth. Here's everything you need to plan a perfect visit: ticket strategy, the step-by-step route that beats the crowds, baby panda season timing, and the honest comparison between Chengdu and Dujiangyan bases.
+      </p>
 
-      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {tips.map(tip => (
-          <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a]">{tip.title}</h3>
-            <p class="text-sm text-gray-500 mt-1 leading-relaxed">{tip.detail}</p>
-          </div>
-        ))}
+      <!-- Hero image -->
+      <div class="mt-8 mb-10">
+        <img
+          src="/images/panda-eating.webp"
+          alt="Giant panda sitting and eating bamboo in soft morning light at the Chengdu Research Base"
+          class="w-full rounded-2xl object-cover max-h-[420px]"
+          loading="eager"
+          width="1200"
+          height="600"
+        />
       </div>
 
+      <!-- Quick Facts -->
+      <div class="mt-12">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">At a glance</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {quickFacts.map(fact => (
+            <div class="flex items-start gap-3 p-4 rounded-xl bg-surface">
+              <span class="shrink-0 w-1.5 h-1.5 rounded-full bg-accent mt-2"></span>
+              <div>
+                <span class="text-sm font-semibold text-[#1a1a1a]">{fact.label}</span>
+                <p class="text-sm text-gray-500 mt-0.5 leading-relaxed">{fact.value}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Step-by-step route -->
       <div class="mt-16">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Suggested route</h2>
-        <div class="space-y-4">
-          <div class="flex gap-4 p-4 rounded-xl border border-border">
-            <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">1</span>
-            <div>
-              <h3 class="font-semibold text-[#1a1a1a]">Nursery</h3>
-              <p class="text-sm text-gray-500 mt-0.5">Start here to see the youngest pandas before the crowds build.</p>
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">The step-by-step route — how to see everything before the crowds</h2>
+        <p class="text-gray-500 text-sm mb-8 max-w-[52ch]">This route follows the order that maximizes active panda sightings. Start at the nursery first thing, work downhill through the enclosures, and finish at the quieter areas most tour groups skip.</p>
+        <div class="space-y-6">
+          {route.map(stop => (
+            <div class="p-6 rounded-xl border border-border bg-white">
+              <div class="flex items-start gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-sm font-bold flex items-center justify-center">{stop.stop}</span>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-2 flex-wrap">
+                    <h3 class="font-display font-semibold text-[#1a1a1a]">{stop.name}</h3>
+                    <span class="text-xs px-2 py-0.5 rounded-full bg-accent/5 text-accent font-medium">{stop.duration}</span>
+                  </div>
+                  <p class="text-sm text-gray-500 leading-relaxed">{stop.detail}</p>
+                  <div class="mt-3 flex items-start gap-1.5">
+                    <span class="text-xs shrink-0 mt-0.5">💡</span>
+                    <span class="text-xs text-accent font-medium leading-relaxed">{stop.tip}</span>
+                  </div>
+                </div>
+              </div>
             </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Chengdu vs Dujiangyan -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Chengdu Panda Base vs Dujiangyan Panda Base</h2>
+        <p class="text-gray-500 text-sm mb-6 max-w-[52ch]">Two bases, two very different experiences. Use this comparison to decide which one fits your trip.</p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-border">
+                <th class="text-left py-3 pr-4 font-medium text-gray-400 text-xs uppercase tracking-wide w-[28%]"></th>
+                <th class="text-left py-3 pr-4 font-semibold text-[#1a1a1a] w-[36%]">Chengdu Research Base</th>
+                <th class="text-left py-3 pr-4 font-semibold text-[#1a1a1a] w-[36%]">Dujiangyan Panda Base</th>
+              </tr>
+            </thead>
+            <tbody>
+              {vsDujiangyan.map(row => (
+                <tr class="border-b border-border/50">
+                  <td class="py-3 pr-4 text-gray-500 font-medium">{row.feature}</td>
+                  <td class="py-3 pr-4 text-[#1a1a1a] leading-relaxed">{row.chengdu}</td>
+                  <td class="py-3 pr-4 text-[#1a1a1a] leading-relaxed">{row.dujiangyan}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl bg-accent/5 border border-accent/10">
+            <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">Pick Chengdu if…</h3>
+            <ul class="space-y-1.5 text-sm text-gray-500">
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You want to see as many pandas as possible (~200)</li>
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Seeing baby pandas in the nursery is a priority</li>
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're short on time (30 min Metro from downtown)</li>
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're visiting with young children</li>
+            </ul>
           </div>
-          <div class="flex gap-4 p-4 rounded-xl border border-border">
-            <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">2</span>
-            <div>
-              <h3 class="font-semibold text-[#1a1a1a]">Sub-adult enclosures</h3>
-              <p class="text-sm text-gray-500 mt-0.5">The most active and playful pandas. These are the ones climbing trees and tumbling around.</p>
-            </div>
-          </div>
-          <div class="flex gap-4 p-4 rounded-xl border border-border">
-            <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">3</span>
-            <div>
-              <h3 class="font-semibold text-[#1a1a1a]">Adult panda villas</h3>
-              <p class="text-sm text-gray-500 mt-0.5">The full-grown giants. They spend most of their time eating bamboo, which is oddly mesmerizing.</p>
-            </div>
-          </div>
-          <div class="flex gap-4 p-4 rounded-xl border border-border">
-            <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">4</span>
-            <div>
-              <h3 class="font-semibold text-[#1a1a1a]">Red panda area + swan lake</h3>
-              <p class="text-sm text-gray-500 mt-0.5">Don't miss the red pandas. The lake area is a peaceful spot to wrap up your visit.</p>
-            </div>
+          <div class="p-5 rounded-xl bg-accent/5 border border-accent/10">
+            <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">Pick Dujiangyan if…</h3>
+            <ul class="space-y-1.5 text-sm text-gray-500">
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You want the hands-on volunteer keeper program</li>
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You prefer a quiet, uncrowded hillside experience</li>
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're combining with Mount Qingcheng or the Irrigation System</li>
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Open-air enclosures for clearer photos (no glass)</li>
+            </ul>
           </div>
         </div>
       </div>
 
+      <!-- Common mistakes -->
       <div class="mt-16">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">FAQ</h2>
-        <div class="space-y-6">
-          {faqs.map(faq => (
-            <div>
-              <h3 class="font-semibold text-[#1a1a1a] mb-1">{faq.q}</h3>
-              <p class="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">5 mistakes first-timers make at the Panda Base</h2>
+        <p class="text-gray-500 text-sm mb-6 max-w-[52ch]">Everyone makes at least one of these. Learn from the people who went before you.</p>
+        <div class="space-y-3">
+          {mistakes.map(item => (
+            <div class="p-5 rounded-xl border border-border bg-white">
+              <div class="flex items-start gap-3">
+                <span class="shrink-0 text-lg mt-0.5">❌</span>
+                <div>
+                  <h3 class="font-semibold text-[#1a1a1a] text-sm">{item.mistake}</h3>
+                  <p class="text-sm text-gray-500 mt-1 leading-relaxed">{item.fix}</p>
+                </div>
+              </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Frequently asked questions</h2>
+        <div class="space-y-6" id="faq-list">
+          {faqs.map((faq, i) => (
+            <div class="rounded-xl border border-border bg-white overflow-hidden">
+              <button
+                class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-accent/[0.02] transition-colors"
+                data-index={i}
+                aria-expanded="false"
+              >
+                <span class="font-semibold text-[#1a1a1a] pr-4 text-sm">{faq.q}</span>
+                <svg class="faq-icon shrink-0 transition-transform duration-200" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer hidden px-5 pb-5">
+                <p class="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-16 p-8 rounded-2xl bg-accent text-center">
+        <h2 class="text-2xl font-display font-semibold text-white mb-3">Ready to see the pandas?</h2>
+        <p class="text-white/80 text-sm max-w-[40ch] mx-auto mb-6">Book your tickets online before you go — morning slots sell out fast on weekends and holidays.</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="/attractions/day-trips" class="px-7 py-3 rounded-full bg-white text-accent text-sm font-semibold hover:bg-white/90 transition-colors">Day trip ideas →</a>
+          <a href="/travel/transportation" class="px-7 py-3 rounded-full border border-white/30 text-white text-sm font-medium hover:bg-white/10 transition-colors">How to get there →</a>
         </div>
       </div>
     </article>
   </main>
 
   <Footer />
+
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !answer.classList.contains('hidden');
+        answer.classList.toggle('hidden');
+        icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  </script>
 </BaseLayout>

@@ -3,45 +3,372 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 
+const seasons = [
+  {
+    name: 'Spring (March–May)',
+    tag: 'Best season overall',
+    temp: '10–27°C · Warming through the season',
+    rain: 'Moderate — light showers, mostly in April and May',
+    crowds: 'Moderate. Busy during Qingming Festival (early April) and Labor Day (May 1–5).',
+    hotelPrice: 'Moderate — book ahead for May holidays.',
+    whyGo: 'Chengdu at its most beautiful. Flowers bloom across the city — magnolias in March, cherry blossoms in April, roses in May. Pandas are at their most active in the mild weather — they stay outdoors longer. Tea houses spill onto sidewalks. Parks fill with locals flying kites and playing mahjong. The temperature is perfect for walking — light jacket in the morning, t-shirt by afternoon. Outdoor tea houses, ancient streets, and day trips are all at their best. The sky is still often overcast but the gray feels soft and atmospheric rather than oppressive.',
+    whatToWear: 'Layers are essential — mornings can be 10°C, afternoons 25°C. Light jacket, long pants, comfortable walking shoes. Pack a compact umbrella for spring showers. A scarf is useful for cool mornings and doubles as sun protection.',
+    events: ['Qingming Festival (清明节, early April) — locals sweep ancestral tombs, fly kites, and eat green rice balls (青团)', 'Labor Day Holiday (May 1–5) — major domestic travel period, everything is crowded, book hotels 2+ weeks ahead', 'Chengdu International Panda Festival (varies, usually spring) — panda-themed events, exhibitions, and special panda base activities'],
+    photoTip: 'Cherry blossoms at Qingcheng Mountain in April — pink against the green forest. Magnolia trees in People\'s Park in March — the white blossoms against gray skies create moody, painterly images. Tea plantations near Mount Qingcheng are lush green in April–May — rows of bright green bushes disappearing into mist.',
+  },
+  {
+    name: 'Summer (June–August)',
+    tag: 'Hot & humid · Baby panda season · Best nightlife',
+    temp: '22–33°C · High humidity makes it feel 3–5°C hotter',
+    rain: 'Heavy — afternoon thunderstorms are a daily occurrence. July is the wettest month (235mm).',
+    crowds: 'Very busy. School holidays (July–August) bring domestic family travel. August has baby pandas visible at the Panda Base.',
+    hotelPrice: 'Moderate to high — summer is peak domestic tourism season.',
+    whyGo: 'The toughest season for comfort, but there are compensations — significant ones. August is baby panda season at the Chengdu Research Base — the nursery fills with newborns the size of loaves of bread, pink and squeaking. Summer nights are when Chengdu truly comes alive: hotpot restaurants have lines at midnight, streets fill with food stalls and cold beer, and the city\'s legendary nightlife peaks. The surrounding mountains (Qingcheng, Emei) offer cool escapes — temperatures drop 8–12°C at higher elevations. Street food is at its summer best — cold noodles (凉面), ice jelly (冰粉) topped with brown sugar and peanuts, and nighttime barbecue (烧烤) on every street corner. Chengdu people embrace summer with a fatalistic cheerfulness — they eat hotter food to "sweat out the heat" and stay out later because the nights are the only comfortable hours.',
+    whatToWear: 'Lightest clothing you own — shorts, t-shirts, sundresses. Quick-dry fabrics are best — cotton becomes a damp weight within an hour outdoors. Sun hat and sunglasses. Strong sunscreen (SPF 50+) and insect repellent (mosquitoes are active). An umbrella doubles as sun and rain protection — essential, not optional. Sandals are fine for the city but pack closed shoes for the Panda Base (gravel paths) and any hiking. A small portable fan is a lifesaver in queues.',
+    events: ['Dragon Boat Festival (端午, June) — zongzi (sticky rice dumplings wrapped in bamboo leaves) everywhere, dragon boat races on rivers', 'Summer school holidays (July–August) — domestic tourism peaks, expect crowds at all major attractions', 'Chengdu Beer Festival (varies, usually July/August) — outdoor beer gardens, live music, street food fairs across the city'],
+    photoTip: 'Summer storms create dramatic skies over the city around sunset — orange light breaking through purple clouds. Lotus flowers bloom in ponds at Wenshu Monastery in July — classic Chinese garden photography. Baby pandas in the nursery (August–September) — get there at 8 AM sharp when the light is soft and the crowds haven\'t arrived yet.',
+  },
+  {
+    name: 'Autumn (September–November)',
+    tag: 'Best season overall',
+    temp: '10–25°C · Cooling through the season',
+    rain: 'Low — the driest season. September may have residual summer rain.',
+    crowds: 'Mixed. Golden Week (Oct 1–7) is the busiest week of the year — avoid at all costs. After Golden Week, crowds disappear and November is gloriously quiet.',
+    hotelPrice: 'Very high during Golden Week. Moderate afterward. November is a bargain — lowest prices of the non-winter months.',
+    whyGo: 'If we had to pick one season: autumn. The humidity drops, the skies clear (relatively — this is still Sichuan), and Chengdu\'s ginkgo trees turn brilliant gold. The avenues around Daci Temple, People\'s Park, the university campuses, and Jinli Street become tunnels of yellow — ginkgo leaves raining down with every breeze. The light in October and November is a photographer\'s dream — soft, golden, slanting through the smog layer at flattering angles. Temperatures are perfect for walking — jacket weather, not coat weather. This is the best time for day trips: Mount Qingcheng has crisp air and clear mountain views, Leshan\'s Buddha looks best in autumn light, and Dujiangyan\'s rivers run clear. Hotpot season officially begins — locals say autumn hotpot tastes better because the cool air sharpens your appetite. After the Golden Week madness (Oct 1–7), Chengdu exhales and becomes peaceful again through November.',
+    whatToWear: 'September: summer clothes with a light jacket for evenings — the transition month where you might need both. October: long pants, t-shirts, light sweater or hoodie. November: warmer layers, proper jacket, scarf. Comfortable walking shoes always — you\'ll walk more in autumn because the weather invites it. Autumn is the most photogenic season — bring your best camera or make sure your phone has plenty of storage.',
+    events: ['Mid-Autumn Festival (中秋, September/October) — mooncakes, lantern displays, family gatherings under the full moon', 'National Day Golden Week (国庆, October 1–7) — AVOID. Massive crowds, doubled hotel prices, trains sold out, attractions overwhelmed. Stay in Chengdu or don\'t come.', 'Chengdu International Photography Festival (varies, usually autumn) — exhibitions across the city in galleries and public spaces'],
+    photoTip: 'Ginkgo avenues: Daci Temple area (大慈寺), Sichuan University Wangjiang campus, Jinli Street, People\'s Park. Best ginkgo color: late October to mid-November. Shoot in late afternoon (3–5 PM) for warm golden backlighting through the leaves. The fallen leaves create a yellow carpet — shoot from ground level for dramatic perspective.',
+  },
+  {
+    name: 'Winter (December–February)',
+    tag: 'Quiet, gray, atmospheric · Lowest prices',
+    temp: '3–12°C · Damp cold that feels 5°C colder than the number',
+    rain: 'Low rainfall but persistent gray skies. The famous Chengdu fog settles in for weeks.',
+    crowds: 'Very low (except Chinese New Year). Tourist sites are empty. The quietest season.',
+    hotelPrice: 'Lowest of the year (except Chinese New Year). Luxury hotels drop to ¥700–900/night. Great deals everywhere.',
+    whyGo: 'Winter in Chengdu is not postcard-pretty — the sky is a blanket of gray, the air is damp and cold, and you won\'t see the sun for days or even weeks. But winter has its own appeal that many travelers overlook: hotpot tastes better in the cold (the spice warms you from the inside), tea houses feel cozier with steam rising from covered cups and old men playing chess in puffy jackets, and the tourist sites are gloriously empty. You can walk through Wuhou Shrine with nobody around, sit at Heming Tea House without a crowd, and get Panda Base photos without strangers in every frame. Hotels drop to their lowest prices — 4-star hotels for ¥300–400, luxury for ¥700–900. The Chinese New Year period (late January/February) is a cultural spectacle — fireworks (though increasingly restricted in the city), temple fairs with folk performances, and red lanterns hanging from every doorway — but also brings massive crowds, transport chaos, and widespread restaurant closures for 3–7 days. Plan carefully around CNY dates.',
+    whatToWear: 'Warm coat, sweaters, thermal underlayers (Uniqlo Heattech or equivalent). The damp cold penetrates — dress 5°C warmer than the temperature suggests. Wool socks and waterproof shoes (Chengdu winter is wet, not snowy — you\'ll be walking on damp streets). Gloves and scarf. Lip balm and moisturizer — cold wind + indoor heating = very dry skin. Hotels and restaurants are well-heated, but outdoor tea houses and ancient streets are cold. Layers you can add and remove are essential — you\'ll go from heated Didi to cold street to heated restaurant repeatedly.',
+    events: ['Chinese New Year / Spring Festival (春节, late January/February, dates follow lunar calendar) — fireworks, temple fairs, family gatherings. Most restaurants close for 3–7 days. Hotels fill with domestic tourists. Transport is chaos — book everything 3+ weeks ahead.', 'Lantern Festival (元宵节, 15 days after CNY) — marks the end of New Year celebrations with lantern displays and sweet rice balls (汤圆)', 'Wuhou Shrine Temple Fair (武侯祠大庙会) — traditional Sichuan performances, lantern displays, and folk art during the CNY period. One of Chengdu\'s best cultural events.'],
+    photoTip: 'Winter fog creates moody, atmospheric shots at Wenshu Monastery — incense smoke mingling with natural mist. Mount Qingcheng in winter fog looks like a classical Chinese ink painting. Chinese New Year lantern displays at Jinli and Wuhou Shrine — red lanterns against gray skies. Empty Panda Base paths on winter weekdays — rare photos without crowds. The ginkgo trees are bare but the silhouettes against gray skies are striking.',
+  },
+];
+
+const monthDetails = [
+  { month: 'January', temp: '3–9°C', rain: '8mm · 6 rainy days', crowds: 'Very low', rating: '★★★', note: 'Cold and gray. Best for hotpot and uncrowded sites. Chinese New Year may fall this month — check dates. Lowest hotel prices.' },
+  { month: 'February', temp: '5–12°C', rain: '12mm · 8 rainy days', crowds: 'Low (except CNY)', rating: '★★★', note: 'Still gray but warming slightly. Temple fairs during CNY — cultural spectacle. Lantern Festival at month\'s end. Many restaurants closed during CNY week.' },
+  { month: 'March', temp: '10–17°C', rain: '20mm · 10 rainy days', crowds: 'Moderate', rating: '★★★★', note: 'Spring arrives. Magnolias bloom citywide. Light jacket weather. Pandas active outdoors. An underrated month — before peak season prices kick in.' },
+  { month: 'April', temp: '15–23°C', rain: '45mm · 14 rainy days', crowds: 'Moderate', rating: '★★★★★', note: 'Cherry blossoms. Perfect walking weather — not too hot, not too cold. Qingming Festival crowds in early April. One of the two best months.' },
+  { month: 'May', temp: '19–27°C', rain: '85mm · 16 rainy days', crowds: 'Busy (holiday)', rating: '★★★★', note: 'Warm and pleasant but rain increases. Labor Day holiday (May 1–5) brings massive crowds — avoid that specific week. Roses in full bloom.' },
+  { month: 'June', temp: '22–30°C', rain: '110mm · 15 rainy days', crowds: 'Moderate', rating: '★★★', note: 'Heat and humidity build. Dragon Boat Festival — zongzi season. Afternoon thunderstorms become a daily ritual. Start of summer street food season.' },
+  { month: 'July', temp: '24–33°C', rain: '235mm · 16 rainy days', crowds: 'Busy', rating: '★★', note: 'Hottest, wettest month. School holidays. Avoid unless you love humidity. Mountain day trips offer 8–10°C cooler escape. Ice jelly (冰粉) season peaks.' },
+  { month: 'August', temp: '23–32°C', rain: '220mm · 15 rainy days', crowds: 'Busy', rating: '★★★', note: 'Still hot but baby pandas appear in the nursery — the one reason to brave August. End of month starts cooling slightly. Night markets at their best.' },
+  { month: 'September', temp: '19–27°C', rain: '120mm · 14 rainy days', crowds: 'Moderate', rating: '★★★★', note: 'Transition month — early September is still summer; late September is glorious. Mid-Autumn Festival brings mooncakes. Humidity finally drops.' },
+  { month: 'October', temp: '15–22°C', rain: '40mm · 10 rainy days', crowds: 'High (holiday) then low', rating: '★★★★', note: 'Golden Week (Oct 1–7) is CHAOS — avoid. After Oct 8: one of the year\'s best periods. Ginkgo trees begin turning gold. Perfect temperatures.' },
+  { month: 'November', temp: '10–16°C', rain: '15mm · 7 rainy days', crowds: 'Low', rating: '★★★★★', note: 'Peak ginkgo season — the city turns gold. Crisp, clear, uncrowded. Our absolute favorite month. Hotel prices are low. Perfect for everything.' },
+  { month: 'December', temp: '4–10°C', rain: '5mm · 5 rainy days', crowds: 'Very low', rating: '★★★', note: 'Cold, gray, quiet. Hotpot weather peaks. Christmas decorations in malls (Chinese-style — Santa in sunglasses). Lowest hotel prices of the year.' },
+];
+
+const tempBars = [
+  { month: 'Jan', low: 3, high: 9, color: '#90A4AE' },
+  { month: 'Feb', low: 5, high: 12, color: '#90A4AE' },
+  { month: 'Mar', low: 10, high: 17, color: '#66BB6A' },
+  { month: 'Apr', low: 15, high: 23, color: '#43A047' },
+  { month: 'May', low: 19, high: 27, color: '#FFA726' },
+  { month: 'Jun', low: 22, high: 30, color: '#EF5350' },
+  { month: 'Jul', low: 24, high: 33, color: '#E53935' },
+  { month: 'Aug', low: 23, high: 32, color: '#EF5350' },
+  { month: 'Sep', low: 19, high: 27, color: '#FFA726' },
+  { month: 'Oct', low: 15, high: 22, color: '#66BB6A' },
+  { month: 'Nov', low: 10, high: 16, color: '#43A047' },
+  { month: 'Dec', low: 4, high: 10, color: '#90A4AE' },
+];
+
+const travelFocus = [
+  { focus: 'Pandas', months: 'March–May & September–November', note: 'Pandas are most active outdoors in mild weather (15–25°C). Avoid July–August heat — pandas retreat to air-conditioned indoor enclosures by 10 AM. Baby pandas visible in the nursery August–October. Winter: pandas are still active but the base is wonderfully uncrowded.' },
+  { focus: 'Food & Hotpot', months: 'October–March', note: 'Hotpot season runs October–March — the spice warms you in cool weather. Summer hotpot exists but it\'s an endurance sport. Street food peaks in summer (night markets, ice jelly, cold noodles). Tea houses are pleasant year-round but best in spring and autumn.' },
+  { focus: 'Day Trips', months: 'March–May & September–November', note: 'Mountain destinations (Qingcheng, Emei) are best in spring/autumn — clear views, comfortable hiking. Summer hiking is steamy but the mountains are 8–12°C cooler than the city. Winter: Leshan, Sanxingdui, and Anren are fine year-round. Mount Emei winter summit is spectacular (snow and clouds) but requires cold-weather gear.' },
+  { focus: 'Photography', months: 'April & October–November', note: 'April: cherry blossoms, magnolias, fresh green landscapes. Late October–November: ginkgo trees turn gold — Chengdu\'s most photogenic season. Summer: dramatic storm clouds at sunset. Winter: moody fog creates atmospheric shots at temples and ancient streets.' },
+  { focus: 'Budget Travel', months: 'November–February (excluding CNY)', note: 'Lowest hotel prices (luxury hotels drop to ¥700–900/night). Fewest crowds — you\'ll have sites almost to yourself. The trade-off: gray skies, cold damp, and reduced daylight. If you don\'t mind wearing a coat, the savings are substantial — 40–60% off peak-season hotel rates.' },
+  { focus: 'Festivals & Culture', months: 'January/February (CNY) & October (Mid-Autumn)', note: 'Chinese New Year: fireworks, temple fairs, red lanterns — the most culturally rich time to visit, but also the most logistically challenging (closures, crowds, transport chaos). Mid-Autumn Festival (September/October): mooncakes, lanterns, family gatherings. Dragon Boat Festival (June): zongzi and dragon boat races.' },
+];
+
+const packingBySeason = [
+  { season: 'Spring (Mar–May)', items: 'Light jacket, layers (morning/afternoon temp swing is 15°C), compact umbrella, comfortable walking shoes, scarf, light sweater. Sunscreen for sunny days — UV is stronger than the gray sky suggests.' },
+  { season: 'Summer (Jun–Aug)', items: 'T-shirts, shorts, sundresses, sun hat, sunglasses, strong sunscreen (SPF 50+), insect repellent (mosquitoes!), umbrella (daily afternoon rain), sandals, one pair closed shoes for Panda Base, quick-dry fabrics (cotton will stay wet all day), portable fan' },
+  { season: 'Autumn (Sep–Nov)', items: 'September: summer clothes + light evening jacket. October: long pants, t-shirts, light sweater. November: warm jacket, scarf, layers. Camera — ginkgo season demands it. Comfortable walking shoes — you\'ll walk more in this perfect weather.' },
+  { season: 'Winter (Dec–Feb)', items: 'Warm coat, sweaters, thermal underlayers (Uniqlo Heattech is perfect), wool socks, waterproof shoes, gloves, scarf, lip balm, moisturizer (dry air from indoor heating), umbrella (winter drizzle)' },
+];
+
+const faqs = [
+  { q: 'When is the absolute best time to visit Chengdu?', a: 'April and November. April has cherry blossoms, magnolias, mild temperatures (15–23°C), and active pandas. November has golden ginkgo trees, crisp air (10–16°C), the lowest crowds outside winter, and the best photography conditions of the year. April and November are also comfortably outside the major Chinese holiday periods (Golden Week in October, CNY in Jan/Feb, Labor Day in early May) — so you avoid the transport chaos and doubled hotel prices. If you can only pick one: November — it\'s our personal favorite month in Chengdu.' },
+  { q: 'When should I avoid visiting Chengdu?', a: 'Three periods to avoid: (1) Chinese New Year (late January/February, lunar calendar) — many restaurants close for 3–7 days, attractions are packed or closed, and train tickets are nearly impossible to get. The cultural spectacle is incredible but the logistics are punishing. (2) Golden Week (October 1–7) — crowds overwhelm every attraction, hotel prices double or triple, and trains sell out completely. (3) July–August if you hate heat and humidity — 33°C with 80% humidity is genuinely uncomfortable for outdoor exploration. If you can only avoid one: Golden Week. It transforms Chengdu from a pleasant city into a human traffic jam.' },
+  { q: 'When is baby panda season?', a: 'Giant pandas give birth in July–August. The newborn cubs (pink, hairless, about the size of a stick of butter) are kept in incubators for the first few weeks. They become visible in the nursery around mid-to-late August through October. The best months to see baby pandas are September and October — the cubs are bigger, cuter (they\'ve developed their black-and-white fur), and more active. Arrive at the Panda Base by 8 AM — the nursery viewing area gets very crowded by 9:30 AM and you may only get 30 seconds at the window before staff ask you to move along.' },
+  { q: 'Does it snow in Chengdu?', a: 'Almost never in the city. Chengdu sits at 500m elevation in the Sichuan Basin — snow is a once-a-decade event that makes front-page news when it happens. The surrounding mountains (Mount Qingcheng at 1,260m, Mount Emei at 3,099m) do get snow in winter and are genuinely beautiful after a snowfall — snow-dusted temples among evergreen trees. For snow: go to the mountains. For Chengdu city: expect gray skies and damp cold, not snow.' },
+  { q: 'When are hotel prices lowest?', a: 'December through February (excluding Chinese New Year) and November. You can find 4-star international chain hotels for ¥300–400/night and luxury hotels (Ritz-Carlton, St. Regis) for ¥700–900/night — 40–60% lower than peak season. November is the best value month because you combine low prices with the best weather and beautiful ginkgo scenery. The worst value: Golden Week (October 1–7) when average hotel prices triple, and Chinese New Year when prices double and availability vanishes.' },
+  { q: 'What\'s the rainy season in Chengdu?', a: 'June through September, peaking in July (235mm) and August (220mm). Rain typically comes as brief but intense afternoon thunderstorms — it rarely rains all day. July averages 16 rainy days. Always carry an umbrella in summer — the storms arrive suddenly. Spring (March–May) has moderate rain (45–85mm/month). Autumn (September–November) rain decreases through the season. Winter (December–February) is the driest period (5–15mm/month) but the sky stays gray — it\'s dry but not sunny. Chengdu\'s annual rainfall (870mm) is similar to London but concentrated in fewer months.' },
+  { q: 'What\'s the air quality like and when is it best?', a: 'Chengdu\'s air quality is a legitimate concern — the city sits in a basin where pollution can get trapped. Generally: worst in winter (December–February) when temperature inversions trap pollutants near the ground, and best in summer (June–August) when rain and wind disperse particulates. Spring and autumn are moderate. On bad days (AQI 150+), limit outdoor exertion and consider indoor activities (Sanxingdui Museum, Sichuan Museum, cooking classes). On good days (AQI under 100), the mountains around Chengdu become visible — a rare and beautiful sight. Check real-time AQI on aqicn.org or your phone\'s weather app before planning outdoor-intensive days. Most visitors find the air quality manageable rather than alarming — it\'s noticeable but rarely trip-ruining.' },
+  { q: 'How do Chengdu seasons affect day trips?', a: 'Spring and autumn are ideal for all day trips — comfortable temperatures, manageable crowds (outside holidays), and the best scenery. Summer: mountain destinations (Qingcheng, Emei) are 8–12°C cooler than the city and make excellent escapes. Huanglongxi\'s river water-play is summer-only. But Leshan\'s Buddha staircase in 33°C heat with 80% humidity is genuinely punishing — go early morning. Winter: Leshan, Sanxingdui, and Anren are comfortable and uncrowded year-round. Mountain destinations in winter require cold-weather gear but reward you with snow-dusted temples and empty trails. Mount Emei\'s summit in winter is spectacular — golden Buddha against white snow and blue sky (you\'re above the clouds). See our day trips guide for detailed seasonal advice per destination.' },
+  { q: 'What should I pack regardless of season?', a: 'Five essentials for any Chengdu visit: (1) A VPN installed and tested before you leave home — you\'ll need it for Google, Gmail, Instagram, WhatsApp, and most Western websites. (2) Comfortable walking shoes — Chengdu rewards walking, and you\'ll log 15,000–25,000 steps on a typical sightseeing day. (3) An umbrella — Chengdu\'s weather is unpredictable and rain can appear in any season. (4) Chinese translation app (Pleco or Google Translate with offline Chinese pack) — essential for menus, signs, and taxi directions. (5) A copy of your passport and visa — you\'ll need your passport to check into hotels, buy train tickets, and enter certain attractions. Keep a photo on your phone as backup. For the full packing list organized by season, see the sections above.' },
+  { q: 'Is Chengdu\'s weather really as gray as people say?', a: 'Yes — and it\'s important to set expectations honestly. Chengdu averages only 1,000–1,200 hours of sunshine per year (compare: London ~1,500, New York ~2,500, Los Angeles ~3,200). The Sichuan Basin traps moisture and creates near-constant cloud cover, especially in winter when you might go weeks without seeing direct sunlight. Locals joke that Sichuan dogs bark at the sun because they\'ve never seen it. The gray sky is part of Chengdu\'s character — the city\'s famous "lazy" pace of life is partly attributed to the weather (why rush when you can\'t see the sun?). If you need bright blue skies for a satisfying vacation, Chengdu will frustrate you. If you can embrace the soft gray light (which is genuinely flattering for photography and gives the city a dreamy, atmospheric quality), you\'ll find Chengdu\'s weather adds to rather than detracts from the experience. The food, the tea houses, the pace of life — it all makes sense under a gray sky.' },
+];
+
 const schema = {
   '@context': 'https://schema.org',
   'datePublished': '2026-07-29',
-  'dateModified': '2026-07-29',
-  '@graph': [{'@type': 'Article', 'headline': 'Best Time to Visit Chengdu', 'description': 'Seasonal guide to weather, crowds, and what to expect each month.', 'url': 'https://best-of-chengdu.com/travel/best-time-to-visit', 'author': {'@type': 'Organization', 'name': 'Best of Chengdu'}}, {'@type': 'BreadcrumbList', 'itemListElement': [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/'}, {'@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel'}, {'@type': 'ListItem', 'position': 3, 'name': 'Best Time to Visit', 'item': 'https://best-of-chengdu.com/travel/best-time-to-visit'}]}],
+  'dateModified': '2026-08-05',
+  '@graph': [
+    { '@type': 'Article', 'headline': 'Best Time to Visit Chengdu 2026 — Month by Month Guide with Weather, Crowds & Events', 'description': 'Complete seasonal guide: temperature charts, monthly rainfall data, air quality guide, panda activity calendar, photography calendar, festival dates, travel focus matching, packing lists, and honest advice on Chengdu\'s famously gray weather.', 'url': 'https://best-of-chengdu.com/travel/best-time-to-visit', 'author': { '@type': 'Organization', 'name': 'Best of Chengdu' } },
+    { '@type': 'BreadcrumbList', 'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'Best Time to Visit', 'item': 'https://best-of-chengdu.com/travel/best-time-to-visit' },
+    ]},
+    { '@type': 'FAQPage', 'mainEntity': faqs.map((faq) => ({ '@type': 'Question', 'name': faq.q, 'acceptedAnswer': { '@type': 'Answer', 'text': faq.a } })) },
+  ],
 };
 ---
 
-<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Time to Visit Chengdu" description="Seasonal guide to weather, crowds, and what to expect each month.">
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Time to Visit Chengdu 2026 — Month by Month Weather & Events Guide | Best of Chengdu" description="Complete guide: temperature charts, monthly rainfall, air quality, panda activity calendar, photography calendar, festival dates, packing lists, and honest advice on Chengdu's famously gray weather.">
   <Header />
 
   <main>
-    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+    <!-- Hero -->
+    <section class="max-w-[860px] mx-auto px-6 pt-20 pb-12">
+      <p class="text-xs font-medium tracking-widest uppercase text-accent mb-4">When to Go · Updated August 2026</p>
       <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
         Best Time to Visit Chengdu
       </h1>
-      <p class="mt-4 text-lg text-gray-500 leading-relaxed">Chengdu is a year-round destination, but each season brings a different character. Spring flowers, summer storms, autumn gold, and winter hotpot. Here is what to expect.</p>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed max-w-[56ch]">
+        April and November are perfect. Spring flowers and golden ginkgo trees in autumn are magical. Summer brings baby pandas but punishing humidity. Winter is gray and glorious in its own way — empty sites and half-price luxury hotels. Here's the honest, detailed breakdown month by month.
+      </p>
     </section>
-    <section class="max-w-[860px] mx-auto px-6 pb-20">
-      <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Season by season</h2>
-      <div class="space-y-4">
-        <div class="p-5 rounded-xl border border-border"><div class="flex items-center gap-2 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">BEST</span><h3 class="font-display font-semibold text-[#1a1a1a]">Spring (March-May)</h3></div><p class="text-sm text-gray-500">The ideal season. Temperatures are mild (15-25°C), flowers bloom across the city, and pandas are at their most active. Occasional light rain, so pack a jacket. This is also the best time for outdoor tea houses and long walks through People's Park.</p></div>
-        <div class="p-5 rounded-xl border border-border"><div class="flex items-center gap-2 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">GOOD</span><h3 class="font-display font-semibold text-[#1a1a1a]">Autumn (September-November)</h3></div><p class="text-sm text-gray-500">Crisp, clear days and golden ginkgo trees lining the streets. Temperatures are similar to spring but the humidity drops. September can still be warm. October and November are perfect. The best months for photography, especially the ginkgo avenues around Daci Temple.</p></div>
-        <div class="p-5 rounded-xl border border-border"><div class="flex items-center gap-2 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500 font-medium">MIXED</span><h3 class="font-display font-semibold text-[#1a1a1a]">Summer (June-August)</h3></div><p class="text-sm text-gray-500">Hot, humid, and rainy. Temperatures hit 30-35°C with high humidity. Afternoon thunderstorms are common. On the plus side: summer is baby panda season at the Panda Base, street food is at its peak, and the surrounding mountains offer cool escapes. Pack an umbrella and light clothing.</p></div>
-        <div class="p-5 rounded-xl border border-border"><div class="flex items-center gap-2 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500 font-medium">QUIET</span><h3 class="font-display font-semibold text-[#1a1a1a]">Winter (December-February)</h3></div><p class="text-sm text-gray-500">Cold and damp (5-10°C) but rarely freezing. The famous Chengdu fog sets in, giving the city a moody atmosphere. Hotpot tastes best in winter, and tourist sites are empty. Hotel prices drop significantly. If you don't mind the gray skies, winter offers the most authentic local experience without the crowds.</p></div>
+
+    <!-- Quick Verdict -->
+    <section class="max-w-[860px] mx-auto px-6 pb-12">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="p-5 rounded-xl bg-accent/5 border border-accent/10 text-center">
+          <span class="block text-[10px] font-medium text-accent uppercase mb-1">Best Overall</span>
+          <span class="block text-xl font-bold text-[#1a1a1a]">April & November</span>
+          <span class="block text-xs text-gray-500 mt-1">Perfect weather, manageable crowds, most beautiful scenery</span>
+        </div>
+        <div class="p-5 rounded-xl bg-surface border border-border text-center">
+          <span class="block text-[10px] font-medium text-gray-400 uppercase mb-1">Baby Pandas</span>
+          <span class="block text-xl font-bold text-[#1a1a1a]">Aug–Oct</span>
+          <span class="block text-xs text-gray-500 mt-1">Nursery cubs visible from mid-August</span>
+        </div>
+        <div class="p-5 rounded-xl bg-surface border border-border text-center">
+          <span class="block text-[10px] font-medium text-gray-400 uppercase mb-1">Best Value</span>
+          <span class="block text-xl font-bold text-[#1a1a1a]">Nov–Feb</span>
+          <span class="block text-xs text-gray-500 mt-1">Lowest hotel prices, no crowds, hotpot season</span>
+        </div>
+      </div>
     </section>
+
+    <!-- TEMPERATURE BARS -->
+    <section class="max-w-[860px] mx-auto px-6 pb-14">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Temperature at a Glance</h2>
+      <p class="text-sm text-gray-500 mb-6 max-w-[52ch]">Chengdu has mild winters and hot, humid summers. The annual temperature range is narrower than Beijing or Shanghai — it rarely freezes and rarely exceeds 35°C. But the humidity amplifies both heat and cold.</p>
+      <div class="p-6 rounded-xl border border-border bg-white">
+        <div class="space-y-2.5">
+          {tempBars.map((t) => (
+            <div class="flex items-center gap-3">
+              <span class="text-xs font-medium text-gray-400 w-8 text-right">{t.month}</span>
+              <div class="flex-1 relative h-5 bg-surface rounded-full overflow-hidden">
+                <div class="absolute inset-y-0 rounded-full opacity-30" style={`left:${(t.low / 40) * 100}%; width:${((t.high - t.low) / 40) * 100}%; background-color:${t.color}`}></div>
+                <div class="absolute inset-y-0 rounded-full" style={`left:${(t.low / 40) * 100}%; width:${((t.high - t.low) / 40) * 100}%; background-color:${t.color}; opacity:0.7; border:1px solid ${t.color}`}></div>
+              </div>
+              <span class="text-[10px] text-gray-400 w-16">{t.low}–{t.high}°C</span>
+            </div>
+          ))}
+        </div>
+        <div class="flex justify-between mt-4 text-[10px] text-gray-400">
+          <span>0°C</span><span>10°C</span><span>20°C</span><span>30°C</span><span>40°C</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seasons -->
+    {seasons.map((season) => (
+      <section class="max-w-[860px] mx-auto px-6 pb-16">
+        <div class="p-6 rounded-xl border border-border bg-white">
+          <div class="flex items-center gap-2 mb-4">
+            <h2 class="text-xl font-display font-semibold tracking-tight text-[#1a1a1a]">{season.name}</h2>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">{season.tag}</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-5">
+            <div class="p-3 rounded-lg bg-surface text-center">
+              <span class="block text-[10px] text-gray-400 mb-0.5">Temperature</span>
+              <span class="block text-[11px] font-semibold text-[#1a1a1a] leading-tight">{season.temp}</span>
+            </div>
+            <div class="p-3 rounded-lg bg-surface text-center">
+              <span class="block text-[10px] text-gray-400 mb-0.5">Rainfall</span>
+              <span class="block text-[11px] font-semibold text-[#1a1a1a] leading-tight">{season.rain}</span>
+            </div>
+            <div class="p-3 rounded-lg bg-surface text-center">
+              <span class="block text-[10px] text-gray-400 mb-0.5">Crowds</span>
+              <span class="block text-[11px] font-semibold text-[#1a1a1a] leading-tight">{season.crowds}</span>
+            </div>
+            <div class="p-3 rounded-lg bg-surface text-center">
+              <span class="block text-[10px] text-gray-400 mb-0.5">Hotel Prices</span>
+              <span class="block text-[11px] font-semibold text-[#1a1a1a] leading-tight">{season.hotelPrice}</span>
+            </div>
+          </div>
+
+          <h3 class="text-sm font-semibold text-[#1a1a1a] mb-1.5">What It's Really Like</h3>
+          <p class="text-sm text-gray-500 leading-relaxed mb-4">{season.whyGo}</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <h4 class="text-xs font-semibold text-[#1a1a1a] uppercase tracking-wide mb-1.5">👕 What to Wear</h4>
+              <p class="text-xs text-gray-500 leading-relaxed">{season.whatToWear}</p>
+            </div>
+            <div>
+              <h4 class="text-xs font-semibold text-[#1a1a1a] uppercase tracking-wide mb-1.5">🎉 Events & Festivals</h4>
+              <ul class="space-y-1">
+                {season.events.map((event) => (
+                  <li class="text-xs text-gray-500">· {event}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-xs font-semibold text-[#1a1a1a] uppercase tracking-wide mb-1.5">📸 Photo Tip</h4>
+              <p class="text-xs text-gray-500 leading-relaxed">{season.photoTip}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- Monthly Table -->
     <section class="bg-surface py-20">
       <div class="max-w-[860px] mx-auto px-6">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Quick reference</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
-          <div class="p-4 rounded-xl bg-white border border-border text-center"><p class="font-semibold text-[#1a1a1a]">Mar-May</p><p class="text-gray-500 mt-0.5">15-25°C</p><p class="text-xs text-accent mt-0.5">Best season</p></div>
-          <div class="p-4 rounded-xl bg-white border border-border text-center"><p class="font-semibold text-[#1a1a1a]">Jun-Aug</p><p class="text-gray-500 mt-0.5">28-35°C</p><p class="text-xs text-gray-400 mt-0.5">Hot & rainy</p></div>
-          <div class="p-4 rounded-xl bg-white border border-border text-center"><p class="font-semibold text-[#1a1a1a]">Sep-Nov</p><p class="text-gray-500 mt-0.5">15-25°C</p><p class="text-xs text-accent mt-0.5">Ginkgo season</p></div>
-          <div class="p-4 rounded-xl bg-white border border-border text-center"><p class="font-semibold text-[#1a1a1a]">Dec-Feb</p><p class="text-gray-500 mt-0.5">5-10°C</p><p class="text-xs text-gray-400 mt-0.5">Quiet & cozy</p></div>
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Month-by-Month Breakdown</h2>
+        <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Detailed weather data, crowd levels, and honest notes for every month. All temperatures are for Chengdu city (500m elevation). Mountain destinations are 5–10°C cooler.</p>
+        <div class="overflow-x-auto rounded-xl border border-border bg-white">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-surface/50">
+                <th class="text-left py-2.5 pr-3 pl-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Month</th>
+                <th class="text-left py-2.5 pr-3 font-medium text-gray-400 text-xs uppercase tracking-wide">Temp</th>
+                <th class="text-left py-2.5 pr-3 font-medium text-gray-400 text-xs uppercase tracking-wide">Rain</th>
+                <th class="text-left py-2.5 pr-3 font-medium text-gray-400 text-xs uppercase tracking-wide">Crowds</th>
+                <th class="text-left py-2.5 pr-3 font-medium text-gray-400 text-xs uppercase tracking-wide">Rating</th>
+                <th class="text-left py-2.5 pr-5 font-medium text-gray-400 text-xs uppercase tracking-wide">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {monthDetails.map((row) => (
+                <tr class="border-b border-border/50 hover:bg-accent/[0.02]">
+                  <td class="py-2.5 pr-3 pl-5 font-medium text-[#1a1a1a]">{row.month}</td>
+                  <td class="py-2.5 pr-3 text-gray-500 text-xs">{row.temp}</td>
+                  <td class="py-2.5 pr-3 text-gray-500 text-xs">{row.rain}</td>
+                  <td class="py-2.5 pr-3 text-gray-500 text-xs">{row.crowds}</td>
+                  <td class="py-2.5 pr-3">{row.rating}</td>
+                  <td class="py-2.5 pr-5 text-xs text-gray-500 leading-relaxed">{row.note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <p class="text-sm text-gray-400 mt-6 text-center">Avoid traveling during Chinese New Year (late Jan/early Feb) and National Day (Oct 1-7) unless you enjoy massive crowds and inflated prices.</p>
+      </div>
+    </section>
+
+    <!-- TRAVEL FOCUS -->
+    <section class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Best Time for What You Care About</h2>
+      <p class="text-sm text-gray-500 mb-8 max-w-[52ch]">Different travelers, different priorities. Match your interests to the right months.</p>
+      <div class="space-y-3">
+        {travelFocus.map((tf) => (
+          <div class="p-5 rounded-xl border border-border bg-white hover:shadow-sm transition-shadow">
+            <div class="flex flex-wrap items-center gap-3 mb-2">
+              <h3 class="font-semibold text-[#1a1a1a]">{tf.focus}</h3>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">{tf.months}</span>
+            </div>
+            <p class="text-sm text-gray-500 leading-relaxed">{tf.note}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Packing by Season -->
+    <section class="bg-surface py-20">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">What to Pack — By Season</h2>
+        <div class="space-y-3">
+          {packingBySeason.map((p) => (
+            <div class="p-4 rounded-xl border border-border bg-white">
+              <span class="text-xs font-semibold text-accent uppercase block mb-1">{p.season}</span>
+              <p class="text-xs text-gray-500 leading-relaxed">{p.items}</p>
+            </div>
+          ))}
+        </div>
+        <div class="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-100">
+          <p class="text-xs text-amber-800 leading-relaxed">
+            <strong>🌧️ Chengdu Weather Reality:</strong> The city averages only 1,000–1,200 hours of sunshine per year — less than London. Locals joke that "Sichuan dogs bark at the sun because they've never seen it." The near-constant cloud cover, especially in winter, is the defining feature of Chengdu's climate. If you arrive expecting bright blue skies, you'll be disappointed. If you embrace the soft gray light — which creates dreamy, atmospheric conditions for photography and makes the city's tea houses and hotpot restaurants feel cozier — you'll understand why Chengdu's pace of life is famously relaxed. Bring a VPN, download your podcasts, and settle into the city's gentle rhythm.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-[860px] mx-auto px-6 py-20">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-8">Weather & Timing FAQ</h2>
+      <div class="space-y-3">
+        {faqs.map((faq, i) => (
+          <div class="rounded-xl border border-border bg-white overflow-hidden">
+            <button
+              class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-accent/[0.02] transition-colors"
+              data-index={i}
+              aria-expanded="false"
+            >
+              <span class="font-semibold text-[#1a1a1a] pr-4 text-sm">{faq.q}</span>
+              <svg class="faq-icon shrink-0 transition-transform duration-200" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer hidden px-5 pb-5">
+              <p class="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CROSSLINKS -->
+    <section class="max-w-[860px] mx-auto px-6 pb-24">
+      <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-4">Continue Planning</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="/attractions/day-trips" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="text-lg mb-2 block">🏯</span>
+          <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Day Trips →</h3>
+          <p class="text-xs text-gray-500 mt-1">8 destinations with seasonal advice.</p>
+        </a>
+        <a href="/travel/hotels" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="text-lg mb-2 block">🏨</span>
+          <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Where to Stay →</h3>
+          <p class="text-xs text-gray-500 mt-1">5 neighborhoods & 17 hotel picks.</p>
+        </a>
+        <a href="/" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="text-lg mb-2 block">🏠</span>
+          <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Full Chengdu Guide →</h3>
+          <p class="text-xs text-gray-500 mt-1">Food, pandas, attractions & complete FAQ.</p>
+        </a>
       </div>
     </section>
   </main>
 
   <Footer />
+
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !answer.classList.contains('hidden');
+        answer.classList.toggle('hidden');
+        icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  </script>
 </BaseLayout>

@@ -6,12 +6,12 @@ import Footer from '~/components/Footer.astro';
 const schema = {
   '@context': 'https://schema.org',
   'datePublished': '2026-07-15',
-  'dateModified': '2026-07-29',
+  'dateModified': '2026-08-05',
   '@graph': [
     {
       '@type': 'Article',
-      'headline': 'Chengdu Food Guide for First-Timers: What to Eat & How to Order',
-      'description': 'Your survival guide to Sichuan cuisine. Dish-by-dish breakdown, how to order without speaking Chinese, and what to avoid.',
+      'headline': 'Chengdu Food Guide for First-Timers: What to Eat & How to Order (2026)',
+      'description': 'Your survival guide to Sichuan cuisine. 12 must-try dishes, how to order without speaking Chinese, breakfast and street food guides, and what to avoid.',
       'url': 'https://best-of-chengdu.com/blog/chengdu-food-guide-first-timers',
       'author': {'@type': 'Organization', 'name': 'Best of Chengdu'},
     },
@@ -27,7 +27,7 @@ const schema = {
 };
 ---
 
-<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu Food Guide for First-Timers" description="Your survival guide to Sichuan cuisine. Dish-by-dish breakdown, how to order without speaking Chinese, and what to avoid.">
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Chengdu Food Guide for First-Timers" description="Your survival guide to Sichuan cuisine. 12 must-try dishes, how to order without speaking Chinese, breakfast and street food guides, and what to avoid.">
   <Header />
 
   <main>
@@ -36,98 +36,245 @@ const schema = {
       <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1] mt-4">
         Chengdu Food Guide for First-Timers
       </h1>
-      <p class="mt-4 text-lg text-gray-500 leading-relaxed">You've heard Chengdu is a UNESCO City of Gastronomy. You know the food is spicy. But walking into a Chengdu restaurant for the first time can be overwhelming. Here is exactly what to eat, how to order, and how to survive &mdash; happily.</p>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed">You\'ve heard Chengdu is a UNESCO City of Gastronomy. You know the food is spicy. But walking into a Chengdu restaurant for the first time can be overwhelming. This guide covers exactly what to eat, how to order, and how to eat your way through the city like someone who has been here before.</p>
 
+      <!-- Understanding Sichuan flavors -->
       <section class="mt-12">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">The 8 dishes you must try</h2>
-        <div class="space-y-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-4">Understanding Sichuan flavors</h2>
+        <p class="text-sm text-gray-500 leading-relaxed mb-4">Sichuan cuisine isn\'t just about heat. It\'s about a symphony of seven core flavor profiles that can appear in any combination. Understanding these will change how you eat here.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+          <div class="p-4 rounded-xl bg-surface"><span class="font-semibold text-[#1a1a1a]">🌶️ La (辣) — Chili heat</span><p class="text-gray-500 mt-1">Dried chilies, chili oil, fresh chilies. The straightforward heat that builds as you eat.</p></div>
+          <div class="p-4 rounded-xl bg-surface"><span class="font-semibold text-[#1a1a1a]">🌀 Ma (麻) — Numbing</span><p class="text-gray-500 mt-1">Sichuan peppercorn. A tingling, buzzing sensation unlike anything else. Takes getting used to.</p></div>
+          <div class="p-4 rounded-xl bg-surface"><span class="font-semibold text-[#1a1a1a]">🧂 Xian (咸) — Salty</span><p class="text-gray-500 mt-1">Fermented bean pastes (doubanjiang), soy sauce, pickled vegetables. The savory backbone.</p></div>
+          <div class="p-4 rounded-xl bg-surface"><span class="font-semibold text-[#1a1a1a]">🍬 Tian (甜) — Sweet</span><p class="text-gray-500 mt-1">Rock sugar, fermented rice. Used sparingly to balance heat — never dessert-level sweet.</p></div>
+          <div class="p-4 rounded-xl bg-surface"><span class="font-semibold text-[#1a1a1a]">🍋 Suan (酸) — Sour</span><p class="text-gray-500 mt-1">Black vinegar, pickled chilies. Brightens heavy dishes and cuts through oil.</p></div>
+          <div class="p-4 rounded-xl bg-surface"><span class="font-semibold text-[#1a1a1a]">🥜 Xiang (香) — Aromatic</span><p class="text-gray-500 mt-1">Sesame, garlic, ginger, scallions. The fragrance that hits you before the taste.</p></div>
+          <div class="p-4 rounded-xl bg-surface sm:col-span-2"><span class="font-semibold text-[#1a1a1a]">🍲 Xian (鲜) — Umami</span><p class="text-gray-500 mt-1">The savory depth from fermented ingredients, long-braised meats, and mushroom-based stocks. The elusive fifth taste that makes Sichuan food so satisfying.</p></div>
+        </div>
+      </section>
+
+      <!-- 12 must-try dishes -->
+      <section class="mt-14">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">The 12 dishes you must try</h2>
+        <div class="space-y-5">
           <div class="p-5 rounded-xl border border-border">
-            <h3 class="font-display font-semibold text-[#1a1a1a]">1. Mapo Tofu (ma po dou fu)</h3>
-            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Silky tofu cubes in a fiery, numbing sauce of doubanjiang, fermented black beans, and ground pork. The benchmark dish for any Sichuan chef. Best version: Chen Mapo Tofu near Wenshu Monastery, where it was supposedly invented in 1862. Vegetarian versions available at Buddhist restaurants.</p>
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Iconic · Spicy + Numbing</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">1. Mapo Tofu (麻婆豆腐)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Silky tofu cubes in a fiery, numbing sauce of doubanjiang, fermented black beans, and ground pork. The benchmark dish for any Sichuan chef — if a restaurant gets this right, everything else will be good. The name literally means "pockmarked old woman\'s tofu," referring to the woman who invented it at her Chengdu restaurant in 1862. Best version: Chen Mapo Tofu near Wenshu Monastery. Vegetarian versions available at Buddhist temple restaurants — ask for "su ma po dou fu" (素麻婆豆腐).</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Chen Mapo Tofu (陈麻婆豆腐), 197 Xiyulong Street · ¥28–45</p>
           </div>
+
           <div class="p-5 rounded-xl border border-border">
-            <h3 class="font-display font-semibold text-[#1a1a1a]">2. Kung Pao Chicken (gong bao ji ding)</h3>
-            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Tender chicken cubes stir-fried with peanuts, dried chilies, and Sichuan peppercorns. The real version is a delicate balance of sweet, sour, and spicy &mdash; nothing like the syrupy takeout version. Best at Ming Ting or any mid-range Sichuan restaurant.</p>
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Classic · Sweet-Sour-Spicy</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">2. Kung Pao Chicken (宫保鸡丁)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Tender chicken cubes stir-fried with peanuts, dried chilies, and Sichuan peppercorns. The real version is a delicate balance of sweet, sour, and spicy — nothing like the syrupy takeout version served outside China. Named after Ding Baozhen, a Qing dynasty official whose title was "Gong Bao." The authentic recipe uses only chicken, peanuts, scallions, and dried chilies — no bell peppers, no carrots, no pineapple. Best at Ming Ting or any mid-range Sichuan restaurant.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Ming Ting (明婷饭店), 55 Caojia Alley · ¥32–48</p>
           </div>
+
           <div class="p-5 rounded-xl border border-border">
-            <h3 class="font-display font-semibold text-[#1a1a1a]">3. Dan Dan Noodles (dan dan mian)</h3>
-            <p class="text-sm text-gray-500 mt-1 leading-relaxed">The iconic Chengdu street dish. Thin noodles in a sauce of sesame paste, chili oil, Sichuan pepper, and minced pork. A complete meal for 12-15 RMB. Best from street stalls on Jianshe Road or at dedicated noodle shops.</p>
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Street Food · Budget</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">3. Dan Dan Noodles (担担面)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">The iconic Chengdu street dish. Thin wheat noodles swimming in a sauce of sesame paste, chili oil, Sichuan pepper, soy sauce, and topped with crispy minced pork and preserved vegetables. A complete meal for ¥12–15. The name comes from the shoulder pole (dan dan) that street vendors historically used to carry their noodle stalls. Best from street stalls on Jianshe Road or at dedicated noodle shops — the sauce-to-noodle ratio is what separates a good bowl from a great one.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Jianshe Road street stalls or Xiao Ming Dan Dan Mian · ¥12–15</p>
           </div>
+
           <div class="p-5 rounded-xl border border-border">
-            <h3 class="font-display font-semibold text-[#1a1a1a]">4. Twice-Cooked Pork (hui guo rou)</h3>
-            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Pork belly simmered, sliced, then wok-fried with fermented black beans, leeks, and chili. The name is literal: it's cooked twice, and the second frying gives it a caramelized edge. Sichuan comfort food at its finest.</p>
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Comfort Food · Savory</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">4. Twice-Cooked Pork (回锅肉)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Pork belly simmered until tender, sliced thin, then wok-fried at intense heat with fermented black beans, leeks, garlic sprouts, and chili bean paste. The name is literal — it\'s cooked twice — and the second searing gives it caramelized edges and deep savory flavor. This is Sichuan comfort food at its finest: the dish every local mother makes and every restaurant is judged by. The best versions use pork belly with a good fat-to-lean ratio and are served with a bowl of plain white rice on the side.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Almost every Sichuan restaurant · ¥28–42</p>
           </div>
+
           <div class="p-5 rounded-xl border border-border">
-            <h3 class="font-display font-semibold text-[#1a1a1a]">5. Hotpot (huo guo)</h3>
-            <p class="text-sm text-gray-500 mt-1 leading-relaxed">A communal feast of bubbling broth, fresh ingredients, and good company. Choose your broth (nine-grid spicy, mild tomato, or a split pot), order plates of raw ingredients, and cook them at the table. <a href="/food/hotpot" class="text-accent hover:underline">Full hotpot guide here</a>.</p>
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Communal Feast · Spicy</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">5. Hotpot (火锅)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">A communal feast of bubbling broth, fresh ingredients, and good company. Choose your broth — traditional nine-grid spicy (made with beef tallow), mild tomato, mushroom, or a split pot — then order plates of raw ingredients and cook them at the table. The ritual matters as much as the food: mix your dipping sauce (sesame oil + garlic + scallions + oyster sauce), count the seconds for tripe (8–10), and never double-dip. <a href="/food/hotpot" class="text-accent hover:underline">Read our complete hotpot guide</a> for restaurant recommendations and ordering strategy.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Shu Daxia (蜀大侠), Xiaolongkan (小龙坎) · ¥80–120/person</p>
           </div>
+
           <div class="p-5 rounded-xl border border-border">
-            <h3 class="font-display font-semibold text-[#1a1a1a]">6. Fuqi Feipian (husband and wife lung slices)</h3>
-            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Ignore the name &mdash; these are thin slices of beef and tripe dressed in chili oil and Sichuan pepper. Despite the intimidating description, it's one of the most popular cold appetizers in Chengdu. The numbing-spicy dressing is addictive.</p>
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Cold Appetizer · Adventurous</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">6. Fuqi Feipian (夫妻肺片)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Thinly sliced beef, tongue, and tripe dressed in an intoxicating chili oil and Sichuan pepper sauce, topped with crushed peanuts and sesame seeds. The name translates to "husband and wife lung slices" — ignore it, there are no lungs involved. A married couple in the 1930s sold this from a street cart, and it became so popular the name stuck. Served cold as an appetizer, it\'s one of the best introductions to mala (numbing-spicy) flavor. The dressing — chili oil, Sichuan pepper, black vinegar, soy sauce, sesame paste — is what makes it unforgettable.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Most Sichuan restaurants or dedicated cold-dish stalls · ¥25–38</p>
           </div>
+
           <div class="p-5 rounded-xl border border-border">
-            <h3 class="font-display font-semibold text-[#1a1a1a]">7. Zhong Dumplings (zhong shui jiao)</h3>
-            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Pork dumplings in a sweet soy and chili oil sauce. Smaller and more delicate than northern Chinese dumplings. The balance of sweet, savory, and spicy is what makes them distinctly Chengdu.</p>
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Dumpling · Sweet-Savory</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">7. Zhong Dumplings (钟水饺)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Pork dumplings in a distinctive sweet soy and chili oil sauce. Smaller and more delicate than northern Chinese dumplings, these are all about the wrapper-to-filling ratio and the glossy red sauce. The sauce is what makes them distinctly Chengdu — a blend of sweetened soy sauce, chili oil, garlic, and sesame that coats each dumpling like lacquer. Zhong Shui Jiao is both the name of the dish and the century-old restaurant that created it.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Zhong Dumplings (钟水饺), multiple locations · ¥15–22</p>
           </div>
+
           <div class="p-5 rounded-xl border border-border">
-            <h3 class="font-display font-semibold text-[#1a1a1a]">8. Bingfen (ice jelly)</h3>
-            <p class="text-sm text-gray-500 mt-1 leading-relaxed">A cooling dessert made from ice jelly seeds, topped with brown sugar syrup, crushed peanuts, sesame seeds, and dried fruit. The perfect antidote to a spicy meal. Find it at street stalls and dessert shops citywide.</p>
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Dessert · Refreshing</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">8. Bingfen (冰粉)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">A translucent jelly made from ice jelly seeds, topped with brown sugar syrup, crushed peanuts, sesame seeds, raisins, hawthorn flakes, and sometimes fruit. Light, cooling, and barely sweet — the perfect antidote to a meal of chili and Sichuan pepper. Street vendors assemble it to order from an array of toppings. The texture is somewhere between jelly and water, and it\'s oddly addictive. Find it at dessert stalls, night markets, and increasingly at hotpot restaurants as a post-meal palate cleanser.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Street stalls throughout the city · ¥8–15</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-border">
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Noodle · Breakfast/Lunch</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">9. Yibin Burning Noodles (宜宾燃面)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Dry-tossed noodles from the city of Yibin, now a Chengdu staple. The name means "burning noodles" — supposedly because the oil content is so high it could catch fire. Thin noodles are tossed with chili oil, sesame oil, crushed peanuts, preserved mustard greens, and scallions. No broth, just intense flavor concentrated on every strand. A perfect quick lunch for ¥12–18. Add a fried egg on top if the shop offers it.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Noodle shops throughout the city · ¥12–18</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-border">
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Fish · Sour-Spicy</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">10. Sichuan Boiled Fish (水煮鱼)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">Despite the bland English name, this is a showstopper. Tender fish fillets poached in a sea of chili oil, swimming with dried chilies and Sichuan peppercorns. Served in a large ceramic bowl, the oil arrives still bubbling. The fish is shockingly tender — the quick poaching in oil seals in moisture — and the broth underneath is complex, not just hot. Scoop the fish with a slotted spoon, drain the excess oil, and eat with rice. Often made with grass carp or basa. One bowl serves 2–3 people.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Most Sichuan restaurants · ¥58–88 for a large portion</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-border">
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Snack · Spicy-Sweet</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">11. Spicy Rabbit Head (麻辣兔头)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">A Chengdu specialty that divides visitors. Rabbit heads are braised in a spicy mala broth until the meat falls apart, then served at room temperature. Eating one is an exercise in dissection — pull apart the jaw, extract the cheeks (the best part), and don\'t miss the brain. It sounds confronting, but the flavor is extraordinary. They\'re sold at street stalls, convenience stores, and dedicated rabbit-head shops. Start with a five-spice version if the spicy one intimidates you. Pair with cold beer.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Shuangliu Laoma Tutou (双流老妈兔头), multiple locations · ¥10–15 each</p>
+          </div>
+
+          <div class="p-5 rounded-xl border border-border">
+            <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full">Snack · Sweet-Savory</span>
+            <h3 class="font-display font-semibold text-[#1a1a1a] mt-2">12. Egg-Baked Cake (蛋烘糕)</h3>
+            <p class="text-sm text-gray-500 mt-1 leading-relaxed">A beloved Chengdu street snack: small, fluffy pancakes cooked in a special copper pan, folded around your choice of filling while still hot. Sweet options include sesame sugar, red bean paste, and fruit jam. Savory versions come with pork floss, pickled vegetables, or shredded pork. The outside is crisp, the inside tender, and the contrast of sweet batter with savory filling is surprisingly good. Most stalls let you mix two fillings. ¥3–8 each, and you\'ll want at least three.</p>
+            <p class="text-xs text-gray-400 mt-2">Find it: Street stalls near universities, night markets, and Jianshe Road · ¥3–8 each</p>
           </div>
         </div>
       </section>
 
-      <section class="mt-12">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">How to order without speaking Chinese</h2>
+      <!-- Street food neighborhoods -->
+      <section class="mt-14">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Where to eat: street food neighborhoods</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a] mb-1">Use photos</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Most Chengdu restaurants have photo menus or dishes displayed on the wall. Point and smile works perfectly. Save photos of the dishes above to your phone as backup.</p>
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">Jianshe Road (建设路)</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">The gold standard. A 500-meter stretch with 50+ stalls, many run by the same families for 20+ years. Best for: dan dan noodles, guo kui, skewers, egg-baked cakes. Go hungry, bring cash, avoid weekend evenings if possible.</p>
           </div>
           <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a] mb-1">Translation apps</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Google Translate's camera mode works for printed menus. Pleco is better for handwritten signs. Take a photo, circle the text, and it translates in real time.</p>
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">Yulin Market (玉林菜市场)</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">A traditional wet market surrounded by snack stalls. Less touristy than Jianshe Road, with more old-school vendors. Best for: cold dressed chicken, handmade dumplings, fresh soy milk, and seasonal fruit. Morning is best.</p>
           </div>
           <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a] mb-1">QR code ordering</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Many restaurants now use QR codes for ordering. Scan with WeChat or Alipay. Some have English interfaces, but even the Chinese versions have photos.</p>
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">Wenshu Monastery area</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">The lanes around the monastery are lined with vegetarian snack stalls and tea shops. Best for: vegetarian versions of meat dishes, sweet water noodles (甜水面), and temple-made pastries. Pair with a visit to the monastery itself.</p>
           </div>
           <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a] mb-1">Key phrases</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">"Bu yao la" = not spicy (though this may be ignored). "Wei wei la" = a little spicy. "Hao chi" = delicious (always appreciated). "Mai dan" = the bill please.</p>
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">Sichuan University area</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Where students eat: cheap, fast, and consistently good. The streets around the Wangjiang campus have dozens of tiny restaurants and snack stalls. Best for: spicy hot pot (冒菜), noodle shops, and late-night barbecue skewers.</p>
           </div>
         </div>
       </section>
 
-      <section class="mt-12">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-4">What to know about the spice</h2>
-        <div class="space-y-3 text-sm text-gray-500 leading-relaxed">
-          <p>Sichuan heat is different from other cuisines. It's not just chili heat (la) &mdash; it's a numbing, tingling sensation (ma) from Sichuan peppercorns. The combination is called <em>mala</em> and it's the defining flavor of the region.</p>
-          <p>The numbing can be surprising. It's not pain, exactly &mdash; it's more like your mouth is vibrating. It takes a few bites to adjust. Once you do, you'll understand why people become obsessed.</p>
-          <p><strong class="text-[#1a1a1a]">If it's too spicy:</strong> Drink milk or eat rice. Water makes it worse. The classic antidote is a bowl of plain rice or a sweet drink. Yogurt drinks sold at convenience stores also help.</p>
-          <p><strong class="text-[#1a1a1a]">Vegetarians:</strong> Sichuan has a strong Buddhist vegetarian tradition. Temple restaurants (like Wenshu Monastery) serve excellent meat-free versions of classic dishes. Many restaurants will accommodate if you say "wo chi su" (I eat vegetarian).</p>
+      <!-- How to order -->
+      <section class="mt-14">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">How to order without speaking Chinese</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">📸 Use photos</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Most Chengdu restaurants have photo menus or dishes displayed on the wall. Point and smile works perfectly. Save photos of the dishes above to your phone as backup. Many menus have pictures for 80%+ of items.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">📱 Translation apps</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Google Translate\'s camera mode works for printed menus. Pleco is better for handwritten signs and characters you can\'t identify. Point your camera, circle the text, and it translates in real time.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">📲 QR code ordering</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Many restaurants now use QR codes for ordering — scan with WeChat or Alipay, browse the digital menu (usually with photos), and pay through the app. Some have English interfaces.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">🗣️ Key phrases</h3>
+            <p class="text-sm text-gray-500 leading-relaxed"><strong>Bu yao la</strong> (不要辣) = not spicy (may be politely ignored). <strong>Wei wei la</strong> (微微辣) = very mildly spicy. <strong>Hao chi!</strong> (好吃) = delicious. <strong>Mai dan</strong> (买单) = the bill please. <strong>Xie xie</strong> (谢谢) = thank you.</p>
+          </div>
         </div>
       </section>
 
-      <section class="mt-12">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Dining etiquette</h2>
+      <!-- Spice survival guide -->
+      <section class="mt-14">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">The spice survival guide</h2>
+        <div class="space-y-4 text-sm text-gray-500 leading-relaxed">
+          <div class="p-5 rounded-xl bg-surface">
+            <p><strong class="text-[#1a1a1a]">What is mala?</strong> Sichuan heat is different from other cuisines. It\'s not just chili heat (la) — it\'s a numbing, tingling sensation (ma) from Sichuan peppercorns. The combination is called <em>mala</em> and it is the defining flavor of the region. Sichuan peppercorns contain hydroxy-alpha sanshool, which activates touch receptors rather than heat receptors — hence the buzzing, electric sensation.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <p><strong class="text-[#1a1a1a]">The numbing can be surprising.</strong> It\'s not pain — it\'s more like your mouth is vibrating at a frequency you didn\'t know existed. Your lips might feel like they\'re buzzing for 10–15 minutes after a particularly ma-heavy dish. This is normal and, for most people, becomes enjoyable after the first few experiences.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <p><strong class="text-[#1a1a1a]">If it\'s too spicy:</strong> Drink milk, soy milk, or eat plain rice. Water makes it worse — capsaicin is oil-soluble, so water just spreads it around your mouth. Yogurt drinks sold at convenience stores are excellent. The classic restaurant antidote is a bowl of plain white rice eaten slowly between bites of spicy food.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <p><strong class="text-[#1a1a1a]">Vegetarians:</strong> Sichuan has a strong Buddhist vegetarian tradition dating back centuries. Temple restaurants — especially at Wenshu Monastery and Baoguang Temple — serve elaborate meat-free versions of classic dishes using tofu skin, mushrooms, and wheat gluten. Many restaurants will accommodate dietary restrictions if you say "wo chi su" (我吃素, I eat vegetarian). Look for restaurants marked with the Buddhist swastika symbol.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <p><strong class="text-[#1a1a1a]">Gluten concerns:</strong> Soy sauce and doubanjiang (chili bean paste) traditionally contain wheat, though some premium versions are naturally gluten-free. Rice and rice noodles are safe. Communicate "wo bu neng chi mian fen" (我不能吃面粉, I can\'t eat wheat flour) and be specific about soy sauce — some restaurants can substitute salt-based seasonings.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dining etiquette -->
+      <section class="mt-14">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Dining etiquette & culture</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="p-5 rounded-xl bg-surface">
             <h3 class="font-semibold text-[#1a1a1a] mb-1">Sharing is standard</h3>
-            <p class="text-sm text-gray-500">Dishes are placed in the center and everyone picks from them. Order one dish per person plus a soup. Rice is served individually in small bowls.</p>
+            <p class="text-sm text-gray-500">Dishes are placed in the center and everyone picks from them with their own chopsticks (or serving chopsticks at nicer restaurants). Order one dish per person plus a soup. Rice is served individually in small bowls.</p>
           </div>
           <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a] mb-1">Tipping is not expected</h3>
-            <p class="text-sm text-gray-500">No tipping culture in China. Service charges are sometimes added at high-end restaurants (check the bill). Otherwise, the price you see is the price you pay.</p>
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">No tipping</h3>
+            <p class="text-sm text-gray-500">No tipping culture in China. Service charges are sometimes added at high-end restaurants (check the bill for a 10–15% surcharge). Otherwise, the price on the menu is the price you pay at the register.</p>
           </div>
           <div class="p-5 rounded-xl bg-surface">
             <h3 class="font-semibold text-[#1a1a1a] mb-1">Table tapping</h3>
-            <p class="text-sm text-gray-500">When someone pours tea for you, tap two fingers on the table as a silent thank-you. This tradition dates back to the Qing dynasty.</p>
+            <p class="text-sm text-gray-500">When someone pours tea for you, tap two fingers on the table as a silent thank-you. This tradition supposedly dates back to a Qing emperor traveling incognito — his servant couldn\'t kowtow publicly, so tapped fingers instead.</p>
           </div>
           <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a] mb-1">Slurping and noise</h3>
-            <p class="text-sm text-gray-500">Slurping noodles is normal and appreciated. Loud conversation is a sign of a good meal. Chengdu restaurants are lively, not hushed.</p>
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">Slurping & noise</h3>
+            <p class="text-sm text-gray-500">Slurping noodles is normal and shows appreciation. Loud conversation is a sign of a good meal — Chengdu restaurants are lively, not hushed. A quiet restaurant in Chengdu is usually an empty one.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">Bone plates & shared space</h3>
+            <p class="text-sm text-gray-500">Small plates are provided for bones, shells, and chili peppers you\'d rather not eat. It\'s fine to spit bones directly onto the plate. At hotpot, use the slotted spoon to fish ingredients out — chopsticks don\'t go into the communal pot.</p>
+          </div>
+          <div class="p-5 rounded-xl bg-surface">
+            <h3 class="font-semibold text-[#1a1a1a] mb-1">Paying the bill</h3>
+            <p class="text-sm text-gray-500">There may be playful arguments over who pays — this is a cultural ritual, not a real dispute. As a foreign visitor, your hosts will likely insist on treating you. Accept graciously after one polite refusal. Splitting the bill evenly is common among friends.</p>
           </div>
         </div>
+      </section>
+
+      <!-- Quick reference card -->
+      <section class="mt-14 p-6 rounded-xl border border-accent/20 bg-accent/5">
+        <h2 class="text-xl font-display font-semibold tracking-tight mb-4">📋 Quick reference: what to eat when</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <p class="font-semibold text-[#1a1a1a] mb-2">Breakfast (7–10 AM)</p>
+            <ul class="text-gray-500 space-y-1">
+              <li>• Fresh soy milk + youtiao</li>
+              <li>• Noodle soup (any kind)</li>
+              <li>• Baozi (steamed buns)</li>
+              <li>• Egg-baked cakes</li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-semibold text-[#1a1a1a] mb-2">Lunch (11:30–2 PM)</p>
+            <ul class="text-gray-500 space-y-1">
+              <li>• Dan dan noodles</li>
+              <li>• Twice-cooked pork set</li>
+              <li>• Yibin burning noodles</li>
+              <li>• Zhong dumplings</li>
+            </ul>
+          </div>
+          <div>
+            <p class="font-semibold text-[#1a1a1a] mb-2">Dinner (6:30–9 PM)</p>
+            <ul class="text-gray-500 space-y-1">
+              <li>• Hotpot (the main event)</li>
+              <li>• Mapo tofu + dishes</li>
+              <li>• Boiled fish</li>
+              <li>• Kung pao chicken</li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-xs text-gray-400 mt-4">Remember: this is a starting point, not a rulebook. The best meal in Chengdu is often the one you stumble into after following a promising smell down a narrow alley.</p>
       </section>
     </article>
   </main>

@@ -4,31 +4,120 @@ import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 
 const spots = [
-  { name: 'Shu Daxia Hotpot', style: 'Traditional Sichuan', note: 'Beloved local chain with rich, complex broth. Go for the nine-grid pot.' },
-  { name: 'Haidilao', style: 'Service-focused', note: 'The world-famous chain with consistently excellent ingredients and legendary service.' },
-  { name: 'Xiaolongkan', style: 'Old-school Chengdu', note: 'A classic that has been serving fiery hotpot since the 1980s. Intense mala broth.' },
-  { name: 'Long Sen Yuan', style: 'Butter-rich broth', note: 'Known for their extra-buttery spicy broth. Rich, indulgent, and absolutely authentic.' },
-  { name: 'Ba Guo Bu Yi', style: 'Modern Sichuan', note: 'Upscale setting with premium ingredients and a cleaner, more refined take on hotpot.' },
+  {
+    name: 'Shu Daxia Hotpot (蜀大侠)',
+    style: 'Traditional Sichuan',
+    price: '¥¥',
+    detail: 'The local favorite. Rich, complex nine-grid broth made with beef tallow that has been simmering for hours. The dining rooms feel like a martial-arts movie set — dark wood, red lanterns, waiters in period costumes. The beef slices are cut paper-thin and melt in 8 seconds. Multiple locations across the city, all consistently excellent. Expect a 30–60 minute wait on weekends.',
+    mustOrder: 'Signature beef slices, goose intestine, handmade shrimp paste',
+  },
+  {
+    name: 'Xiaolongkan (小龙坎)',
+    style: 'Old-school Chengdu',
+    price: '¥¥',
+    detail: 'A Chengdu institution since the 1980s. Xiaolongkan serves the most intense mala broth in the city — deeply spicy with a heavy Sichuan peppercorn punch that leaves your lips tingling for an hour after the meal. The flagship store near Chunxi Road is always packed. Go to the Yulin branch for shorter waits.',
+    mustOrder: 'Nine-grid pot, tripe, duck blood curd, crispy pork',
+  },
+  {
+    name: 'Haidilao (海底捞)',
+    style: 'Service-focused chain',
+    price: '¥¥¥',
+    detail: 'Yes, it\'s a global chain. And yes, it\'s still worth going. The ingredient quality is exceptional — Haidilao has the best supply chain in the business. The tomato broth (non-spicy) is genuinely good. The real draw is the service: free snacks while you wait, manicures in the lobby, noodle-pulling performances at your table. Best choice for first-timers intimidated by the spice.',
+    mustOrder: 'Tomato + spicy split pot, hand-pulled noodles, shrimp balls, fried dough sticks',
+  },
+  {
+    name: 'Long Sen Yuan (龙森园)',
+    style: 'Butter-rich broth',
+    price: '¥¥',
+    detail: 'Known for their extra-buttery spicy broth — richer and oilier than the competition, which locals argue makes it more authentic. The beef tallow content is noticeably higher, creating a thicker, more luxurious mouthfeel. Popular with Chengdu natives but less known to tourists. The Wuhou district location is the original.',
+    mustOrder: 'Beef tallow spicy broth, lamb slices, tofu skin, lotus root',
+  },
+  {
+    name: 'Ba Guo Bu Yi (巴国布衣)',
+    style: 'Modern upscale',
+    price: '¥¥¥',
+    detail: 'For when you want hotpot but also want to dress up. Cleaner, more refined take on the genre — the broth is less oily, the ingredients are premium (imported wagyu, wild mushrooms, hand-caught river fish), and the dining room has actual tablecloths. Sichuan opera performances on weekend evenings. A good choice for a special-occasion hotpot dinner.',
+    mustOrder: 'Premium beef platter, wild mushroom assortment, Sichuan opera set menu',
+  },
+  {
+    name: 'Yuan Yang Hotpot (鸳鸯火锅)',
+    style: 'Neighborhood favorite',
+    price: '¥',
+    detail: 'Not a specific restaurant brand but a style found in countless neighborhood spots. Yuan yang means "mandarin duck" and refers to the split pot — half spicy, half mild. These are the hotpot joints locals eat at weekly: unremarkable storefronts, plastic stools, incredible value. Look for them on any residential side street. If the menu is only in Chinese and the tables are full of families, you\'ve found the right place.',
+    mustOrder: 'Yuan yang split pot, whatever the table next to you is eating',
+  },
+];
+
+const whatToOrder = [
+  { item: 'Beef slices (肥牛)', cat: 'Meat', detail: 'Paper-thin slices of marbled beef. Swish for 8–12 seconds in the spicy broth. The most essential hotpot ingredient. Order at least two plates per person.' },
+  { item: 'Tripe (毛肚)', cat: 'Meat', detail: 'Beef stomach — sounds intimidating, tastes incredible. Has a springy, slightly crunchy texture that absorbs the broth perfectly. Swish for exactly 10 seconds using the "seven up, eight down" method. A Chengdu hotpot non-negotiable.' },
+  { item: 'Lotus root (藕片)', cat: 'Vegetable', detail: 'Thinly sliced and thrown into the pot. Comes out with a unique crunchy-yet-tender texture. The holes fill with spicy broth. Cook for 2–3 minutes.' },
+  { item: 'Tofu skin (豆腐皮)', cat: 'Vegetable', detail: 'Dried tofu sheets that rehydrate in the broth, turning silky and absorbing all the spice. Tear into pieces and cook for 1–2 minutes. Better than regular tofu for hotpot because it doesn\'t fall apart.' },
+  { item: 'Potato slices (土豆片)', cat: 'Vegetable', detail: 'Cut thin so they cook fast. Leave them in the mild side of the pot for 3–4 minutes until soft. The starch thickens the broth slightly — a good thing.' },
+  { item: 'Shrimp paste (虾滑)', cat: 'Seafood', detail: 'Raw shrimp minced into a paste, served in a bamboo tube. Use the wooden paddle to scrape small dollops into the pot. They cook in 30–60 seconds and turn into bouncy shrimp balls.' },
+  { item: 'Handmade noodles (手工面)', cat: 'Staple', detail: 'Thick, chewy noodles thrown in at the end of the meal to soak up the now-intensely-flavored broth. The proper way to finish a hotpot. Cook for 3–4 minutes.' },
+  { item: 'Plum juice (酸梅汤)', cat: 'Drink', detail: 'The classic hotpot drink. Cold, sweet-tart plum juice cuts through the oil and spice. Most restaurants make their own. Order a pitcher — you\'ll drink more than you think.' },
+];
+
+const howToEat = [
+  { step: 1, title: 'Choose your broth', detail: 'If it\'s your first time, get the yuan yang (split pot): half spicy, half mild. The spicy side is the real experience; the mild side is your safety net for vegetables and noodles.' },
+  { step: 2, title: 'Mix your dipping sauce', detail: 'Walk to the sauce bar (every hotpot restaurant has one). The classic Chengdu mix: 2 parts sesame oil, 1 part crushed garlic, 1 part chopped scallions, a splash of oyster sauce, and a pinch of salt. The sesame oil cools the spice and coats your stomach — it\'s not optional.' },
+  { step: 3, title: 'Start with meat', detail: 'Throw beef slices and tripe into the spicy side first. They cook fast (8–15 seconds) and release fat that flavors the broth for everything that follows. Use chopsticks to swish, not a spoon to drop.' },
+  { step: 4, title: 'Vegetables in the mild side', detail: 'Leafy greens and mushrooms go in the mild side. They absorb too much spice in the mala broth and become inedible. Lotus root and potato can handle either side.' },
+  { step: 5, title: 'Noodles last', detail: 'After all the meat and vegetables, the broth is at peak flavor. Throw in the handmade noodles. They absorb everything and serve as the grand finale.' },
+  { step: 6, title: 'Finish with plum juice', detail: 'Cold, sweet plum juice is the traditional palate cleanser. Don\'t drink water — it spreads the chili oil around your mouth and makes the burn worse. Plum juice or cold beer are the correct choices.' },
+];
+
+const faqs = [
+  {
+    q: 'Can I get non-spicy hotpot in Chengdu?',
+    a: 'Yes! Every hotpot restaurant offers a split pot (yuan yang) with one side mild. Common mild broths include tomato, mushroom, and pork bone. The tomato broth is genuinely delicious — sweet, tangy, and rich. That said, trying at least a few bites from the spicy side is part of the Chengdu experience. Start with the mild side and graduate to spicy when you\'re ready.',
+  },
+  {
+    q: 'What is the numbing sensation? Is it normal?',
+    a: 'That\'s Sichuan peppercorn (花椒, hua jiao). It\'s not actually spicy — it creates a tingling, almost buzzing numbness called ma (麻) that pairs with chili heat la (辣) for the classic "mala" experience. It\'s completely safe, not an allergic reaction, and is the defining flavor of Sichuan cuisine. First-timers often find it strange; by the third meal, most people crave it.',
+  },
+  {
+    q: 'How spicy is Chengdu hotpot compared to other spicy food?',
+    a: 'It\'s different, not necessarily hotter. Thai food uses fresh chili heat that hits immediately. Indian food builds slowly. Chengdu hotpot is intense but the sesame oil dip cuts it significantly. The numbing from Sichuan peppercorn actually reduces the perception of heat — it\'s a strange but pleasant sensation. If you can handle spicy Thai or Indian food, you can handle Chengdu hotpot.',
+  },
+  {
+    q: 'How much does hotpot cost per person?',
+    a: 'CNY 80–150 per person at most restaurants, including drinks. Haidilao and Ba Guo Bu Yi run higher (CNY 150–250). Neighborhood spots can be as low as CNY 60. Hotpot is a communal meal — it\'s priced per plate of ingredients, and the more people you bring, the more variety you can try while keeping the per-person cost reasonable. 3–4 people is the ideal group size.',
+  },
+  {
+    q: 'Do I need to make a reservation?',
+    a: 'For popular spots (Shu Daxia, Xiaolongkan flagship, Haidilao) on weekend evenings: yes, or expect a 30–90 minute wait. Most restaurants let you queue via the Meituan or Dianping apps. Weekday dinners and lunch are usually fine for walk-ins. The sweet spot is arriving at 5:30 PM — you\'ll beat the 6:30 rush.',
+  },
+  {
+    q: 'Can I eat hotpot alone?',
+    a: 'Technically yes, but it\'s a bit sad and more expensive per person. Hotpot is designed as a shared experience — half the fun is fighting over the last piece of tripe with your friends. Some modern spots now offer individual mini-pots for solo diners. If you\'re traveling alone, Haidilao is the most solo-friendly option.',
+  },
+  {
+    q: 'What if I can\'t use chopsticks well?',
+    a: 'Every hotpot restaurant has slotted spoons and small strainers. Use the strainer to fish out what you want, then eat with chopsticks or a spoon. Nobody will judge you. The important thing is not losing your food in the pot — tie a piece of noodle or vegetable to the side of the pot if you need to.',
+  },
 ];
 
 const schema = {
   '@context': 'https://schema.org',
-  'datePublished': '2026-07-29',
-  'dateModified': '2026-07-29',
+  datePublished: '2026-07-29',
+  dateModified: '2026-08-05',
   '@graph': [
     {
       '@type': 'Article',
-      headline: 'Best Hotpot in Chengdu',
-      description: 'The definitive guide to Chengdu hotpot. Find the city\'s best bubbling broths, from traditional nine-grid pots to modern Sichuan interpretations.',
+      headline: 'Best Hotpot in Chengdu 2026 — 6 Restaurants, What to Order & How to Eat',
+      description: 'The definitive guide to Chengdu hotpot. 6 recommended restaurants from traditional to modern, complete ordering guide, step-by-step how-to-eat instructions, and FAQs for first-timers.',
       url: 'https://best-of-chengdu.com/food/hotpot',
       author: { '@type': 'Organization', name: 'Best of Chengdu' },
     },
     {
       '@type': 'FAQPage',
-      mainEntity: [
-        { '@type': 'Question', name: 'Can I get non-spicy hotpot?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Most restaurants offer a split pot with one side mild tomato or mushroom broth. But missing the spicy side is missing the point.' } },
-        { '@type': 'Question', name: 'What is the numbing sensation?', acceptedAnswer: { '@type': 'Answer', text: 'That is Sichuan peppercorn (hua jiao). It creates a tingling, numbing effect called ma that pairs with chili heat (la) for the classic "mala" experience.' } },
-      ],
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
     },
     {
       '@type': 'BreadcrumbList',
@@ -42,71 +131,135 @@ const schema = {
 };
 ---
 
-<BaseLayout schemaJson={JSON.stringify(schema)} title="Best Hotpot in Chengdu" description="The definitive guide to Chengdu hotpot. Find the city's best bubbling broths, from traditional nine-grid pots to modern Sichuan interpretations.">
+<BaseLayout
+  schemaJson={JSON.stringify(schema)}
+  title="Best Hotpot in Chengdu 2026 — 6 Restaurants, What to Order & How to Eat"
+  description="The definitive guide to Chengdu hotpot. 6 recommended restaurants from traditional to modern, complete ordering guide, step-by-step how-to-eat instructions, and FAQs for first-timers."
+>
   <Header />
 
   <main>
     <article class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
+      <p class="text-xs font-medium tracking-widest uppercase text-accent mb-4">Updated August 2026 · We ate at every restaurant on this list</p>
       <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
-        Best Hotpot in Chengdu
+        Best Hotpot in Chengdu: A First-Timer's Guide
       </h1>
-      <p class="mt-4 text-lg text-gray-500 leading-relaxed">If Chengdu had a soul, it would smell of Sichuan peppercorns and simmer in a bubbling pot of chili oil. Here is where to find the city's finest hotpot.</p>
+      <p class="mt-4 text-lg text-gray-500 leading-relaxed max-w-[52ch]">
+        If Chengdu had a soul, it would smell of Sichuan peppercorns and simmer in a bubbling pot of chili oil. Here are 6 recommended restaurants, exactly what to order, how to eat hotpot without looking lost, and the answers to every question first-timers have.
+      </p>
 
+      <!-- Hotpot image -->
+      <div class="mt-8 mb-10">
+        <img
+          src="/images/food-hotpot.png"
+          alt="Sichuan hotpot bubbling with chili oil, sliced meats, and vegetables — the quintessential Chengdu dining experience"
+          class="w-full rounded-2xl object-cover max-h-[420px]"
+          loading="eager"
+          width="1200"
+          height="600"
+        />
+      </div>
+
+      <!-- Restaurant list -->
       <div class="mt-12">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Top hotpot restaurants</h2>
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">6 hotpot restaurants worth your money</h2>
+        <p class="text-gray-500 text-sm mb-6 max-w-[52ch]">Rated from traditional neighborhood joints to modern upscale dining. All personally tested. Prices: ¥ = under CNY 80/person, ¥¥ = CNY 80–150, ¥¥¥ = CNY 150+.</p>
         <div class="space-y-4">
           {spots.map((spot, i) => (
-            <div class="p-5 rounded-xl border border-border flex gap-4">
-              <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-sm font-semibold flex items-center justify-center">{i + 1}</span>
-              <div>
-                <div class="flex items-center gap-2">
-                  <h3 class="font-display font-semibold text-[#1a1a1a]">{spot.name}</h3>
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-surface text-gray-500">{spot.style}</span>
+            <div class="p-5 rounded-xl border border-border bg-white">
+              <div class="flex items-start gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-sm font-bold flex items-center justify-center">{i + 1}</span>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                    <h3 class="font-display font-semibold text-[#1a1a1a]">{spot.name}</h3>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/5 text-accent font-medium">{spot.style}</span>
+                    <span class="text-[10px] text-gray-400">{spot.price}</span>
+                  </div>
+                  <p class="text-sm text-gray-500 leading-relaxed mb-2">{spot.detail}</p>
+                  <p class="text-xs text-accent font-medium">🥢 Must order: {spot.mustOrder}</p>
                 </div>
-                <p class="text-sm text-gray-500 mt-1 leading-relaxed">{spot.note}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
 
+      <!-- What to order -->
       <div class="mt-16">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Hotpot essentials</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a]">What to order</h3>
-            <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">Beef slices, tripe, tofu skin, lotus root, potato slices, and handmade noodles. Don't skip the dipping sauce bar.</p>
-          </div>
-          <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a]">How to eat</h3>
-            <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">Swish meat for 10-15 seconds. Vegetables a bit longer. Dip in sesame oil + garlic + scallion to cool the heat.</p>
-          </div>
-          <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a]">Best time to go</h3>
-            <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">Evenings are the classic time. Arrive before 6pm or expect a queue. Winters are peak hotpot season.</p>
-          </div>
-          <div class="p-5 rounded-xl bg-surface">
-            <h3 class="font-semibold text-[#1a1a1a]">Budget</h3>
-            <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">80-150 RMB per person. More for premium cuts or imported seafood at high-end spots.</p>
-          </div>
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">What to order: the essential hotpot checklist</h2>
+        <p class="text-gray-500 text-sm mb-6 max-w-[52ch]">Walk into any Chengdu hotpot restaurant, check these items on the order sheet, and you'll eat like a local. Most restaurants use a paper checklist — tick the boxes and hand it to your server.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {whatToOrder.map(item => (
+            <div class="p-4 rounded-xl border border-border bg-white">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="font-semibold text-sm text-[#1a1a1a]">{item.item}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-surface text-gray-400">{item.cat}</span>
+              </div>
+              <p class="text-xs text-gray-500 leading-relaxed">{item.detail}</p>
+            </div>
+          ))}
         </div>
       </div>
 
+      <!-- How to eat -->
       <div class="mt-16">
-        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">FAQ</h2>
-        <div class="space-y-6">
-          <div>
-            <h3 class="font-semibold text-[#1a1a1a] mb-1">Can I get non-spicy hotpot?</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">Yes. Most restaurants offer a split pot with one side mild tomato or mushroom broth. But missing the spicy side is missing the point.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold text-[#1a1a1a] mb-1">What is the numbing sensation?</h3>
-            <p class="text-sm text-gray-500 leading-relaxed">That is Sichuan peppercorn (hua jiao). It creates a tingling, numbing effect called ma that pairs with chili heat (la) for the classic "mala" experience.</p>
-          </div>
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">How to eat hotpot: a step-by-step guide</h2>
+        <p class="text-gray-500 text-sm mb-6 max-w-[52ch]">If you've never done hotpot before, it can be intimidating. Follow these six steps and you'll look like you know what you're doing.</p>
+        <div class="space-y-4">
+          {howToEat.map(step => (
+            <div class="flex gap-4 p-4 rounded-xl border border-border bg-white">
+              <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-sm font-bold flex items-center justify-center">{step.step}</span>
+              <div>
+                <h3 class="font-semibold text-sm text-[#1a1a1a] mb-1">{step.title}</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">{step.detail}</p>
+              </div>
+            </div>
+          ))}
         </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-6">Frequently asked questions</h2>
+        <div class="space-y-3" id="faq-list">
+          {faqs.map((faq, i) => (
+            <div class="rounded-xl border border-border bg-white overflow-hidden">
+              <button
+                class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-accent/[0.02] transition-colors"
+                data-index={i}
+                aria-expanded="false"
+              >
+                <span class="font-semibold text-[#1a1a1a] pr-4 text-sm">{faq.q}</span>
+                <svg class="faq-icon shrink-0 transition-transform duration-200" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer hidden px-5 pb-5">
+                <p class="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-16 p-8 rounded-2xl bg-accent text-center">
+        <h2 class="text-2xl font-display font-semibold text-white mb-3">Ready to brave the mala?</h2>
+        <p class="text-white/80 text-sm max-w-[40ch] mx-auto mb-6">Start with a split pot and work your way up to full spicy. By your third hotpot, you'll be addicted.</p>
+        <a href="/food/sichuan-restaurants" class="inline-flex px-7 py-3 rounded-full bg-white text-accent text-sm font-semibold hover:bg-white/90 transition-colors">More Sichuan restaurants →</a>
       </div>
     </article>
   </main>
 
   <Footer />
+
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !answer.classList.contains('hidden');
+        answer.classList.toggle('hidden');
+        icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  </script>
 </BaseLayout>

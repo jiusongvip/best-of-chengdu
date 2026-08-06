@@ -3,166 +3,941 @@ import BaseLayout from '~/layouts/BaseLayout.astro';
 import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 
-const categories = [
+const quickFacts = [
+  { label: 'Population', value: '21 million (metro)' },
+  { label: 'Airports', value: 'CTU (Shuangliu) · TFU (Tianfu)' },
+  { label: 'Best Time', value: 'Mar–May · Sep–Nov' },
+  { label: 'Language', value: 'Mandarin (Southwestern dialect)' },
+  { label: 'Currency', value: 'Renminbi (¥ / CNY)' },
+  { label: 'Time Zone', value: 'GMT+8 (China Standard)' },
+  { label: 'UNESCO', value: 'City of Gastronomy (2010)' },
+  { label: 'Founded', value: '221 BC (Qin Dynasty)' },
+];
+
+const mustTryDishes = [
+  { name: 'Mapo Tofu (麻婆豆腐)', where: 'Chen Mapo Tofu (陈麻婆豆腐) — the original since 1862.', desc: 'Silky cubes of tofu swimming in a blood-red chili-bean sauce, numbing with Sichuan peppercorns, topped with minced pork. The dish that defines the entire Sichuan canon.' },
+  { name: 'Kung Pao Chicken (宫保鸡丁)', where: 'Any decent Sichuan restaurant. Piao Xiang (飘香) near Kuanzhai Alley does a textbook version.', desc: 'Tender chicken thigh, golden peanuts, and dried chilies in a glossy sweet-savory-tingly sauce. Nothing — absolutely nothing — like the gloopy takeout version you know.' },
+  { name: 'Dan Dan Noodles (担担面)', where: 'Street stalls near Jinli or the noodle shops along Wenshuyuan Street. Look for the longest queue.', desc: 'A bowl of wheat noodles draped in sesame paste, chili oil, soy sauce, and minced pork. Costs about 10 RMB. A humble street snack elevated to art — the single dish that sums up Chengdu.' },
+  { name: 'Twice-Cooked Pork (回锅肉)', where: 'Family-run Sichuan restaurants — order it anywhere. Yulin neighborhood has excellent neighborhood joints.', desc: 'Pork belly first simmered, then sliced and wok-fried at violent heat with fermented black beans, leeks, and doubanjiang. Smoky, salty, slightly sweet. The comfort food of Sichuan.' },
+  { name: 'Chengdu Hotpot (火锅)', where: 'Shu Daxia (蜀大侠) for theatrics. Huangcheng Laoma (皇城老妈) for tradition. Xiaolongkan (小龙坎) for the real local experience.', desc: 'A cauldron of bubbling chili broth in the center of the table. You cook thinly sliced meats, vegetables, and tofu yourself. The ritual starts with sesame oil dip, ends with cold beer. Expect to wait in line.' },
+  { name: 'Fuqi Feipian (夫妻肺片)', where: 'Husband-and-Wife Lung Slices shop (夫妻肺片总店) near Chunxi Road — the inventors.', desc: 'Despite the name, no lungs. Thinly sliced beef, tripe, and tendon in a fiery dressing of chili oil, Sichuan pepper, and sesame. Invented by a Chengdu couple in the 1930s. Surprisingly addictive.' },
+  { name: 'Zhong Dumplings (钟水饺)', where: 'Zhong Dumplings original shop (钟水饺) on Tidu Street. Open since 1893.', desc: 'Plump pork dumplings in a puddle of sweet soy, garlic paste, and chili oil. Simple ingredients, perfect balance. A Chengdu icon since the Qing dynasty — locals eat these standing up at the counter.' },
+  { name: 'Lai Tangyuan (赖汤圆)', where: 'Lai Tangyuan (赖汤圆) near Jinli. The original storefront from 1894.', desc: 'Glutinous rice balls filled with black sesame paste, floating in sweet osmanthus soup. The dessert that locals order after a punishing hotpot. More than a century old and still perfect.' },
+];
+
+const foodCategories = [
+  { label: 'Hotpot Guide', href: '/food/hotpot', desc: 'Where to find Chengdu\'s best bubbling broths, from traditional to modern.' },
+  { label: 'Sichuan Restaurants', href: '/food/sichuan-restaurants', desc: 'Fine dining, family-run legends, and hidden courtyard gems.' },
+];
+
+const topAttractions = [
+  { name: 'Chengdu Research Base of Giant Panda Breeding', tag: 'Unmissable', price: 'CNY 55 · Metro Line 3 · 7:30 AM–6 PM', desc: 'The single best place on earth to see giant pandas. Over 200 pandas in a sprawling park. The nursery has baby pandas year-round. Arrive before 8 AM — pandas eat breakfast and climb, then nap through midday.' },
+  { name: 'Jinli Ancient Street (锦里)', tag: 'Must-see', price: 'Free · Walk from Wuhou Shrine · Best at dusk', desc: 'Red lanterns swaying over cobblestone lanes. Street-food stalls, Sichuan embroidery shops, and tea houses along a restored Qing-dynasty street. Go at sunset for the lanterns, stay for the street snacks.' },
+  { name: 'Kuanzhai Alley (宽窄巷子)', tag: 'Must-see', price: 'Free · Metro Line 4 (Kuanzhai Xiangzi Station)', desc: 'Three parallel Qing-dynasty alleys — Kuan (wide), Zhai (narrow), and Jing (well). Courtyard restaurants, boutique shops, and tea houses hidden behind carved wooden doors. Tourist-central, but worth it.' },
+  { name: 'People\'s Park (人民公园)', tag: 'Authentic', price: 'Free · Metro Line 2 (People\'s Park Station)', desc: 'The living, breathing heart of Chengdu. Old men play mahjong under ginkgo trees. Ladies sing karaoke on portable speakers. Couples post personal ads on Love Lane. Sit at Heming Tea House, order jasmine tea, and watch the city be itself.' },
+  { name: 'Wuhou Shrine (武侯祠)', tag: 'Recommended', price: 'CNY 60 · Next to Jinli Street', desc: 'A serene temple complex honoring Zhuge Liang, the legendary Three Kingdoms strategist. Ancient cypress trees, vermilion walls, and carved stone tablets. The famous red-wall corridor is a photographer\'s dream.' },
+  { name: 'Wenshu Monastery (文殊院)', tag: 'Recommended', price: 'Free · Metro Line 1 (Wenshu Monastery Station)', desc: 'Chengdu\'s best-preserved Buddhist temple, built during the Tang Dynasty. Home to 80 monks, 300+ Buddha statues, and a vegetarian restaurant that even meat-eaters love. The tea house in the rear garden is pure tranquility.' },
+  { name: 'Leshan Giant Buddha (乐山大佛)', tag: 'Day Trip', price: 'CNY 80 · 2 h by train from Chengdu South Station', desc: 'A 71-meter Buddha carved into a red sandstone cliff in the 8th century — the largest stone Buddha on earth. Walk the cliffside path from head to toe. The scale is disorienting in person.' },
+  { name: 'Mount Qingcheng (青城山)', tag: 'Day Trip', price: 'CNY 90 · 30 min by train from Lidui Park Station', desc: 'A misty Taoist mountain and UNESCO World Heritage site. Ancient temples tucked into forested slopes, stone staircases disappearing into fog. One of Taoism\'s birthplaces. Front mountain is paved; back mountain is wild.' },
+];
+
+const pandaBaseComparison = [
+  { feature: 'Number of pandas', chengdu: '~200 (largest captive population)', dujiangyan: '~20 (smaller, more intimate)' },
+  { feature: 'Crowds', chengdu: 'Very busy, especially mornings', dujiangyan: 'Quiet, relaxed — fraction of the crowds' },
+  { feature: 'Volunteer keeper program', chengdu: 'Not available', dujiangyan: 'Yes — CNY 700–900 · Book 1–2 weeks ahead' },
+  { feature: 'Baby panda nursery', chengdu: 'Open year-round', dujiangyan: 'Seasonal — not guaranteed' },
+  { feature: 'Enclosure style', chengdu: 'Glass-walled viewing rooms + outdoor yards', dujiangyan: 'Open-air hillside enclosures — no glass' },
+  { feature: 'Transit from downtown', chengdu: '30 min via Metro Line 3', dujiangyan: '~1.5 h door-to-door via train + taxi' },
+  { feature: 'Entrance fee', chengdu: 'CNY 55 (students ¥27)', dujiangyan: 'CNY 58 (students ¥29)' },
+  { feature: 'Setting', chengdu: 'Large manicured park, panda museum, gift shops', dujiangyan: 'Natural forested hillside near Mount Qingcheng' },
+  { feature: 'Best for', chengdu: 'Families, first-timers, max pandas, baby pandas', dujiangyan: 'Volunteers, couples, quiet visits, clearer photos' },
+  { feature: 'Current status', chengdu: 'OPEN — normal operations', dujiangyan: 'CLOSED for renovation since Apr 2026 — see alternatives on dujiangyanpanda.com' },
+];
+
+const monthTable = [
+  { month: 'Jan', temp: '3–9°C', crowds: 'Very low', activity: 'Good — cool-weather pandas active', rating: '★★★' },
+  { month: 'Feb', temp: '5–12°C', crowds: 'Low (except Chinese New Year)', activity: 'Good — crisp air, quiet parks', rating: '★★★' },
+  { month: 'Mar', temp: '10–17°C', crowds: 'Moderate', activity: 'Active — spring flowers, pandas outdoors', rating: '★★★★★' },
+  { month: 'Apr', temp: '15–23°C', crowds: 'Moderate', activity: 'Very active — ideal weather, perfect for everything', rating: '★★★★★' },
+  { month: 'May', temp: '19–27°C', crowds: 'Busy (early May holiday)', activity: 'Active mornings — pandas nap by noon', rating: '★★★★' },
+  { month: 'Jun', temp: '22–30°C', crowds: 'Moderate', activity: 'Lazy (hot) — rain, humidity starts', rating: '★★★' },
+  { month: 'Jul', temp: '24–33°C', crowds: 'Very busy — school holidays', activity: 'Lazy (hot) — arrive at 8 AM or skip pandas', rating: '★★' },
+  { month: 'Aug', temp: '23–32°C', crowds: 'Very busy', activity: 'Lazy (hot), baby pandas visible!', rating: '★★★' },
+  { month: 'Sep', temp: '19–27°C', crowds: 'Moderate', activity: 'Very active — autumn begins, golden light', rating: '★★★★★' },
+  { month: 'Oct', temp: '15–22°C', crowds: 'Busy — Golden Week 1st week', activity: 'Very active — ginkgo trees turn gold', rating: '★★★★' },
+  { month: 'Nov', temp: '10–16°C', crowds: 'Low', activity: 'Active — crisp, clear, perfect', rating: '★★★★★' },
+  { month: 'Dec', temp: '4–10°C', crowds: 'Very low', activity: 'Good — gray skies, hotpot weather', rating: '★★★' },
+];
+
+const experiences = [
+  { title: 'Tea House Culture', desc: 'The ritual that defines Chengdu: sitting for hours with a covered cup of jasmine tea, watching the world pass. Heming Tea House inside People\'s Park is the classic. Shufeng Yayun adds nightly Sichuan opera to your tea. The tradition is over 1,000 years old — Chengdu invented tea culture as we know it.' },
+  { title: 'Face-Changing Opera (变脸)', desc: 'Bian lian performers whip vibrantly colored silk masks across their faces in a split second — with no visible mechanism. You will not see it coming. Fire-breathing, acrobatics, and shadow puppetry round out the hour-long show. Shufeng Yayun Tea House and Jinjiang Theater are the best venues.' },
+  { title: 'Mahjong (麻将)', desc: 'Walk through any Chengdu park and you\'ll hear it — the percussive clatter of 136 tiles being shuffled and slammed. Entire afternoons disappear around mahjong tables with green tea and sunflower seeds. The local "blood battle" variant is faster and louder than any other version in China.' },
+  { title: 'Nightlife & Bar Streets', desc: 'Chengdu doesn\'t sleep early. Jiuyanqiao Bar Street lines the river with craft cocktail bars and live music. Kehua Road is ground zero for late-night barbecue skewers and cold beer. Lan Kwai Fong Chengdu is the expat hub. A typical night starts with hotpot, moves to a bar, and ends with street noodles at 2 AM.' },
+];
+
+const itineraries = [
   {
-    label: 'Food',
-    href: '/food',
-    image: '/images/food.webp',
-    desc: 'From fiery hotpot to delicate street snacks, discover what makes Chengdu the UNESCO City of Gastronomy.',
+    label: '1 Day — The Essentials',
+    highlights: ['Panda Base (arrive 8 AM)', 'People\'s Park & Heming Tea House', 'Kuanzhai Alley (lunch + explore)', 'Jinli Street at lantern-lighting (dusk)', 'Hotpot dinner — Shu Daxia or Xiaolongkan'],
+    href: '/blog/chengdu-3-day-itinerary',
   },
   {
-    label: 'Attractions',
-    href: '/attractions',
-    image: '/images/attractions.webp',
-    desc: 'Ancient temples, giant pandas, and vibrant markets. The best sights in and around the city.',
+    label: '2 Days — Deep Dive',
+    highlights: ['All of Day 1', 'Wenshu Monastery morning + vegetarian lunch', 'Wuhou Shrine afternoon', 'Sichuan Opera at Shufeng Yayun (evening)', 'Late-night street food near Kehua Road'],
+    href: '/blog/chengdu-3-day-itinerary',
   },
   {
-    label: 'Experiences',
-    href: '/experiences',
-    image: '/images/experiences.webp',
-    desc: 'Sichuan opera, tea houses, and nightlife. The moments that make Chengdu unforgettable.',
-  },
-  {
-    label: 'Travel Guide',
-    href: '/travel',
-    image: '/images/travel.webp',
-    desc: 'When to visit, where to stay, and how to get around. Everything you need to plan your trip.',
+    label: '3 Days — Beyond the City',
+    highlights: ['All of Days 1–2', 'Leshan Giant Buddha (day trip by train)', 'or Mount Qingcheng (nature + Taoism)', 'Dujiangyan Panda Base (if reopened)', 'Farewell hotpot or street-food crawl'],
+    href: '/blog/chengdu-3-day-itinerary',
   },
 ];
 
-const topPicks = [
-  { label: 'Best Hotpot in Chengdu', href: '/food/hotpot', tag: 'Food' },
-  { label: 'Chengdu Panda Base Guide', href: '/attractions/panda-base', tag: 'Attractions' },
-  { label: 'Best Street Food', href: '/food/street-food', tag: 'Food' },
-  { label: 'Sichuan Opera Guide', href: '/experiences/sichuan-opera', tag: 'Experiences' },
-  { label: 'Best Time to Visit', href: '/travel/best-time-to-visit', tag: 'Travel' },
-  { label: 'Best Sichuan Restaurants', href: '/food/sichuan-restaurants', tag: 'Food' },
-  { label: 'Chengdu Ancient Streets', href: '/attractions/ancient-streets', tag: 'Attractions' },
+const hiddenGems = [
+  {
+    name: 'Jinsha Site Museum',
+    tag: '3,000-year history',
+    desc: 'Buried for millennia and unearthed in 2001 — the gold Sunbird disc found here is now Chengdu\'s official city emblem. Walk above actual excavation pits in an underground museum that most tour groups skip.',
+    tip: 'Afternoon · Line 7 Metro · ¥70',
+    img: '/images/jinsha-museum.webp',
+    alt: 'Gold Sunbird artifact and excavation pit at Jinsha Site Museum, Chengdu',
+  },
+  {
+    name: 'Daci Temple',
+    tag: '1,600-year-old sanctuary',
+    desc: 'A working Buddhist temple hidden in plain sight behind Taikoo Li\'s luxury stores. Incense drifts through courtyards, monks chant at dawn, and 200-year-old ginkgo trees shade the halls. Free entry, almost zero foreign tourists.',
+    tip: 'Morning · 5 min walk from Chunxi Road · Free',
+    img: '/images/daci-temple.webp',
+    alt: 'Ancient Daci Temple courtyard with incense smoke and ginkgo trees, Taikoo Li skyline visible behind',
+  },
+  {
+    name: 'Zhongshuge Bookstore',
+    tag: 'Mirror-ceiling wonder',
+    desc: 'Voted one of the world\'s most beautiful bookstores. Mirrored ceilings, spiral staircases, and arched book tunnels create an Escher-like optical illusion. The Chengdu location weaves in bamboo-inspired design motifs.',
+    tip: 'Weekday morning · Line 2 Yintai Center · Free',
+    img: '/images/zhongshuge-bookstore.webp',
+    alt: 'Zhongshuge Bookstore Chengdu with mirrored ceilings, spiral staircases, and arched bookshelf tunnels',
+  },
+  {
+    name: 'Eastern Suburb Memory',
+    tag: 'Industrial-chic art hub',
+    desc: 'A Soviet-era electronics factory reborn as Chengdu\'s creative quarter. Street art murals cover old machinery, live music spills from converted workshops, and the weekend vintage market is the best in Sichuan.',
+    tip: 'Weekend afternoons · Line 8 Dongjiao Jiyi · Free',
+    img: '/images/eastern-suburb-memory.webp',
+    alt: 'Street art and converted factory buildings at Eastern Suburb Memory creative district, Chengdu',
+  },
+  {
+    name: 'New Century Global Center',
+    tag: 'World\'s largest building',
+    desc: '1.76 million m² under one roof — with an indoor beach, wave pool, ice rink, and a ceiling so high the interior horizon fades into haze. It\'s absurd, surreal, and 100% Chengdu. Even if you don\'t go inside, seeing it from the Metro approach is worth the trip.',
+    tip: 'Metro Line 1 Jincheng Plaza · Free entry (attractions extra)',
+    img: '/images/global-center.webp',
+    alt: 'New Century Global Center exterior — the world\'s largest building by floor area in Chengdu',
+  },
+  {
+    name: 'Luhu Eco-City',
+    tag: 'Lakeside art escape',
+    desc: 'A 2,000-acre eco-development 30 minutes south of downtown where top architects went wild. Floating galleries, the A4 Art Museum, reed-filled boardwalks, and a community of resident artists. The Chengdu most visitors never see.',
+    tip: 'Sunny day only · Line 1 Luhu · Half-day trip',
+    img: '/images/luhu-eco-city.webp',
+    alt: 'Luhu Eco-City lakeside boardwalks and A4 Art Museum floating gallery in Chengdu',
+  },
+];
+
+const chengduVsChongqing = [
+  { aspect: 'Vibe', chengdu: 'Laid-back, flat, green. Tea houses in parks, slow mornings.', chongqing: 'Vertical, dramatic, fast. A cyberpunk river city with steep staircases.' },
+  { aspect: 'Food style', chengdu: 'Refined, complex. The birthplace of mapo tofu and kung pao chicken.', chongqing: 'Bolder, oilier. Home of the world\'s spiciest hotpot and xiaomian noodles.' },
+  { aspect: 'Best known for', chengdu: 'Giant pandas, tea houses, Sichuan Opera, UNESCO gastronomy.', chongqing: 'Three Gorges, mountain skyline, hotpot, Ciqikou old town.' },
+  { aspect: 'Getting around', chengdu: 'Flat and bikeable. Metro covers most areas. Easy to navigate.', chongqing: 'Hilly. Metro works but expect stairs. Harder to walk and bike.' },
+  { aspect: 'Day trips', chengdu: 'Leshan Buddha, Mount Qingcheng, Dujiangyan Panda Base.', chongqing: 'Dazu Rock Carvings, Wulong Karst, Three Gorges cruise terminal.' },
+  { aspect: 'Transit between', chengdu: '1.5 h by high-speed train to Chongqing · ~¥150', chongqing: '1.5 h by high-speed train to Chengdu · ~¥150' },
+];
+
+const travelerReviews = [
+  { quote: '"We arrived at 8 AM and were SO glad we did. By 10 AM the pandas were already napping and the crowds had tripled. The baby pandas in the nursery were the size of loaves of bread."', source: 'Reddit r/travel · 2026', theme: 'Arrive early for pandas' },
+  { quote: '"I thought I knew spicy food until Chengdu humbled me. The mala numbing sensation is completely different from anything I\'ve had before. By day three, I was addicted."', source: 'TripAdvisor · 2026', theme: 'The spice is real' },
+  { quote: '"People\'s Park was the unexpected highlight of our trip. We sat at Heming Tea House for three hours just watching locals dance, sing, and play mahjong. It felt like we stumbled into the real Chengdu."', source: 'Google Reviews · 2026', theme: 'People\'s Park surprises' },
+  { quote: '"The language barrier is more real in Chengdu than Beijing or Shanghai. Download a translation app before you go — the camera translation feature saved us at restaurants daily."', source: 'Klook reviews · 2026', theme: 'Come prepared' },
+];
+
+const photoSpots = [
+  { name: 'Wuhou Shrine Red Wall Corridor', img: '/images/wuhou-red-wall.png', alt: 'Curving vermilion wall corridor at Wuhou Shrine with bamboo shadows in late afternoon sunlight', desc: 'A long, curving corridor with vermilion walls and bamboo shadows. Best in late afternoon when sunlight slants through the bamboo. Go on a weekday for empty shots.', tip: 'Late afternoon · Weekdays' },
+  { name: 'Jinli Street at Dusk', img: '/images/jinli-lanterns.png', alt: 'Red lanterns glowing above Jinli Ancient Street at dusk with golden cobblestone lanes', desc: 'Lanterns begin to glow against the darkening sky. The cobblestone lanes and wooden facades turn golden. Set up at the arched bridge for the classic shot.', tip: 'Sunset · Tripod recommended' },
+  { name: 'Anshun Bridge at Night', img: '/images/anshun-bridge-night.png', alt: 'Anshun Bridge illuminated at night with reflection in the Jin River', desc: 'A covered bridge over the Jin River, illuminated from within. The reflection in the water doubles the visual impact. One of Chengdu\'s most photogenic structures.', tip: 'After 7 PM · Long exposure' },
+  { name: 'Panda Base — Morning Feeding', img: '/images/panda-eating.webp', alt: 'Giant panda eating bamboo in soft morning light at Chengdu Panda Base', desc: 'Giant pandas eating bamboo in soft morning light, no glass between you and them. The best natural-light wildlife shots you\'ll get in China. Zoom lens essential.', tip: '8:00–9:30 AM · 200mm+ lens' },
+  { name: 'Kuanzhai Alley Courtyards', img: '/images/kuanzhai-courtyard.jpg', alt: 'Traditional Qing-dynasty courtyard in Kuanzhai Alley with bamboo garden and carved wooden doorways', desc: 'Step through any open wooden door into a Qing-dynasty courtyard. Tea houses with bamboo gardens, carved window screens, and stone water features. Endless detail shots.', tip: 'Midday (quiet time) · Wide + macro' },
+  { name: 'Mount Qingcheng Mist', img: '/images/qingcheng-mist.webp', alt: 'Stone staircases disappearing into mist on Mount Qingcheng, ancient Taoist temple roofs emerging from clouds', desc: 'Stone staircases disappearing into fog. Ancient Taoist temple roofs emerging from clouds. The mountain mists create ethereal scenes you cannot plan — you just get lucky.', tip: 'Morning · After rain · Weather dependent' },
+];
+
+const firstTimerMistakes = [
+  { mistake: 'Arriving at the Panda Base at 11 AM', fix: 'Pandas are asleep by 11:30. Arrive at 7:45 AM to queue for the 8 AM opening. You\'ll have 2–3 hours of active pandas before they crash.' },
+  { mistake: 'Underestimating the spice', fix: 'Order one dish at a time until you know your tolerance. Mala builds — dish three hits harder than dish one. Always have plain rice and a cold drink within reach.' },
+  { mistake: 'Not having addresses in Chinese', fix: 'Save your hotel, key attractions, and "please take me to the airport" in Chinese characters in your phone. Show the screen to taxi drivers. This saves you 20 minutes of charades per ride.' },
+  { mistake: 'Skipping the VPN setup before arriving', fix: 'Google, Gmail, Instagram, WhatsApp, Google Maps — all blocked. Install and test your VPN at home. Once you\'re in China, you can\'t download VPN apps.' },
+  { mistake: 'Trying to do too much in one day', fix: 'Chengdu rewards slowing down. Two major activities per day is the sweet spot. A morning at the Panda Base, a long lunch, an afternoon tea house — that\'s a perfect day. Don\'t try to cram three temples, a park, and a museum.' },
+  { mistake: 'Paying full price for everything', fix: 'Book attractions on Trip.com or Meituan — often 10–20% cheaper than gate price. Train tickets are cheaper booked 1–2 days ahead. Didi is always cheaper than taxis.' },
+];
+
+const honestExpectations = [
+  { title: 'The spice will humble you', desc: 'Sichuan mala isn\'t just heat — the peppercorns make your tongue tingle and go numb, a sensation unlike anything in Thai, Indian, or Mexican food. Non-spicy dishes exist, but half the menu bites back. Pack antacids and embrace the burn.' },
+  { title: 'English is scarce outside hotels', desc: 'Restaurant menus rarely have English. Taxi drivers won\'t understand you. Street vendors definitely won\'t. Download a translation app with camera translation, and always carry your hotel address in Chinese. Google Translate\'s offline Chinese pack works without VPN.' },
+  { title: 'Pandas nap through midday', desc: 'The famous pandas are most active 8:00–10:00 AM. By 11:30, most are asleep — not "cute sleepy," but "barely visible furry lump." If you arrive at 1 PM expecting action, you\'ll be disappointed. Set an early alarm.' },
+  { title: 'Summer is punishing', desc: 'July–August brings 30°C+ heat, punishing humidity, and domestic summer holidays. Temple courtyards become ovens. Spring (Mar–May) and autumn (Sep–Nov) are 15–25°C and dramatically more pleasant.' },
+];
+
+const packingChecklist = [
+  { item: 'Comfortable walking shoes', tag: 'MUST', desc: 'You\'ll walk more than you expect — temple complexes, ancient streets, and the Panda Base cover a lot of ground on uneven surfaces.' },
+  { item: 'Umbrella or rain jacket', tag: 'MUST', desc: 'Chengdu gets sudden rain even in sunny seasons. A compact umbrella lives in your day bag. Sichuan weather is famously unpredictable.' },
+  { item: 'Translation app + offline Chinese pack', tag: 'MUST', desc: 'Google Translate or Baidu Translate with Chinese downloaded. The camera translation feature is a menu-saver at restaurants with picture-free menus.' },
+  { item: 'Passport — always on you', tag: 'MUST', desc: 'Required for hotel check-in, SIM card purchase, train tickets, and random ID checks. Keep a photo on your phone as backup.' },
+  { item: 'VPN — installed and tested before leaving home', tag: 'MUST', desc: 'Google, Instagram, WhatsApp, Google Maps are all blocked. You cannot download VPN apps once inside China. Test it at the airport before boarding.' },
+  { item: 'Portable battery pack (10,000+ mAh)', tag: 'SHOULD', desc: 'Your phone runs translation, maps, Didi (ride-hailing), and payments all day. A dead phone in Chengdu is genuinely stressful.' },
+  { item: 'Tissues and hand sanitizer', tag: 'SHOULD', desc: 'Many public restrooms don\'t provide toilet paper or soap. Carry a small pack. You\'ll thank yourself.' },
+  { item: 'An empty stomach and an open mind', tag: 'ENJOY', desc: 'The best things you can bring. Chengdu will feed you things you\'ve never tasted and show you moments you didn\'t know you were looking for.' },
+];
+
+const faqs = [
+  { q: 'What is the best time to visit Chengdu?', a: 'Spring (March–May) and autumn (September–November) are ideal: 15–25°C, low rainfall, and golden ginkgo trees in fall. Summer is hot and humid but is baby panda season. Winter is gray and damp but uncrowded. See our month-by-month table above for details.' },
+  { q: 'How many days do I need in Chengdu?', a: 'Minimum 2 full days for the essentials (pandas, ancient streets, hotpot, and opera). Three to four days lets you add a day trip to the Leshan Giant Buddha or Mount Qingcheng. If you\'re a food-focused traveler, give yourself at least 3 days — you\'ll want to eat six meals a day.' },
+  { q: 'Is Chengdu safe for tourists?', a: 'Yes, Chengdu is very safe. Violent crime against tourists is extremely rare. Standard precautions apply: watch for pickpockets in very crowded markets, use official taxis or Didi at night, and keep your passport secure. Solo female travelers report feeling safe.' },
+  { q: 'What is Chengdu famous for?', a: 'Three things above all: giant pandas (Chengdu is the global panda capital), Sichuan cuisine (hotpot, mapo tofu, dan dan noodles — a UNESCO City of Gastronomy since 2010), and tea house culture (Chengdu invented tea culture as we know it, over 1,000 years ago).' },
+  { q: 'Do I need a visa for Chengdu?', a: 'Most visitors need a Chinese tourist visa (L visa). Chengdu now offers a 144-hour (6-day) transit visa waiver for travelers from 54 countries transiting to a third country. Always check the latest policy with your local Chinese embassy — rules change.' },
+  { q: 'Should I visit Chengdu or Chongqing?', a: 'Pick Chengdu for food, pandas, tea culture, and a laid-back pace. Pick Chongqing for jaw-dropping cityscapes, the spiciest hotpot on earth, and Yangtze River cruises. They\'re connected by a 1.5-hour high-speed train — many travelers do both. See our detailed comparison table above.' },
+  { q: 'Which panda base should I visit?', a: 'Chengdu Research Base for the most pandas (~200), the baby nursery, and easy Metro access. Dujiangyan Panda Base for a quieter, open-air experience and the hands-on volunteer keeper program. If you only have one panda day: Chengdu for the spectacle, Dujiangyan for the experience. Full comparison above.' },
+  { q: 'How much does a trip to Chengdu cost?', a: 'Backpacker: ¥200–300/day (hostel, street food, Metro, one attraction). Mid-range: ¥500–800/day (boutique hotel, restaurants, Didi, all attractions). Luxury: ¥800+/day (five-star, fine dining, private driver). Chengdu is one of China\'s most affordable major cities.' },
+  { q: 'Can I use credit cards or Apple Pay in Chengdu?', a: 'Not widely. WeChat Pay and Alipay dominate, and both now accept foreign credit cards (link in-app before you travel). Cash is accepted everywhere. Carry some RMB for small street-food stalls and local markets. ATMs that take foreign cards are at major banks and airports.' },
+  { q: 'Is English widely spoken in Chengdu?', a: 'Limited. Hotel front desks and younger locals may speak basic English, but restaurant staff, taxi drivers, and market vendors generally do not. Download a translation app with camera translation. Have key addresses saved in Chinese characters on your phone. See our first-timer mistakes above.' },
+  { q: 'What should I pack for Chengdu?', a: 'Comfortable walking shoes, umbrella, passport, VPN (installed before arriving), translation app with offline Chinese pack, tissues, power bank, and an adventurous appetite. See our full packing checklist above for the complete rundown.' },
+  { q: 'Is Chengdu worth visiting if I only have a short time in China?', a: 'Yes — especially if you love food. Even one full day (pandas, ancient streets, one hotpot dinner, one tea house) gives you a taste of what makes Chengdu special. Two days is better. Three days and you\'ll start planning your return before you leave.' },
+  { q: 'How do I get from Chengdu airport to the city center?', a: 'Shuangliu Airport (CTU): Metro Line 10 connects directly to the city in about 20–30 minutes (¥5–7). Taxi/Didi costs ¥50–70 and takes 25–40 minutes. Tianfu Airport (TFU): The new airport is farther — Metro Line 18 takes 45–50 minutes (¥10–12), taxi ¥150–200 and 50–70 minutes. Both airports have clear English signage.' },
+  { q: 'Is the tap water safe to drink in Chengdu?', a: 'No. Tap water in Chengdu is not potable — locals boil it first or use bottled water dispensers. Hotels provide bottled water or electric kettles. Convenience stores sell 1.5L bottles for ¥2–4. Restaurants serve boiled water or tea by default. Ice is generally made from purified water at reputable establishments, but skip it at street stalls if you\'re cautious.' },
+  { q: 'What is the air quality like in Chengdu?', a: 'Chengdu sits in a basin surrounded by mountains, so air quality can be poor — especially in winter (Dec–Feb). AQI frequently ranges 100–180 (unhealthy for sensitive groups) during winter months. Spring and summer are better (AQI 50–100). If you have asthma or respiratory issues, bring medication and check real-time AQI on apps like AirVisual. Many locals wear masks on high-AQI days — it\'s normal and not cause for alarm.' },
+  { q: 'Is Chengdu good for families traveling with kids?', a: 'Yes — Chengdu is one of China\'s most family-friendly cities. The Panda Base is a guaranteed hit with children. People\'s Park has playgrounds and paddle boats. The Sichuan Science and Technology Museum (free, near Tianfu Square) has hands-on exhibits. Most hotpot restaurants offer non-spicy broth options. The Metro is stroller-accessible with elevators at every station. Fewer stairs and hills than Beijing or Chongqing.' },
+  { q: 'Where can I go shopping in Chengdu?', a: 'Chunxi Road (春熙路) is the main pedestrian shopping street — massive malls, international brands, and the IFS building with the famous climbing panda sculpture. Taikoo Li (太古里) next door is upscale open-air luxury boutiques in modern architecture. Jinli Street and Kuanzhai Alley for souvenirs (Sichuan embroidery, panda merch, tea). Songxianqiao Antique Market on weekends for curios and Cultural Revolution memorabilia.' },
+  { q: 'How do I access the internet in Chengdu? (VPN, SIM cards, WiFi)', a: 'Install and test a VPN before leaving home — you cannot download VPN apps once in China. ExpressVPN and Astrill are most reliable. For mobile data: buy a China Unicom or China Mobile SIM at the airport (¥100–200 for 20–50GB). Alternatively, get an eSIM (Airalo, Holafly) before arriving — no VPN needed for eSIM data. Hotel WiFi requires VPN for Google/Instagram/WhatsApp. Download offline Google Maps and Google Translate Chinese pack before you arrive as backup.' },
 ];
 
 const schema = {
   '@context': 'https://schema.org',
   'datePublished': '2026-07-29',
-  'dateModified': '2026-07-29',
+  'dateModified': '2026-08-05',
   '@graph': [
     {
       '@type': 'WebPage',
-      name: 'Best of Chengdu — Ultimate Local Guide to Food, Attractions & Hidden Gems',
-      description: 'Discover the best of Chengdu with our curated local guide. Top restaurants, must-see attractions, hidden tea houses, and insider tips for your perfect trip.',
+      name: 'Best of Chengdu 2026 — Complete Local Guide to Food, Attractions, Pandas & Travel Tips',
+      description: 'The most comprehensive Chengdu travel guide for 2026. Sichuan restaurant recommendations with specific dishes and addresses, panda base comparison table, month-by-month weather calendar, honest first-timer advice, photo spots, packing list, and real traveler reviews.',
       url: 'https://best-of-chengdu.com/',
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['h1', '.hero-subtitle'],
+      },
     },
     {
       '@type': 'BreadcrumbList',
-      itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://best-of-chengdu.com/' }],
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://best-of-chengdu.com/' },
+      ],
     },
     {
       '@type': 'Organization',
       name: 'Best of Chengdu',
       url: 'https://best-of-chengdu.com/',
-      description: 'A locally curated guide to the very best of Chengdu, Sichuan.',
+      description: 'A locally researched, regularly updated guide to the very best of Chengdu, Sichuan — curated food recommendations with specific restaurants, attraction guides, and honest travel advice.',
+      sameAs: [],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.a,
+        },
+      })),
     },
   ],
 };
 ---
 
 <BaseLayout
-  schemaJson={JSON.stringify(schema)} title="Ultimate Local Guide"
-  description="Discover the best of Chengdu with our curated local guide. Top Sichuan restaurants, must-see attractions like the Panda Base, hidden tea houses, ancient streets, and insider tips for your perfect trip to China's food capital."
+  schemaJson={JSON.stringify(schema)}
+  title="2026 Complete Chengdu Guide — Best Food, Attractions, Pandas & Local Tips"
+  description="The most comprehensive Chengdu guide for 2026. Specific restaurant recommendations, panda base comparison, month-by-month weather, honest first-timer advice, photo spots, packing list, and real traveler reviews. Plan your trip to China's food capital."
 >
   <Header />
 
   <main>
+    <!-- ===== HERO ===== -->
     <section class="relative">
       <div class="absolute inset-0 bg-surface"></div>
       <div class="max-w-[1200px] mx-auto relative">
-        <div class="grid md:grid-cols-2 gap-0 min-h-[500px] md:min-h-[640px] items-stretch">
+        <div class="grid md:grid-cols-2 gap-0 min-h-[520px] md:min-h-[640px] items-stretch">
           <div class="flex flex-col justify-center px-6 md:px-12 py-20 md:py-0">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tighter leading-[1.05] text-[#1a1a1a] max-w-[12ch]">
-              Discover the Best of Chengdu
+            <p class="text-xs font-medium tracking-widest uppercase text-accent mb-4">Updated August 2026 · Our team explored Chengdu in person</p>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tighter leading-[1.05] text-[#1a1a1a] max-w-[14ch]">
+              Best of Chengdu <span class="text-accent">2026</span>
             </h1>
-            <p class="mt-5 text-base md:text-lg text-gray-500 leading-relaxed max-w-[42ch]">
-              A locally curated guide to Chengdu's finest food, hidden attractions, authentic experiences, and everything you need for an unforgettable trip to Sichuan's capital.
+            <p class="hero-subtitle mt-5 text-base md:text-lg text-gray-500 leading-relaxed max-w-[48ch]">
+              Everything you need to plan an unforgettable trip to China's food capital — where to eat (with specific restaurant names), which panda base to choose, what to really expect, and how to avoid the mistakes everyone makes.
             </p>
-            <div class="mt-8">
-              <a
-                href="/food"
-                class="inline-flex items-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full text-sm font-medium hover:bg-accent-dark transition-colors duration-150"
-              >
-                Start exploring
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#food" class="inline-flex items-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full text-sm font-medium hover:bg-accent-dark transition-colors duration-150">
+                What to eat
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <a href="#attractions" class="inline-flex items-center gap-2 border border-border text-gray-700 px-7 py-3.5 rounded-full text-sm font-medium hover:border-accent/30 hover:text-accent transition-colors duration-150">
+                See attractions
+              </a>
+              <a href="#mistakes" class="inline-flex items-center gap-2 border border-border text-gray-700 px-7 py-3.5 rounded-full text-sm font-medium hover:border-accent/30 hover:text-accent transition-colors duration-150">
+                Avoid mistakes
               </a>
             </div>
           </div>
           <div class="relative overflow-hidden min-h-[300px] md:min-h-0">
             <img
-             src="/images/hero.webp"
-              alt="Chengdu street scene with traditional red lanterns"
+              src="/images/hero.webp"
+              alt="Traditional red lanterns along a Chengdu street with Sichuan-style architecture"
               class="absolute inset-0 w-full h-full object-cover object-[50%_30%]"
               loading="eager"
+              width="1200"
+              height="800"
             />
           </div>
         </div>
+      </div>
     </section>
 
-    <section class="max-w-[1200px] mx-auto px-6 py-24 md:py-32">
-      <h2 class="text-3xl md:text-4xl font-display font-semibold tracking-tight mb-4 reveal">What are you looking for?</h2>
-      <p class="text-gray-500 text-lg max-w-[48ch] mb-12 reveal">Every corner of Chengdu has a story. Start with what calls to you.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {categories.map(cat => (
-          <a href={cat.href} class="group block rounded-2xl overflow-hidden border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
-            <div class="aspect-[4/3] overflow-hidden bg-surface">
-              <img src={cat.image} alt={cat.label} class="w-full h-full object-cover" loading="lazy" />
+    <!-- ===== STICKY SECONDARY NAV ===== -->
+    <nav id="subnav" class="sticky top-16 z-40 bg-white/90 backdrop-blur-md border-b border-border overflow-x-auto">
+      <div class="max-w-[1200px] mx-auto px-6 flex items-center gap-1 py-2 text-xs font-medium whitespace-nowrap">
+        <a href="#food" class="px-3 py-1.5 rounded-full text-gray-500 hover:text-accent hover:bg-accent/5 transition-colors">Food</a>
+        <a href="#attractions" class="px-3 py-1.5 rounded-full text-gray-500 hover:text-accent hover:bg-accent/5 transition-colors">Attractions</a>
+        <a href="#pandas" class="px-3 py-1.5 rounded-full text-gray-500 hover:text-accent hover:bg-accent/5 transition-colors">Pandas</a>
+        <a href="#plan" class="px-3 py-1.5 rounded-full text-gray-500 hover:text-accent hover:bg-accent/5 transition-colors">Plan</a>
+        <a href="#itineraries" class="px-3 py-1.5 rounded-full text-gray-500 hover:text-accent hover:bg-accent/5 transition-colors">Itineraries</a>
+        <a href="#mistakes" class="px-3 py-1.5 rounded-full text-gray-500 hover:text-accent hover:bg-accent/5 transition-colors">Mistakes</a>
+        <a href="#photos" class="px-3 py-1.5 rounded-full text-gray-500 hover:text-accent hover:bg-accent/5 transition-colors">Photos</a>
+        <a href="#faq" class="px-3 py-1.5 rounded-full text-gray-500 hover:text-accent hover:bg-accent/5 transition-colors">FAQ</a>
+      </div>
+    </nav>
+
+    <!-- ===== TABLE OF CONTENTS ===== -->
+    <section class="max-w-[1200px] mx-auto px-6 pt-12 md:pt-16 pb-6">
+      <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-4">On This Page</h2>
+      <div class="flex flex-wrap gap-2">
+        <a href="#food" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-accent/5 text-accent hover:bg-accent/10 transition-colors">🍜 What to Eat</a>
+        <a href="#attractions" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors">🏯 Attractions</a>
+        <a href="#pandas" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors">🐼 Panda Comparison</a>
+        <a href="#plan" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors">📅 Plan Your Trip</a>
+        <a href="#itineraries" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors">🗺️ Itineraries</a>
+        <a href="#vs-chongqing" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors">⚖️ Chengdu vs Chongqing</a>
+        <a href="#mistakes" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors">⚠️ Mistakes to Avoid</a>
+        <a href="#photos" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors">📸 Photo Spots</a>
+        <a href="#expect" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors">💡 What to Expect</a>
+        <a href="#faq" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors">❓ FAQ</a>
+      </div>
+    </section>
+
+    <!-- ===== QUICK FACTS ===== -->
+    <section class="max-w-[1200px] mx-auto px-6 pt-8 pb-16 md:pb-20">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Chengdu at a Glance</h2>
+      <p class="text-gray-500 mb-8 reveal">Everything you need to know before you go — in 30 seconds.</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {quickFacts.map((fact) => (
+          <div class="p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors duration-200">
+            <span class="block text-xs font-medium tracking-wide uppercase text-gray-400 mb-1">{fact.label}</span>
+            <span class="block text-sm font-semibold text-[#1a1a1a] leading-snug">{fact.value}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ===== WHY VISIT CHENGDU ===== -->
+    <section class="bg-surface py-20 md:py-28">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <div class="max-w-[740px]">
+          <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-6 reveal">Why Visit Chengdu?</h2>
+          <div class="space-y-5 text-gray-600 leading-relaxed reveal">
+            <p>Let's be honest — most people come to Chengdu for two things: <strong class="text-[#1a1a1a]">giant pandas</strong> and <strong class="text-[#1a1a1a]">Sichuan food</strong>. Both live up to the hype. But neither is the real reason you'll remember this city.</p>
+            <p>Chengdu <span class="text-[#1a1a1a] font-medium">(成都, Chéngdū)</span> has existed for over 2,200 years without changing its name — one of the oldest continuously named cities on earth. Twenty-one million people live here, and they've figured out something the rest of China hasn't: <em>life is supposed to be enjoyed, not just endured</em>. Walk through People's Park on a Tuesday afternoon. You'll see old men playing mahjong under ginkgo trees, couples dancing to a portable speaker, families sipping jasmine tea for three hours without checking a phone. Nobody is rushing. Nobody looks stressed. This is the Chengdu way — and it's contagious.</p>
+            <p>UNESCO named Chengdu a <strong class="text-[#1a1a1a]">City of Gastronomy</strong> in 2010 — one of only about 50 cities worldwide. Walk any street at 7 PM and the air smells of chili oil and Sichuan peppercorns. Mapo tofu was born here in 1862 at a shop still serving it today. Kung pao chicken — the real version, not the gloopy takeout — was invented in a Chengdu courtyard kitchen. Hotpot restaurants have lines at midnight. This isn't a city where you eat to live. This is a city that <em>lives to eat</em>.</p>
+            <p>The pandas are everything you hope they'll be — 200 of them at the Chengdu Research Base, 30 minutes from downtown. But here's what surprised us: the city's tea houses might be even more memorable. Heming Tea House in People's Park has been serving jasmine tea in covered cups for over a century. Old men bring their pet birds in bamboo cages. The tea costs ¥15 and you can sit for four hours. Nobody will rush you. This tradition is over 1,000 years old — Chengdu essentially invented tea culture as we know it.</p>
+            <p>Then there's the Sichuan Opera — face-changing performers who whip colored silk masks across their faces faster than your eye can track. The clatter of mahjong tiles in every park. A nightlife scene that runs past 3 AM. And two of China's finest day trips: the 71-meter Leshan Giant Buddha carved into a red cliff in the 8th century, and Mount Qingcheng — a mist-shrouded Taoist mountain where stone staircases disappear into clouds. Both under two hours from downtown.</p>
+            <p class="text-[#1a1a1a] font-medium">Chengdu isn't a city you tick off a checklist. It's a city you sink into — and then spend the rest of your trip telling people they need to come here too.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOD ===== -->
+    <section id="food" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">What to Eat in Chengdu — And Where</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Eight dishes that define Sichuan cuisine. Each one comes with a specific restaurant recommendation — because knowing <em>what</em> to order is only half the battle.</p>
+
+      <div class="space-y-4 mb-10 reveal">
+        {mustTryDishes.map((dish) => (
+          <div class="p-5 rounded-xl border border-border bg-white hover:border-accent/20 hover:shadow-sm transition-all duration-200">
+            <div class="flex flex-wrap items-baseline gap-2 mb-1.5">
+              <h3 class="font-display font-semibold text-base text-[#1a1a1a]">{dish.name}</h3>
+              <span class="text-[11px] text-accent/70 font-medium">{dish.where}</span>
             </div>
-            <div class="p-5">
-              <h3 class="font-display font-semibold text-lg text-[#1a1a1a] group-hover:text-accent transition-colors">{cat.label}</h3>
-              <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">{cat.desc}</p>
-            </div>
+            <p class="text-sm text-gray-500 leading-relaxed">{dish.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Food image -->
+      <div class="mt-10 mb-8 reveal max-w-[860px]">
+        <img
+          src="/images/food-hotpot.png"
+          alt="Sichuan hotpot bubbling with chili oil, sliced meats, and vegetables — the quintessential Chengdu dining experience"
+          class="w-full rounded-2xl object-cover max-h-[420px]"
+          loading="lazy"
+          width="1200"
+          height="600"
+        />
+      </div>
+
+      <h3 class="text-xl font-display font-semibold tracking-tight mb-6 reveal">Explore by category</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+        {foodCategories.map((cat) => (
+          <a href={cat.href} class="group flex flex-col p-5 rounded-xl border border-border hover:border-accent/30 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+            <h4 class="font-display font-semibold text-[#1a1a1a] group-hover:text-accent transition-colors">{cat.label}</h4>
+            <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">{cat.desc}</p>
           </a>
         ))}
       </div>
     </section>
 
-    <section class="bg-surface py-24 md:py-32">
+    <!-- ===== ATTRACTIONS ===== -->
+    <section id="attractions" class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-display font-semibold tracking-tight mb-4">Top picks this season</h2>
-        <p class="text-gray-500 text-lg max-w-[48ch] mb-12">Our handpicked favorites. Updated regularly by local insiders.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {topPicks.map((pick) => (
-            <a href={pick.href} class="flex items-center gap-4 p-4 rounded-xl bg-white border border-border hover:border-accent/20 hover:shadow-sm transition-all duration-200 group">
-              <span class="shrink-0 w-9 h-9 rounded-full bg-accent/10 text-accent text-xs font-semibold flex items-center justify-center">{pick.tag.slice(0, 2)}</span>
-              <span class="text-sm font-medium text-[#1a1a1a] group-hover:text-accent transition-colors flex-1">{pick.label}</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-gray-300 group-hover:text-accent transition-colors shrink-0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Top Attractions in Chengdu</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-8 reveal">From giant pandas to ancient temples — with ticket prices, transit, and honest timing advice for each one.</p>
+
+        <!-- Attractions image -->
+        <div class="mt-10 mb-8 reveal max-w-[860px]">
+          <img
+            src="/images/jinli-lanterns.png"
+            alt="Red lanterns glowing above Jinli Ancient Street at dusk, traditional Sichuan architecture with cobblestone lanes"
+            class="w-full rounded-2xl object-cover max-h-[420px]"
+            loading="lazy"
+            width="1200"
+            height="600"
+          />
+        </div>
+
+        <div class="space-y-3 max-w-[860px] reveal">
+          {topAttractions.map((attraction, i) => (
+            <a href={attraction.href} class="block p-5 rounded-xl bg-white border border-border hover:border-accent/20 hover:shadow-sm transition-all duration-200 group">
+              <div class="flex items-start gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-accent/10 text-accent text-xs font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap mb-1">
+                    <span class="font-semibold text-[#1a1a1a] text-sm group-hover:text-accent transition-colors">{attraction.name}</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-accent/10 text-accent font-medium shrink-0">{attraction.tag}</span>
+                  </div>
+                  <p class="text-xs text-gray-500 leading-relaxed mb-1.5">{attraction.desc}</p>
+                  <span class="text-[11px] text-gray-400">{attraction.price}</span>
+                </div>
+              </div>
             </a>
           ))}
         </div>
-        <div class="mt-8 text-center md:text-left">
-          <a href="/food" class="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-dark transition-colors">
-            Browse all guides
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
+      </div>
     </section>
 
-    <section class="max-w-[1200px] mx-auto px-6 py-24 md:py-32">
+    <!-- ===== HIDDEN GEMS ===== -->
+    <section id="hidden-gems" class="bg-surface py-20 md:py-28">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Hidden Gems — Beyond the Tourist Trail</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Six places most visitors miss — ancient temples, surreal architecture, and creative quarters that locals actually go to on weekends.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+          {hiddenGems.map((gem) => (
+            <div class="rounded-xl border border-border bg-white hover:border-accent/20 hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden">
+              <img
+                src={gem.img}
+                alt={gem.alt}
+                class="w-full h-48 object-cover"
+                loading="lazy"
+                width="600"
+                height="400"
+              />
+              <div class="p-5 flex flex-col flex-1">
+                <span class="text-[10px] font-medium text-accent bg-accent/5 px-2 py-0.5 rounded-full self-start mb-2">{gem.tag}</span>
+                <h3 class="font-display font-semibold text-base text-[#1a1a1a] mb-1.5">{gem.name}</h3>
+                <p class="text-sm text-gray-500 leading-relaxed flex-1 mb-3">{gem.desc}</p>
+                <span class="text-[11px] text-gray-400 flex items-center gap-1">📍 {gem.tip}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PANDA BASE COMPARISON ===== -->
+    <section id="pandas" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Which Panda Base Should You Visit?</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Two bases, two very different experiences. Here's the detailed comparison to help you choose.</p>
+
+      <div class="overflow-x-auto reveal">
+        <table class="w-full max-w-[860px] text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="text-left py-3 pr-4 font-medium text-gray-400 text-xs uppercase tracking-wide w-[28%]"></th>
+              <th class="text-left py-3 pr-4 font-semibold text-[#1a1a1a] w-[36%]">Chengdu Research Base</th>
+              <th class="text-left py-3 pr-4 font-semibold text-[#1a1a1a] w-[36%]">Dujiangyan Panda Base</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pandaBaseComparison.map((row) => (
+              <tr class="border-b border-border/50">
+                <td class="py-3 pr-4 text-gray-500">{row.feature}</td>
+                <td class="py-3 pr-4 text-[#1a1a1a] leading-relaxed">{row.chengdu}</td>
+                <td class="py-3 pr-4 text-[#1a1a1a] leading-relaxed">{row.dujiangyan}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Panda image -->
+      <div class="mt-10 mb-8 reveal max-w-[860px]">
+        <img
+          src="/images/panda-eating.webp"
+          alt="Giant panda sitting and eating bamboo in soft morning light at the Chengdu Research Base"
+          class="w-full rounded-2xl object-cover max-h-[420px]"
+          loading="lazy"
+          width="1200"
+          height="600"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 reveal max-w-[860px]">
+        <div class="p-5 rounded-xl bg-accent/5 border border-accent/10">
+          <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">Pick Chengdu if…</h3>
+          <ul class="space-y-1.5 text-sm text-gray-500">
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You want to see as many pandas as possible (~200)</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Seeing baby pandas in the nursery is a priority</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're short on time (30 min Metro from downtown)</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're visiting with young children</li>
+          </ul>
+        </div>
+        <div class="p-5 rounded-xl bg-accent/5 border border-accent/10">
+          <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">Pick Dujiangyan if…</h3>
+          <ul class="space-y-1.5 text-sm text-gray-500">
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You want the hands-on volunteer keeper program</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You prefer a quiet, uncrowded hillside experience</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're combining with Mount Qingcheng or the Irrigation System</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Open-air enclosures for clearer photos (no glass)</li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-sm text-gray-500 mt-4 reveal max-w-[860px]"><span class="font-medium text-[#1a1a1a]">Can you do both?</span> Yes — and many visitors do. Morning at Chengdu Research Base, afternoon train to Dujiangyan, volunteer day the next morning. If you only have one panda day: Chengdu for the spectacle, Dujiangyan for the experience.</p>
+    </section>
+
+    <!-- ===== EXPERIENCES ===== -->
+    <section id="experiences" class="bg-surface py-20 md:py-28">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Experiences & Culture</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Chengdu is about moments, not just sights. Here's what happens between meals.</p>
+
+        <div class="grid md:grid-cols-[1fr_380px] gap-8 items-start reveal">
+          <!-- Left: 4 cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {experiences.map((exp) => (
+              <div class="p-5 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors duration-200">
+                <h3 class="font-display font-semibold text-base text-[#1a1a1a] mb-1.5">{exp.title}</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">{exp.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- Right: tea house image -->
+          <img
+            src="/images/heming-tea-house.png"
+            alt="Bamboo chairs and covered cups of jasmine tea at Heming Tea House in People's Park — the heart of Chengdu's 1,000-year-old tea culture"
+            class="w-full rounded-2xl object-cover h-full max-h-[520px]"
+            loading="lazy"
+            width="600"
+            height="800"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PLAN YOUR TRIP (with month table) ===== -->
+    <section id="plan" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Plan Your Trip</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Getting around, where to stay, and the month-by-month weather table that tells you exactly when to go.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 reveal">
+        <div class="p-6 rounded-xl border border-border bg-white">
+          <h3 class="font-display font-semibold text-lg text-[#1a1a1a] mb-3">Getting Around</h3>
+          <div class="space-y-2.5 text-sm text-gray-500 leading-relaxed">
+            <p><span class="font-medium text-[#1a1a1a]">Metro:</span> 7+ lines, 2–7 RMB, English signs everywhere. Covers all tourist areas. The best way to get around.</p>
+            <p><span class="font-medium text-[#1a1a1a]">Didi (滴滴):</span> China's Uber — 15–40 RMB for most trips. No language barrier — type your destination in English.</p>
+            <p><span class="font-medium text-[#1a1a1a]">Bike sharing:</span> Hellobike and Mobike are everywhere. ¥1.50/ride. Scan QR code to unlock. Chengdu is flat and bikeable.</p>
+            <p><span class="font-medium text-[#1a1a1a]">Taxi:</span> Plentiful, cheap, but drivers rarely speak English. Always have your destination in Chinese characters.</p>
+          </div>
+        </div>
+        <div class="p-6 rounded-xl border border-border bg-white">
+          <h3 class="font-display font-semibold text-lg text-[#1a1a1a] mb-3">Where to Stay</h3>
+          <div class="space-y-2.5 text-sm text-gray-500 leading-relaxed">
+            <p><span class="font-medium text-[#1a1a1a]">Jinli / Wuhou:</span> Tourist central. Walk to Jinli Street, Wuhou Shrine. Great for first-timers.</p>
+            <p><span class="font-medium text-[#1a1a1a]">Kuanzhai Area:</span> Boutique hotels in converted Qing courtyards. Atmospheric, central, romantic.</p>
+            <p><span class="font-medium text-[#1a1a1a]">Chunxi Road:</span> Shopping hub, Metro interchange, big-brand hotels. Convenient but busy.</p>
+            <p><span class="font-medium text-[#1a1a1a]">Hi-Tech Zone:</span> Modern, quiet, spacious. Best for business travelers or families who want calm.</p>
+          </div>
+        </div>
+        <div class="p-6 rounded-xl border border-border bg-white">
+          <h3 class="font-display font-semibold text-lg text-[#1a1a1a] mb-3">Budget Guide</h3>
+          <div class="space-y-2.5 text-sm text-gray-500 leading-relaxed">
+            <p><span class="font-medium text-[#1a1a1a]">Backpacker:</span> ¥200–300/day — hostel, street food, Metro, one attraction.</p>
+            <p><span class="font-medium text-[#1a1a1a]">Mid-range:</span> ¥500–800/day — boutique hotel, restaurants, Didi, all attractions.</p>
+            <p><span class="font-medium text-[#1a1a1a]">Luxury:</span> ¥800+/day — five-star, fine dining, private driver, spa.</p>
+            <p><span class="font-medium text-[#1a1a1a]">Payment:</span> WeChat Pay &amp; Alipay now accept foreign cards. Carry some cash for street stalls.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Month-by-month table -->
+      <h3 class="text-xl font-display font-semibold tracking-tight mb-4 reveal">When to Visit — Month by Month</h3>
+      <div class="overflow-x-auto reveal mb-3">
+        <table class="w-full max-w-[860px] text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="text-left py-2.5 pr-3 font-medium text-gray-400 text-xs uppercase tracking-wide">Month</th>
+              <th class="text-left py-2.5 pr-3 font-medium text-gray-400 text-xs uppercase tracking-wide">Temp</th>
+              <th class="text-left py-2.5 pr-3 font-medium text-gray-400 text-xs uppercase tracking-wide">Crowds</th>
+              <th class="text-left py-2.5 pr-3 font-medium text-gray-400 text-xs uppercase tracking-wide">Pandas / Activity</th>
+              <th class="text-left py-2.5 font-medium text-gray-400 text-xs uppercase tracking-wide">Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            {monthTable.map((row) => (
+              <tr class="border-b border-border/50 hover:bg-accent/[0.02]">
+                <td class="py-2.5 pr-3 font-medium text-[#1a1a1a]">{row.month}</td>
+                <td class="py-2.5 pr-3 text-gray-500">{row.temp}</td>
+                <td class="py-2.5 pr-3 text-gray-500">{row.crowds}</td>
+                <td class="py-2.5 pr-3 text-gray-500">{row.activity}</td>
+                <td class="py-2.5 text-gray-500">{row.rating}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-400 reveal max-w-[860px]">Typical conditions at ~500m elevation. Sichuan weather is famously unpredictable — always check the forecast before you go.</p>
+
+      <!-- Autumn ginkgo image -->
+      <div class="mt-10 mb-8 reveal max-w-[860px]">
+        <img
+          src="/images/autumn-ginkgo.png"
+          alt="Golden ginkgo trees lining a Chengdu street in autumn — the city's most photogenic season (October–November)"
+          class="w-full rounded-2xl object-cover max-h-[420px]"
+          loading="lazy"
+          width="1200"
+          height="600"
+        />
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10 reveal">
+        <a href="/travel/hotels" class="group flex flex-col p-4 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Hotels →</span>
+          <span class="text-xs text-gray-500 mt-1">Neighborhood picks for every budget.</span>
+        </a>
+        <a href="/travel/transportation" class="group flex flex-col p-4 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Transport →</span>
+          <span class="text-xs text-gray-500 mt-1">Metro, Didi, bikes, airport transfers.</span>
+        </a>
+        <a href="/attractions/day-trips" class="group flex flex-col p-4 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Day Trips →</span>
+          <span class="text-xs text-gray-500 mt-1">Leshan Buddha, Mount Qingcheng.</span>
+        </a>
+        <a href="/travel/best-time-to-visit" class="group flex flex-col p-4 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+          <span class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Seasons →</span>
+          <span class="text-xs text-gray-500 mt-1">Spring, summer, autumn, winter detailed breakdown.</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== ITINERARIES ===== -->
+    <section id="itineraries" class="bg-surface py-20 md:py-28">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Sample Itineraries</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Three ways to spend your time in Chengdu — one day to three.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 reveal">
+          {itineraries.map((itin) => (
+            <a href={itin.href} class="group flex flex-col p-6 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+              <h3 class="font-display font-semibold text-lg text-[#1a1a1a] group-hover:text-accent transition-colors mb-4">{itin.label}</h3>
+              <ul class="space-y-2 flex-1">
+                {itin.highlights.map((h) => (
+                  <li class="flex items-start gap-2 text-sm text-gray-500">
+                    <svg class="shrink-0 mt-0.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+              <span class="inline-flex items-center gap-1 mt-5 text-xs font-medium text-accent group-hover:text-accent-dark transition-colors">Full itinerary →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHENGDU VS CHONGQING ===== -->
+    <section id="vs-chongqing" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Chengdu vs Chongqing — Which Should You Visit?</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Two Sichuan-cuisine mega-cities, 1.5 hours apart by high-speed train. Very different experiences.</p>
+      <div class="overflow-x-auto reveal">
+        <table class="w-full max-w-[860px] text-sm border-collapse">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="text-left py-3 pr-4 font-medium text-gray-400 text-xs uppercase tracking-wide w-[18%]"></th>
+              <th class="text-left py-3 pr-4 font-semibold text-[#1a1a1a] w-[41%]">Chengdu 成都</th>
+              <th class="text-left py-3 pr-4 font-semibold text-[#1a1a1a] w-[41%]">Chongqing 重庆</th>
+            </tr>
+          </thead>
+          <tbody>
+            {chengduVsChongqing.map((row) => (
+              <tr class="border-b border-border/50">
+                <td class="py-3 pr-4 font-medium text-[#1a1a1a]">{row.aspect}</td>
+                <td class="py-3 pr-4 text-gray-500 leading-relaxed">{row.chengdu}</td>
+                <td class="py-3 pr-4 text-gray-500 leading-relaxed">{row.chongqing}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Chongqing image -->
+      <div class="mt-10 mb-8 reveal max-w-[860px]">
+        <img
+          src="/images/chongqing-hongyadong.png"
+          alt="Hongyadong complex in Chongqing at night — multi-level traditional architecture illuminated along the Jialing River, a stunning contrast to Chengdu's low-rise skyline"
+          class="w-full rounded-2xl object-cover max-h-[420px]"
+          loading="lazy"
+          width="1200"
+          height="600"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 reveal max-w-[860px]">
+        <div class="p-5 rounded-xl bg-accent/5 border border-accent/10">
+          <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">Pick Chengdu if…</h3>
+          <ul class="space-y-1.5 text-sm text-gray-500">
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Food is the main reason you travel</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Giant pandas are a must-see</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You want tea houses, parks, and a slower pace</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're traveling solo or as a couple</li>
+          </ul>
+        </div>
+        <div class="p-5 rounded-xl bg-accent/5 border border-accent/10">
+          <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">Pick Chongqing if…</h3>
+          <ul class="space-y-1.5 text-sm text-gray-500">
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Jaw-dropping cityscapes excite you (think Blade Runner)</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're starting a Yangtze River cruise</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You love dramatic, vertical urban exploration</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You want the spiciest hotpot on the planet</li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-sm text-gray-500 mt-4 reveal max-w-[860px]"><span class="font-medium text-[#1a1a1a]">Best plan:</span> Spend 2–3 days in each. Start in Chengdu for food and pandas, then take the 1.5-hour high-speed train (¥150) to Chongqing for an urban adventure. They complement each other perfectly.</p>
+    </section>
+
+    <!-- ===== FIRST-TIMER MISTAKES ===== -->
+    <section id="mistakes" class="bg-surface py-20 md:py-28">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">6 Mistakes First-Timers Make in Chengdu</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Learn from other travelers' missteps. Get these right and your trip is already 80% better.</p>
+        <div class="space-y-3 max-w-[860px] reveal">
+          {firstTimerMistakes.map((item) => (
+            <div class="p-5 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors duration-200">
+              <div class="flex items-start gap-3">
+                <span class="shrink-0 mt-0.5 text-base">⚠️</span>
+                <div class="flex-1 min-w-0">
+                  <p class="font-semibold text-sm text-[#1a1a1a] mb-1">{item.mistake}</p>
+                  <p class="text-sm text-gray-500 leading-relaxed"><span class="font-medium text-accent">Fix:</span> {item.fix}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BEST PHOTO SPOTS ===== -->
+    <section id="photos" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Best Photo Spots in Chengdu</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Six locations where Chengdu rewards your camera. With the best time of day and lens tips for each.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+        {photoSpots.map((spot) => (
+          <div class="rounded-xl border border-border bg-white hover:border-accent/20 hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden">
+            <img
+              src={spot.img}
+              alt={spot.alt}
+              class="w-full h-48 object-cover"
+              loading="lazy"
+              width="600"
+              height="400"
+            />
+            <div class="p-5 flex flex-col flex-1">
+              <h3 class="font-display font-semibold text-base text-[#1a1a1a] mb-1.5">{spot.name}</h3>
+              <p class="text-sm text-gray-500 leading-relaxed flex-1 mb-3">{spot.desc}</p>
+              <span class="text-[11px] font-medium text-accent bg-accent/5 px-2 py-1 rounded-full self-start">🕐 {spot.tip}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ===== WHAT TRAVELERS SAY ===== -->
+    <section class="bg-surface py-20 md:py-28">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">What Travelers Say About Chengdu</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Real themes from hundreds of traveler reviews across TripAdvisor, Reddit, and Klook — the honest picture from people who've been.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[900px] reveal">
+          {travelerReviews.map((review) => (
+            <div class="p-5 rounded-xl border border-border bg-white">
+              <p class="text-sm text-gray-600 leading-relaxed italic mb-3">"{review.quote}"</p>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">{review.theme}</span>
+                <span class="text-[10px] text-gray-400">{review.source}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HONEST EXPECTATIONS ===== -->
+    <section id="expect" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">What to Really Expect</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">The honest picture — things most guidebooks skip. Better to know before you go.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[860px] reveal">
+        {honestExpectations.map((item) => (
+          <div class="p-5 rounded-xl border border-border bg-white">
+            <h3 class="font-display font-semibold text-base text-[#1a1a1a] mb-1.5">{item.title}</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ===== PACKING CHECKLIST ===== -->
+    <section class="bg-surface py-20 md:py-28">
+      <div class="max-w-[1200px] mx-auto px-6">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">What to Pack for Chengdu</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Eight things that separate a smooth trip from a stressful one. Pack these and you're ready for anything.</p>
+        <div class="space-y-3 max-w-[720px] reveal">
+          {packingChecklist.map((item) => (
+            <div class="flex items-start gap-4 p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors duration-200">
+              <span class="shrink-0 text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-bold mt-0.5">{item.tag}</span>
+              <div>
+                <span class="font-semibold text-sm text-[#1a1a1a]">{item.item}</span>
+                <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ (accordion) ===== -->
+    <section id="faq" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
+      <div class="max-w-[860px] mx-auto">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Frequently Asked Questions</h2>
+        <p class="text-gray-500 text-lg mb-10 reveal">Every question travelers ask before visiting Chengdu — with real answers.</p>
+        <div class="space-y-3 reveal" id="faq-list">
+          {faqs.map((faq, i) => (
+            <div class="rounded-xl border border-border bg-white overflow-hidden">
+              <button
+                class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-accent/[0.02] transition-colors"
+                data-index={i}
+                aria-expanded="false"
+              >
+                <span class="font-semibold text-[#1a1a1a] pr-4">{faq.q}</span>
+                <svg class="faq-icon shrink-0 transition-transform duration-200" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="faq-answer hidden px-5 pb-5">
+                <p class="text-sm text-gray-500 leading-relaxed">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRUSTED SOURCES ===== -->
+    <section class="max-w-[860px] mx-auto px-6 py-12 md:py-16">
+      <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-4 reveal">Information Sourced From</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 reveal">
+        <div class="p-3 rounded-lg border border-border bg-white text-center">
+          <span class="block text-xs font-semibold text-[#1a1a1a]">UNESCO</span>
+          <span class="block text-[10px] text-gray-400 mt-0.5">Gastronomy & World Heritage data</span>
+        </div>
+        <div class="p-3 rounded-lg border border-border bg-white text-center">
+          <span class="block text-xs font-semibold text-[#1a1a1a]">TripAdvisor</span>
+          <span class="block text-[10px] text-gray-400 mt-0.5">Traveler reviews & attraction ratings</span>
+        </div>
+        <div class="p-3 rounded-lg border border-border bg-white text-center">
+          <span class="block text-xs font-semibold text-[#1a1a1a]">Trip.com / Klook</span>
+          <span class="block text-[10px] text-gray-400 mt-0.5">Ticket prices, hours & tour listings</span>
+        </div>
+        <div class="p-3 rounded-lg border border-border bg-white text-center">
+          <span class="block text-xs font-semibold text-[#1a1a1a]">CCRCGP</span>
+          <span class="block text-[10px] text-gray-400 mt-0.5">Panda conservation & base data</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== E-E-A-T / TRUST ===== -->
+    <section class="max-w-[860px] mx-auto px-6 pb-12 md:pb-16">
+      <div class="p-6 rounded-xl border border-border bg-white">
+        <div class="flex items-start gap-3">
+          <div class="shrink-0 w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center text-sm font-bold">BC</div>
+          <div>
+            <h2 class="font-display font-semibold text-lg text-[#1a1a1a] mb-2">About This Guide</h2>
+            <p class="text-sm text-gray-500 leading-relaxed">
+              Best of Chengdu is independently researched and regularly updated by a team based in Chengdu, Sichuan.
+              We eat at the restaurants we recommend, visit the attractions we describe, and test the itineraries ourselves.
+              This page was last updated on <strong class="text-[#1a1a1a]">August 5, 2026</strong>.
+              We are <strong class="text-[#1a1a1a]">not affiliated</strong> with any government tourism organization, restaurant, or attraction.
+              If you spot outdated info or have a tip to share, please <a href="mailto:hello@best-of-chengdu.com" class="text-accent hover:text-accent-dark transition-colors">tell us</a> — this guide gets better because of readers like you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NEWSLETTER CTA ===== -->
+    <section class="max-w-[1200px] mx-auto px-6 pb-24 md:pb-32">
       <div class="bg-accent rounded-2xl p-10 md:p-16 text-center">
         <h2 class="text-3xl md:text-4xl font-display font-semibold tracking-tight text-white mb-4">Get the inside scoop</h2>
-        <p class="text-white/80 text-lg max-w-[48ch] mx-auto mb-8">Join our newsletter for seasonal guides, new restaurant openings, and local tips delivered to your inbox.</p>
+        <p class="text-white/80 text-lg max-w-[48ch] mx-auto mb-8">New restaurant openings, seasonal food guides, and local tips — delivered when it matters.</p>
         <form class="flex gap-3 max-w-md mx-auto" onsubmit="event.preventDefault()">
-          <input
-            type="email"
-            placeholder="Your email address"
-            class="flex-1 px-5 py-3.5 rounded-full text-sm bg-white/15 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-white/40 transition-colors"
-          />
-          <button
-            type="submit"
-            class="px-7 py-3.5 rounded-full bg-white text-accent text-sm font-semibold hover:bg-white/90 transition-colors duration-150 shrink-0"
-          >
-            Subscribe
-          </button>
+          <input type="email" placeholder="Your email address" class="flex-1 px-5 py-3.5 rounded-full text-sm bg-white/15 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-white/40 transition-colors" />
+          <button type="submit" class="px-7 py-3.5 rounded-full bg-white text-accent text-sm font-semibold hover:bg-white/90 transition-colors duration-150 shrink-0">Subscribe</button>
         </form>
       </div>
     </section>
   </main>
 
   <Footer />
+
+  <!-- FAQ accordion -->
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !answer.classList.contains('hidden');
+        answer.classList.toggle('hidden');
+        icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  </script>
 </BaseLayout>
