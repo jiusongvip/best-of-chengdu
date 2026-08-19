@@ -21,4 +21,4 @@ User-agent: FacebookBot
 Allow: /
 
 # Sitemap
-Sitemap: https://best-of-chengdu.com/sitemap.xml
+Sitemap: https://www.best-of-chengdu.com/sitemap.xml

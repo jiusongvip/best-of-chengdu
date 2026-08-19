@@ -12,6 +12,6 @@ export default defineConfig({
       },
     },
   },
-  site: 'https://best-of-chengdu.com',
-  trailingSlash: 'never',
+  site: 'https://www.best-of-chengdu.com',
+  trailingSlash: 'always',
 });

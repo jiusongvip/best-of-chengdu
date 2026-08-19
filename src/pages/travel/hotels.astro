@@ -166,11 +166,11 @@ const schema = {
   'datePublished': '2026-07-29',
   'dateModified': '2026-08-05',
   '@graph': [
-    { '@type': 'Article', 'headline': 'Where to Stay in Chengdu 2026 — Best Hotels & Neighborhoods Guide', 'description': 'Comprehensive neighborhood guide with 17 specific hotel recommendations across 5 neighborhoods. Real price ranges, room type glossary, booking platform comparison, and honest local advice. From luxury Qing-dynasty courtyard hotels to ¥60 hostel beds.', 'url': 'https://best-of-chengdu.com/travel/hotels', 'author': { '@type': 'Organization', 'name': 'Best of Chengdu' } },
+    { '@type': 'Article', 'headline': 'Where to Stay in Chengdu 2026 — Best Hotels & Neighborhoods Guide', 'description': 'Comprehensive neighborhood guide with 17 specific hotel recommendations across 5 neighborhoods. Real price ranges, room type glossary, booking platform comparison, and honest local advice. From luxury Qing-dynasty courtyard hotels to ¥60 hostel beds.', 'url': 'https://www.best-of-chengdu.com/travel/hotels', 'author': { '@type': 'Organization', 'name': 'Best of Chengdu' } },
     { '@type': 'BreadcrumbList', 'itemListElement': [
-      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://best-of-chengdu.com/' },
-      { '@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://best-of-chengdu.com/travel' },
-      { '@type': 'ListItem', 'position': 3, 'name': 'Hotels', 'item': 'https://best-of-chengdu.com/travel/hotels' },
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.best-of-chengdu.com/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Travel', 'item': 'https://www.best-of-chengdu.com/travel' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'Hotels', 'item': 'https://www.best-of-chengdu.com/travel/hotels' },
     ]},
     { '@type': 'FAQPage', 'mainEntity': faqs.map((faq) => ({ '@type': 'Question', 'name': faq.q, 'acceptedAnswer': { '@type': 'Answer', 'text': faq.a } })) },
   ],
@@ -195,7 +195,7 @@ const schema = {
           <a href="#neighborhoods" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-white/25 transition-colors">See neighborhoods ↓</a>
           <a href="#price-tiers" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Price guide</a>
           <a href="#decision" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Which area for me?</a>
-          <a href="/travel/transportation" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Getting around →</a>
+          <a href="/travel/transportation/" class="inline-flex items-center gap-2 border border-white/15 text-white/70 px-6 py-3 rounded-full text-sm font-medium hover:border-white/30 hover:text-white transition-colors">Getting around →</a>
         </div>
       </div>
     </section>
@@ -560,17 +560,17 @@ const schema = {
     <section class="max-w-[860px] mx-auto px-6 py-12">
       <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-4">Continue Planning</h2>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <a href="/travel/transportation" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+        <a href="/travel/transportation/" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
           <span class="text-lg mb-2 block">🚇</span>
           <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Getting Around →</h3>
           <p class="text-xs text-gray-500 mt-1">Metro lines, Didi setup, airport transfers.</p>
         </a>
-        <a href="/travel/best-time-to-visit" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+        <a href="/travel/best-time-to-visit/" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
           <span class="text-lg mb-2 block">📅</span>
           <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Best Time to Visit →</h3>
           <p class="text-xs text-gray-500 mt-1">Month-by-month weather, crowds & prices.</p>
         </a>
-        <a href="/attractions/day-trips" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
+        <a href="/attractions/day-trips/" class="group p-5 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
           <span class="text-lg mb-2 block">🏯</span>
           <h3 class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Day Trips →</h3>
           <p class="text-xs text-gray-500 mt-1">Leshan Buddha, Mount Qingcheng & more.</p>
