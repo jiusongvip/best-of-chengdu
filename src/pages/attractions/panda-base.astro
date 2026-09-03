@@ -119,6 +119,19 @@ const faqs = [
   },
 ];
 
+const referenceQuote = {
+  text: 'The giant panda, also known as the panda bear or simply panda, is a bear species endemic to China. It is characterised by its white coat with black patches around the eyes, ears, legs and shoulders. Adult individuals weigh 100 to 115 kg and are typically 1.2 to 1.9 m long.',
+  source: 'Wikipedia',
+  cite: 'Giant panda — the free encyclopedia',
+  url: 'https://en.wikipedia.org/wiki/Giant_panda',
+};
+
+const infoSources = [
+  { name: 'Chengdu Panda Base — Official', detail: 'Tickets, hours & visiting info', url: 'https://www.panda.org.cn/' },
+  { name: 'Wikipedia — Giant panda', detail: 'Species biology & conservation status', url: 'https://en.wikipedia.org/wiki/Giant_panda' },
+  { name: 'Wikipedia — Chengdu Panda Base', detail: 'Breeding base history', url: 'https://en.wikipedia.org/wiki/Chengdu_Research_Base_of_Giant_Panda_Breeding' },
+];
+
 const schema = {
   '@context': 'https://schema.org',
   datePublished: '2026-07-29',
@@ -128,8 +141,11 @@ const schema = {
       '@type': 'Article',
       headline: 'Chengdu Panda Base Guide 2026 — Tickets, Best Route, Baby Pandas & Insider Tips',
       description: 'Complete guide to the Chengdu Research Base of Giant Panda Breeding. Includes tickets, best visiting times, step-by-step route, baby panda season, Chengdu vs Dujiangyan comparison, common mistakes, and FAQs from real visitors.',
-      url: 'https://www.best-of-chengdu.com/attractions/panda-base',
-      author: { '@type': 'Organization', name: 'Best of Chengdu' },
+      url: 'https://www.best-of-chengdu.com/attractions/panda-base/',
+      datePublished: '2026-07-29',
+      dateModified: '2026-08-05',
+      author: { '@type': 'Person', 'name': 'Best of Chengdu Team', 'url': 'https://www.best-of-chengdu.com/about/' },
+      publisher: { '@type': 'Organization', 'name': 'Best of Chengdu', 'url': 'https://www.best-of-chengdu.com/' },
     },
     {
       '@type': 'FAQPage',
@@ -144,7 +160,18 @@ const schema = {
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.best-of-chengdu.com/' },
         { '@type': 'ListItem', position: 2, name: 'Attractions', item: 'https://www.best-of-chengdu.com/attractions' },
-        { '@type': 'ListItem', position: 3, name: 'Panda Base', item: 'https://www.best-of-chengdu.com/attractions/panda-base' },
+        { '@type': 'ListItem', position: 3, name: 'Panda Base', item: 'https://www.best-of-chengdu.com/attractions/panda-base/' },
+      ],
+    },
+    {
+      '@type': 'Organization',
+      name: 'Best of Chengdu',
+      url: 'https://www.best-of-chengdu.com/',
+      email: 'hello@best-of-chengdu.com',
+      sameAs: [
+        'https://github.com/jiusongvip/best-of-chengdu',
+        'https://en.wikipedia.org/wiki/Chengdu',
+        'https://www.wikidata.org/wiki/Q49802',
       ],
     },
   ],
@@ -161,7 +188,7 @@ const schema = {
   <main>
     <article class="max-w-[860px] mx-auto px-6 pt-20 pb-24">
       <!-- Hero -->
-      <p class="text-xs font-medium tracking-widest uppercase text-accent mb-4">Updated August 2026 · Our team visited in person</p>
+      <p class="text-xs font-medium tracking-widest uppercase text-accent mb-4">Published <time datetime="2026-07-29">July 29, 2026</time> · Updated <time datetime="2026-08-05">August 5, 2026</time> · <a href="/about/" class="hover:underline">Best of Chengdu Team</a> · Visited in person</p>
       <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1]">
         Chengdu Panda Base: The Complete 2026 Visitor's Guide
       </h1>
@@ -319,6 +346,24 @@ const schema = {
           <a href="/travel/transportation/" class="px-7 py-3 rounded-full border border-white/30 text-white text-sm font-medium hover:bg-white/10 transition-colors">How to get there →</a>
         </div>
       </div>
+
+      <!-- Sources & References -->
+      <section id="sources" class="mt-16">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Sources & References</h2>
+        <p class="text-sm text-gray-500 mb-6">Authoritative references behind the species facts and visiting data on this page.</p>
+        <blockquote class="border-l-4 border-accent/40 pl-5 py-3 mb-8 text-sm text-gray-600 italic leading-relaxed bg-surface rounded-r-lg">
+          <p>{referenceQuote.text}</p>
+          <footer class="mt-2 text-xs text-accent not-italic">— <cite><a href={referenceQuote.url} target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">{referenceQuote.source}, {referenceQuote.cite}</a></cite></footer>
+        </blockquote>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {infoSources.map((s) => (
+            <a href={s.url} target="_blank" rel="noopener noreferrer" class="group p-3 rounded-lg border border-border bg-white text-center hover:border-accent/30 transition-colors">
+              <span class="block text-xs font-semibold text-[#1a1a1a] group-hover:text-accent transition-colors">{s.name}</span>
+              <span class="block text-[10px] text-gray-400 mt-0.5">{s.detail}</span>
+            </a>
+          ))}
+        </div>
+      </section>
     </article>
   </main>
 

@@ -4,12 +4,12 @@ import Header from '~/components/Header.astro';
 import Footer from '~/components/Footer.astro';
 
 const subcategories = [
-  { label: 'Hotpot', href: '/food/hotpot', desc: 'The fiery heart of Chengdu dining. Find the city\'s best bubbling broths.' },
-  { label: 'Sichuan Restaurants', href: '/food/sichuan-restaurants', desc: 'Restaurants that define Sichuan cuisine, from fine dining to family-run legends.' },
+  { label: 'Hotpot', href: '/food/hotpot/', desc: 'The fiery heart of Chengdu dining. Find the city\'s best bubbling broths.' },
+  { label: 'Sichuan Restaurants', href: '/food/sichuan-restaurants/', desc: 'Restaurants that define Sichuan cuisine, from fine dining to family-run legends.' },
 ];
 
 const mustTry = [
-  { dish: 'Mapo Tofu', desc: 'Silky tofu in a numbing, fiery sauce. The benchmark dish for any Sichuan chef.' },
+  { dish: 'Mapo Tofu', desc: 'Silky tofu in a numbing, fiery sauce. Born in Chengdu in 1862 — the benchmark dish for any Sichuan chef.' },
   { dish: 'Kung Pao Chicken', desc: 'Tender chicken with peanuts and dried chilies. The real deal, not the takeout version.' },
   { dish: 'Dan Dan Noodles', desc: 'A humble street food elevated to art. Sesame paste, chili oil, and minced pork.' },
   { dish: 'Twice-Cooked Pork', desc: 'Pork belly simmered then wok-fried with fermented black beans and leeks.' },
@@ -17,23 +17,80 @@ const mustTry = [
   { dish: 'Fuqi Feipian', desc: 'Sliced beef and offal in a chili and Sichuan pepper dressing. Surprisingly addictive.' },
 ];
 
+const localTips = [
+  { title: 'Respect the mala', desc: 'Sichuan peppercorn numbs as it burns. Order one spicy dish at a time and keep rice close.' },
+  { title: 'Eat where queues form', desc: 'A line of locals at 6 PM is the most reliable review. Meituan and Dianping show real-time wait times.' },
+  { title: 'Order sweet to reset', desc: 'Bing fen (ice jelly) with brown sugar cools the burn between dishes.' },
+  { title: 'Lunch beats dinner prices', desc: 'Same dishes cost 20–30% less at noon. Street food meals run 10–20 RMB.' },
+];
+
+const faqs = [
+  { q: 'What is the spiciest food in Chengdu?', a: 'Hotpot with extra mala (numbing-spicy) broth is the king of heat. For a pure chili burn, try a dry pot (gan guo) dish.' },
+  { q: 'Can vegetarians eat well in Chengdu?', a: 'Yes. Many Buddhist vegetarian restaurants serve excellent meat-free Sichuan food. Mapo tofu (without pork), eggplant dishes, and vegetable hotpot are widely available.' },
+  { q: 'What is a typical food budget?', a: 'Street food meals start at 10–20 RMB. Mid-range restaurant meals run 50–80 RMB per person. High-end hotpot or banquet dining can reach 150–300 RMB per person.' },
+  { q: 'Is street food in Chengdu safe?', a: 'Generally yes — stalls with high turnover and local queues are the safest bet. Jinli and Kuanzhai Alley cater to visitors; residential-side night markets are where locals actually eat.' },
+  { q: 'Do I need to book restaurants in advance?', a: 'Most casual spots are walk-in. Top hotpot restaurants and famous mapo tofu institutions fill up by 6:30 PM — book via Meituan or arrive before 6 PM.' },
+];
+
+const infoSources = [
+  { name: 'UNESCO Creative Cities', detail: 'Chengdu — City of Gastronomy (2010)', url: 'https://www.unesco.org/en/creative-cities/chengdu' },
+  { name: 'Wikipedia — Sichuan cuisine', detail: 'History & regional variations', url: 'https://en.wikipedia.org/wiki/Sichuan_cuisine' },
+  { name: 'Wikipedia — Chengdu', detail: 'City history & geography', url: 'https://en.wikipedia.org/wiki/Chengdu' },
+];
+
+const referenceQuote = {
+  text: 'Sichuan cuisine or Sichuanese cuisine, alternatively romanized as Szechwan cuisine, is a style of Chinese cuisine originating from Sichuan province and the neighboring Chongqing municipality. There are many regional, local variations of Sichuanese cuisine within Sichuan and Chongqing.',
+  source: 'Wikipedia',
+  cite: 'Sichuan cuisine — the free encyclopedia',
+  url: 'https://en.wikipedia.org/wiki/Sichuan_cuisine',
+};
+
 const schema = {
   '@context': 'https://schema.org',
   'datePublished': '2026-07-29',
-  'dateModified': '2026-07-29',
+  'dateModified': '2026-08-05',
   '@graph': [
     {
       '@type': 'CollectionPage',
       name: 'Best Food in Chengdu',
       description: 'From fiery hotpot to delicate street snacks, explore the best food in Chengdu with our curated guide to iconic dishes, top restaurants, and local favorites.',
-      'url': 'https://www.best-of-chengdu.com/food',
+      'url': 'https://www.best-of-chengdu.com/food/',
+      datePublished: '2026-07-29',
+      dateModified: '2026-08-05',
+      author: { '@type': 'Person', 'name': 'Best of Chengdu Team', 'url': 'https://www.best-of-chengdu.com/about/' },
+      publisher: { '@type': 'Organization', 'name': 'Best of Chengdu', 'url': 'https://www.best-of-chengdu.com/' },
+    },
+    {
+      '@type': 'Organization',
+      name: 'Best of Chengdu',
+      url: 'https://www.best-of-chengdu.com/',
+      email: 'hello@best-of-chengdu.com',
+      sameAs: [
+        'https://github.com/jiusongvip/best-of-chengdu',
+        'https://en.wikipedia.org/wiki/Chengdu',
+        'https://www.wikidata.org/wiki/Q49802',
+      ],
+    },
+    {
+      '@type': 'Person',
+      name: 'Best of Chengdu Team',
+      url: 'https://www.best-of-chengdu.com/about/',
+      knowsAbout: ['Sichuan Cuisine', 'Chengdu Travel', 'Chinese Gastronomy'],
     },
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.best-of-chengdu.com/' },
-        { '@type': 'ListItem', position: 2, 'name': 'Food', 'item': 'https://www.best-of-chengdu.com/food' }
+        { '@type': 'ListItem', position: 2, 'name': 'Food', 'item': 'https://www.best-of-chengdu.com/food/' }
       ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      })),
     },
   ],
 };
@@ -47,7 +104,10 @@ const schema = {
       <h1 class="text-4xl md:text-5xl font-display font-semibold tracking-tighter leading-[1.1] max-w-[14ch]">
         Best Food in Chengdu
       </h1>
-      <p class="mt-4 text-lg text-gray-500 max-w-[56ch]">Chengdu is a UNESCO City of Gastronomy for good reason. From fiery hotpot to delicate snacks, here is what to eat and where to find it.</p>
+      <p class="mt-4 text-xs font-medium tracking-widest uppercase text-gray-400">
+        Published <time datetime="2026-07-29">July 29, 2026</time> · Updated <time datetime="2026-08-05">August 5, 2026</time> · <a href="/about/" class="text-accent hover:underline">Best of Chengdu Team</a>
+      </p>
+      <p class="mt-4 text-lg text-gray-500 max-w-[56ch]">Chengdu is a UNESCO City of Gastronomy — one of the first in Asia. Mapo tofu was born here in 1862; hotpot queues still form at midnight. Here is what to eat and where to find it.</p>
     </section>
 
     <section class="max-w-[1200px] mx-auto px-6 pb-24">
@@ -74,23 +134,50 @@ const schema = {
             </div>
           ))}
         </div>
+      </div>
     </section>
 
     <section class="max-w-[1200px] mx-auto px-6 py-24">
-      <h2 class="text-2xl font-display font-semibold tracking-tight mb-8">FAQ</h2>
-      <div class="space-y-6 max-w-[72ch]">
-        <div>
-          <h3 class="font-semibold text-[#1a1a1a] mb-1">What is the spiciest food in Chengdu?</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Hotpot with extra mala (numbing-spicy) broth is the king of heat. For a pure chili burn, try a dry pot (gan guo) dish.</p>
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-8">Eat like a local</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-[900px]">
+        {localTips.map(tip => (
+          <div class="p-5 rounded-xl border border-border bg-white">
+            <h3 class="font-semibold text-[#1a1a1a] text-sm">{tip.title}</h3>
+            <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">{tip.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-surface py-24">
+      <div class="max-w-[860px] mx-auto px-6">
+        <h2 class="text-2xl font-display font-semibold tracking-tight mb-8">FAQ</h2>
+        <div class="space-y-6 max-w-[72ch]">
+          {faqs.map(faq => (
+            <div>
+              <h3 class="font-semibold text-[#1a1a1a] mb-1">{faq.q}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
+            </div>
+          ))}
         </div>
-        <div>
-          <h3 class="font-semibold text-[#1a1a1a] mb-1">Can vegetarians eat well in Chengdu?</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Yes. Many Buddhist vegetarian restaurants serve excellent meat-free Sichuan food. Mapo tofu (without pork), eggplant dishes, and vegetable hotpot are widely available.</p>
-        </div>
-        <div>
-          <h3 class="font-semibold text-[#1a1a1a] mb-1">What is a typical food budget?</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Street food meals start at 10-20 RMB. Mid-range restaurant meals run 50-80 RMB per person. High-end hotpot or banquet dining can reach 150-300 RMB per person.</p>
-        </div>
+      </div>
+    </section>
+
+    <section class="max-w-[860px] mx-auto px-6 py-16">
+      <h2 class="text-2xl font-display font-semibold tracking-tight mb-2">Sources & References</h2>
+      <p class="text-gray-500 text-sm mb-8">Authoritative references behind the history and facts on this page.</p>
+      <blockquote class="border-l-4 border-accent/40 pl-5 py-3 mb-8 text-sm text-gray-600 italic leading-relaxed bg-surface rounded-r-lg">
+        <p>{referenceQuote.text}</p>
+        <footer class="mt-2 text-xs text-accent not-italic">— <cite><a href={referenceQuote.url} target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">{referenceQuote.source}, {referenceQuote.cite}</a></cite></footer>
+      </blockquote>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {infoSources.map((s) => (
+          <a href={s.url} target="_blank" rel="noopener noreferrer" class="group p-3 rounded-lg border border-border bg-white text-center hover:border-accent/30 transition-colors">
+            <span class="block text-xs font-semibold text-[#1a1a1a] group-hover:text-accent transition-colors">{s.name}</span>
+            <span class="block text-[10px] text-gray-400 mt-0.5">{s.detail}</span>
+          </a>
+        ))}
+      </div>
     </section>
   </main>
 
