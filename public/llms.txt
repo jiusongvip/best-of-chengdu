@@ -23,6 +23,8 @@
 
 ## About
 - [About Best of Chengdu](https://www.best-of-chengdu.com/about/): Our team, editorial process, methodology, and contact information.
+- [Privacy Policy](https://www.best-of-chengdu.com/privacy/): How visitor data is handled.
+- [Terms of Use](https://www.best-of-chengdu.com/terms/): Terms for using this content.
 
 ## Optional
 - [Blog Index](https://www.best-of-chengdu.com/blog/): All blog posts and travel guides.

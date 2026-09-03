@@ -161,6 +161,20 @@ const travelerReviews = [
   { quote: '"The language barrier is more real in Chengdu than Beijing or Shanghai. Download a translation app before you go — the camera translation feature saved us at restaurants daily."', source: 'Klook reviews · 2026', theme: 'Come prepared' },
 ];
 
+const infoSources = [
+  { name: 'UNESCO Creative Cities', detail: 'City of Gastronomy designation (2011) & data', url: 'https://www.unesco.org/en/creative-cities/chengdu' },
+  { name: 'Wikipedia — Chengdu', detail: 'City history, population & geography reference', url: 'https://en.wikipedia.org/wiki/Chengdu' },
+  { name: 'UNESCO World Heritage Centre', detail: 'Dujiangyan, Mount Qingcheng & panda sanctuary listings', url: 'https://whc.unesco.org/en/statesparties/cn' },
+  { name: 'Sichuan Giant Panda Sanctuaries', detail: 'World Heritage listing of the panda habitat', url: 'https://whc.unesco.org/en/list/1213' },
+];
+
+const referenceQuote = {
+  text: 'Chengdu is the capital city of the Chinese province of Sichuan. With a population of 20,937,757 at the 2020 census, it is the country\'s fourth most populous city and the only city with a population of over 20 million apart from provincial-level municipalities. It is traditionally the hub of Western China.',
+  source: 'Wikipedia',
+  cite: 'Chengdu — the free encyclopedia',
+  url: 'https://en.wikipedia.org/wiki/Chengdu',
+};
+
 const photoSpots = [
   { name: 'Wuhou Shrine Red Wall Corridor', img: '/images/wuhou-red-wall.webp', alt: 'Curving vermilion wall corridor at Wuhou Shrine with bamboo shadows in late afternoon sunlight', desc: 'A long, curving corridor with vermilion walls and bamboo shadows. Best in late afternoon when sunlight slants through the bamboo. Go on a weekday for empty shots.', tip: 'Late afternoon · Weekdays' },
   { name: 'Jinli Street at Dusk', img: '/images/jinli-lanterns.webp', alt: 'Red lanterns glowing above Jinli Ancient Street at dusk with golden cobblestone lanes', desc: 'Lanterns begin to glow against the darkening sky. The cobblestone lanes and wooden facades turn golden. Set up at the arched bridge for the classic shot.', tip: 'Sunset · Tripod recommended' },
@@ -228,6 +242,10 @@ const schema = {
       name: 'Best of Chengdu 2026 — Complete Local Guide to Food, Attractions, Pandas & Travel Tips',
       description: 'The most comprehensive Chengdu travel guide for 2026. Sichuan restaurant recommendations with specific dishes and addresses, panda base comparison table, month-by-month weather calendar, honest first-timer advice, photo spots, packing list, and real traveler reviews.',
       url: 'https://www.best-of-chengdu.com/',
+      datePublished: '2026-07-29',
+      dateModified: '2026-08-05',
+      author: { '@type': 'Person', 'name': 'Best of Chengdu Team', 'url': 'https://www.best-of-chengdu.com/about/' },
+      publisher: { '@type': 'Organization', 'name': 'Best of Chengdu', 'url': 'https://www.best-of-chengdu.com/' },
       speakable: {
         '@type': 'SpeakableSpecification',
         cssSelector: ['h1', '.hero-subtitle'],
@@ -244,7 +262,18 @@ const schema = {
       name: 'Best of Chengdu',
       url: 'https://www.best-of-chengdu.com/',
       description: 'A locally researched, regularly updated guide to the very best of Chengdu, Sichuan — curated food recommendations with specific restaurants, attraction guides, and honest travel advice.',
-      sameAs: [],
+      email: 'hello@best-of-chengdu.com',
+      sameAs: [
+        'https://github.com/jiusongvip/best-of-chengdu',
+        'https://en.wikipedia.org/wiki/Chengdu',
+        'https://www.wikidata.org/wiki/Q49802',
+      ],
+    },
+    {
+      '@type': 'Person',
+      name: 'Best of Chengdu Team',
+      url: 'https://www.best-of-chengdu.com/about/',
+      knowsAbout: ['Chengdu Travel', 'Sichuan Cuisine', 'China Travel', 'Panda Conservation'],
     },
     {
       '@type': 'FAQPage',
@@ -281,6 +310,13 @@ const schema = {
             </h1>
             <p class="hero-subtitle mt-5 text-base md:text-lg text-gray-500 leading-relaxed max-w-[48ch]">
               Everything you need to plan an unforgettable trip to China's food capital — where to eat (with specific restaurant names), which panda base to choose, what to really expect, and how to avoid the mistakes everyone makes.
+            </p>
+            <p class="mt-4 text-xs text-gray-400 flex flex-wrap items-center gap-2">
+              By <a href="/about/" class="font-medium text-accent hover:text-accent-dark transition-colors">Best of Chengdu Team</a>
+              <span aria-hidden="true">·</span>
+              <span>Published <time datetime="2026-07-29">July 29, 2026</time></span>
+              <span aria-hidden="true">·</span>
+              <span>Updated <time datetime="2026-08-05">Aug 5, 2026</time></span>
             </p>
             <div class="mt-8 flex flex-wrap gap-3">
               <a href="#food" class="inline-flex items-center gap-2 bg-accent text-white px-7 py-3.5 rounded-full text-sm font-medium hover:bg-accent-dark transition-colors duration-150">
@@ -404,7 +440,7 @@ const schema = {
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
         {foodCategories.map((cat) => (
           <a href={cat.href} class="group flex flex-col p-5 rounded-xl border border-border hover:border-accent/30 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-            <h4 class="font-display font-semibold text-[#1a1a1a] group-hover:text-accent transition-colors">{cat.label}</h4>
+            <h3 class="font-display font-semibold text-[#1a1a1a] group-hover:text-accent transition-colors">{cat.label}</h3>
             <p class="text-sm text-gray-500 mt-1.5 leading-relaxed">{cat.desc}</p>
           </a>
         ))}
@@ -800,13 +836,13 @@ const schema = {
         <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Real themes from hundreds of traveler reviews across TripAdvisor, Reddit, and Klook — the honest picture from people who've been.</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[900px] reveal">
           {travelerReviews.map((review) => (
-            <div class="p-5 rounded-xl border border-border bg-white">
-              <p class="text-sm text-gray-600 leading-relaxed italic mb-3">"{review.quote}"</p>
-              <div class="flex items-center gap-2">
+            <figure class="p-5 rounded-xl border border-border bg-white">
+              <blockquote class="text-sm text-gray-600 leading-relaxed italic mb-3">"{review.quote}"</blockquote>
+              <figcaption class="flex items-center gap-2">
                 <span class="text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-medium">{review.theme}</span>
-                <span class="text-[10px] text-gray-400">{review.source}</span>
-              </div>
-            </div>
+                <cite class="text-[10px] text-gray-400 not-italic">— {review.source}</cite>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>
@@ -870,26 +906,21 @@ const schema = {
       </div>
     </section>
 
-    <!-- ===== TRUSTED SOURCES ===== -->
-    <section class="max-w-[860px] mx-auto px-6 py-12 md:py-16">
-      <h2 class="text-xs font-medium tracking-widest uppercase text-gray-400 mb-4 reveal">Information Sourced From</h2>
+    <!-- ===== SOURCES & REFERENCES ===== -->
+    <section id="sources" class="max-w-[860px] mx-auto px-6 py-12 md:py-16">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Sources & References</h2>
+      <p class="text-gray-500 text-lg mb-8 reveal max-w-[52ch]">Authoritative references behind the facts, prices, and history on this page — so you can verify everything yourself.</p>
+      <blockquote class="border-l-4 border-accent/40 pl-5 py-3 mb-8 text-sm text-gray-600 italic leading-relaxed bg-surface rounded-r-lg reveal">
+        <p>{referenceQuote.text}</p>
+        <footer class="mt-2 text-xs text-accent not-italic">— <cite><a href={referenceQuote.url} target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">{referenceQuote.source}, {referenceQuote.cite}</a></cite></footer>
+      </blockquote>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 reveal">
-        <div class="p-3 rounded-lg border border-border bg-white text-center">
-          <span class="block text-xs font-semibold text-[#1a1a1a]">UNESCO</span>
-          <span class="block text-[10px] text-gray-400 mt-0.5">Gastronomy & World Heritage data</span>
-        </div>
-        <div class="p-3 rounded-lg border border-border bg-white text-center">
-          <span class="block text-xs font-semibold text-[#1a1a1a]">TripAdvisor</span>
-          <span class="block text-[10px] text-gray-400 mt-0.5">Traveler reviews & attraction ratings</span>
-        </div>
-        <div class="p-3 rounded-lg border border-border bg-white text-center">
-          <span class="block text-xs font-semibold text-[#1a1a1a]">Trip.com / Klook</span>
-          <span class="block text-[10px] text-gray-400 mt-0.5">Ticket prices, hours & tour listings</span>
-        </div>
-        <div class="p-3 rounded-lg border border-border bg-white text-center">
-          <span class="block text-xs font-semibold text-[#1a1a1a]">CCRCGP</span>
-          <span class="block text-[10px] text-gray-400 mt-0.5">Panda conservation & base data</span>
-        </div>
+        {infoSources.map((s) => (
+          <a href={s.url} target="_blank" rel="noopener noreferrer" class="group p-3 rounded-lg border border-border bg-white text-center hover:border-accent/30 transition-colors">
+            <span class="block text-xs font-semibold text-[#1a1a1a] group-hover:text-accent transition-colors">{s.name}</span>
+            <span class="block text-[10px] text-gray-400 mt-0.5">{s.detail}</span>
+          </a>
+        ))}
       </div>
     </section>
 
@@ -901,9 +932,9 @@ const schema = {
           <div>
             <h2 class="font-display font-semibold text-lg text-[#1a1a1a] mb-2">About This Guide</h2>
             <p class="text-sm text-gray-500 leading-relaxed">
-              Best of Chengdu is independently researched and regularly updated by a team based in Chengdu, Sichuan.
+              Best of Chengdu is independently researched and regularly updated by the <a href="/about/" class="text-accent hover:text-accent-dark transition-colors">Best of Chengdu Team</a> — editors based in Chengdu, Sichuan.
               We eat at the restaurants we recommend, visit the attractions we describe, and test the itineraries ourselves.
-              This page was last updated on <strong class="text-[#1a1a1a]">August 5, 2026</strong>.
+              This page was last updated by our food editor on <strong class="text-[#1a1a1a]">August 5, 2026</strong>.
               We are <strong class="text-[#1a1a1a]">not affiliated</strong> with any government tourism organization, restaurant, or attraction.
               If you spot outdated info or have a tip to share, please <a href="mailto:hello@best-of-chengdu.com" class="text-accent hover:text-accent-dark transition-colors">tell us</a> — this guide gets better because of readers like you.
             </p>

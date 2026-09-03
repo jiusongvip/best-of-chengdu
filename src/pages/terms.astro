@@ -1,0 +1,63 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'dateModified': '2026-08-05',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: 'Terms of Use — Best of Chengdu',
+      description: 'Terms of use for Best of Chengdu — independent travel guides for Chengdu. Verify current prices, hours, and policies before you go.',
+      url: 'https://www.best-of-chengdu.com/terms/',
+      dateModified: '2026-08-05',
+      publisher: { '@type': 'Organization', 'name': 'Best of Chengdu', 'url': 'https://www.best-of-chengdu.com/' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.best-of-chengdu.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Terms of Use', item: 'https://www.best-of-chengdu.com/terms/' },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Terms of Use" description="Terms of use for Best of Chengdu. Prices and hours change — always verify with official sources before you go.">
+  <Header />
+
+  <main>
+    <section class="max-w-[860px] mx-auto px-6 py-16">
+      <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Terms of Use</p>
+      <h1 class="text-3xl md:text-4xl font-display font-semibold tracking-tight mb-3">Terms of Use</h1>
+      <p class="text-sm text-gray-400 mb-10">Last updated: August 5, 2026</p>
+
+      <div class="space-y-8 text-sm text-gray-500 leading-relaxed">
+        <section>
+          <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">Information accuracy</h2>
+          <p>We make every effort to keep ticket prices, opening hours, restaurant details, and booking instructions accurate and current. However, prices, menus, and policies change — and attractions may close for renovation without notice (the Dujiangyan Panda Base, for example). Always verify directly with the official source before planning your visit. This site is a helpful guide, not a guaranteed source of real-time information.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">Use of content</h2>
+          <p>All content on this site is original and written from firsthand experience. You may share links to this site freely. Republishing substantial portions of the content without permission is not permitted. If you would like to reference or quote this content, please provide attribution and a link back to the original page.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">No liability</h2>
+          <p>This site is provided for informational purposes only. We are not responsible for any losses, inconveniences, or damages arising from the use of the information on this site. Travel decisions — and your appetite for Sichuan peppercorns — are your own responsibility.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">Contact</h2>
+          <p>Questions about these terms? Email <a href="mailto:hello@best-of-chengdu.com" class="text-accent hover:underline">hello@best-of-chengdu.com</a>.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,74 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  'dateModified': '2026-08-05',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: 'Privacy Policy — Best of Chengdu',
+      description: 'How Best of Chengdu handles data, cookies, and third-party services. This site does not collect personal information from visitors.',
+      url: 'https://www.best-of-chengdu.com/privacy/',
+      dateModified: '2026-08-05',
+      publisher: { '@type': 'Organization', 'name': 'Best of Chengdu', 'url': 'https://www.best-of-chengdu.com/' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.best-of-chengdu.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: 'https://www.best-of-chengdu.com/privacy/' },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout schemaJson={JSON.stringify(schema)} title="Privacy Policy" description="How Best of Chengdu handles data, cookies, and third-party services. No accounts, no forms, no personal data collected from visitors.">
+  <Header />
+
+  <main>
+    <section class="max-w-[860px] mx-auto px-6 py-16">
+      <p class="text-xs font-semibold tracking-widest uppercase text-accent mb-3">Privacy Policy</p>
+      <h1 class="text-3xl md:text-4xl font-display font-semibold tracking-tight mb-3">Privacy Policy</h1>
+      <p class="text-sm text-gray-400 mb-10">Last updated: August 5, 2026</p>
+
+      <div class="space-y-10 text-sm text-gray-500 leading-relaxed">
+        <section>
+          <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">Who we are</h2>
+          <p>Best of Chengdu publishes independent, firsthand guides for visiting Chengdu, Sichuan — the food, attractions, and experiences we genuinely recommend. We are a static informational website. You can reach us at <a href="mailto:hello@best-of-chengdu.com" class="text-accent hover:underline">hello@best-of-chengdu.com</a>.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">What we collect</h2>
+          <p>We do not collect, store, or process any personal information about our visitors. This site has no account registration, no forms that request personal data, and no comments section — we never ask for your name, email, or phone number.</p>
+          <p class="mt-3">The email newsletter form on this page does not currently connect to a mailing service. Until it does, no address you type is transmitted or stored.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">Cookies & analytics</h2>
+          <p>We use Google Analytics (via gtag.js) to understand which pages are useful and how visitors find us. Google Analytics stores cookies and may process anonymized usage data under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">Google's privacy policy</a>. It is configured without advertising features; we do not use it to build visitor profiles for marketing.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">Hosting and edge logs</h2>
+          <p>This site is hosted on Cloudflare Pages. Like any web host, Cloudflare may process standard server logs (such as IP address, user-agent, and requested URL) for security and to keep the site running. This data is used by Cloudflare under its own privacy policy, not by us.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">External links</h2>
+          <p>Many pages link to external websites — attraction official sites, ticket platforms (Trip.com, Klook), and reference sources such as Wikipedia. We are not responsible for the privacy practices of those sites.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">Contact</h2>
+          <p>If you have any questions about this policy, email <a href="mailto:hello@best-of-chengdu.com" class="text-accent hover:underline">hello@best-of-chengdu.com</a>.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
