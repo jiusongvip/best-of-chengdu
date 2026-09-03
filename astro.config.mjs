@@ -5,6 +5,9 @@ import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   integrations: [tailwind(), sitemap()],
+  build: {
+    inlineStylesheets: 'always',
+  },
   vite: {
     resolve: {
       alias: {

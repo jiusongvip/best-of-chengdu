@@ -282,6 +282,9 @@ const schema = {
   title="Chengdu Guide: Food, Pandas & Tips"
   description="Chengdu travel guide updated Aug 2026. 8 must-try dishes with restaurant names, panda base comparison, month-by-month weather, and honest first-timer advice."
 >
+  <Fragment slot="head">
+    <link rel="preload" as="image" imagesrcset="/images/hero-640.webp 640w, /images/hero.webp 960w" imagesizes="(max-width: 767px) 100vw, 50vw" fetchpriority="high" />
+  </Fragment>
   <Header />
 
   <main>
@@ -321,11 +324,14 @@ const schema = {
           <div class="relative overflow-hidden min-h-[300px] md:min-h-0">
             <img
               src="/images/hero.webp"
+              srcset="/images/hero-640.webp 640w, /images/hero.webp 960w"
+              sizes="(max-width: 767px) 100vw, 50vw"
               alt="Traditional red lanterns along a Chengdu street with Sichuan-style architecture"
               class="absolute inset-0 w-full h-full object-cover object-[50%_30%]"
               loading="eager"
-              width="1200"
-              height="800"
+              fetchpriority="high"
+              width="960"
+              height="1750"
             />
           </div>
         </div>
