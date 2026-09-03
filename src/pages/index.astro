@@ -15,14 +15,14 @@ const quickFacts = [
 ];
 
 const mustTryDishes = [
-  { name: 'Mapo Tofu (麻婆豆腐)', where: 'Chen Mapo Tofu (陈麻婆豆腐) — the original since 1862.', desc: 'Silky cubes of tofu swimming in a blood-red chili-bean sauce, numbing with Sichuan peppercorns, topped with minced pork. The dish that defines the entire Sichuan canon.' },
-  { name: 'Kung Pao Chicken (宫保鸡丁)', where: 'Any decent Sichuan restaurant. Piao Xiang (飘香) near Kuanzhai Alley does a textbook version.', desc: 'Tender chicken thigh, golden peanuts, and dried chilies in a glossy sweet-savory-tingly sauce. Nothing — absolutely nothing — like the gloopy takeout version you know.' },
-  { name: 'Dan Dan Noodles (担担面)', where: 'Street stalls near Jinli or the noodle shops along Wenshuyuan Street. Look for the longest queue.', desc: 'A bowl of wheat noodles draped in sesame paste, chili oil, soy sauce, and minced pork. Costs about 10 RMB. A humble street snack elevated to art — the single dish that sums up Chengdu.' },
-  { name: 'Twice-Cooked Pork (回锅肉)', where: 'Family-run Sichuan restaurants — order it anywhere. Yulin neighborhood has excellent neighborhood joints.', desc: 'Pork belly first simmered, then sliced and wok-fried at violent heat with fermented black beans, leeks, and doubanjiang. Smoky, salty, slightly sweet. The comfort food of Sichuan.' },
-  { name: 'Chengdu Hotpot (火锅)', where: 'Shu Daxia (蜀大侠) for theatrics. Huangcheng Laoma (皇城老妈) for tradition. Xiaolongkan (小龙坎) for the real local experience.', desc: 'A cauldron of bubbling chili broth in the center of the table. You cook thinly sliced meats, vegetables, and tofu yourself. The ritual starts with sesame oil dip, ends with cold beer. Expect to wait in line.' },
-  { name: 'Fuqi Feipian (夫妻肺片)', where: 'Husband-and-Wife Lung Slices shop (夫妻肺片总店) near Chunxi Road — the inventors.', desc: 'Despite the name, no lungs. Thinly sliced beef, tripe, and tendon in a fiery dressing of chili oil, Sichuan pepper, and sesame. Invented by a Chengdu couple in the 1930s. Surprisingly addictive.' },
-  { name: 'Zhong Dumplings (钟水饺)', where: 'Zhong Dumplings original shop (钟水饺) on Tidu Street. Open since 1893.', desc: 'Plump pork dumplings in a puddle of sweet soy, garlic paste, and chili oil. Simple ingredients, perfect balance. A Chengdu icon since the Qing dynasty — locals eat these standing up at the counter.' },
-  { name: 'Lai Tangyuan (赖汤圆)', where: 'Lai Tangyuan (赖汤圆) near Jinli. The original storefront from 1894.', desc: 'Glutinous rice balls filled with black sesame paste, floating in sweet osmanthus soup. The dessert that locals order after a punishing hotpot. More than a century old and still perfect.' },
+  { name: 'Mapo Tofu (麻婆豆腐)', where: 'Chen Mapo Tofu (陈麻婆豆腐) — the original since 1862.', desc: 'Silky tofu in a blood-red chili-bean sauce, numbing with Sichuan peppercorns and topped with minced pork. The dish that defines the Sichuan canon.' },
+  { name: 'Kung Pao Chicken (宫保鸡丁)', where: 'Any decent Sichuan restaurant. Piao Xiang (飘香) near Kuanzhai Alley does a textbook version.', desc: 'Tender chicken, golden peanuts, and dried chilies in a glossy sweet-savory-tingly sauce. Nothing like the gloopy takeout version.' },
+  { name: 'Dan Dan Noodles (担担面)', where: 'Street stalls near Jinli or noodle shops along Wenshuyuan Street. Look for the longest queue.', desc: 'Wheat noodles in sesame paste, chili oil, soy sauce, and minced pork — about 10 RMB. The single dish that sums up Chengdu.' },
+  { name: 'Twice-Cooked Pork (回锅肉)', where: 'Family-run Sichuan restaurants — the Yulin neighborhood has excellent joints.', desc: 'Pork belly simmered, sliced, then wok-fried with fermented black beans, leeks, and doubanjiang. The comfort food of Sichuan.' },
+  { name: 'Chengdu Hotpot (火锅)', where: 'Shu Daxia (蜀大侠) for theatrics. Huangcheng Laoma (皇城老妈) for tradition. Xiaolongkan (小龙坎) for the real local experience.', desc: 'A cauldron of bubbling chili broth; you cook sliced meats, vegetables, and tofu yourself. Start with sesame oil dip, end with cold beer.' },
+  { name: 'Fuqi Feipian (夫妻肺片)', where: 'Husband-and-Wife Lung Slices shop (夫妻肺片总店) near Chunxi Road — the inventors.', desc: 'Thinly sliced beef, tripe, and tendon in chili oil, Sichuan pepper, and sesame. Invented by a Chengdu couple in the 1930s. No lungs, despite the name.' },
+  { name: 'Zhong Dumplings (钟水饺)', where: 'Zhong Dumplings original shop (钟水饺) on Tidu Street. Open since 1893.', desc: 'Plump pork dumplings in sweet soy, garlic paste, and chili oil. A Chengdu icon since the Qing dynasty.' },
+  { name: 'Lai Tangyuan (赖汤圆)', where: 'Lai Tangyuan (赖汤圆) near Jinli. The original storefront from 1894.', desc: 'Glutinous rice balls filled with black sesame paste in sweet osmanthus soup. The dessert locals order after a punishing hotpot.' },
 ];
 
 const foodCategories = [
@@ -31,14 +31,14 @@ const foodCategories = [
 ];
 
 const topAttractions = [
-  { name: 'Chengdu Research Base of Giant Panda Breeding', tag: 'Unmissable', price: 'CNY 55 · Metro Line 3 · 7:30 AM–6 PM', desc: 'The single best place on earth to see giant pandas. Over 200 pandas in a sprawling park. The nursery has baby pandas year-round. Arrive before 8 AM — pandas eat breakfast and climb, then nap through midday.' },
-  { name: 'Jinli Ancient Street (锦里)', tag: 'Must-see', price: 'Free · Walk from Wuhou Shrine · Best at dusk', desc: 'Red lanterns swaying over cobblestone lanes. Street-food stalls, Sichuan embroidery shops, and tea houses along a restored Qing-dynasty street. Go at sunset for the lanterns, stay for the street snacks.' },
-  { name: 'Kuanzhai Alley (宽窄巷子)', tag: 'Must-see', price: 'Free · Metro Line 4 (Kuanzhai Xiangzi Station)', desc: 'Three parallel Qing-dynasty alleys — Kuan (wide), Zhai (narrow), and Jing (well). Courtyard restaurants, boutique shops, and tea houses hidden behind carved wooden doors. Tourist-central, but worth it.' },
-  { name: 'People\'s Park (人民公园)', tag: 'Authentic', price: 'Free · Metro Line 2 (People\'s Park Station)', desc: 'The living, breathing heart of Chengdu. Old men play mahjong under ginkgo trees. Ladies sing karaoke on portable speakers. Couples post personal ads on Love Lane. Sit at Heming Tea House, order jasmine tea, and watch the city be itself.' },
-  { name: 'Wuhou Shrine (武侯祠)', tag: 'Recommended', price: 'CNY 60 · Next to Jinli Street', desc: 'A serene temple complex honoring Zhuge Liang, the legendary Three Kingdoms strategist. Ancient cypress trees, vermilion walls, and carved stone tablets. The famous red-wall corridor is a photographer\'s dream.' },
-  { name: 'Wenshu Monastery (文殊院)', tag: 'Recommended', price: 'Free · Metro Line 1 (Wenshu Monastery Station)', desc: 'Chengdu\'s best-preserved Buddhist temple, built during the Tang Dynasty. Home to 80 monks, 300+ Buddha statues, and a vegetarian restaurant that even meat-eaters love. The tea house in the rear garden is pure tranquility.' },
-  { name: 'Leshan Giant Buddha (乐山大佛)', tag: 'Day Trip', price: 'CNY 80 · 2 h by train from Chengdu South Station', desc: 'A 71-meter Buddha carved into a red sandstone cliff in the 8th century — the largest stone Buddha on earth. Walk the cliffside path from head to toe. The scale is disorienting in person.' },
-  { name: 'Mount Qingcheng (青城山)', tag: 'Day Trip', price: 'CNY 90 · 30 min by train from Lidui Park Station', desc: 'A misty Taoist mountain and UNESCO World Heritage site. Ancient temples tucked into forested slopes, stone staircases disappearing into fog. One of Taoism\'s birthplaces. Front mountain is paved; back mountain is wild.' },
+  { name: 'Chengdu Research Base of Giant Panda Breeding', tag: 'Unmissable', price: 'CNY 55 · Metro Line 3 · 7:30 AM–6 PM', desc: 'The best place on earth to see giant pandas — over 200 in a sprawling park, with a baby nursery open year-round. Arrive before 8 AM while pandas eat and climb.' },
+  { name: 'Jinli Ancient Street (锦里)', tag: 'Must-see', price: 'Free · Walk from Wuhou Shrine · Best at dusk', desc: 'Red lanterns over cobblestone lanes, street-food stalls, and tea houses along a restored Qing-dynasty street. Go at sunset for the lanterns, stay for the snacks.' },
+  { name: 'Kuanzhai Alley (宽窄巷子)', tag: 'Must-see', price: 'Free · Metro Line 4 (Kuanzhai Xiangzi Station)', desc: 'Three parallel Qing-dynasty alleys — Kuan (wide), Zhai (narrow), Jing (well). Courtyard restaurants and tea houses behind carved wooden doors.' },
+  { name: 'People\'s Park (人民公园)', tag: 'Authentic', price: 'Free · Metro Line 2 (People\'s Park Station)', desc: 'The living heart of Chengdu. Mahjong under ginkgo trees, karaoke on portable speakers, and Heming Tea House — where you sit for hours and watch the city be itself.' },
+  { name: 'Wuhou Shrine (武侯祠)', tag: 'Recommended', price: 'CNY 60 · Next to Jinli Street', desc: 'A serene temple complex honoring Zhuge Liang, the Three Kingdoms strategist. Ancient cypress trees, vermilion walls — and the famous red-wall corridor.' },
+  { name: 'Wenshu Monastery (文殊院)', tag: 'Recommended', price: 'Free · Metro Line 1 (Wenshu Monastery Station)', desc: 'Chengdu\'s best-preserved Buddhist temple, built in the Tang Dynasty. 300+ Buddha statues and a vegetarian restaurant even meat-eaters love.' },
+  { name: 'Leshan Giant Buddha (乐山大佛)', tag: 'Day Trip', price: 'CNY 80 · 2 h by train from Chengdu South Station', desc: 'A 71-meter Buddha carved into a red sandstone cliff in the 8th century — the largest stone Buddha on earth. The scale is disorienting in person.' },
+  { name: 'Mount Qingcheng (青城山)', tag: 'Day Trip', price: 'CNY 90 · 30 min by train from Lidui Park Station', desc: 'A misty Taoist mountain and UNESCO World Heritage site. One of Taoism\'s birthplaces — front mountain is paved, back mountain is wild.' },
 ];
 
 const pandaBaseComparison = [
@@ -46,12 +46,10 @@ const pandaBaseComparison = [
   { feature: 'Crowds', chengdu: 'Very busy, especially mornings', dujiangyan: 'Quiet, relaxed — fraction of the crowds' },
   { feature: 'Volunteer keeper program', chengdu: 'Not available', dujiangyan: 'Yes — CNY 700–900 · Book 1–2 weeks ahead' },
   { feature: 'Baby panda nursery', chengdu: 'Open year-round', dujiangyan: 'Seasonal — not guaranteed' },
-  { feature: 'Enclosure style', chengdu: 'Glass-walled viewing rooms + outdoor yards', dujiangyan: 'Open-air hillside enclosures — no glass' },
+  { feature: 'Enclosure style', chengdu: 'Glass-walled rooms + outdoor yards', dujiangyan: 'Open-air hillside enclosures — no glass' },
   { feature: 'Transit from downtown', chengdu: '30 min via Metro Line 3', dujiangyan: '~1.5 h door-to-door via train + taxi' },
   { feature: 'Entrance fee', chengdu: 'CNY 55 (students ¥27)', dujiangyan: 'CNY 58 (students ¥29)' },
-  { feature: 'Setting', chengdu: 'Large manicured park, panda museum, gift shops', dujiangyan: 'Natural forested hillside near Mount Qingcheng' },
-  { feature: 'Best for', chengdu: 'Families, first-timers, max pandas, baby pandas', dujiangyan: 'Volunteers, couples, quiet visits, clearer photos' },
-  { feature: 'Current status', chengdu: 'OPEN — normal operations', dujiangyan: 'CLOSED for renovation since Apr 2026 — see alternatives on dujiangyanpanda.com' },
+  { feature: 'Current status', chengdu: 'OPEN — normal operations', dujiangyan: 'CLOSED for renovation since Apr 2026' },
 ];
 
 const monthTable = [
@@ -70,10 +68,10 @@ const monthTable = [
 ];
 
 const experiences = [
-  { title: 'Tea House Culture', desc: 'The ritual that defines Chengdu: sitting for hours with a covered cup of jasmine tea, watching the world pass. Heming Tea House inside People\'s Park is the classic. Shufeng Yayun adds nightly Sichuan opera to your tea. The tradition is over 1,000 years old — Chengdu invented tea culture as we know it.' },
-  { title: 'Face-Changing Opera (变脸)', desc: 'Bian lian performers whip vibrantly colored silk masks across their faces in a split second — with no visible mechanism. You will not see it coming. Fire-breathing, acrobatics, and shadow puppetry round out the hour-long show. Shufeng Yayun Tea House and Jinjiang Theater are the best venues.' },
-  { title: 'Mahjong (麻将)', desc: 'Walk through any Chengdu park and you\'ll hear it — the percussive clatter of 136 tiles being shuffled and slammed. Entire afternoons disappear around mahjong tables with green tea and sunflower seeds. The local "blood battle" variant is faster and louder than any other version in China.' },
-  { title: 'Nightlife & Bar Streets', desc: 'Chengdu doesn\'t sleep early. Jiuyanqiao Bar Street lines the river with craft cocktail bars and live music. Kehua Road is ground zero for late-night barbecue skewers and cold beer. Lan Kwai Fong Chengdu is the expat hub. A typical night starts with hotpot, moves to a bar, and ends with street noodles at 2 AM.' },
+  { title: 'Tea House Culture', desc: 'The ritual that defines Chengdu: hours with a covered cup of jasmine tea. Heming Tea House in People\'s Park is the classic. A tradition over 1,000 years old.' },
+  { title: 'Face-Changing Opera (变脸)', desc: 'Bian lian performers whip colored silk masks across their faces in a split second. Best at Shufeng Yayun or Jinjiang Theater.' },
+  { title: 'Mahjong (麻将)', desc: 'Walk any Chengdu park and you\'ll hear the clatter of 136 tiles. The local "blood battle" variant is faster than anywhere else in China.' },
+  { title: 'Nightlife & Bar Streets', desc: 'Jiuyanqiao lines the river with cocktail bars; Kehua Road does late-night barbecue. A typical night: hotpot, a bar, noodles at 2 AM.' },
 ];
 
 const itineraries = [
@@ -98,7 +96,7 @@ const hiddenGems = [
   {
     name: 'Jinsha Site Museum',
     tag: '3,000-year history',
-    desc: 'Buried for millennia and unearthed in 2001 — the gold Sunbird disc found here is now Chengdu\'s official city emblem. Walk above actual excavation pits in an underground museum that most tour groups skip.',
+    desc: 'The gold Sunbird disc found here in 2001 is now Chengdu\'s city emblem. Walk above actual excavation pits in a museum most tour groups skip.',
     tip: 'Afternoon · Line 7 Metro · ¥70',
     img: '/images/jinsha-museum.webp',
     alt: 'Gold Sunbird artifact and excavation pit at Jinsha Site Museum, Chengdu',
@@ -106,7 +104,7 @@ const hiddenGems = [
   {
     name: 'Daci Temple',
     tag: '1,600-year-old sanctuary',
-    desc: 'A working Buddhist temple hidden in plain sight behind Taikoo Li\'s luxury stores. Incense drifts through courtyards, monks chant at dawn, and 200-year-old ginkgo trees shade the halls. Free entry, almost zero foreign tourists.',
+    desc: 'A working Buddhist temple behind Taikoo Li\'s luxury stores. Incense drifts through courtyards, monks chant at dawn, and 200-year-old ginkgo trees shade the halls.',
     tip: 'Morning · 5 min walk from Chunxi Road · Free',
     img: '/images/daci-temple.webp',
     alt: 'Ancient Daci Temple courtyard with incense smoke and ginkgo trees, Taikoo Li skyline visible behind',
@@ -114,7 +112,7 @@ const hiddenGems = [
   {
     name: 'Zhongshuge Bookstore',
     tag: 'Mirror-ceiling wonder',
-    desc: 'Voted one of the world\'s most beautiful bookstores. Mirrored ceilings, spiral staircases, and arched book tunnels create an Escher-like optical illusion. The Chengdu location weaves in bamboo-inspired design motifs.',
+    desc: 'Voted one of the world\'s most beautiful bookstores. Mirrored ceilings and arched book tunnels create an Escher-like illusion with bamboo-inspired motifs.',
     tip: 'Weekday morning · Line 2 Yintai Center · Free',
     img: '/images/zhongshuge-bookstore.webp',
     alt: 'Zhongshuge Bookstore Chengdu with mirrored ceilings, spiral staircases, and arched bookshelf tunnels',
@@ -122,7 +120,7 @@ const hiddenGems = [
   {
     name: 'Eastern Suburb Memory',
     tag: 'Industrial-chic art hub',
-    desc: 'A Soviet-era electronics factory reborn as Chengdu\'s creative quarter. Street art murals cover old machinery, live music spills from converted workshops, and the weekend vintage market is the best in Sichuan.',
+    desc: 'A Soviet-era electronics factory reborn as Chengdu\'s creative quarter — street art, live music, and the best weekend vintage market in Sichuan.',
     tip: 'Weekend afternoons · Line 8 Dongjiao Jiyi · Free',
     img: '/images/eastern-suburb-memory.webp',
     alt: 'Street art and converted factory buildings at Eastern Suburb Memory creative district, Chengdu',
@@ -130,15 +128,15 @@ const hiddenGems = [
   {
     name: 'New Century Global Center',
     tag: 'World\'s largest building',
-    desc: '1.76 million m² under one roof — with an indoor beach, wave pool, ice rink, and a ceiling so high the interior horizon fades into haze. It\'s absurd, surreal, and 100% Chengdu. Even if you don\'t go inside, seeing it from the Metro approach is worth the trip.',
-    tip: 'Metro Line 1 Jincheng Plaza · Free entry (attractions extra)',
+    desc: '1.76 million m² under one roof — indoor beach, wave pool, ice rink, and a ceiling so high the interior fades into haze. Absurd, surreal, and 100% Chengdu.',
+    tip: 'Metro Line 1 Jincheng Plaza · Free entry',
     img: '/images/global-center.webp',
     alt: 'New Century Global Center exterior — the world\'s largest building by floor area in Chengdu',
   },
   {
     name: 'Luhu Eco-City',
     tag: 'Lakeside art escape',
-    desc: 'A 2,000-acre eco-development 30 minutes south of downtown where top architects went wild. Floating galleries, the A4 Art Museum, reed-filled boardwalks, and a community of resident artists. The Chengdu most visitors never see.',
+    desc: 'A 2,000-acre eco-development where top architects went wild — floating galleries, reed-filled boardwalks, and resident artists. The Chengdu most visitors never see.',
     tip: 'Sunny day only · Line 1 Luhu · Half-day trip',
     img: '/images/luhu-eco-city.webp',
     alt: 'Luhu Eco-City lakeside boardwalks and A4 Art Museum floating gallery in Chengdu',
@@ -146,12 +144,12 @@ const hiddenGems = [
 ];
 
 const chengduVsChongqing = [
-  { aspect: 'Vibe', chengdu: 'Laid-back, flat, green. Tea houses in parks, slow mornings.', chongqing: 'Vertical, dramatic, fast. A cyberpunk river city with steep staircases.' },
-  { aspect: 'Food style', chengdu: 'Refined, complex. The birthplace of mapo tofu and kung pao chicken.', chongqing: 'Bolder, oilier. Home of the world\'s spiciest hotpot and xiaomian noodles.' },
-  { aspect: 'Best known for', chengdu: 'Giant pandas, tea houses, Sichuan Opera, UNESCO gastronomy.', chongqing: 'Three Gorges, mountain skyline, hotpot, Ciqikou old town.' },
-  { aspect: 'Getting around', chengdu: 'Flat and bikeable. Metro covers most areas. Easy to navigate.', chongqing: 'Hilly. Metro works but expect stairs. Harder to walk and bike.' },
-  { aspect: 'Day trips', chengdu: 'Leshan Buddha, Mount Qingcheng, Dujiangyan Panda Base.', chongqing: 'Dazu Rock Carvings, Wulong Karst, Three Gorges cruise terminal.' },
-  { aspect: 'Transit between', chengdu: '1.5 h by high-speed train to Chongqing · ~¥150', chongqing: '1.5 h by high-speed train to Chengdu · ~¥150' },
+  { aspect: 'Vibe', chengdu: 'Laid-back, flat, green — tea houses and slow mornings.', chongqing: 'Vertical and fast — a cyberpunk river city of steep staircases.' },
+  { aspect: 'Food style', chengdu: 'Refined and complex — birthplace of mapo tofu.', chongqing: 'Bolder and oilier — home of the spiciest hotpot.' },
+  { aspect: 'Best known for', chengdu: 'Pandas, tea houses, UNESCO gastronomy.', chongqing: 'Mountain skyline, hotpot, Three Gorges cruises.' },
+  { aspect: 'Getting around', chengdu: 'Flat, bikeable; Metro covers most areas.', chongqing: 'Hilly; expect steep walks between Metro stops.' },
+  { aspect: 'Day trips', chengdu: 'Leshan Buddha, Mount Qingcheng, Dujiangyan.', chongqing: 'Dazu Rock Carvings, Wulong Karst, Yangtze cruises.' },
+  { aspect: 'Transit between', chengdu: '1.5 h high-speed train (~¥150)', chongqing: '1.5 h high-speed train (~¥150)' },
 ];
 
 const travelerReviews = [
@@ -176,60 +174,52 @@ const referenceQuote = {
 };
 
 const photoSpots = [
-  { name: 'Wuhou Shrine Red Wall Corridor', img: '/images/wuhou-red-wall.webp', alt: 'Curving vermilion wall corridor at Wuhou Shrine with bamboo shadows in late afternoon sunlight', desc: 'A long, curving corridor with vermilion walls and bamboo shadows. Best in late afternoon when sunlight slants through the bamboo. Go on a weekday for empty shots.', tip: 'Late afternoon · Weekdays' },
-  { name: 'Jinli Street at Dusk', img: '/images/jinli-lanterns.webp', alt: 'Red lanterns glowing above Jinli Ancient Street at dusk with golden cobblestone lanes', desc: 'Lanterns begin to glow against the darkening sky. The cobblestone lanes and wooden facades turn golden. Set up at the arched bridge for the classic shot.', tip: 'Sunset · Tripod recommended' },
-  { name: 'Anshun Bridge at Night', img: '/images/anshun-bridge-night.webp', alt: 'Anshun Bridge illuminated at night with reflection in the Jin River', desc: 'A covered bridge over the Jin River, illuminated from within. The reflection in the water doubles the visual impact. One of Chengdu\'s most photogenic structures.', tip: 'After 7 PM · Long exposure' },
-  { name: 'Panda Base — Morning Feeding', img: '/images/panda-eating.webp', alt: 'Giant panda eating bamboo in soft morning light at Chengdu Panda Base', desc: 'Giant pandas eating bamboo in soft morning light, no glass between you and them. The best natural-light wildlife shots you\'ll get in China. Zoom lens essential.', tip: '8:00–9:30 AM · 200mm+ lens' },
-  { name: 'Kuanzhai Alley Courtyards', img: '/images/kuanzhai-courtyard.jpg', alt: 'Traditional Qing-dynasty courtyard in Kuanzhai Alley with bamboo garden and carved wooden doorways', desc: 'Step through any open wooden door into a Qing-dynasty courtyard. Tea houses with bamboo gardens, carved window screens, and stone water features. Endless detail shots.', tip: 'Midday (quiet time) · Wide + macro' },
-  { name: 'Mount Qingcheng Mist', img: '/images/qingcheng-mist.webp', alt: 'Stone staircases disappearing into mist on Mount Qingcheng, ancient Taoist temple roofs emerging from clouds', desc: 'Stone staircases disappearing into fog. Ancient Taoist temple roofs emerging from clouds. The mountain mists create ethereal scenes you cannot plan — you just get lucky.', tip: 'Morning · After rain · Weather dependent' },
+  { name: 'Wuhou Shrine Red Wall Corridor', img: '/images/wuhou-red-wall.webp', alt: 'Curving vermilion wall corridor at Wuhou Shrine with bamboo shadows in late afternoon sunlight', desc: 'A curving vermilion corridor with bamboo shadows. Best late afternoon, weekday for empty shots.', tip: 'Late afternoon · Weekdays' },
+  { name: 'Jinli Street at Dusk', img: '/images/jinli-lanterns.webp', alt: 'Red lanterns glowing above Jinli Ancient Street at dusk with golden cobblestone lanes', desc: 'Lanterns glow over cobblestone lanes and wooden facades. Set up at the arched bridge for the classic shot.', tip: 'Sunset · Tripod recommended' },
+  { name: 'Anshun Bridge at Night', img: '/images/anshun-bridge-night.webp', alt: 'Anshun Bridge illuminated at night with reflection in the Jin River', desc: 'A covered bridge illuminated from within; the water reflection doubles the impact.', tip: 'After 7 PM · Long exposure' },
+  { name: 'Panda Base — Morning Feeding', img: '/images/panda-eating.webp', alt: 'Giant panda eating bamboo in soft morning light at Chengdu Panda Base', desc: 'Giant pandas eating bamboo in soft morning light, no glass between you and them.', tip: '8:00–9:30 AM · 200mm+ lens' },
+  { name: 'Kuanzhai Alley Courtyards', img: '/images/kuanzhai-courtyard.jpg', alt: 'Traditional Qing-dynasty courtyard in Kuanzhai Alley with bamboo garden and carved wooden doorways', desc: 'Open wooden doors reveal Qing-dynasty courtyards: tea houses, bamboo gardens, carved screens.', tip: 'Midday (quiet time) · Wide + macro' },
+  { name: 'Mount Qingcheng Mist', img: '/images/qingcheng-mist.webp', alt: 'Stone staircases disappearing into mist on Mount Qingcheng, ancient Taoist temple roofs emerging from clouds', desc: 'Stone staircases vanishing into fog, temple roofs emerging from clouds. You can\'t plan it — you get lucky.', tip: 'Morning · After rain' },
 ];
 
 const firstTimerMistakes = [
-  { mistake: 'Arriving at the Panda Base at 11 AM', fix: 'Pandas are asleep by 11:30. Arrive at 7:45 AM to queue for the 8 AM opening. You\'ll have 2–3 hours of active pandas before they crash.' },
-  { mistake: 'Underestimating the spice', fix: 'Order one dish at a time until you know your tolerance. Mala builds — dish three hits harder than dish one. Always have plain rice and a cold drink within reach.' },
-  { mistake: 'Not having addresses in Chinese', fix: 'Save your hotel, key attractions, and "please take me to the airport" in Chinese characters in your phone. Show the screen to taxi drivers. This saves you 20 minutes of charades per ride.' },
-  { mistake: 'Skipping the VPN setup before arriving', fix: 'Google, Gmail, Instagram, WhatsApp, Google Maps — all blocked. Install and test your VPN at home. Once you\'re in China, you can\'t download VPN apps.' },
-  { mistake: 'Trying to do too much in one day', fix: 'Chengdu rewards slowing down. Two major activities per day is the sweet spot. A morning at the Panda Base, a long lunch, an afternoon tea house — that\'s a perfect day. Don\'t try to cram three temples, a park, and a museum.' },
-  { mistake: 'Paying full price for everything', fix: 'Book attractions on Trip.com or Meituan — often 10–20% cheaper than gate price. Train tickets are cheaper booked 1–2 days ahead. Didi is always cheaper than taxis.' },
+  { mistake: 'Arriving at the Panda Base at 11 AM', fix: 'Pandas nap by 11:30. Arrive at 7:45 AM to queue for the 8 AM opening — you\'ll have 2–3 hours of active pandas.' },
+  { mistake: 'Underestimating the spice', fix: 'Order one dish at a time until you know your tolerance. Mala builds — dish three hits harder than dish one. Always have rice and a cold drink within reach.' },
+  { mistake: 'Not having addresses in Chinese', fix: 'Save your hotel, key attractions, and "take me to the airport" in Chinese characters on your phone. Show the screen to taxi drivers.' },
+  { mistake: 'Skipping the VPN setup before arriving', fix: 'Google, Gmail, Instagram, WhatsApp — all blocked. Install and test your VPN at home. You cannot download VPN apps once inside China.' },
+  { mistake: 'Trying to do too much in one day', fix: 'Chengdu rewards slowing down. Two major activities per day is the sweet spot — morning at the Panda Base, long lunch, afternoon tea house.' },
+  { mistake: 'Paying full price for everything', fix: 'Book attractions on Trip.com or Meituan — often 10–20% cheaper. Train tickets are cheaper booked 1–2 days ahead. Didi is cheaper than taxis.' },
 ];
 
 const honestExpectations = [
-  { title: 'The spice will humble you', desc: 'Sichuan mala isn\'t just heat — the peppercorns make your tongue tingle and go numb, a sensation unlike anything in Thai, Indian, or Mexican food. Non-spicy dishes exist, but half the menu bites back. Pack antacids and embrace the burn.' },
-  { title: 'English is scarce outside hotels', desc: 'Restaurant menus rarely have English. Taxi drivers won\'t understand you. Street vendors definitely won\'t. Download a translation app with camera translation, and always carry your hotel address in Chinese. Google Translate\'s offline Chinese pack works without VPN.' },
-  { title: 'Pandas nap through midday', desc: 'The famous pandas are most active 8:00–10:00 AM. By 11:30, most are asleep — not "cute sleepy," but "barely visible furry lump." If you arrive at 1 PM expecting action, you\'ll be disappointed. Set an early alarm.' },
-  { title: 'Summer is punishing', desc: 'July–August brings 30°C+ heat, punishing humidity, and domestic summer holidays. Temple courtyards become ovens. Spring (Mar–May) and autumn (Sep–Nov) are 15–25°C and dramatically more pleasant.' },
+  { title: 'The spice will humble you', desc: 'Sichuan mala isn\'t just heat — the peppercorns make your tongue tingle and go numb, unlike anything in Thai, Indian, or Mexican food. Non-spicy dishes exist, but half the menu bites back.' },
+  { title: 'English is scarce outside hotels', desc: 'Menus rarely have English and taxi drivers won\'t understand you. Use a translation app with camera mode and carry your hotel address in Chinese.' },
+  { title: 'Pandas nap through midday', desc: 'Pandas are most active 8:00–10:00 AM. By 11:30 most are asleep. Arrive at 1 PM expecting action and you\'ll be disappointed — set an early alarm.' },
+  { title: 'Summer is punishing', desc: 'July–August brings 30°C+ heat, humidity, and domestic holidays. Spring (Mar–May) and autumn (Sep–Nov) are 15–25°C and far more pleasant.' },
 ];
 
 const packingChecklist = [
-  { item: 'Comfortable walking shoes', tag: 'MUST', desc: 'You\'ll walk more than you expect — temple complexes, ancient streets, and the Panda Base cover a lot of ground on uneven surfaces.' },
-  { item: 'Umbrella or rain jacket', tag: 'MUST', desc: 'Chengdu gets sudden rain even in sunny seasons. A compact umbrella lives in your day bag. Sichuan weather is famously unpredictable.' },
-  { item: 'Translation app + offline Chinese pack', tag: 'MUST', desc: 'Google Translate or Baidu Translate with Chinese downloaded. The camera translation feature is a menu-saver at restaurants with picture-free menus.' },
-  { item: 'Passport — always on you', tag: 'MUST', desc: 'Required for hotel check-in, SIM card purchase, train tickets, and random ID checks. Keep a photo on your phone as backup.' },
-  { item: 'VPN — installed and tested before leaving home', tag: 'MUST', desc: 'Google, Instagram, WhatsApp, Google Maps are all blocked. You cannot download VPN apps once inside China. Test it at the airport before boarding.' },
-  { item: 'Portable battery pack (10,000+ mAh)', tag: 'SHOULD', desc: 'Your phone runs translation, maps, Didi (ride-hailing), and payments all day. A dead phone in Chengdu is genuinely stressful.' },
-  { item: 'Tissues and hand sanitizer', tag: 'SHOULD', desc: 'Many public restrooms don\'t provide toilet paper or soap. Carry a small pack. You\'ll thank yourself.' },
-  { item: 'An empty stomach and an open mind', tag: 'ENJOY', desc: 'The best things you can bring. Chengdu will feed you things you\'ve never tasted and show you moments you didn\'t know you were looking for.' },
+  { item: 'Comfortable walking shoes', tag: 'MUST', desc: 'Temple complexes, ancient streets, and the Panda Base cover a lot of ground.' },
+  { item: 'Umbrella or rain jacket', tag: 'MUST', desc: 'Chengdu gets sudden rain even in sunny seasons.' },
+  { item: 'Translation app + offline Chinese pack', tag: 'MUST', desc: 'Camera translation is a lifesaver at picture-free menus.' },
+  { item: 'Passport — always on you', tag: 'MUST', desc: 'Required for hotels, SIMs, train tickets, and ID checks.' },
+  { item: 'VPN — installed and tested before leaving home', tag: 'MUST', desc: 'You cannot download VPN apps once inside China.' },
+  { item: 'Portable battery pack (10,000+ mAh)', tag: 'SHOULD', desc: 'Your phone runs translation, maps, and payments all day.' },
+  { item: 'Tissues and hand sanitizer', tag: 'SHOULD', desc: 'Many public restrooms lack toilet paper and soap.' },
+  { item: 'An empty stomach and an open mind', tag: 'ENJOY', desc: 'Chengdu will feed you things you\'ve never tasted.' },
 ];
 
 const faqs = [
-  { q: 'What is the best time to visit Chengdu?', a: 'Spring (March–May) and autumn (September–November) are ideal: 15–25°C, low rainfall, and golden ginkgo trees in fall. Summer is hot and humid but is baby panda season. Winter is gray and damp but uncrowded. See our month-by-month table above for details.' },
-  { q: 'How many days do I need in Chengdu?', a: 'Minimum 2 full days for the essentials (pandas, ancient streets, hotpot, and opera). Three to four days lets you add a day trip to the Leshan Giant Buddha or Mount Qingcheng. If you\'re a food-focused traveler, give yourself at least 3 days — you\'ll want to eat six meals a day.' },
-  { q: 'Is Chengdu safe for tourists?', a: 'Yes, Chengdu is very safe. Violent crime against tourists is extremely rare. Standard precautions apply: watch for pickpockets in very crowded markets, use official taxis or Didi at night, and keep your passport secure. Solo female travelers report feeling safe.' },
-  { q: 'What is Chengdu famous for?', a: 'Three things above all: giant pandas (Chengdu is the global panda capital), Sichuan cuisine (hotpot, mapo tofu, dan dan noodles — a UNESCO City of Gastronomy since 2010), and tea house culture (Chengdu invented tea culture as we know it, over 1,000 years ago).' },
-  { q: 'Do I need a visa for Chengdu?', a: 'Most visitors need a Chinese tourist visa (L visa). Chengdu now offers a 144-hour (6-day) transit visa waiver for travelers from 54 countries transiting to a third country. Always check the latest policy with your local Chinese embassy — rules change.' },
-  { q: 'Should I visit Chengdu or Chongqing?', a: 'Pick Chengdu for food, pandas, tea culture, and a laid-back pace. Pick Chongqing for jaw-dropping cityscapes, the spiciest hotpot on earth, and Yangtze River cruises. They\'re connected by a 1.5-hour high-speed train — many travelers do both. See our detailed comparison table above.' },
-  { q: 'Which panda base should I visit?', a: 'Chengdu Research Base for the most pandas (~200), the baby nursery, and easy Metro access. Dujiangyan Panda Base for a quieter, open-air experience and the hands-on volunteer keeper program. If you only have one panda day: Chengdu for the spectacle, Dujiangyan for the experience. Full comparison above.' },
-  { q: 'How much does a trip to Chengdu cost?', a: 'Backpacker: ¥200–300/day (hostel, street food, Metro, one attraction). Mid-range: ¥500–800/day (boutique hotel, restaurants, Didi, all attractions). Luxury: ¥800+/day (five-star, fine dining, private driver). Chengdu is one of China\'s most affordable major cities.' },
-  { q: 'Can I use credit cards or Apple Pay in Chengdu?', a: 'Not widely. WeChat Pay and Alipay dominate, and both now accept foreign credit cards (link in-app before you travel). Cash is accepted everywhere. Carry some RMB for small street-food stalls and local markets. ATMs that take foreign cards are at major banks and airports.' },
-  { q: 'Is English widely spoken in Chengdu?', a: 'Limited. Hotel front desks and younger locals may speak basic English, but restaurant staff, taxi drivers, and market vendors generally do not. Download a translation app with camera translation. Have key addresses saved in Chinese characters on your phone. See our first-timer mistakes above.' },
-  { q: 'What should I pack for Chengdu?', a: 'Comfortable walking shoes, umbrella, passport, VPN (installed before arriving), translation app with offline Chinese pack, tissues, power bank, and an adventurous appetite. See our full packing checklist above for the complete rundown.' },
-  { q: 'Is Chengdu worth visiting if I only have a short time in China?', a: 'Yes — especially if you love food. Even one full day (pandas, ancient streets, one hotpot dinner, one tea house) gives you a taste of what makes Chengdu special. Two days is better. Three days and you\'ll start planning your return before you leave.' },
-  { q: 'How do I get from Chengdu airport to the city center?', a: 'Shuangliu Airport (CTU): Metro Line 10 connects directly to the city in about 20–30 minutes (¥5–7). Taxi/Didi costs ¥50–70 and takes 25–40 minutes. Tianfu Airport (TFU): The new airport is farther — Metro Line 18 takes 45–50 minutes (¥10–12), taxi ¥150–200 and 50–70 minutes. Both airports have clear English signage.' },
-  { q: 'Is the tap water safe to drink in Chengdu?', a: 'No. Tap water in Chengdu is not potable — locals boil it first or use bottled water dispensers. Hotels provide bottled water or electric kettles. Convenience stores sell 1.5L bottles for ¥2–4. Restaurants serve boiled water or tea by default. Ice is generally made from purified water at reputable establishments, but skip it at street stalls if you\'re cautious.' },
-  { q: 'What is the air quality like in Chengdu?', a: 'Chengdu sits in a basin surrounded by mountains, so air quality can be poor — especially in winter (Dec–Feb). AQI frequently ranges 100–180 (unhealthy for sensitive groups) during winter months. Spring and summer are better (AQI 50–100). If you have asthma or respiratory issues, bring medication and check real-time AQI on apps like AirVisual. Many locals wear masks on high-AQI days — it\'s normal and not cause for alarm.' },
-  { q: 'Is Chengdu good for families traveling with kids?', a: 'Yes — Chengdu is one of China\'s most family-friendly cities. The Panda Base is a guaranteed hit with children. People\'s Park has playgrounds and paddle boats. The Sichuan Science and Technology Museum (free, near Tianfu Square) has hands-on exhibits. Most hotpot restaurants offer non-spicy broth options. The Metro is stroller-accessible with elevators at every station. Fewer stairs and hills than Beijing or Chongqing.' },
-  { q: 'Where can I go shopping in Chengdu?', a: 'Chunxi Road (春熙路) is the main pedestrian shopping street — massive malls, international brands, and the IFS building with the famous climbing panda sculpture. Taikoo Li (太古里) next door is upscale open-air luxury boutiques in modern architecture. Jinli Street and Kuanzhai Alley for souvenirs (Sichuan embroidery, panda merch, tea). Songxianqiao Antique Market on weekends for curios and Cultural Revolution memorabilia.' },
-  { q: 'How do I access the internet in Chengdu? (VPN, SIM cards, WiFi)', a: 'Install and test a VPN before leaving home — you cannot download VPN apps once in China. ExpressVPN and Astrill are most reliable. For mobile data: buy a China Unicom or China Mobile SIM at the airport (¥100–200 for 20–50GB). Alternatively, get an eSIM (Airalo, Holafly) before arriving — no VPN needed for eSIM data. Hotel WiFi requires VPN for Google/Instagram/WhatsApp. Download offline Google Maps and Google Translate Chinese pack before you arrive as backup.' },
+  { q: 'What is the best time to visit Chengdu?', a: 'Spring (March–May) and autumn (September–November): 15–25°C and low rainfall. Summer is hot but is baby panda season; winter is gray, damp, and uncrowded. See the month-by-month table above.' },
+  { q: 'How many days do I need in Chengdu?', a: 'Two full days covers the essentials (pandas, ancient streets, hotpot, opera). Add 1–2 days for a Leshan Buddha or Mount Qingcheng day trip.' },
+  { q: 'Is Chengdu safe for tourists?', a: 'Yes. Violent crime against tourists is extremely rare. Watch for pickpockets in crowded markets, use Didi or official taxis at night, and keep your passport secure.' },
+  { q: 'What is Chengdu famous for?', a: 'Giant pandas (home of the Chengdu Research Base), Sichuan cuisine (hotpot, mapo tofu, dan dan noodles — UNESCO City of Gastronomy since 2010), and a tea-house culture over 1,000 years old.' },
+  { q: 'Do I need a visa for Chengdu?', a: 'Most visitors need a Chinese tourist (L) visa. Chengdu offers a 144-hour transit visa waiver for 54 nationalities transiting to a third country. Confirm current rules with your local Chinese embassy.' },
+  { q: 'Which panda base should I visit?', a: 'Chengdu Research Base for the most pandas (~200), the baby nursery, and easy Metro access. Dujiangyan for quieter open-air enclosures and the volunteer keeper program.' },
+  { q: 'How much does a trip to Chengdu cost?', a: 'Backpacker ¥200–300/day; mid-range ¥500–800/day; luxury ¥800+/day. Chengdu is one of China\'s most affordable major cities.' },
+  { q: 'Can I use credit cards or Apple Pay in Chengdu?', a: 'Not widely. WeChat Pay and Alipay dominate and both accept foreign cards — link them in-app before you travel. Carry some cash for street stalls.' },
+  { q: 'Is English widely spoken in Chengdu?', a: 'Limited outside hotels. Use a translation app with camera mode and keep key addresses saved in Chinese characters.' },
+  { q: 'How do I get from Chengdu airport to the city center?', a: 'Shuangliu (CTU): Metro Line 10, 20–30 min. Tianfu (TFU): Metro Line 18, 45–50 min. Both airports have clear English signage.' },
 ];
 
 const schema = {
@@ -309,7 +299,7 @@ const schema = {
               Best of Chengdu <span class="text-accent">2026</span>
             </h1>
             <p class="hero-subtitle mt-5 text-base md:text-lg text-gray-500 leading-relaxed max-w-[48ch]">
-              Everything you need to plan an unforgettable trip to China's food capital — where to eat (with specific restaurant names), which panda base to choose, what to really expect, and how to avoid the mistakes everyone makes.
+              Plan an unforgettable trip to China's food capital — where to eat, which panda base to choose, what to expect, and the mistakes to avoid.
             </p>
             <p class="mt-4 text-xs text-gray-400 flex flex-wrap items-center gap-2">
               By <a href="/about/" class="font-medium text-accent hover:text-accent-dark transition-colors">Best of Chengdu Team</a>
@@ -379,7 +369,7 @@ const schema = {
     <!-- ===== QUICK FACTS ===== -->
     <section class="max-w-[1200px] mx-auto px-6 pt-8 pb-16 md:pb-20">
       <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Chengdu at a Glance</h2>
-      <p class="text-gray-500 mb-8 reveal">Everything you need to know before you go — in 30 seconds.</p>
+      <p class="text-gray-500 mb-8 reveal">The essentials in 30 seconds.</p>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {quickFacts.map((fact) => (
           <div class="p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors duration-200">
@@ -396,12 +386,9 @@ const schema = {
         <div class="max-w-[740px]">
           <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-6 reveal">Why Visit Chengdu?</h2>
           <div class="space-y-5 text-gray-600 leading-relaxed reveal">
-            <p>Let's be honest — most people come to Chengdu for two things: <strong class="text-[#1a1a1a]">giant pandas</strong> and <strong class="text-[#1a1a1a]">Sichuan food</strong>. Both live up to the hype. But neither is the real reason you'll remember this city.</p>
-            <p>Chengdu <span class="text-[#1a1a1a] font-medium">(成都, Chéngdū)</span> has existed for over 2,200 years without changing its name — one of the oldest continuously named cities on earth. Twenty-one million people live here, and they've figured out something the rest of China hasn't: <em>life is supposed to be enjoyed, not just endured</em>. Walk through People's Park on a Tuesday afternoon. You'll see old men playing mahjong under ginkgo trees, couples dancing to a portable speaker, families sipping jasmine tea for three hours without checking a phone. Nobody is rushing. Nobody looks stressed. This is the Chengdu way — and it's contagious.</p>
-            <p>UNESCO named Chengdu a <strong class="text-[#1a1a1a]">City of Gastronomy</strong> in 2010 — one of only about 50 cities worldwide. Walk any street at 7 PM and the air smells of chili oil and Sichuan peppercorns. Mapo tofu was born here in 1862 at a shop still serving it today. Kung pao chicken — the real version, not the gloopy takeout — was invented in a Chengdu courtyard kitchen. Hotpot restaurants have lines at midnight. This isn't a city where you eat to live. This is a city that <em>lives to eat</em>.</p>
-            <p>The pandas are everything you hope they'll be — 200 of them at the Chengdu Research Base, 30 minutes from downtown. But here's what surprised us: the city's tea houses might be even more memorable. Heming Tea House in People's Park has been serving jasmine tea in covered cups for over a century. Old men bring their pet birds in bamboo cages. The tea costs ¥15 and you can sit for four hours. Nobody will rush you. This tradition is over 1,000 years old — Chengdu essentially invented tea culture as we know it.</p>
-            <p>Then there's the Sichuan Opera — face-changing performers who whip colored silk masks across their faces faster than your eye can track. The clatter of mahjong tiles in every park. A nightlife scene that runs past 3 AM. And two of China's finest day trips: the 71-meter Leshan Giant Buddha carved into a red cliff in the 8th century, and Mount Qingcheng — a mist-shrouded Taoist mountain where stone staircases disappear into clouds. Both under two hours from downtown.</p>
-            <p class="text-[#1a1a1a] font-medium">Chengdu isn't a city you tick off a checklist. It's a city you sink into — and then spend the rest of your trip telling people they need to come here too.</p>
+            <p>Most people come to Chengdu for <strong class="text-[#1a1a1a]">giant pandas</strong> and <strong class="text-[#1a1a1a]">Sichuan food</strong> — both live up to the hype. But the city itself is the real draw. Chengdu <span class="text-[#1a1a1a] font-medium">(成都, Chéngdū)</span> has existed for over 2,200 years without changing its name, and its 21 million residents have perfected the art of slowing down. Walk through People's Park on a Tuesday: mahjong under ginkgo trees, couples dancing to a portable speaker, families sipping jasmine tea for hours. Nobody is rushing. That pace is contagious.</p>
+            <p>UNESCO named Chengdu a <strong class="text-[#1a1a1a]">City of Gastronomy</strong> in 2010 — one of only ~50 worldwide. Mapo tofu was born here in 1862 at a shop still serving it today; kung pao chicken was invented in a local courtyard kitchen; hotpot restaurants still have midnight queues. The pandas deliver too: ~200 at the Chengdu Research Base, 30 minutes from downtown. And the tea houses may be even more memorable — Heming Tea House has served covered cups of jasmine tea for over a century, in a tradition more than 1,000 years old.</p>
+            <p>Add the Sichuan Opera's face-changing performers, mahjong in every park, a nightlife scene that runs past 3 AM, and two of China's finest day trips — the 71-meter Leshan Giant Buddha and mist-shrouded Mount Qingcheng, both under two hours away. <span class="text-[#1a1a1a] font-medium">Chengdu isn't a city you tick off a checklist — it's a city you sink into.</span></p>
           </div>
         </div>
       </div>
@@ -410,7 +397,7 @@ const schema = {
     <!-- ===== FOOD ===== -->
     <section id="food" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
       <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">What to Eat in Chengdu — And Where</h2>
-      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Eight dishes that define Sichuan cuisine. Each one comes with a specific restaurant recommendation — because knowing <em>what</em> to order is only half the battle.</p>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Eight dishes that define Sichuan cuisine — with specific restaurants to order them at.</p>
 
       <div class="space-y-4 mb-10 reveal">
         {mustTryDishes.map((dish) => (
@@ -451,7 +438,7 @@ const schema = {
     <section id="attractions" class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
         <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Top Attractions in Chengdu</h2>
-        <p class="text-gray-500 text-lg max-w-[52ch] mb-8 reveal">From giant pandas to ancient temples — with ticket prices, transit, and honest timing advice for each one.</p>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-8 reveal">From giant pandas to ancient temples — with prices, transit, and timing advice.</p>
 
         <!-- Attractions image -->
         <div class="mt-10 mb-8 reveal max-w-[860px]">
@@ -489,7 +476,7 @@ const schema = {
     <section id="hidden-gems" class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
         <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Hidden Gems — Beyond the Tourist Trail</h2>
-        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Six places most visitors miss — ancient temples, surreal architecture, and creative quarters that locals actually go to on weekends.</p>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Six places most visitors miss — ancient temples, surreal architecture, and creative quarters locals actually visit.</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
           {hiddenGems.map((gem) => (
             <div class="rounded-xl border border-border bg-white hover:border-accent/20 hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden">
@@ -516,7 +503,7 @@ const schema = {
     <!-- ===== PANDA BASE COMPARISON ===== -->
     <section id="pandas" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
       <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Which Panda Base Should You Visit?</h2>
-      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Two bases, two very different experiences. Here's the detailed comparison to help you choose.</p>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Two bases, two very different experiences — here's how to choose.</p>
 
       <div class="overflow-x-auto reveal">
         <table class="w-full max-w-[860px] text-sm border-collapse">
@@ -551,34 +538,14 @@ const schema = {
         />
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 reveal max-w-[860px]">
-        <div class="p-5 rounded-xl bg-accent/5 border border-accent/10">
-          <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">Pick Chengdu if…</h3>
-          <ul class="space-y-1.5 text-sm text-gray-500">
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You want to see as many pandas as possible (~200)</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Seeing baby pandas in the nursery is a priority</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're short on time (30 min Metro from downtown)</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're visiting with young children</li>
-          </ul>
-        </div>
-        <div class="p-5 rounded-xl bg-accent/5 border border-accent/10">
-          <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">Pick Dujiangyan if…</h3>
-          <ul class="space-y-1.5 text-sm text-gray-500">
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You want the hands-on volunteer keeper program</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You prefer a quiet, uncrowded hillside experience</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're combining with Mount Qingcheng or the Irrigation System</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Open-air enclosures for clearer photos (no glass)</li>
-          </ul>
-        </div>
-      </div>
-      <p class="text-sm text-gray-500 mt-4 reveal max-w-[860px]"><span class="font-medium text-[#1a1a1a]">Can you do both?</span> Yes — and many visitors do. Morning at Chengdu Research Base, afternoon train to Dujiangyan, volunteer day the next morning. If you only have one panda day: Chengdu for the spectacle, Dujiangyan for the experience.</p>
+      <p class="text-sm text-gray-500 mt-4 reveal max-w-[860px]"><span class="font-medium text-[#1a1a1a]">Quick verdict:</span> Chengdu Research Base for the spectacle, most pandas, and the nursery. Dujiangyan for quiet open-air enclosures and the volunteer keeper program. If you only have one panda day, choose Chengdu — the full comparison and volunteer details live on our <a href="/attractions/panda-base/" class="text-accent hover:underline">Panda Base guide</a>.</p>
     </section>
 
     <!-- ===== EXPERIENCES ===== -->
     <section id="experiences" class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
         <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Experiences & Culture</h2>
-        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Chengdu is about moments, not just sights. Here's what happens between meals.</p>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Chengdu is about moments, not just sights.</p>
 
         <div class="grid md:grid-cols-[1fr_380px] gap-8 items-start reveal">
           <!-- Left: 4 cards -->
@@ -760,27 +727,7 @@ const schema = {
         />
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 reveal max-w-[860px]">
-        <div class="p-5 rounded-xl bg-accent/5 border border-accent/10">
-          <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">Pick Chengdu if…</h3>
-          <ul class="space-y-1.5 text-sm text-gray-500">
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Food is the main reason you travel</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Giant pandas are a must-see</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You want tea houses, parks, and a slower pace</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're traveling solo or as a couple</li>
-          </ul>
-        </div>
-        <div class="p-5 rounded-xl bg-accent/5 border border-accent/10">
-          <h3 class="font-display font-semibold text-[#1a1a1a] mb-2">Pick Chongqing if…</h3>
-          <ul class="space-y-1.5 text-sm text-gray-500">
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> Jaw-dropping cityscapes excite you (think Blade Runner)</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You're starting a Yangtze River cruise</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You love dramatic, vertical urban exploration</li>
-            <li class="flex items-start gap-2"><span class="text-accent mt-0.5 shrink-0">→</span> You want the spiciest hotpot on the planet</li>
-          </ul>
-        </div>
-      </div>
-      <p class="text-sm text-gray-500 mt-4 reveal max-w-[860px]"><span class="font-medium text-[#1a1a1a]">Best plan:</span> Spend 2–3 days in each. Start in Chengdu for food and pandas, then take the 1.5-hour high-speed train (¥150) to Chongqing for an urban adventure. They complement each other perfectly.</p>
+      <p class="text-sm text-gray-500 mt-4 reveal max-w-[860px]"><span class="font-medium text-[#1a1a1a]">Best plan:</span> Spend 2–3 days in each — start in Chengdu for food and pandas, then the 1.5-hour high-speed train (¥150) to Chongqing for an urban adventure. They complement each other perfectly.</p>
     </section>
 
     <!-- ===== FIRST-TIMER MISTAKES ===== -->
