@@ -64,11 +64,17 @@ const schema = {
 
         <section>
           <h2 class="text-xl font-display font-semibold text-[#1a1a1a] mb-3">Contact</h2>
-          <p>If you have any questions about this policy, email <a href="mailto:hello@best-of-chengdu.com" class="text-accent hover:underline">hello@best-of-chengdu.com</a>.</p>
+          <p>If you have any questions about this policy, email <a href="#contact" class="text-accent hover:underline js-email" data-mail-user="hello" data-mail-domain="best-of-chengdu.com">our contact address</a>.</p>
         </section>
       </div>
     </section>
   </main>
 
   <Footer />
+
+  <script>
+    document.querySelectorAll('.js-email').forEach((a) => {
+      a.href = 'mailto:' + a.dataset.mailUser + '@' + a.dataset.mailDomain;
+    });
+  </script>
 </BaseLayout>

@@ -249,7 +249,6 @@ const schema = {
       name: 'Best of Chengdu',
       url: 'https://www.best-of-chengdu.com/',
       description: 'A locally researched, regularly updated guide to the very best of Chengdu, Sichuan — curated food recommendations with specific restaurants, attraction guides, and honest travel advice.',
-      email: 'hello@best-of-chengdu.com',
       sameAs: [
         'https://github.com/jiusongvip/best-of-chengdu',
         'https://en.wikipedia.org/wiki/Chengdu',
@@ -883,7 +882,7 @@ const schema = {
               We eat at the restaurants we recommend, visit the attractions we describe, and test the itineraries ourselves.
               This page was last updated by our food editor on <strong class="text-[#1a1a1a]">August 5, 2026</strong>.
               We are <strong class="text-[#1a1a1a]">not affiliated</strong> with any government tourism organization, restaurant, or attraction.
-              If you spot outdated info or have a tip to share, please <a href="mailto:hello@best-of-chengdu.com" class="text-accent hover:text-accent-dark transition-colors">tell us</a> — this guide gets better because of readers like you.
+              If you spot outdated info or have a tip to share, please <a href="/about/" data-mail-user="hello" data-mail-domain="best-of-chengdu.com" id="contact-email" class="text-accent hover:text-accent-dark transition-colors">tell us</a> — this guide gets better because of readers like you.
             </p>
           </div>
         </div>
@@ -917,5 +916,7 @@ const schema = {
         btn.setAttribute('aria-expanded', String(!isOpen));
       });
     });
+    const em = document.getElementById('contact-email');
+    if (em) em.href = 'mailto:' + em.dataset.mailUser + '@' + em.dataset.mailDomain;
   </script>
 </BaseLayout>
