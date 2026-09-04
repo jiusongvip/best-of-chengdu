@@ -207,18 +207,18 @@ const faqs = [
 const schema = {
   '@context': 'https://schema.org', 'datePublished': '2026-07-29', 'dateModified': '2026-08-05',
   '@graph': [
-    { '@type': 'Article', 'headline': '8 Best Day Trips from Chengdu 2026 — Leshan Buddha, Mount Qingcheng, Emei & More', 'description': 'Complete guide to 8 day trips: Leshan Giant Buddha, Mount Qingcheng, Dujiangyan, Sanxingdui, Mount Emei, Huanglongxi Ancient Town, Bifengxia Panda Base, Anren Museum Town. Ticket prices, detailed transport, honest tips, food recommendations, itinerary combinations.', 'url': 'https://www.best-of-chengdu.com/attractions/day-trips', 'author': { '@type': 'Organization', 'name': 'Best of Chengdu' } },
+    { '@type': 'Article', 'headline': '8 Best Day Trips from Chengdu 2026 — Leshan Buddha, Mount Qingcheng, Emei & More', 'description': 'Complete guide to 8 day trips: Leshan Giant Buddha, Mount Qingcheng, Dujiangyan, Sanxingdui, Mount Emei, Huanglongxi Ancient Town, Bifengxia Panda Base, Anren Museum Town. Ticket prices, detailed transport, honest tips, food recommendations, itinerary combinations.', 'url': 'https://www.best-of-chengdu.com/attractions/day-trips/', 'author': { '@type': 'Organization', 'name': 'Best of Chengdu' } },
     { '@type': 'BreadcrumbList', 'itemListElement': [
       { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://www.best-of-chengdu.com/' },
-      { '@type': 'ListItem', 'position': 2, 'name': 'Attractions', 'item': 'https://www.best-of-chengdu.com/attractions' },
-      { '@type': 'ListItem', 'position': 3, 'name': 'Day Trips', 'item': 'https://www.best-of-chengdu.com/attractions/day-trips' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Attractions', 'item': 'https://www.best-of-chengdu.com/attractions/' },
+      { '@type': 'ListItem', 'position': 3, 'name': 'Day Trips', 'item': 'https://www.best-of-chengdu.com/attractions/day-trips/' },
     ]},
     { '@type': 'FAQPage', 'mainEntity': faqs.map((faq) => ({ '@type': 'Question', 'name': faq.q, 'acceptedAnswer': { '@type': 'Answer', 'text': faq.a } })) },
   ],
 };
 ---
 
-<BaseLayout schemaJson={JSON.stringify(schema)} title="8 Best Day Trips from Chengdu" description="8 day trips from Chengdu: Leshan Buddha, Mount Qingcheng, Dujiangyan, Sanxingdui, Emei, and more. Prices, transport, and itinerary tips.">
+<BaseLayout schemaJson={JSON.stringify(schema)} title="8 Best Day Trips from Chengdu" description="8 best day trips from Chengdu: Leshan Giant Buddha, Mount Qingcheng, Dujiangyan, Sanxingdui, Emei, and more. Ticket prices, transport, and itinerary tips.">
   <Header />
   <main>
     <!-- HERO -->
