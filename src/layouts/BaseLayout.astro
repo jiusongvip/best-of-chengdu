@@ -62,12 +62,5 @@ const canonicalUrl = Astro.url.pathname === '/'
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />
-    <script>
-      const observer = new IntersectionObserver(
-        (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
-      );
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    </script>
   </body>
 </html>

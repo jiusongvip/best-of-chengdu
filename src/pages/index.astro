@@ -368,8 +368,8 @@ const schema = {
 
     <!-- ===== QUICK FACTS ===== -->
     <section class="max-w-[1200px] mx-auto px-6 pt-8 pb-16 md:pb-20">
-      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Chengdu at a Glance</h2>
-      <p class="text-gray-500 mb-8 reveal">The essentials in 30 seconds.</p>
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Chengdu at a Glance</h2>
+      <p class="text-gray-500 mb-8">The essentials in 30 seconds.</p>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {quickFacts.map((fact) => (
           <div class="p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors duration-200">
@@ -384,8 +384,8 @@ const schema = {
     <section class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
         <div class="max-w-[740px]">
-          <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-6 reveal">Why Visit Chengdu?</h2>
-          <div class="space-y-5 text-gray-600 leading-relaxed reveal">
+          <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-6">Why Visit Chengdu?</h2>
+          <div class="space-y-5 text-gray-600 leading-relaxed">
             <p>Chengdu <span class="text-[#1a1a1a] font-medium">(成都, Chéngdū)</span> has existed for over 2,200 years without changing its name, and its 21 million residents have perfected the art of slowing down. UNESCO named it a <strong class="text-[#1a1a1a]">City of Gastronomy</strong> in 2010; mapo tofu was born here in 1862, kung pao chicken in a local courtyard kitchen, and ~200 giant pandas live 30 minutes from downtown at the Chengdu Research Base.</p>
             <p>Then add the Sichuan Opera's face-changing performers, tea houses serving covered cups of jasmine tea for a millennium, and two of China's finest day trips — the 71-meter Leshan Giant Buddha and mist-shrouded Mount Qingcheng. <span class="text-[#1a1a1a] font-medium">Chengdu isn't a city you tick off a checklist — it's a city you sink into.</span></p>
           </div>
@@ -395,10 +395,10 @@ const schema = {
 
     <!-- ===== FOOD ===== -->
     <section id="food" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
-      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">What to Eat in Chengdu — And Where</h2>
-      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Eight dishes that define Sichuan cuisine.</p>
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">What to Eat in Chengdu — And Where</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Eight dishes that define Sichuan cuisine.</p>
 
-      <div class="space-y-4 mb-10 reveal">
+      <div class="space-y-4 mb-10">
         {mustTryDishes.map((dish) => (
           <div class="p-5 rounded-xl border border-border bg-white hover:border-accent/20 hover:shadow-sm transition-all duration-200">
             <div class="flex flex-wrap items-baseline gap-2 mb-1.5">
@@ -411,7 +411,7 @@ const schema = {
       </div>
 
       <!-- Food image -->
-      <div class="mt-10 mb-8 reveal max-w-[860px]">
+      <div class="mt-10 mb-8 max-w-[860px]">
         <img
           src="/images/food-hotpot.webp"
           alt="Sichuan hotpot bubbling with chili oil, sliced meats, and vegetables — the quintessential Chengdu dining experience"
@@ -422,8 +422,8 @@ const schema = {
         />
       </div>
 
-      <h3 class="text-xl font-display font-semibold tracking-tight mb-6 reveal">Explore by category</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+      <h3 class="text-xl font-display font-semibold tracking-tight mb-6">Explore by category</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {foodCategories.map((cat) => (
           <a href={cat.href} class="group flex flex-col p-5 rounded-xl border border-border hover:border-accent/30 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
             <h3 class="font-display font-semibold text-[#1a1a1a] group-hover:text-accent transition-colors">{cat.label}</h3>
@@ -436,11 +436,11 @@ const schema = {
     <!-- ===== ATTRACTIONS ===== -->
     <section id="attractions" class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
-        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Top Attractions in Chengdu</h2>
-        <p class="text-gray-500 text-lg max-w-[52ch] mb-8 reveal">From giant pandas to ancient temples — with prices, transit, and timing.</p>
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Top Attractions in Chengdu</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-8">From giant pandas to ancient temples — with prices, transit, and timing.</p>
 
         <!-- Attractions image -->
-        <div class="mt-10 mb-8 reveal max-w-[860px]">
+        <div class="mt-10 mb-8 max-w-[860px]">
           <img
             src="/images/jinli-lanterns.webp"
             alt="Red lanterns glowing above Jinli Ancient Street at dusk, traditional Sichuan architecture with cobblestone lanes"
@@ -451,7 +451,7 @@ const schema = {
           />
         </div>
 
-        <div class="space-y-3 max-w-[860px] reveal">
+        <div class="space-y-3 max-w-[860px]">
           {topAttractions.map((attraction, i) => (
             <a href={attraction.href} class="block p-5 rounded-xl bg-white border border-border hover:border-accent/20 hover:shadow-sm transition-all duration-200 group">
               <div class="flex items-start gap-4">
@@ -474,9 +474,9 @@ const schema = {
     <!-- ===== HIDDEN GEMS ===== -->
     <section id="hidden-gems" class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
-        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Hidden Gems — Beyond the Tourist Trail</h2>
-        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Six places most visitors miss.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Hidden Gems — Beyond the Tourist Trail</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Six places most visitors miss.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {hiddenGems.map((gem) => (
             <div class="rounded-xl border border-border bg-white hover:border-accent/20 hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden">
               <img
@@ -501,10 +501,10 @@ const schema = {
 
     <!-- ===== PANDA BASE COMPARISON ===== -->
     <section id="pandas" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
-      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Which Panda Base Should You Visit?</h2>
-      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Two bases, two very different experiences.</p>
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Which Panda Base Should You Visit?</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Two bases, two very different experiences.</p>
 
-      <div class="overflow-x-auto reveal">
+      <div class="overflow-x-auto">
         <table class="w-full max-w-[860px] text-sm border-collapse">
           <thead>
             <tr class="border-b border-border">
@@ -526,7 +526,7 @@ const schema = {
       </div>
 
       <!-- Panda image -->
-      <div class="mt-10 mb-8 reveal max-w-[860px]">
+      <div class="mt-10 mb-8 max-w-[860px]">
         <img
           src="/images/panda-eating.webp"
           alt="Giant panda sitting and eating bamboo in soft morning light at the Chengdu Research Base"
@@ -537,16 +537,16 @@ const schema = {
         />
       </div>
 
-      <p class="text-sm text-gray-500 mt-4 reveal max-w-[860px]"><span class="font-medium text-[#1a1a1a]">Quick verdict:</span> Chengdu Research Base for the spectacle, most pandas, and the nursery. Dujiangyan for quiet open-air enclosures and the volunteer keeper program. If you only have one panda day, choose Chengdu — the full comparison and volunteer details live on our <a href="/attractions/panda-base/" class="text-accent hover:underline">Panda Base guide</a>.</p>
+      <p class="text-sm text-gray-500 mt-4 max-w-[860px]"><span class="font-medium text-[#1a1a1a]">Quick verdict:</span> Chengdu Research Base for the spectacle, most pandas, and the nursery. Dujiangyan for quiet open-air enclosures and the volunteer keeper program. If you only have one panda day, choose Chengdu — the full comparison and volunteer details live on our <a href="/attractions/panda-base/" class="text-accent hover:underline">Panda Base guide</a>.</p>
     </section>
 
     <!-- ===== EXPERIENCES ===== -->
     <section id="experiences" class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
-        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Experiences & Culture</h2>
-        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Chengdu is about moments, not just sights.</p>
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Experiences & Culture</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Chengdu is about moments, not just sights.</p>
 
-        <div class="grid md:grid-cols-[1fr_380px] gap-8 items-start reveal">
+        <div class="grid md:grid-cols-[1fr_380px] gap-8 items-start">
           <!-- Left: 4 cards -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {experiences.map((exp) => (
@@ -572,10 +572,10 @@ const schema = {
 
     <!-- ===== PLAN YOUR TRIP (with month table) ===== -->
     <section id="plan" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
-      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Plan Your Trip</h2>
-      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Getting around, where to stay, and when to go.</p>
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Plan Your Trip</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Getting around, where to stay, and when to go.</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 reveal">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         <div class="p-6 rounded-xl border border-border bg-white">
           <h3 class="font-display font-semibold text-lg text-[#1a1a1a] mb-3">Getting Around</h3>
           <div class="space-y-2.5 text-sm text-gray-500 leading-relaxed">
@@ -606,8 +606,8 @@ const schema = {
       </div>
 
       <!-- Month-by-month table -->
-      <h3 class="text-xl font-display font-semibold tracking-tight mb-4 reveal">When to Visit — Month by Month</h3>
-      <div class="overflow-x-auto reveal mb-3">
+      <h3 class="text-xl font-display font-semibold tracking-tight mb-4">When to Visit — Month by Month</h3>
+      <div class="overflow-x-auto mb-3">
         <table class="w-full max-w-[860px] text-sm border-collapse">
           <thead>
             <tr class="border-b border-border">
@@ -631,10 +631,10 @@ const schema = {
           </tbody>
         </table>
       </div>
-      <p class="text-xs text-gray-400 reveal max-w-[860px]">Typical conditions at ~500m elevation. Sichuan weather is famously unpredictable — always check the forecast before you go.</p>
+      <p class="text-xs text-gray-400 max-w-[860px]">Typical conditions at ~500m elevation. Sichuan weather is famously unpredictable — always check the forecast before you go.</p>
 
       <!-- Autumn ginkgo image -->
-      <div class="mt-10 mb-8 reveal max-w-[860px]">
+      <div class="mt-10 mb-8 max-w-[860px]">
         <img
           src="/images/autumn-ginkgo.webp"
           alt="Golden ginkgo trees lining a Chengdu street in autumn — the city's most photogenic season (October–November)"
@@ -645,7 +645,7 @@ const schema = {
         />
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10 reveal">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10">
         <a href="/travel/hotels/" class="group flex flex-col p-4 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-sm transition-all duration-200">
           <span class="font-semibold text-sm text-[#1a1a1a] group-hover:text-accent transition-colors">Hotels →</span>
           <span class="text-xs text-gray-500 mt-1">Neighborhood picks for every budget.</span>
@@ -668,9 +668,9 @@ const schema = {
     <!-- ===== ITINERARIES ===== -->
     <section id="itineraries" class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
-        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Sample Itineraries</h2>
-        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Three ways to spend your time in Chengdu — one day to three.</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 reveal">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Sample Itineraries</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Three ways to spend your time in Chengdu — one day to three.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
           {itineraries.map((itin) => (
             <a href={itin.href} class="group flex flex-col p-6 rounded-xl border border-border bg-white hover:border-accent/30 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
               <h3 class="font-display font-semibold text-lg text-[#1a1a1a] group-hover:text-accent transition-colors mb-4">{itin.label}</h3>
@@ -691,9 +691,9 @@ const schema = {
 
     <!-- ===== CHENGDU VS CHONGQING ===== -->
     <section id="vs-chongqing" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
-      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Chengdu vs Chongqing — Which Should You Visit?</h2>
-      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Two Sichuan-cuisine mega-cities, 1.5 hours apart by train.</p>
-      <div class="overflow-x-auto reveal">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Chengdu vs Chongqing — Which Should You Visit?</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Two Sichuan-cuisine mega-cities, 1.5 hours apart by train.</p>
+      <div class="overflow-x-auto">
         <table class="w-full max-w-[860px] text-sm border-collapse">
           <thead>
             <tr class="border-b border-border">
@@ -715,7 +715,7 @@ const schema = {
       </div>
 
       <!-- Chongqing image -->
-      <div class="mt-10 mb-8 reveal max-w-[860px]">
+      <div class="mt-10 mb-8 max-w-[860px]">
         <img
           src="/images/chongqing-hongyadong.webp"
           alt="Hongyadong complex in Chongqing at night — multi-level traditional architecture illuminated along the Jialing River, a stunning contrast to Chengdu's low-rise skyline"
@@ -726,15 +726,15 @@ const schema = {
         />
       </div>
 
-      <p class="text-sm text-gray-500 mt-4 reveal max-w-[860px]"><span class="font-medium text-[#1a1a1a]">Best plan:</span> Spend 2–3 days in each — start in Chengdu for food and pandas, then the 1.5-hour high-speed train (¥150) to Chongqing for an urban adventure. They complement each other perfectly.</p>
+      <p class="text-sm text-gray-500 mt-4 max-w-[860px]"><span class="font-medium text-[#1a1a1a]">Best plan:</span> Spend 2–3 days in each — start in Chengdu for food and pandas, then the 1.5-hour high-speed train (¥150) to Chongqing for an urban adventure. They complement each other perfectly.</p>
     </section>
 
     <!-- ===== FIRST-TIMER MISTAKES ===== -->
     <section id="mistakes" class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
-        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">6 Mistakes First-Timers Make in Chengdu</h2>
-        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Learn from other travelers' missteps. Get these right and your trip is already 80% better.</p>
-        <div class="space-y-3 max-w-[860px] reveal">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">6 Mistakes First-Timers Make in Chengdu</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Learn from other travelers' missteps. Get these right and your trip is already 80% better.</p>
+        <div class="space-y-3 max-w-[860px]">
           {firstTimerMistakes.map((item) => (
             <div class="p-5 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors duration-200">
               <div class="flex items-start gap-3">
@@ -752,9 +752,9 @@ const schema = {
 
     <!-- ===== BEST PHOTO SPOTS ===== -->
     <section id="photos" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
-      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Best Photo Spots in Chengdu</h2>
-      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Six locations worth your camera.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Best Photo Spots in Chengdu</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Six locations worth your camera.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {photoSpots.map((spot) => (
           <div class="rounded-xl border border-border bg-white hover:border-accent/20 hover:shadow-md transition-all duration-200 flex flex-col overflow-hidden">
             <img
@@ -778,9 +778,9 @@ const schema = {
     <!-- ===== WHAT TRAVELERS SAY ===== -->
     <section class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
-        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">What Travelers Say About Chengdu</h2>
-        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Real themes from hundreds of traveler reviews.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[900px] reveal">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">What Travelers Say About Chengdu</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Real themes from hundreds of traveler reviews.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[900px]">
           {travelerReviews.map((review) => (
             <figure class="p-5 rounded-xl border border-border bg-white">
               <blockquote class="text-sm text-gray-600 leading-relaxed italic mb-3">"{review.quote}"</blockquote>
@@ -796,9 +796,9 @@ const schema = {
 
     <!-- ===== HONEST EXPECTATIONS ===== -->
     <section id="expect" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
-      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">What to Really Expect</h2>
-      <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Things most guidebooks skip — better to know before you go.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[860px] reveal">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">What to Really Expect</h2>
+      <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Things most guidebooks skip — better to know before you go.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[860px]">
         {honestExpectations.map((item) => (
           <div class="p-5 rounded-xl border border-border bg-white">
             <h3 class="font-display font-semibold text-base text-[#1a1a1a] mb-1.5">{item.title}</h3>
@@ -811,9 +811,9 @@ const schema = {
     <!-- ===== PACKING CHECKLIST ===== -->
     <section class="bg-surface py-20 md:py-28">
       <div class="max-w-[1200px] mx-auto px-6">
-        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">What to Pack for Chengdu</h2>
-        <p class="text-gray-500 text-lg max-w-[52ch] mb-10 reveal">Eight things that separate a smooth trip from a stressful one.</p>
-        <div class="space-y-3 max-w-[720px] reveal">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">What to Pack for Chengdu</h2>
+        <p class="text-gray-500 text-lg max-w-[52ch] mb-10">Eight things that separate a smooth trip from a stressful one.</p>
+        <div class="space-y-3 max-w-[720px]">
           {packingChecklist.map((item) => (
             <div class="flex items-start gap-4 p-4 rounded-xl border border-border bg-white hover:border-accent/20 transition-colors duration-200">
               <span class="shrink-0 text-[10px] px-2 py-0.5 rounded-full bg-accent/10 text-accent font-bold mt-0.5">{item.tag}</span>
@@ -830,9 +830,9 @@ const schema = {
     <!-- ===== FAQ (accordion) ===== -->
     <section id="faq" class="max-w-[1200px] mx-auto px-6 py-20 md:py-28">
       <div class="max-w-[860px] mx-auto">
-        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Frequently Asked Questions</h2>
-        <p class="text-gray-500 text-lg mb-10 reveal">Every question travelers ask before visiting.</p>
-        <div class="space-y-3 reveal" id="faq-list">
+        <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Frequently Asked Questions</h2>
+        <p class="text-gray-500 text-lg mb-10">Every question travelers ask before visiting.</p>
+        <div class="space-y-3" id="faq-list">
           {faqs.map((faq, i) => (
             <div class="rounded-xl border border-border bg-white overflow-hidden">
               <button
@@ -854,13 +854,13 @@ const schema = {
 
     <!-- ===== SOURCES & REFERENCES ===== -->
     <section id="sources" class="max-w-[860px] mx-auto px-6 py-12 md:py-16">
-      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2 reveal">Sources & References</h2>
-      <p class="text-gray-500 text-lg mb-8 reveal max-w-[52ch]">Authoritative references behind the facts, prices, and history on this page — so you can verify everything yourself.</p>
-      <blockquote class="border-l-4 border-accent/40 pl-5 py-3 mb-8 text-sm text-gray-600 italic leading-relaxed bg-surface rounded-r-lg reveal">
+      <h2 class="text-2xl md:text-3xl font-display font-semibold tracking-tight mb-2">Sources & References</h2>
+      <p class="text-gray-500 text-lg mb-8 max-w-[52ch]">Authoritative references behind the facts, prices, and history on this page — so you can verify everything yourself.</p>
+      <blockquote class="border-l-4 border-accent/40 pl-5 py-3 mb-8 text-sm text-gray-600 italic leading-relaxed bg-surface rounded-r-lg">
         <p>{referenceQuote.text}</p>
         <footer class="mt-2 text-xs text-accent not-italic">— <cite><a href={referenceQuote.url} target="_blank" rel="noopener noreferrer" class="underline hover:no-underline">{referenceQuote.source}, {referenceQuote.cite}</a></cite></footer>
       </blockquote>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 reveal">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {infoSources.map((s) => (
           <a href={s.url} target="_blank" rel="noopener noreferrer" class="group p-3 rounded-lg border border-border bg-white text-center hover:border-accent/30 transition-colors">
             <span class="block text-xs font-semibold text-[#1a1a1a] group-hover:text-accent transition-colors">{s.name}</span>
